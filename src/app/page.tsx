@@ -1,9 +1,12 @@
-import { Github } from "lucide-react";
+import LangSwitcher from "@/components/lang/LangSwitcher";
+import { useTranslations } from "next-intl";
 
-export default function Home() {
+export default function HomePage() {
+  const t = useTranslations("HomePage");
   return (
-    <div className="">
-      <Github />
+    <div>
+      <h1>{t("title")}</h1>
+      <LangSwitcher />
     </div>
   );
 }
