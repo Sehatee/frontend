@@ -5,7 +5,7 @@ export default function HomePage() {
   const t = useTranslations("HomePage");
   return (
     <div>
-      <h1>{t("title")}</h1>
+      <button className="p-2 bg-main text-white rounded ">{t("title")}</button>
       <LangSwitcher />
     </div>
   );
