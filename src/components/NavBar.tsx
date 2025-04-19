@@ -2,13 +2,13 @@
 import { HeartHandshake } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import React from "react";
 import LangSwitcher from "./lang/LangSwitcher";
 
 const NavBar = () => {
   const t = useTranslations("NavBar");
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  // const [openMenu, setOpenMenu] = useState<boolean>(false);
   const pathName = usePathname();
   console.log(pathName === "/");
 
