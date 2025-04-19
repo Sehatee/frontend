@@ -11,6 +11,14 @@ export default {
       colors: {
         main: "#0B62DE",
       },
+      screens: {
+        xs: "330px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+      },
     },
   },
   plugins: [],

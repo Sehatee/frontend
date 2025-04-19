@@ -1,6 +1,14 @@
 {
-    "HomePage": {
-      "title": "مرحبا بك!"
-    }
+  "HomePage": {
+    "title": "مرحبا بك!"
+  },
+  "NavBar": {
+    "LogoName": "صحتي",
+    "home": "الرئيسية",
+    "doctors": "الأطباء",
+    "services": "خدمتنا",
+    "about": "من نحن",
+    "login": "دخول",
+    "signup": "التسجيل"
   }
-  
+}

@@ -1,14 +1,15 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
-import { Cairo ,Geist  } from "next/font/google";
+import { Cairo, Geist } from "next/font/google";
 import "./globals.css";
+import NavBar from "@/components/NavBar";
 
 const cairo = Cairo({
   subsets: ["arabic"],
 });
 const geist = Geist({
-  subsets: ['latin'],
-})
+  subsets: ["latin"],
+});
 export default async function RootLayout({
   children,
 }: {
@@ -20,8 +21,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir} className={font}>
-      <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className="container mx-auto">
+        <NextIntlClientProvider>
+          <NavBar />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

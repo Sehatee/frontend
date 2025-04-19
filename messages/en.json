@@ -1,5 +1,14 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "NavBar": {
+    "LogoName": "sehatee",
+    "home": "Home",
+    "doctors": "Doctors",
+    "services": "Services",
+    "about": "About",
+    "login": "Login",
+    "signup": "Signup"
   }
 }
