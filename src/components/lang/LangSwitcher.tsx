@@ -18,7 +18,7 @@ const LangSwitcher = () => {
     location.reload();
   };
   return (
-    <div className="relative inline-block text-left z-50">
+    <div className="relative inline-block text-left z-10">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none transition"

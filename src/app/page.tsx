@@ -1,11 +1,9 @@
-import { useTranslations } from "next-intl";
+import Header from "@/components/Home/Header";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
   return (
-    <div>
-      <button className="p-2 bg-main text-white rounded ">{t("title")}</button>
-      
+    <div className="">
+      <Header />
     </div>
   );
 }

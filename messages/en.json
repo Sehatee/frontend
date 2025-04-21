@@ -10,5 +10,62 @@
     "about": "About",
     "login": "Login",
     "signup": "Signup"
+  },
+  "Header": {
+    "headText1": "We provide you with the latest telemedicine solutions with a selection of specialists.",
+    "headText2": "Consult the best doctors online immediately or book an appointment at the clinic easily... All medical services are now at your fingertips.",
+    "btnText": "Start your consultation now"
+  },
+  "Header2": {
+    "title": "The services we provide",
+    "subTitle": "We are always here to provide you with care and consultation",
+    "sec1": {
+      "title": "Medical Consultation",
+      "text": "Communicate with doctors directly through video or chat consultations, and get your answer as quickly as possible."
+    },
+    "sec2": {
+      "title": "Medical Prescriptions",
+      "text": "Get accurate medical prescriptions from doctors, and easily request the medications you need."
+    },
+    "sec3": {
+      "title": "Medical Tests",
+      "text": "Get accurate and fast results through medical tests, and request them from your home."
+    }
+  },
+  "Doctors": {
+    "title": "Doctors Team",
+    "subTitle": "A selection of specialized doctors to provide the best remote healthcare",
+    "sec1": {
+      "name": "Dr. Ahmed Al-Ali",
+      "specialty": "General Practitioner",
+      "text": "Consultant in general medicine, with extensive experience in providing healthcare to patients.",
+      "btnText": "Call now"
+    },
+    "sec2": {
+      "name": "Dr. Mohammed Bin Zaidan",
+      "specialty": "Pediatrician",
+      "text": "Consultant in pediatrics, providing comprehensive care for children of all ages.",
+      "btnText": "Call now"
+    },
+    "sec3": {
+      "name": "Dr. Sarah Al-Nuaimi",
+      "specialty": "Obstetrician and Gynecologist",
+      "text": "Consultant in obstetrics and gynecology, providing comprehensive care for women.",
+      "btnText": "Call now"
+    },
+    "sec4": {
+      "name": "Dr. Ali Al-Shammari",
+      "specialty": "Psychiatrist",
+      "text": "Consultant in psychiatry, providing psychological support and treatment for patients.",
+      "btnText": "Call now"
+    }
+  },
+  "Features": {
+    "title": "Start your health journey now",
+    "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
+    "btnText": "Join us now",
+    "doctorsCount": "Number of Doctors",
+    "patientsCount": "Number of Patients",
+    "ratings": "Ratings"
   }
 }
