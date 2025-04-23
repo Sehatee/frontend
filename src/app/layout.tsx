@@ -4,6 +4,7 @@ import { Cairo, Geist } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
+import "aos/dist/aos.css";
 
 const cairo = Cairo({
   subsets: ["arabic"],

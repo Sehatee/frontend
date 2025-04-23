@@ -1,10 +1,23 @@
+"use client";
+import Aos from "aos";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import "aos/dist/aos.css";
+
 
 const Services = () => {
   const t = useTranslations("services");
   const services = t.raw("services");
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: false,
+      easing: "ease-in-out-back",
+      offset: 100,
+      
+    });
+  }, []);
   return (
     <div className="my-24">
       {/* main text */}
@@ -26,6 +39,9 @@ const Services = () => {
           ) => (
             <div
               key={index}
+              data-aos="fade-up"
+              data-aos-delay={`${index * 200}`}
+              data-aos-anchor-placement="center-bottom"
               className="flex flex-col items-center text-center p-4  rounded-lg "
             >
               <Image

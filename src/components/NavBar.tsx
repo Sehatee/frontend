@@ -95,7 +95,7 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-10 w-[387px] flex flex-col justify-between top-14 -right-44 bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
+                  className={`absolute z-10 w-[350px] flex flex-col justify-between top-14 -right-44 bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
                     openMenuUser
                       ? "opacity-100 scale-100 translate-y-0"
                       : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -163,7 +163,7 @@ const NavBar = () => {
                     dir="rtl"
                     className=" mt-5 flex flex-col gap-1 text-gray-700 font-semibold"
                   >
-                    <li className="bg-white py-3 px-7 rounded-b-xl ">
+                    <li className="bg-white py-3 px-7 rounded-t-xl ">
                       <Link
                         href={"/"}
                         className="flex  items-center justify-between"
