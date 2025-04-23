@@ -5,7 +5,7 @@ import React from "react";
 const Header = () => {
   const t = useTranslations("Header");
   return (
-    <div className="flex gap-5 lg:justify-between justify-start items-center mt-20 ">
+    <div className="flex gap-5 lg:justify-between justify-start items-center my-24 ">
       {/* title */}
       <div className="flex flex-col lg:justify-start justify-center w-full  lg:items-start items-center lg:gap-7 gap-5  lg:ml-20 ml-10">
         <h1 className="lg:text-5xl text-3xl font-bold lg:w-[600px] w-[400px] leading-loose">
