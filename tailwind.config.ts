@@ -10,7 +10,9 @@ export default {
     extend: {
       colors: {
         main: "#0B62DE",
+        secondary:"#E1ECFB",
         textSecondary: "#868686",
+        
       },
       screens: {
         xs: "330px",

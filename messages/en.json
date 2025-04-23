@@ -9,7 +9,14 @@
     "services": "Services",
     "about": "About",
     "login": "Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "userMenu": {
+      "profile": "Profile",
+      "notifications": "Notifications",
+      "settings": "Settings",
+      "logout": "Logout",
+      "support": "Support"
+    }
   },
   "Header": {
     "headText1": "We provide you with the latest telemedicine solutions with a selection of specialists.",
