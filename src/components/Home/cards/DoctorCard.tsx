@@ -1,17 +1,15 @@
 import React from "react";
 
+interface DoctorCardProps {
+  name: string;
+  specialty: string;
+  description: string;
+  img: string;
+}
 
-// interface DoctorCardProps {
-//   name: string;
-//   specialty: string;
-//   description: string;
-//   img: string;
-// }
-
-const DoctorCard = () => {
-  return (
-    <div></div>
-  );
+const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
+  console.log(name, specialty, description, img);
+  return <div></div>;
 };
 
 export default DoctorCard;
