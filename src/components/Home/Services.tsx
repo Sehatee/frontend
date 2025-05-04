@@ -19,7 +19,7 @@ const Services = () => {
     });
   }, []);
   return (
-    <div className="my-24">
+    <div className="my-24 ">
       {/* main text */}
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center">

@@ -5,6 +5,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
 import "aos/dist/aos.css";
+import Footer from "@/components/Footer";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -27,12 +28,13 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir} className={font}>
-      <body className="container mx-auto">
-        <NextIntlClientProvider>
+      <NextIntlClientProvider>
+        <body className="container mx-auto ">
           <NavBar />
-          {children}
-        </NextIntlClientProvider>
-      </body>
+          <div className="mt-16">{children}</div>
+        </body>
+        <Footer />
+      </NextIntlClientProvider>
     </html>
   );
 }

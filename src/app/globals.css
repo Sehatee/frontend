@@ -8,3 +8,6 @@
     @apply transition duration-300 hover:bg-[rgba(11,98,222,0.9)] ease-in-out;
   }
 }
+/* body{
+  @apply bg-secondary;
+} */

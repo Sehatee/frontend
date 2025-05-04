@@ -44,6 +44,27 @@
       }
     ]
   },
+  "MyServices": {
+    "title": "The services we provide",
+    "subTitle": "We are always here to provide you with care and consultation",
+    "services": [
+      {
+        "title": "Medical Consultation",
+        "text": "Communicate with doctors directly through video or chat consultations, and get your answers as quickly as possible.",
+        "icon": "]Video"
+      },
+      {
+        "title": "Prescriptions",
+        "text": "Get accurate prescriptions from doctors, and easily order the medications you need.",
+        "icon": "CalendarCheck"
+      },
+      {
+        "title": "Medical Tests",
+        "text": "Receive accurate and fast results through medical tests, and request them from your home.",
+        "icon": "HeartPulse"
+      }
+    ]
+  },
   "Doctors": {
     "title": "Doctors Team",
     "subTitle": "A selection of specialized doctors to provide the best remote healthcare",
