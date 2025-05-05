@@ -9,5 +9,5 @@
   }
 }
 /* body{
-  @apply bg-secondary;
+  @apply bg-[url('/imgs/header/bg.png')] bg-cover bg-no-repeat bg-center;
 } */

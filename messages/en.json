@@ -63,7 +63,12 @@
         "text": "Receive accurate and fast results through medical tests, and request them from your home.",
         "icon": "HeartPulse"
       }
-    ]
+    ],
+    "ADS": {
+      "title": "Do you need help choosing the right service?",
+      "text": "Our team is here to guide you in selecting the most suitable service for your needs.",
+      "btnText": "Contact us"
+    }
   },
   "Doctors": {
     "title": "Doctors Team",
@@ -100,5 +105,90 @@
     "doctorsCount": "Number of Doctors",
     "patientsCount": "Number of Patients",
     "ratings": "Ratings"
-  }
+  },
+  "Login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "btnText": "Login",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up"
+  },
+  "Signup": {
+    "title": "Sign up",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "btnText": "Sign up",
+    "haveAccount": "Already have an account?",
+    "login": "Login"
+  },
+  "About": {
+    "title": "About Us",
+    "subTitle": "Specialist Platform is a leading digital platform in the field of telemedicine, aiming to provide exceptional medical services in an innovative, safe, and accessible way.",
+    "vision": "Our Vision",
+    "visionText": "To deliver exceptional healthcare by utilizing modern technology and achieving the highest levels of quality and efficiency in the medical services provided.",
+    "mission": "Our Mission",
+    "missionText": "To provide innovative, safe, and accessible medical services through an integrated digital platform that connects doctors and patients, ensuring exceptional healthcare.",
+    "someServices": [
+      {
+      "id": 0,
+      "text": "Providing 24/7 remote medical consultations"
+      },
+      {
+      "id": 1,
+      "text": "Easily and securely obtain accurate medical prescriptions from doctors"
+      },
+      {
+      "id": 2,
+      "text": "Conduct medical tests and receive results quickly and accurately"
+      },
+      {
+      "id": 3,
+      "text": "Easily book appointments with specialized doctors"
+      },
+      {
+      "id": 4,
+      "text": "Regular follow-ups with doctors to ensure your health and safety"
+      }
+    ],
+    "values": {
+      "title": "Our Values",
+      "subTitle": "We believe in the importance of core values that guide our work and define our identity, and we are committed to applying them in all aspects of our services.",
+      "valuesList": [
+      {
+        "id": 0,
+        "text": "Professionalism",
+        "icon": "Briefcase",
+        "description": "We are committed to delivering our services at the highest level of professionalism."
+      },
+      {
+        "id": 1,
+        "text": "Innovation",
+        "icon": "Lightbulb",
+        "description": "We always strive to provide innovative solutions that meet our clients' needs."
+      },
+      {
+        "id": 2,
+        "text": "Integrity",
+        "icon": "ShieldCheck",
+        "description": "We ensure honesty and transparency in all our services."
+      },
+      {
+        "id": 3,
+        "text": "Respect",
+        "icon": "Handshake",
+        "description": "We believe in the importance of respecting everyone and fostering positive relationships."
+      },
+      {
+        "id": 4,
+        "text": "Collaboration",
+        "icon": "Users",
+        "description": "We work as a team to achieve our shared goals."
+      }
+      ]
+    }
+    }
 }

@@ -1,24 +1,19 @@
+"use client";
+import React from "react";
 import { CalendarCheck, HeartPulse, Video } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React from "react";
+import TextHeader from "@/ui/TextHeader";
 
 const MyServices = () => {
   const t = useTranslations("MyServices");
   const services = t.raw("services");
   return (
-    <div className="my-24">
+    <div className="my-36">
       {/* main text */}
-      <div className="flex flex-col gap-3  items-center py-3">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center">
-          {t("title")}
-        </h1>
-        <p className="text-base  sm:text-lg md:text-xl font-medium text-textSecondary text-center mt-2">
-          {t("subTitle")}
-        </p>
-      </div>
+      <TextHeader title={t('title')} subTitle={t('subTitle')}/>
       {/* services */}
       <div>
-        <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {services.map(
             (
               service: { title: string; text: string; icon: string },

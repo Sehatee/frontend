@@ -23,7 +23,7 @@ const NavBar = () => {
   const [openMenuUser, setOpenMenuUser] = useState<boolean>(false);
 
   const pathName = usePathname();
-  const user = false; // 
+  const user = false; //
 
   return (
     <div className="py-3 px-6 bg-white fixed top-0 left-0 w-full z-20">
@@ -58,27 +58,45 @@ const NavBar = () => {
               <Link href={"/"}>
                 <h1>{t("doctors")}</h1>
                 {/* hover effect */}
-                <div className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
                   ${
                     pathName === "/doctors"
                       ? "w-5 opacity-100"
                       : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
                   }
-                `}></div>
+                `}
+                ></div>
               </Link>
             </li>
             <li className="relative text-center group">
-              <Link href={"/"}>
+              <Link href={"/services"}>
                 <h1>{t("services")}</h1>
                 {/* hover effect */}
-                <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-0 group-hover:w-5  h-[3px] rounded bg-main opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                  ${
+                    pathName === "/services"
+                      ? "w-5 opacity-100"
+                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
+                  }
+                `}
+                ></div>{" "}
               </Link>
             </li>
             <li className="relative text-center group">
               <Link href={"/"}>
                 <h1>{t("about")}</h1>
                 {/* hover effect */}
-                <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-0 group-hover:w-5  h-[3px] rounded bg-main opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                  ${
+                    pathName === "/about"
+                      ? "w-5 opacity-100"
+                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
+                  }
+                `}
+                ></div>
               </Link>
             </li>
           </ul>
@@ -254,21 +272,45 @@ const NavBar = () => {
             <Link href={"/"}>
               <h1>{t("doctors")}</h1>
               {/* hover effect */}
-              <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-0 group-hover:w-5  h-[3px] rounded bg-main opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                  ${
+                    pathName === "/doctors"
+                      ? "w-5 opacity-100"
+                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
+                  }
+                `}
+              ></div>{" "}
             </Link>
           </li>
           <li className="relative text-center group">
             <Link href={"/"}>
               <h1>{t("services")}</h1>
               {/* hover effect */}
-              <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-0 group-hover:w-5  h-[3px] rounded bg-main opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                  ${
+                    pathName === "/services"
+                      ? "w-5 opacity-100"
+                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
+                  }
+                `}
+              ></div>{" "}
             </Link>
           </li>
           <li className="relative text-center group">
             <Link href={"/"}>
               <h1>{t("about")}</h1>
               {/* hover effect */}
-              <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-0 group-hover:w-5  h-[3px] rounded bg-main opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
+                  ${
+                    pathName === "/about"
+                      ? "w-5 opacity-100"
+                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
+                  }
+                `}
+              ></div>
             </Link>
           </li>
         </ul>

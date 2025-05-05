@@ -1,0 +1,23 @@
+
+export type User = {
+    _id: string;
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    role: 'admin' | 'doctor' | 'patient';
+    phone?: string;
+    picture?: string;
+    specialization?: string;
+    appointments?: string[];
+    availableHours?: {
+        day: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    }[];
+    location?: {
+        type: 'Point';
+        coordinates: number[];
+        addrss?: string;
+    };
+    active: boolean;
+    createdAt: Date;
+};

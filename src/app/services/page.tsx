@@ -1,13 +1,19 @@
+import React from "react";
+import Footer from "@/components/Footer";
 import ADS from "@/components/services/ADS";
 import MyServices from "@/components/services/MyServices";
-import React from "react";
+
+
 
 const page = () => {
   return (
-    <div>
-      <MyServices />
-      <ADS />
-    </div>
+    <>
+      <div className="container mx-auto">
+        <MyServices />
+        <ADS />
+      </div>
+      <Footer />
+    </>
   );
 };
 

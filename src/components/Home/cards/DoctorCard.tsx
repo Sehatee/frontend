@@ -8,7 +8,7 @@ interface DoctorCardProps {
 }
 
 const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
-  console.log(name, specialty, description, img);
+  
   return <div></div>;
 };
 
