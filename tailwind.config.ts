@@ -12,6 +12,7 @@ export default {
         main: "#0B62DE",
         secondary:"#E1ECFB",
         textSecondary: "#868686",
+        primary: "#D5E4F980",
         
       },
       screens: {

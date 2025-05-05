@@ -85,7 +85,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="relative text-center group">
-              <Link href={"/"}>
+              <Link href={"/about"}>
                 <h1>{t("about")}</h1>
                 {/* hover effect */}
                 <div
@@ -299,7 +299,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="relative text-center group">
-            <Link href={"/"}>
+            <Link href={"/about"}>
               <h1>{t("about")}</h1>
               {/* hover effect */}
               <div
