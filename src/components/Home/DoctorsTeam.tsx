@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import React from "react";
-import DoctorCard from "./cards/DoctorCard";
+// import DoctorCard from "./cards/DoctorCard";
 
 const DoctorsTeam = () => {
   const t = useTranslations("Doctors");
@@ -17,7 +17,7 @@ const DoctorsTeam = () => {
       </div>
       {/* team */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-center mx-auto">
-        <DoctorCard
+        {/* <DoctorCard
           name="د. أحمد علي"
           specialty="أخصائي طب الأطفال"
           description="د. أحمد علي هو طبيب ذو خبرة واسعة في مجال طب الأطفال ويهتم بصحة الأطفال وتقديم أفضل رعاية طبية لهم."
@@ -34,7 +34,7 @@ const DoctorsTeam = () => {
           specialty="أخصائي طب القلب"
           description="د. خالد حسن متخصص في علاج أمراض القلب ويقدم استشارات طبية دقيقة للمرضى."
           img="/imgs/doctorsteam/doctor1.png"
-        />
+        /> */}
       </div>
     </div>
   );

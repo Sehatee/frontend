@@ -8,8 +8,16 @@ interface DoctorCardProps {
 }
 
 const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
-  
-  return <div></div>;
+  return (
+    <div>
+      <div>{name}</div>
+      <div>{specialty}</div>
+      <div>{description}</div>
+      <div>{img}</div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 };
 
 export default DoctorCard;
