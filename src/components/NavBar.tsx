@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import LangSwitcher from "./lang/LangSwitcher";
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 const NavBar = () => {
   const t = useTranslations("NavBar");
@@ -22,8 +23,10 @@ const NavBar = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [openMenuUser, setOpenMenuUser] = useState<boolean>(false);
 
+  const locale = Cookies.get("locale");
+
   const pathName = usePathname();
-  const user = false; //
+  const user = true; //
 
   return (
     <div className="py-3 px-6 bg-white fixed top-0 left-0 w-full z-20">
@@ -55,7 +58,7 @@ const NavBar = () => {
               {/*  */}
             </li>
             <li className="relative text-center group">
-              <Link href={"/"}>
+              <Link href={"/doctors"}>
                 <h1>{t("doctors")}</h1>
                 {/* hover effect */}
                 <div
@@ -120,63 +123,59 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-10 w-[350px] flex flex-col justify-between top-14 -right-44 bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
-                    openMenuUser
-                      ? "opacity-100 scale-100 translate-y-0"
-                      : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-                  }`}
+                  className={`absolute z-10 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${locale === "ar" ? "-right-32 xs:-right-56" : "-left-32 xs:-left-56"} bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${openMenuUser ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
+                  dir={locale === "ar" ? "rtl" : "ltr"}
                 >
                   {/* btn close  */}
-                  <div dir="rtl">
+                  <div className="flex justify-end">
                     <button
                       onClick={() => {
                         setOpenMenuUser(false);
                       }}
+                      className="hover:text-red-500 transition-colors"
                     >
                       <X size={18} />
                     </button>
                   </div>
                   {/* user informations */}
-
                   <div className="flex flex-col gap-2 items-center justify-center mb-2">
-                    <Image
-                      src={"/imgs/navbar/user.png"}
-                      alt="user_img"
-                      width={500}
-                      height={500}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
+                    <div className="w-12 h-12 overflow-hidden rounded-full">
+                      <Image
+                        src={"/imgs/navbar/user.png"}
+                        alt="user_img"
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <h1 className="text-gray-700 font-semibold text-center">
                       كاس عماد
                     </h1>
                   </div>
                   {/* urls */}
-                  <ul
-                    dir="rtl"
-                    className=" mt-5 flex flex-col gap-2 text-gray-700 font-semibold"
-                  >
-                    <li className="bg-white py-3 px-7 rounded-xl ">
+                  <ul className="mt-5 flex flex-col gap-2 text-gray-700 font-semibold">
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
                         href={"/"}
-                        className="flex  items-center justify-between"
+                        className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("profile")}</h1>
                         <UserRound fill="#0B62DE" stroke="none" />
                       </Link>
                     </li>
-                    <li className="bg-white py-3 px-7 rounded-xl ">
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
                         href={"/"}
-                        className="flex  items-center justify-between"
+                        className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("notifications")}</h1>
                         <Bell fill="#0B62DE" stroke="none" />
                       </Link>
                     </li>
-                    <li className="bg-white py-3 px-7 rounded-xl ">
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
                         href={"/"}
-                        className="flex  items-center justify-between"
+                        className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("settings")}</h1>
                         <Settings fill="#0B62DE" stroke="white" />
@@ -184,26 +183,23 @@ const NavBar = () => {
                     </li>
                   </ul>
                   {/* logout */}
-                  <ul
-                    dir="rtl"
-                    className=" mt-5 flex flex-col gap-1 text-gray-700 font-semibold"
-                  >
-                    <li className="bg-white py-3 px-7 rounded-t-xl ">
+                  <ul className="mt-5 flex flex-col gap-1 text-gray-700 font-semibold">
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-t-xl hover:bg-gray-50 transition-colors">
                       <Link
                         href={"/"}
-                        className="flex  items-center justify-between"
+                        className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("support")}</h1>
                         <Headset color="#0B62DE" />
                       </Link>
                     </li>
-                    <li className="bg-white py-3 px-7 rounded-b-xl ">
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-gray-50 transition-colors">
                       <Link
                         href={"/"}
-                        className="flex  items-center justify-between"
+                        className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("logout")}</h1>
-                        <LogOut />
+                        <LogOut color="red" />
                       </Link>
                     </li>
                   </ul>
@@ -269,7 +265,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="relative text-center group">
-            <Link href={"/"}>
+            <Link href={"/doctors"}>
               <h1>{t("doctors")}</h1>
               {/* hover effect */}
               <div

@@ -123,7 +123,8 @@
     "confirmPassword": "Confirm Password",
     "btnText": "Sign up",
     "haveAccount": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "acceptTerms":"I'accept the terms and conditions"
   },
   "About": {
     "title": "About Us",

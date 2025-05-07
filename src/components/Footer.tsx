@@ -1,194 +1,129 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="tracking-wide  px-10 pt-12 pb-6 bg-secondary">
+    <footer className="tracking-wide px-10 pt-12 pb-6 bg-secondary">
       <div className="flex flex-wrap justify-between gap-10">
-        <div className="max-w-md">
-          <Link href="/">
-            <Image
-              src="https://readymadeui.com/readymadeui.svg"
-              alt="logo"
-              className="w-36"
-              width={150}
-              height={50}
-            />
+        {/* Logo and Description */}
+        <div className="max-w-md text-right">
+          <Link href="/" className="inline-block">
+            <h2 className="text-main text-2xl font-bold flex items-center gap-2">
+              <span>أخصائي</span>
+              <span>❤️</span>
+            </h2>
           </Link>
           <div className="mt-6">
             <p className="text-slate-600 leading-relaxed text-sm">
               منصة أخصائي معك في كل خطوة نحو صحة أفضل، ونسعد دائمًا بتواصلك معنا
             </p>
           </div>
-          {/* Links for social media */}
-          <ul className="mt-10 flex gap-4">
+          {/* Social Media Links */}
+          <ul className="mt-10 flex gap-4 ">
             <li>
-              <a href="javascript:void(0)">
+              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-blue-600 transition-all duration-300 ease-in-out">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-blue-600 w-8 h-8"
-                  viewBox="0 0 49.652 49.652"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="white"
                 >
-                  <path
-                    d="M24.826 0C11.137 0 0 11.137 0 24.826c0 13.688 11.137 24.826 24.826 24.826 13.688 0 24.826-11.138 24.826-24.826C49.652 11.137 38.516 0 24.826 0zM31 25.7h-4.039v14.396h-5.985V25.7h-2.845v-5.088h2.845v-3.291c0-2.357 1.12-6.04 6.04-6.04l4.435.017v4.939h-3.219c-.524 0-1.269.262-1.269 1.386v2.99h4.56z"
-                    data-original="#000000"
-                  />
+                  <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="javascript:void(0)">
+              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-sky-500 transition-all duration-300 ease-in-out">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 h-8"
-                  viewBox="0 0 112.196 112.196"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="white"
                 >
-                  <circle
-                    cx="56.098"
-                    cy="56.097"
-                    r="56.098"
-                    fill="#007ab9"
-                    data-original="#007ab9"
-                  />
-                  <path
-                    fill="#fff"
-                    d="M89.616 60.611v23.128H76.207V62.161c0-5.418-1.936-9.118-6.791-9.118-3.705 0-5.906 2.491-6.878 4.903-.353.862-.444 2.059-.444 3.268v22.524h-13.41s.18-36.546 0-40.329h13.411v5.715c-.027.045-.065.089-.089.132h.089v-.132c1.782-2.742 4.96-6.662 12.085-6.662 8.822 0 15.436 5.764 15.436 18.149zm-54.96-36.642c-4.587 0-7.588 3.011-7.588 6.967 0 3.872 2.914 6.97 7.412 6.97h.087c4.677 0 7.585-3.098 7.585-6.97-.089-3.956-2.908-6.967-7.496-6.967zm-6.791 59.77H41.27v-40.33H27.865v40.33z"
-                    data-original="#f1f2f2"
-                  />
+                  <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="javascript:void(0)">
+              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-pink-600 transition-all duration-300 ease-in-out">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 h-8"
-                  viewBox="0 0 152 152"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="white"
                 >
-                  <linearGradient
-                    id="a"
-                    x1="22.26"
-                    x2="129.74"
-                    y1="22.26"
-                    y2="129.74"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop offset="0" stopColor="#fae100" />
-                    <stop offset=".15" stopColor="#fcb720" />
-                    <stop offset=".3" stopColor="#ff7950" />
-                    <stop offset=".5" stopColor="#ff1c74" />
-                    <stop offset="1" stopColor="#6c1cd1" />
-                  </linearGradient>
-                  <g data-name="Layer 2">
-                    <g data-name="03.Instagram">
-                      <rect
-                        width="152"
-                        height="152"
-                        fill="url(#a)"
-                        data-original="url(#a)"
-                        rx="76"
-                      />
-                      <g fill="#fff">
-                        <path
-                          fill="#ffffff10"
-                          d="M133.2 26c-11.08 20.34-26.75 41.32-46.33 60.9S46.31 122.12 26 133.2q-1.91-1.66-3.71-3.46A76 76 0 1 1 129.74 22.26q1.8 1.8 3.46 3.74z"
-                          data-original="#ffffff10"
-                        />
-                        <path
-                          d="M94 36H58a22 22 0 0 0-22 22v36a22 22 0 0 0 22 22h36a22 22 0 0 0 22-22V58a22 22 0 0 0-22-22zm15 54.84A18.16 18.16 0 0 1 90.84 109H61.16A18.16 18.16 0 0 1 43 90.84V61.16A18.16 18.16 0 0 1 61.16 43h29.68A18.16 18.16 0 0 1 109 61.16z"
-                          data-original="#ffffff"
-                        />
-                        <path
-                          d="m90.59 61.56-.19-.19-.16-.16A20.16 20.16 0 0 0 76 55.33 20.52 20.52 0 0 0 55.62 76a20.75 20.75 0 0 0 6 14.61 20.19 20.19 0 0 0 14.42 6 20.73 20.73 0 0 0 14.55-35.05zM76 89.56A13.56 13.56 0 1 1 89.37 76 13.46 13.46 0 0 1 76 89.56zm26.43-35.18a4.88 4.88 0 0 1-4.85 4.92 4.81 4.81 0 0 1-3.42-1.43 4.93 4.93 0 0 1 3.43-8.39 4.82 4.82 0 0 1 3.09 1.12l.1.1a3.05 3.05 0 0 1 .44.44l.11.12a4.92 4.92 0 0 1 1.1 3.12z"
-                          data-original="#ffffff"
-                        />
-                      </g>
-                    </g>
-                  </g>
+                  <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
                 </svg>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 h-8"
-                  viewBox="0 0 1227 1227"
-                >
-                  <path
-                    d="M613.5 0C274.685 0 0 274.685 0 613.5S274.685 1227 613.5 1227 1227 952.315 1227 613.5 952.315 0 613.5 0z"
-                    data-original="#000000"
-                  />
-                  <path
-                    fill="#fff"
-                    d="m680.617 557.98 262.632-305.288h-62.235L652.97 517.77 470.833 252.692H260.759l275.427 400.844-275.427 320.142h62.239l240.82-279.931 192.35 279.931h210.074L680.601 557.98zM345.423 299.545h95.595l440.024 629.411h-95.595z"
-                    data-original="#ffffff"
-                  />
-                </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
-        {/* Services */}
-        <div className="max-lg:min-w-[140px]">
-          <h4 className="text-slate-900 font-semibold text-sm relative max-sm:cursor-pointer">
-            Services
-          </h4>
 
-          <ul className="mt-6 space-y-4">
+        {/* Main Navigation */}
+        <div className="text-right">
+          <h3 className="text-gray-900 font-semibold mb-4">القائمة الرئيسية</h3>
+          <ul className="space-y-2">
             <li>
-              <a
-                href="javascript:void(0)"
-                className="hover:text-slate-900 text-slate-600 text-sm font-normal"
-              >
-                Web Development
-              </a>
+              <Link href="/" className="text-gray-600 hover:text-main">
+                الرئيسية
+              </Link>
             </li>
             <li>
-              <a
-                href="javascript:void(0)"
-                className="hover:text-slate-900 text-slate-600 text-sm font-normal"
-              >
-                Pricing
-              </a>
+              <Link href="/about" className="text-gray-600 hover:text-main">
+                من نحن
+              </Link>
             </li>
             <li>
-              <a
-                href="javascript:void(0)"
-                className="hover:text-slate-900 text-slate-600 text-sm font-normal"
-              >
-                Support
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                className="hover:text-slate-900 text-slate-600 text-sm font-normal"
-              >
-                Client Portal
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                className="hover:text-slate-900 text-slate-600 text-sm font-normal"
-              >
-                Resources
-              </a>
+              <Link href="/doctors" className="text-gray-600 hover:text-main">
+                الأطباء
+              </Link>
             </li>
           </ul>
         </div>
-        {
-          // TODO: can add many more links here
-        }
+
+        {/* Contact Us */}
+        <div className="text-right">
+          <h3 className="text-gray-900 font-semibold mb-4">تواصل معنا</h3>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/contact" className="text-gray-600 hover:text-main">
+                استشارة طبية
+              </Link>
+            </li>
+            <li>
+              <Link href="/help" className="text-gray-600 hover:text-main">
+                مركز المساعدة
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Important Information */}
+        <div className="text-right">
+          <h3 className="text-gray-900 font-semibold mb-4">معلومات تهمك</h3>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/privacy" className="text-gray-600 hover:text-main">
+                الخصوصية والأمان
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="text-gray-600 hover:text-main">
+                سياسة الاستخدام
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <hr className="mt-10 mb-6 border-gray-300" />
+      <hr className="my-8 border-gray-300" />
 
       <div className="text-center">
-        <p className="text-slate-600 text-sm md:ml-auto">
-          © ReadymadeUI. All rights reserved.
+        <p className="text-slate-600 text-sm">
+          © أخصائي 2024. جميع الحقوق محفوظة
         </p>
       </div>
     </footer>
