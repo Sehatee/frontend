@@ -14,7 +14,7 @@ export const MedicalInfo = () => {
       <SideBarDashboards
         links={[
           {
-            name: links.l1,
+            name: links.l1 ,
             href: "/dashboard/patient/profile/info",
           },
           {
