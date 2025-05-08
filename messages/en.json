@@ -14,6 +14,7 @@
       "profile": "Profile",
       "notifications": "Notifications",
       "settings": "Settings",
+      "appointments": "Appointments",
       "logout": "Logout",
       "support": "Support"
     }
@@ -124,7 +125,7 @@
     "btnText": "Sign up",
     "haveAccount": "Already have an account?",
     "login": "Login",
-    "acceptTerms":"I'accept the terms and conditions"
+    "acceptTerms": "I'accept the terms and conditions"
   },
   "About": {
     "title": "About Us",
@@ -135,55 +136,123 @@
     "missionText": "To provide innovative, safe, and accessible medical services through an integrated digital platform that connects doctors and patients, ensuring exceptional healthcare.",
     "someServices": [
       {
-      "id": 0,
-      "text": "Providing 24/7 remote medical consultations"
+        "id": 0,
+        "text": "Providing 24/7 remote medical consultations"
       },
       {
-      "id": 1,
-      "text": "Easily and securely obtain accurate medical prescriptions from doctors"
+        "id": 1,
+        "text": "Easily and securely obtain accurate medical prescriptions from doctors"
       },
       {
-      "id": 2,
-      "text": "Conduct medical tests and receive results quickly and accurately"
+        "id": 2,
+        "text": "Conduct medical tests and receive results quickly and accurately"
       },
       {
-      "id": 3,
-      "text": "Easily book appointments with specialized doctors"
+        "id": 3,
+        "text": "Easily book appointments with specialized doctors"
       },
       {
-      "id": 4,
-      "text": "Regular follow-ups with doctors to ensure your health and safety"
+        "id": 4,
+        "text": "Regular follow-ups with doctors to ensure your health and safety"
       }
     ],
     "values": {
       "title": "Our Values",
       "subTitle": "We believe in the importance of core values that guide our work and define our identity, and we are committed to applying them in all aspects of our services.",
       "valuesList": [
-      {
-        "id": 0,
-        "text": "Professionalism",
-        "icon": "Briefcase",
-        "description": "We are committed to delivering our services at the highest level of professionalism."
-      },
-      {
-        "id": 1,
-        "text": "Innovation",
-        "icon": "Lightbulb",
-        "description": "We always strive to provide innovative solutions that meet our clients' needs."
-      },
-      {
-        "id": 2,
-        "text": "Integrity",
-        "icon": "ShieldCheck",
-        "description": "We ensure honesty and transparency in all our services."
-      },
-      {
-        "id": 3,
-        "text": "Collaboration",
-        "icon": "Users",
-        "description": "We work as a team to achieve our shared goals."
-      }
+        {
+          "id": 0,
+          "text": "Professionalism",
+          "icon": "Briefcase",
+          "description": "We are committed to delivering our services at the highest level of professionalism."
+        },
+        {
+          "id": 1,
+          "text": "Innovation",
+          "icon": "Lightbulb",
+          "description": "We always strive to provide innovative solutions that meet our clients' needs."
+        },
+        {
+          "id": 2,
+          "text": "Integrity",
+          "icon": "ShieldCheck",
+          "description": "We ensure honesty and transparency in all our services."
+        },
+        {
+          "id": 3,
+          "text": "Collaboration",
+          "icon": "Users",
+          "description": "We work as a team to achieve our shared goals."
+        }
       ]
     }
+  },
+  "Footer": {
+    "logoName": "Sehatee",
+    "description": "Sehatee platform is with you every step of the way towards better health, and we are always happy to hear from you",
+    "mainMenu": {
+      "title": "Main Menu",
+      "home": "Home",
+      "about": "About Us",
+      "doctors": "Doctors"
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "consultation": "Medical Consultation",
+      "helpCenter": "Help Center"
+    },
+    "importantInfo": {
+      "title": "Important Information",
+      "privacy": "Privacy & Security",
+      "terms": "Terms of Use"
+    },
+    "copyright": "© Sehatee 2024. All rights reserved"
+  },
+  "Profile": {
+    "title": "Profile",
+    "links": {
+      "l1": "Personal Information",
+      "l2": "Medical Information"
+    },
+
+    "personalInfo": {
+      "title": "Personal Information",
+      "subtitle": "Personal and contact information",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "birthDate": "Birth Date",
+      "address": "Address"
+    },
+    "editProfile": "Edit Profile"
+  },
+  "MedicalInfo": {
+    "title": "Medical Information",
+    "subtitle": "Medical and health information",
+    "height": "Height",
+    "weight": "Weight",
+    "bloodType": "Blood Type",
+    "chronicDiseases": "Chronic Diseases"
+  },
+
+  "Settings": {
+    "title": "Settings",
+    "links": {
+      "l1": "Account",
+      "l2": "Notifications"
+    },
+    "changePassword": {
+      "title": "Change Password",
+      "subtitle": "Change your account password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Change Password"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "description": "When you delete your account, all your data and personal information will be permanently deleted",
+      "button": "Delete Account"
     }
+  }
 }

@@ -1,7 +1,10 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="tracking-wide px-10 pt-12 pb-6 bg-secondary">
       <div className="flex flex-wrap justify-between gap-10">
@@ -9,13 +12,13 @@ const Footer = () => {
         <div className="max-w-md text-right">
           <Link href="/" className="inline-block">
             <h2 className="text-main text-2xl font-bold flex items-center gap-2">
-              <span>أخصائي</span>
+              <span>{t("logoName")}</span>
               <span>❤️</span>
             </h2>
           </Link>
           <div className="mt-6">
             <p className="text-slate-600 leading-relaxed text-sm">
-              منصة أخصائي معك في كل خطوة نحو صحة أفضل، ونسعد دائمًا بتواصلك معنا
+              {t("description")}
             </p>
           </div>
           {/* Social Media Links */}
@@ -64,21 +67,21 @@ const Footer = () => {
 
         {/* Main Navigation */}
         <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">القائمة الرئيسية</h3>
+          <h3 className="text-gray-900 font-semibold mb-4">{t("mainMenu.title")}</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/" className="text-gray-600 hover:text-main">
-                الرئيسية
+                {t("mainMenu.home")}
               </Link>
             </li>
             <li>
               <Link href="/about" className="text-gray-600 hover:text-main">
-                من نحن
+                {t("mainMenu.about")}
               </Link>
             </li>
             <li>
               <Link href="/doctors" className="text-gray-600 hover:text-main">
-                الأطباء
+                {t("mainMenu.doctors")}
               </Link>
             </li>
           </ul>
@@ -86,16 +89,16 @@ const Footer = () => {
 
         {/* Contact Us */}
         <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">تواصل معنا</h3>
+          <h3 className="text-gray-900 font-semibold mb-4">{t("contactUs.title")}</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/contact" className="text-gray-600 hover:text-main">
-                استشارة طبية
+                {t("contactUs.consultation")}
               </Link>
             </li>
             <li>
               <Link href="/help" className="text-gray-600 hover:text-main">
-                مركز المساعدة
+                {t("contactUs.helpCenter")}
               </Link>
             </li>
           </ul>
@@ -103,16 +106,16 @@ const Footer = () => {
 
         {/* Important Information */}
         <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">معلومات تهمك</h3>
+          <h3 className="text-gray-900 font-semibold mb-4">{t("importantInfo.title")}</h3>
           <ul className="space-y-2">
             <li>
               <Link href="/privacy" className="text-gray-600 hover:text-main">
-                الخصوصية والأمان
+                {t("importantInfo.privacy")}
               </Link>
             </li>
             <li>
               <Link href="/terms" className="text-gray-600 hover:text-main">
-                سياسة الاستخدام
+                {t("importantInfo.terms")}
               </Link>
             </li>
           </ul>
@@ -123,7 +126,7 @@ const Footer = () => {
 
       <div className="text-center">
         <p className="text-slate-600 text-sm">
-          © أخصائي 2024. جميع الحقوق محفوظة
+          {t("copyright")}
         </p>
       </div>
     </footer>

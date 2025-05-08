@@ -1,6 +1,7 @@
 "use client";
 import {
   Bell,
+  CalendarCheck,
   Headset,
   HeartHandshake,
   LogOut,
@@ -123,7 +124,15 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-10 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${locale === "ar" ? "-right-32 xs:-right-56" : "-left-32 xs:-left-56"} bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${openMenuUser ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
+                  className={`absolute z-10 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
+                    locale === "ar"
+                      ? "-right-32 xs:-right-56"
+                      : "-left-32 xs:-left-56"
+                  } bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
+                    openMenuUser
+                      ? "opacity-100 scale-100 translate-y-0"
+                      : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+                  }`}
                   dir={locale === "ar" ? "rtl" : "ltr"}
                 >
                   {/* btn close  */}
@@ -156,7 +165,7 @@ const NavBar = () => {
                   <ul className="mt-5 flex flex-col gap-2 text-gray-700 font-semibold">
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/"}
+                        href={"/dashboard/patient/profile/info"}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("profile")}</h1>
@@ -165,7 +174,7 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/"}
+                        href={"/dashboard/patient/profile/notifications"}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("notifications")}</h1>
@@ -174,7 +183,16 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/"}
+                        href={"/dashboard/patient/appointments/"}
+                        className="flex items-center justify-between"
+                      >
+                        <h1>{userMenuT("appointments")}</h1>
+                        <CalendarCheck color="#0B62DE" />
+                      </Link>
+                    </li>
+                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                      <Link
+                        href={"/dashboard/patient/settings/account"}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("settings")}</h1>

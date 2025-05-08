@@ -13,6 +13,7 @@ export default {
         secondary:"#E1ECFB",
         textSecondary: "#868686",
         primary: "#D5E4F980",
+        backgroundDashboards: "#F4F7FD",
         
       },
       screens: {

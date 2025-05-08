@@ -1,15 +1,14 @@
 import TextHeader from "@/ui/TextHeader";
 import React from "react";
 import DoctorCard from "./cards/DoctorCard";
+import { useTranslations } from "next-intl";
 
 const Doctors = () => {
+  const t = useTranslations("Doctors");
   return (
     <div className="my-36">
       {/* main text */}
-      <TextHeader
-        title="فريق الأطباء المتخصصين"
-        subTitle="نخبة من الأطباء والاستشاريين في مختلف التخصصات الطبية، يقدمون خدمات طبية متميزة بأعلى معايير الجودة والكفاءة."
-      />
+      <TextHeader title={t("title")} subTitle={t("subTitle")} />
       {/* side bar to search */}
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 px-4 md:px-8 my-8">
         <div className="w-full md:w-2/3 relative">
@@ -49,7 +48,7 @@ const Doctors = () => {
           languages={["عربية", "فرنسية"]}
           specialization="عيون"
           workDays={["الأحد", "الإثنين"]}
-    imageUrl="/imgs/header/doctor.png"
+          imageUrl="/imgs/header/doctor.png"
           experience="استشاري الطب الباطي والجهاز الهضمي. حاصل على البورد الأمريكي والزمالة البريطانية خبرة أكثر من 15 عاما في تشخيص وعلاج أمراض الباطة والجهاز الهضمي."
         />
         <DoctorCard
