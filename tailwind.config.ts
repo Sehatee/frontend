@@ -12,7 +12,9 @@ export default {
         main: "#0B62DE",
         secondary:"#E1ECFB",
         textSecondary: "#868686",
-        
+        bg: "#F4F7FD",
+        ft: "#2F2F2F",
+        ft2: "#868686"
       },
       screens: {
         xs: "330px",
@@ -20,7 +22,21 @@ export default {
         md: "768px",
         lg: "1024px",
         xl: "1280px",
-        "2xl": "1536px",
+        "2xl": "1440px",
+      },
+      animation: {
+        'zoom-in': 'zoomIn 0.5s ease-out forwards',
+        'fade-up': 'fadeUp 0.5s ease-out forwards',
+      },
+      keyframes: {
+        zoomIn: {
+          '0%': { transform: 'scale(0)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
     },
   },

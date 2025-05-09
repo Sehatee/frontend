@@ -26,7 +26,7 @@ const NavBar = () => {
   const user = false; //
 
   return (
-    <div className="py-3 px-6 bg-white fixed top-0 left-0 w-full z-20">
+    <div className="py-3 px-6 bg-bg fixed top-0 left-0 w-full z-20">
       {/* in Large Screen */}
       <div className="flex gap-7 items-center justify-between">
         {/* Logo  */}

@@ -31,7 +31,7 @@ const Services = () => {
       </div>
       {/* features */}
 
-      <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className=" mt-20 mx-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {services.map(
           (
             feature: { title: string; text: string; img: string },
@@ -42,17 +42,17 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay={`${index * 200}`}
               data-aos-anchor-placement="center-bottom"
-              className="flex flex-col items-center text-center p-4  rounded-lg "
+              className="flex flex-col  p-4  rounded-lg "
             >
               <Image
                 src={feature.img}
                 alt={feature.title}
-                width={100}
-                height={100}
-                className="w-20 h-20 object-contain mb-4"
+                width={110}
+                height={110}
+                className="w-30 h-30 object-contain mb-4 bg-bg p-4 rounded-2xl shadow-lg shadow-[#cfe2fda8]"
               />
-              <h2 className="text-lg font-semibold">{feature.title}</h2>
-              <p className="text-sm text-textSecondary mt-2">{feature.text}</p>
+              <h2 className="text-2xl font-bold text-ft mt-8 ">{feature.title}</h2>
+              <p className="text-xl  leading-loose text-textSecondary mt-2 w-[280px]">{feature.text}</p>
             </div>
           )
         )}

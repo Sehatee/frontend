@@ -5,32 +5,38 @@ import React from "react";
 const Header = () => {
   const t = useTranslations("Header");
   return (
-    <div className="flex gap-5 lg:justify-between justify-start items-center my-20 bg-[url('/imgs/header/bg-header.svg')] bg-no-repeat bg-cover  ">
+    <div className="flex relative lg:justify-between justify-start bg-[url('/imgs/header/shape1.png')]  bg-bg h-[700px]  bg-no-repeat">
       {/* title */}
-      <div className="flex flex-col lg:justify-start justify-center w-full  lg:items-start items-center lg:gap-7 gap-5  lg:ml-20 ml-10">
-        <h1 className="lg:text-5xl text-3xl font-bold lg:w-[600px] w-[400px] leading-loose">
+      {/* className="flex flex-col lg:justify-start justify-center w-full  lg:items-start items-center lg:gap-7 gap-5  lg:ml-20 ml-10" */}
+      <div className="mr-20 mt-12">
+        {/*  className="lg:text-5xl text-3xl font-bold lg:w-[600px] w-[400px] leading-loose" */}
+        
+        <h1 className="text-6xl w-[600px] font-bold text-ft leading-[5.5rem]">
           {t("headText1")}
         </h1>
-
-        <p className="lg:text-xl text-base text-textSecondary lg:w-[600px] w-[400px] mt-2">
+      {/* className="lg:text-xl text-base text-textSecondary lg:w-[600px] w-[400px] mt-2" */}
+      
+        <p className="text-xl mt-12 w-[560px] text-ft2">
           {t("headText2")}
         </p>
-        <button>
-          <span className="text-lg text-white  px-4 py-2 rounded-md mt-4  hoverBtn bg-main shadow-2xl shadow-main">
+        <p className="text-xl  mt-3 text-ft2">
+          {t("headText3")}
+        </p>
+        <button className="mt-24 mr-20">
+          <span className="text-lg text-white font-bold  px-10 py-4 rounded-xl mt-4  hoverBtn bg-main shadow-lg shadow-[#a2c5f6]">
             {t("btnText")}
           </span>
         </button>
       </div>
       {/* imgs */}
+      
 
-      <div className="hidden lg:flex justify-center items-center  lg:w-[800px] w-[400px] lg:mr-20 mr-10">
-        
+      <div className="absolute bottom-0 left-5 w-[687px]">
         <Image
-          width={2500}
-          height={2500}
+          width={1400}
+          height={1400}
           alt="docImg"
           src={"/imgs/header/doctor.png"}
-          className=""
         />
       </div>
     </div>

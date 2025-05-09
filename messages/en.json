@@ -98,12 +98,12 @@
       "btnText": "Call now"
     }
   },
-  "Features": {
+  "lastFeatures": {
     "title": "Start your health journey now",
     "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
     "btnText": "Join us now",
     "doctorsCount": "Number of Doctors",
-    "patientsCount": "Number of Patients",
+    "patientsCount": "Number of users",
     "ratings": "Ratings"
   },
   "Login": {
