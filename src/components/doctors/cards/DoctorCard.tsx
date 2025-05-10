@@ -23,7 +23,6 @@ export default function DoctorCard({
   workDays,
   imageUrl,
 }: DoctorCardProps) {
-  
   const renderStars = (rating: number) => {
     return Array(5)
       .fill(0)
@@ -54,6 +53,8 @@ export default function DoctorCard({
   };
 
   return (
+    // abslout top-0 right-0 left-30
+
     <div className="bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-4 w-full max-w-3xl p-4">
       <div className="w-full md:w-1/3  md:h-auto">
         <Image
@@ -68,7 +69,9 @@ export default function DoctorCard({
       <div className="w-full md:w-2/3 flex flex-col gap-4 p-2 md:p-4 ">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div>
-            <h3 className="text-lg md:text-xl font-semibold text-gray-800">{name}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+              {name}
+            </h3>
             <div className="flex items-center gap-2 mt-1">
               {renderStars(rating)}
               <span className="text-gray-500 text-sm">({totalRatings})</span>
@@ -85,10 +88,15 @@ export default function DoctorCard({
 
         <div className="space-y-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-            <span className="text-sm md:text-base text-textSecondary">اللغات:</span>
+            <span className="text-sm md:text-base text-textSecondary">
+              اللغات:
+            </span>
             <div className="flex flex-wrap gap-2">
               {languages.map((lang, index) => (
-                <span key={index} className="text-sm md:text-base text-textSecondary">
+                <span
+                  key={index}
+                  className="text-sm md:text-base text-textSecondary"
+                >
                   {lang}
                 </span>
               ))}
@@ -96,10 +104,15 @@ export default function DoctorCard({
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-            <span className="text-sm md:text-base text-textSecondary">أيام العمل:</span>
+            <span className="text-sm md:text-base text-textSecondary">
+              أيام العمل:
+            </span>
             <div className="flex flex-wrap gap-2">
               {workDays.map((day, index) => (
-                <span key={index} className="text-sm md:text-base text-textSecondary">
+                <span
+                  key={index}
+                  className="text-sm md:text-base text-textSecondary"
+                >
                   {day}
                 </span>
               ))}
