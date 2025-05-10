@@ -1,36 +1,33 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale} from "next-intl";
 import Image from "next/image";
 import React from "react";
 
 const Header = () => {
   const t = useTranslations("Header");
+  const locale = useLocale();
   return (
-    <div className="flex gap-5 lg:justify-between justify-start items-center my-20 bg-[url('/imgs/header/bg-header.svg')] bg-no-repeat bg-cover  ">
-      {/* title */}
-      <div className="flex flex-col lg:justify-start justify-center w-full  lg:items-start items-center lg:gap-7 gap-5  lg:ml-20 ml-10">
-        <h1 className="lg:text-5xl text-3xl font-bold lg:w-[600px] w-[400px] leading-loose">
+    <div className={`flex relative lg:justify-between justify-start bg-[url('/imgs/header/${locale === 'en' ? 'shape2' : 'shape1'}.png')] bg-cover bg-center bg-no-repeat w-full h-[700px]`}>
+      <div className={`${locale === 'en' ? 'lg:ml-20 ml-6' : 'lg:mr-20 mr-6'} mt-12`}>
+        <h1 className="lg:text-6xl md:text-5xl text-4xl lg:w-[600px] md:w-[500px] w-[300px] font-bold text-ft lg:leading-[5.5rem] leading-[4rem]">
           {t("headText1")}
         </h1>
-
-        <p className="lg:text-xl text-base text-textSecondary lg:w-[600px] w-[400px] mt-2">
+        <p className="lg:text-xl text-lg lg:w-[560px] md:w-[460px] w-[280px] text-ft2 mt-12 leading-8">
           {t("headText2")}
         </p>
-        <button>
-          <span className="text-lg text-white  px-4 py-2 rounded-md mt-4  hoverBtn bg-main shadow-2xl shadow-main">
+        <button className={`mt-24 ${locale === 'en' ? 'lg:ml-20 ml-6' : 'lg:mr-20 mr-6'}`}>
+          <span className="text-lg text-white font-bold px-10 py-4 rounded-xl mt-4 hoverBtn bg-main shadow-lg shadow-[#a2c5f6]">
             {t("btnText")}
           </span>
         </button>
       </div>
-      {/* imgs */}
 
-      <div className="hidden lg:flex justify-center items-center  lg:w-[800px] w-[400px] lg:mr-20 mr-10">
-        
+      <div className={`absolute bottom-0 ${locale === 'en' ? 'right-5' : 'left-5'} lg:w-[687px] md:w-[500px] w-[300px] hidden md:block`}>
         <Image
-          width={2500}
-          height={2500}
+          width={1400}
+          height={1400}
           alt="docImg"
           src={"/imgs/header/doctor.png"}
-          className=""
+          className="w-full h-auto"
         />
       </div>
     </div>
