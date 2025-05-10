@@ -2,7 +2,7 @@ import Services from "@/components/Home/Services";
 import Header from "@/components/Home/Header";
 import DoctorsTeam from "@/components/Home/DoctorsTeam";
 import Footer from "@/components/Footer";
-import StartNow from "@/components/Home/LastFeatures";
+import LastFeatures from "@/components/Home/LastFeatures";
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
         <Header />
         <Services />
         <DoctorsTeam />
-        <StartNow />
+        <LastFeatures />
       </div>
       <Footer />
     </>

@@ -190,5 +190,73 @@
       }
       ]
     }
+    },
+    "Footer": {
+    "logoName": "Sehatee",
+    "description": "Sehatee platform is with you every step of the way towards better health, and we are always happy to hear from you",
+    "mainMenu": {
+      "title": "Main Menu",
+      "home": "Home",
+      "about": "About Us",
+      "doctors": "Doctors"
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "consultation": "Medical Consultation",
+      "helpCenter": "Help Center"
+    },
+    "importantInfo": {
+      "title": "Important Information",
+      "privacy": "Privacy & Security",
+      "terms": "Terms of Use"
+    },
+    "copyright": "© Sehatee 2024. All rights reserved"
+  },
+  "Profile": {
+    "title": "Profile",
+    "links": {
+      "l1": "Personal Information",
+      "l2": "Medical Information"
+    },
+
+    "personalInfo": {
+      "title": "Personal Information",
+      "subtitle": "Personal and contact information",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "birthDate": "Birth Date",
+      "address": "Address"
+    },
+    "editProfile": "Edit Profile"
+  },
+  "MedicalInfo": {
+    "title": "Medical Information",
+    "subtitle": "Medical and health information",
+    "height": "Height",
+    "weight": "Weight",
+    "bloodType": "Blood Type",
+    "chronicDiseases": "Chronic Diseases"
+  },
+
+  "Settings": {
+    "title": "Settings",
+    "links": {
+      "l1": "Account",
+      "l2": "Notifications"
+    },
+    "changePassword": {
+      "title": "Change Password",
+      "subtitle": "Change your account password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Change Password"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "description": "When you delete your account, all your data and personal information will be permanently deleted",
+      "button": "Delete Account"
     }
+  }
 }

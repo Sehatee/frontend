@@ -1,14 +1,13 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import React from "react";
 import DoctorCard from "./cards/DoctorCard";
-
 import { useState } from "react";
-
-
+import Image from "next/image";
 
 const DoctorsTeam = () => {
   const t = useTranslations("Doctors");
+  const locale = useLocale();
 
   const group1 = [
     {
@@ -45,25 +44,19 @@ const DoctorsTeam = () => {
   ];
 
   const [doctors, setDoctors] = useState(group1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isFirstGroup, setIsFirstGroup] = useState(true);
 
   const handleNext = () => {
     setDoctors(group2);
-    setIsFirstGroup(false);
   };
 
   const handleBack = () => {
     setDoctors(group1);
-    setIsFirstGroup(true);
   };
 
-
-  
   return (
-    <div className="my-24 ">
+    <div className="my-24 px-4 sm:px-6 md:px-8">
       {/* title */}
-      <div className="flex flex-col gap-3 my-12 mr-20">
+      <div className={`flex flex-col gap-3 my-12 ${locale === 'ar' ? 'mr-4 sm:mr-20' : 'ml-4 sm:ml-20'}`}>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
           {t("title")}
         </h1>
@@ -72,8 +65,8 @@ const DoctorsTeam = () => {
         </p>
       </div>
       {/* team */}
-      <div className="grid grid-cols-2 gap-6 justify-items-center items-center mx-auto ">
-      {doctors.map((doc, index) => (
+      <div className="grid grid-cols-1 max-[1296px]:grid-cols-1 min-[1296px]:grid-cols-2 gap-6 justify-items-center items-center mx-auto">
+        {doctors.map((doc, index) => (
           <DoctorCard 
             key={index}
             name={doc.name}
@@ -84,8 +77,24 @@ const DoctorsTeam = () => {
         ))}
       </div>
       <div className="flex justify-center gap-2 mt-16">
-        <button  onClick={handleBack}  className=" bg-[#D4D4D4] p-4 pl-5 rounded-full"><img src="/imgs/doctorsteam/back.png" alt="backImg" /></button>
-        <button onClick={handleNext} className="bg-main p-4 pr-5 rounded-full"><img src="/imgs/doctorsteam/next.png" alt="nextImg" /></button>
+        <button onClick={handleBack} className={`bg-[#D4D4D4] p-3 sm:p-4 ${locale === 'ar' ? 'pl-4 sm:pl-5' : 'pr-4 sm:pr-5'} rounded-full`}>
+          <Image
+            width={24}
+            height={24}
+            src={`/imgs/doctorsteam/${locale === 'ar' ? 'back' : 'next'}.png`}
+            alt="backImg"
+            className="w-5 sm:w-6"
+          />
+        </button>
+        <button onClick={handleNext} className={`bg-main p-3 sm:p-4 ${locale === 'ar' ? 'pr-4 sm:pr-5' : 'pl-4 sm:pl-5'} rounded-full`}>
+          <Image
+            width={24}
+            height={24}
+            src={`/imgs/doctorsteam/${locale === 'ar' ? 'next' : 'back'}.png`}
+            alt="nextImg"
+            className="w-5 sm:w-6"
+          />
+        </button>
       </div>
     </div>
   );
