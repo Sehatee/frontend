@@ -14,6 +14,7 @@
       "profile": "Profile",
       "notifications": "Notifications",
       "settings": "Settings",
+      "appointments": "Appointments",
       "logout": "Logout",
       "support": "Support"
     }
@@ -98,12 +99,12 @@
       "btnText": "Call now"
     }
   },
-  "lastFeatures": {
+  "Features": {
     "title": "Start your health journey now",
     "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
     "btnText": "Join us now",
     "doctorsCount": "Number of Doctors",
-    "patientsCount": "Number of users",
+    "patientsCount": "Number of Patients",
     "ratings": "Ratings"
   },
   "Login": {
@@ -123,7 +124,8 @@
     "confirmPassword": "Confirm Password",
     "btnText": "Sign up",
     "haveAccount": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "acceptTerms": "I'accept the terms and conditions"
   },
   "About": {
     "title": "About Us",
@@ -134,64 +136,58 @@
     "missionText": "To provide innovative, safe, and accessible medical services through an integrated digital platform that connects doctors and patients, ensuring exceptional healthcare.",
     "someServices": [
       {
-      "id": 0,
-      "text": "Providing 24/7 remote medical consultations"
+        "id": 0,
+        "text": "Providing 24/7 remote medical consultations"
       },
       {
-      "id": 1,
-      "text": "Easily and securely obtain accurate medical prescriptions from doctors"
+        "id": 1,
+        "text": "Easily and securely obtain accurate medical prescriptions from doctors"
       },
       {
-      "id": 2,
-      "text": "Conduct medical tests and receive results quickly and accurately"
+        "id": 2,
+        "text": "Conduct medical tests and receive results quickly and accurately"
       },
       {
-      "id": 3,
-      "text": "Easily book appointments with specialized doctors"
+        "id": 3,
+        "text": "Easily book appointments with specialized doctors"
       },
       {
-      "id": 4,
-      "text": "Regular follow-ups with doctors to ensure your health and safety"
+        "id": 4,
+        "text": "Regular follow-ups with doctors to ensure your health and safety"
       }
     ],
     "values": {
       "title": "Our Values",
       "subTitle": "We believe in the importance of core values that guide our work and define our identity, and we are committed to applying them in all aspects of our services.",
       "valuesList": [
-      {
-        "id": 0,
-        "text": "Professionalism",
-        "icon": "Briefcase",
-        "description": "We are committed to delivering our services at the highest level of professionalism."
-      },
-      {
-        "id": 1,
-        "text": "Innovation",
-        "icon": "Lightbulb",
-        "description": "We always strive to provide innovative solutions that meet our clients' needs."
-      },
-      {
-        "id": 2,
-        "text": "Integrity",
-        "icon": "ShieldCheck",
-        "description": "We ensure honesty and transparency in all our services."
-      },
-      {
-        "id": 3,
-        "text": "Respect",
-        "icon": "Handshake",
-        "description": "We believe in the importance of respecting everyone and fostering positive relationships."
-      },
-      {
-        "id": 4,
-        "text": "Collaboration",
-        "icon": "Users",
-        "description": "We work as a team to achieve our shared goals."
-      }
+        {
+          "id": 0,
+          "text": "Professionalism",
+          "icon": "Briefcase",
+          "description": "We are committed to delivering our services at the highest level of professionalism."
+        },
+        {
+          "id": 1,
+          "text": "Innovation",
+          "icon": "Lightbulb",
+          "description": "We always strive to provide innovative solutions that meet our clients' needs."
+        },
+        {
+          "id": 2,
+          "text": "Integrity",
+          "icon": "ShieldCheck",
+          "description": "We ensure honesty and transparency in all our services."
+        },
+        {
+          "id": 3,
+          "text": "Collaboration",
+          "icon": "Users",
+          "description": "We work as a team to achieve our shared goals."
+        }
       ]
     }
-    },
-    "Footer": {
+  },
+  "Footer": {
     "logoName": "Sehatee",
     "description": "Sehatee platform is with you every step of the way towards better health, and we are always happy to hear from you",
     "mainMenu": {
@@ -238,7 +234,7 @@
     "bloodType": "Blood Type",
     "chronicDiseases": "Chronic Diseases"
   },
-  
+
   "Settings": {
     "title": "Settings",
     "links": {
