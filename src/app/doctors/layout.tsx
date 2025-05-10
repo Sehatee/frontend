@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import React from "react";
 export const metadata : Metadata = {
-  title: "About Us",
+  title: "Doctors",
   description: "About us page",
   
 };

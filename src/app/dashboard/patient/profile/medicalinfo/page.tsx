@@ -1,10 +1,10 @@
-import Signup from "@/components/signup/Signup";
+import { MedicalInfo } from "@/components/dashboard/patient/profile/MedicalInfo";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Signup />
+      <MedicalInfo />
     </div>
   );
 };

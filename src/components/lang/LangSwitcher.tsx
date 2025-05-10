@@ -1,6 +1,7 @@
 "use client";
 import Cookies from "js-cookie";
 import { ArrowDown } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";
 
@@ -10,15 +11,18 @@ const LangSwitcher = () => {
     { key: "GB", code: "en", name: "English" },
     // { key: 'FR', code: 'fr', name: 'Français' },
   ];
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const currentLang = Cookies.get("locale") || "en";
+  const [currentLang, setCurrentLang] = useState(Cookies.get("locale") || "ar");
   const selectedLanguage =
     languages.find((lang) => lang.code === currentLang) || languages[1];
   const handleLanguageChange = (newLang: string) => {
     Cookies.set("locale", newLang);
-    location.reload();
+    setCurrentLang(newLang);
+    setIsOpen(false);
+    router.refresh();
   };
-  console.log(selectedLanguage.key)
+  console.log(currentLang);
   return (
     <div className="relative inline-block text-left z-10">
       <button
@@ -26,7 +30,7 @@ const LangSwitcher = () => {
         className="flex items-center gap-2 p-1 py-3 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none transition"
       >
         <FlagIcon code={selectedLanguage.key} size={24} />
-        <ArrowDown size={18}/>
+        <ArrowDown size={18} />
       </button>
 
       {isOpen && (

@@ -5,10 +5,10 @@ const ADS = () => {
   const t = useTranslations('MyServices')
 
   return (
-    <div className="my-20 bg-main rounded flex justify-between items-center px-4 gap-5">
+    <div className="my-20 bg-main rounded flex sm:flex-row flex-col justify-between items-center px-4 py-2 gap-5">
       {/* text */}
-      <div className=" h-full flex flex-col gap-3">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white ">
+      <div className=" h-full flex flex-col gap-3 ">
+        <h1 className="text-base sm:text-lg md:text-xl font-bold text-white ">
           {t('ADS.title')}
         </h1>
         <p className="text-sm line-clamp-2  sm:text-base md:text-lg font-medium text-white  mt-2">

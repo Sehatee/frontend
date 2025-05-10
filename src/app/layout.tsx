@@ -32,7 +32,6 @@ export default async function RootLayout({
           <NavBar />
           <div className="mt-16">{children}</div>
         </body>
-        
       </NextIntlClientProvider>
     </html>
   );
