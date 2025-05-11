@@ -1,4 +1,4 @@
-import { Star, StarHalf } from "lucide-react";
+import RenderStars from "@/ui/RenderStars";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,39 +23,13 @@ export default function DoctorCard({
   workDays,
   imageUrl,
 }: DoctorCardProps) {
-  const renderStars = (rating: number) => {
-    return Array(5)
-      .fill(0)
-      .map((_, index) => {
-        const isHalfStar = index + 0.5 === rating;
-        const isFullStar = index < rating;
-
-        if (isHalfStar) {
-          return (
-            <div key={index} className="relative">
-              <Star className="w-5 h-5 fill-gray-300 text-gray-300" />
-              <StarHalf className="w-5 h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0" />
-            </div>
-          );
-        }
-
-        return (
-          <Star
-            key={index}
-            className={`w-5 h-5 ${
-              isFullStar
-                ? "fill-yellow-400 text-yellow-400"
-                : "fill-gray-300 text-gray-300"
-            }`}
-          />
-        );
-      });
-  };
-
   return (
     // abslout top-0 right-0 left-30
 
-    <div className="bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-4 w-full max-w-3xl p-4">
+    <div
+      dir=""
+      className="bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-4 w-full max-w-3xl p-4"
+    >
       <div className="w-full md:w-1/3  md:h-auto">
         <Image
           src={imageUrl}
@@ -73,7 +47,7 @@ export default function DoctorCard({
               {name}
             </h3>
             <div className="flex items-center gap-2 mt-1">
-              {renderStars(rating)}
+              <RenderStars rating={rating} />
               <span className="text-gray-500 text-sm">({totalRatings})</span>
             </div>
           </div>
@@ -122,7 +96,7 @@ export default function DoctorCard({
 
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <Link
-            href="/appointment"
+            href={`/appointment/${rating}`}
             className="bg-main text-white px-4  py-2 rounded-md hover:bg-main/90 transition-colors text-center text-[14px] sm:text-[16px]"
           >
             حجز موعد

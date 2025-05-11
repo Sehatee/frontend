@@ -320,5 +320,22 @@
         }
       ]
     }
+  },
+  "Appointment": {
+    "title": "حجز موعد",
+    "fullName": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "email": "البريد الإلكتروني",
+    "appointmentDate": "تاريخ ووقت الموعد",
+    "reason": "سبب الزيارة",
+    "reasonPlaceholder": "يرجى وصف سبب الزيارة...",
+    "submit": "تأكيد الحجز"
+  },
+  "DoctorCard": {
+    "experience": "الخبرة",
+    "languages": "اللغات",
+    "workDays": "أيام العمل",
+    "callNow": "محادثة",
+    "schedule": "التواصل المباشر"
   }
 }

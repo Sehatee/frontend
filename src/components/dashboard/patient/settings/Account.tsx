@@ -13,22 +13,27 @@ export const Account = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <div className="flex flex-col gap-6  h-full ">
-      <h1 className="w-1/3  text-2xl font-bold text-gray-900">{t("title")}</h1>
-      <SideBarDashboards
-        links={[
-          {
-            name: links.l1,
-            href: "/dashboard/patient/settings/account",
-          },
-          {
-            name: links.l2,
-            href: "/dashboard/patient/settings/notifications",
-          },
-        ]}
-      />
-      <div className="flex flex-col gap-6">
-        {/* Password Change Section */}
+    <div className="min-h-screen p-4">
+      {/* ✅ Sidebar الأفقي + ثابت في الأعلى */}
+
+      {/* ✅ المحتوى */}
+      <div className="mt-6 flex flex-col gap-6 max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
+        <div className="sticky top-20  z-10 ">
+          <SideBarDashboards
+            links={[
+              {
+                name: links.l1,
+                href: "/dashboard/patient/settings/account",
+              },
+              {
+                name: links.l2,
+                href: "/dashboard/patient/settings/notifications",
+              },
+            ]}
+          />
+        </div>
+        {/* Change Password */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-3 h-3 rounded-full bg-main" />
@@ -41,7 +46,7 @@ export const Account = () => {
           </p>
 
           <form className="flex flex-col gap-4">
-            {/* Current Password */}
+            {/* current */}
             <div className="relative">
               <label className="text-sm text-gray-600 mb-1 block">
                 {t("changePassword.currentPassword")}
@@ -61,7 +66,7 @@ export const Account = () => {
               </div>
             </div>
 
-            {/* New Password */}
+            {/* new */}
             <div className="relative">
               <label className="text-sm text-gray-600 mb-1 block">
                 {t("changePassword.newPassword")}
@@ -81,7 +86,7 @@ export const Account = () => {
               </div>
             </div>
 
-            {/* Confirm New Password */}
+            {/* confirm */}
             <div className="relative">
               <label className="text-sm text-gray-600 mb-1 block">
                 {t("changePassword.confirmPassword")}
@@ -114,12 +119,12 @@ export const Account = () => {
           </form>
         </div>
 
-        {/* Delete Account Section */}
+        {/* Delete account */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <div className="flex items-start gap-4">
             <div className="flex-1">
-              <div className="flex items-center  gap-1 text-xl font-bold text-red-500 mb-2">
-                <AlertCircle className=" mt-1" size={24} />
+              <div className="flex items-center gap-1 text-xl font-bold text-red-500 mb-2">
+                <AlertCircle className="mt-1" size={24} />
                 <h1>{t("deleteAccount.title")}</h1>
               </div>
               <p className="text-sm text-gray-500 mb-4">

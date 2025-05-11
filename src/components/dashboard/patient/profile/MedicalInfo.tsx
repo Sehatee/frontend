@@ -9,7 +9,7 @@ export const MedicalInfo = () => {
   const links = t2.raw("links");
 
   return (
-    <div className="flex flex-col gap-6  h-full ">
+    <div className="flex flex-col gap-6  h-full p-6">
       <h1 className="w-1/3  text-2xl font-bold text-gray-900">{t("title")}</h1>
       <SideBarDashboards
         links={[

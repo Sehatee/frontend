@@ -17,6 +17,7 @@ export default {
         ft2: "#868686",
         primary: "#D5E4F980",
         backgroundDashboards: "#F4F7FD",
+        orangColor: "#FF5F0F",
       },
       screens: {
         xs: "330px",

@@ -20,7 +20,7 @@ const Notifications = () => {
   ]
 
   return (
-    <div className="space-y-6 min-h-screen">
+    <div className="space-y-6 min-h-screen p-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold text-gray-900">{t('title')}</h2>
         <div className="relative">

@@ -321,5 +321,22 @@
         }
       ]
     }
+  },
+  "Appointment": {
+    "title": "Book Appointment",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "appointmentDate": "Appointment Date & Time",
+    "reason": "Reason for Visit",
+    "reasonPlaceholder": "Please describe your reason for the visit...",
+    "submit": "Confirm Booking"
+  },
+  "DoctorCard": {
+    "experience": "Experience",
+    "languages": "Languages",
+    "workDays": "Work Days",
+    "callNow": "Chat",
+    "schedule": "Direct Contact"
   }
 }

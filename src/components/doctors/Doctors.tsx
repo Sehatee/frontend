@@ -43,7 +43,7 @@ const Doctors = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 px-4 md:px-8">
         <DoctorCard
           name="عماد"
-          rating={5}
+          rating={4.5}
           totalRatings={144}
           languages={["عربية", "فرنسية"]}
           specialization="عيون"
