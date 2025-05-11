@@ -253,6 +253,73 @@
       "title": "Delete Account",
       "description": "When you delete your account, all your data and personal information will be permanently deleted",
       "button": "Delete Account"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "filterBy": "Filter by",
+      "filters": {
+        "all": "All Notifications",
+        "unread": "Unread",
+        "read": "Read",
+        "system": "System"
+      },
+      "notifications": {
+        "appointment": {
+          "title": "New Appointment Confirmation",
+          "description": "You have a new appointment with Dr. Ahmed Al-Ali on Thursday at 10:00 AM",
+          "time": "5 minutes ago"
+        },
+        "system": {
+          "title": "Account Information Update",
+          "description": "Your account information has been successfully updated",
+          "time": "1 hour ago"
+        }
+      }
+    }
+  },
+  "ComingSoon": {
+    "title": "Coming Soon",
+    "description": "We are working on something awesome. Stay tuned!",
+    "loading": "Loading..."
+  },
+  "Support": {
+    "title": "Technical Support",
+    "subtitle": "Get help from our support team through the following channels",
+    "liveChat": {
+      "title": "Live Chat",
+      "description": "Connect with our support team instantly through live chat",
+      "button": "Start Chat"
+    },
+    "callUs": {
+      "title": "Call Us",
+      "description": "Our support team is available to help you by phone",
+      "phone": "+123 4567 8910",
+      "workingHours": "Available: Sun - Thu, 8:00 AM - 8:00 PM"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "What services do you provide?",
+          "answer": "We provide comprehensive medical services including online consultations, appointment booking, and medical prescriptions."
+        },
+        {
+          "question": "How can I book an appointment?",
+          "answer": "You can easily book an appointment through our platform by selecting your preferred doctor and available time slot."
+        },
+        {
+          "question": "What are the payment methods?",
+          "answer": "We accept various payment methods including credit cards, debit cards, and digital wallets."
+        },
+        {
+          "question": "How can I cancel or reschedule my appointment?",
+          "answer": "You can cancel or reschedule your appointment through your dashboard up to 24 hours before the scheduled time."
+        },
+        {
+          "question": "Is my medical information secure?",
+          "answer": "Yes, we use advanced encryption and security measures to protect all your medical and personal information."
+        }
+      ]
     }
   }
 }

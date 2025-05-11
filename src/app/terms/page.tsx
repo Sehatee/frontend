@@ -1,10 +1,10 @@
-import Notifications from "@/components/dashboard/patient/settings/Notifications";
+import Terms from "@/components/terms/Terms";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Notifications />
+      <Terms />
     </div>
   );
 };

@@ -42,7 +42,7 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay={`${index * 200}`}
               data-aos-anchor-placement="center-bottom"
-              className="flex flex-col  p-4  rounded-lg "
+              className="flex flex-col   p-4  rounded-lg "
             >
               <Image
                 src={feature.img}

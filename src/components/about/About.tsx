@@ -48,7 +48,7 @@ const About = () => {
       </div>
       {/* Our values */}
       <TextHeader title={t("values.title")} subTitle={t("values.subTitle")} />
-      <div className="my-16 grid grid-cols-2 md:grid-cols-2 gap-16">
+      <div className="my-16 grid grid-cols-1 md:grid-cols-2 gap-16 ">
         {valuesList.map(
           (value: {
             id: number;

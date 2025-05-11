@@ -27,7 +27,11 @@ const NavBar = () => {
   const locale = Cookies.get("locale");
 
   const pathName = usePathname();
-  const user = true; //
+
+  // const user = null;
+  const user = {
+    role: "patient",
+  };
 
   return (
     <div className="py-3 px-6 bg-bg fixed top-0 left-0 w-full z-20">
@@ -165,7 +169,7 @@ const NavBar = () => {
                   <ul className="mt-5 flex flex-col gap-2 text-gray-700 font-semibold">
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/dashboard/patient/profile/info"}
+                        href={`/dashboard/${user.role}/profile/info`}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("profile")}</h1>
@@ -174,7 +178,7 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/dashboard/patient/profile/notifications"}
+                        href={`/dashboard/${user.role}/settings/notifications`}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("notifications")}</h1>
@@ -183,7 +187,7 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/dashboard/patient/appointments/"}
+                        href={`/dashboard/${user.role}/appointments/`}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("appointments")}</h1>
@@ -192,7 +196,7 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/dashboard/patient/settings/account"}
+                        href={`/dashboard/${user.role}/settings/account`}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("settings")}</h1>
@@ -204,7 +208,7 @@ const NavBar = () => {
                   <ul className="mt-5 flex flex-col gap-1 text-gray-700 font-semibold">
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-t-xl hover:bg-gray-50 transition-colors">
                       <Link
-                        href={"/"}
+                        href={"/support"}
                         className="flex items-center justify-between"
                       >
                         <h1>{userMenuT("support")}</h1>
@@ -212,13 +216,15 @@ const NavBar = () => {
                       </Link>
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-gray-50 transition-colors">
-                      <Link
-                        href={"/"}
-                        className="flex items-center justify-between"
+                      <button
+                        // onClick={() => {
+                        //   setOpenMenuUser(false);
+                        // }}
+                        className="w-full flex items-center justify-between"
                       >
                         <h1>{userMenuT("logout")}</h1>
                         <LogOut color="red" />
-                      </Link>
+                      </button>
                     </li>
                   </ul>
                 </div>
