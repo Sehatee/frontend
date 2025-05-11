@@ -30,7 +30,7 @@ const NavBar = () => {
 
   // const user = null;
   const user = {
-    role: "patient",
+    role: "doctor",
   };
 
   return (

@@ -1,11 +1,9 @@
-import Link from "next/link";
+import NotFoundCom from "@/components/notFound/NotFound";
 
 export default function NotFound() {
   return (
     <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/" className="bg-red-400">Return Home</Link>
+      <NotFoundCom />
     </div>
   );
 }
