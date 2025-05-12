@@ -341,6 +341,11 @@
   "Doctor": {
     "reviews": "تقييم",
     "location": "الموقع",
-    "patientReviews": "تقييمات المرضى"
+    "patientReviews": "تقييمات المرضى",
+    "writeYourReview": "أترك تعليق",
+    "submit": "نشر",
+    "chat": "محادثة",
+    "book": "حجز",
+    "experience": "سنوات الخبرة"
   }
 }

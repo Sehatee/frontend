@@ -350,6 +350,11 @@
   "Doctor": {
     "reviews": "Reviews",
     "location": "Location",
-    "patientReviews": "Patient Reviews"
+    "patientReviews": "Patient Reviews",
+    "writeYourReview":"type a review please",
+    "submit":"submit",
+    "chat": "Chat",
+    "book": "Book",
+    "experience": "Years of Experience"
   }
 }

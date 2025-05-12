@@ -17,11 +17,11 @@ export const defaultMapContainerStyle = {
 
 //for map
 const defaultMapCenter = {
-  lat: 34.66874595896269,
+  lat: 34.46874595896269,
   lng: 3.2522028525185376,
 };
 
-const defaultMapZoom = 12; // Reduced zoom level to show more area
+const defaultMapZoom = 10; // Reduced zoom level to show more area
 
 // Add marker position (same as center for this example)
 
@@ -37,7 +37,7 @@ const defaultMapOptions = {
   zoomControl: true,
   tilt: 45, // Added tilt for better perspective
   gestureHandling: "cooperative", // Changed to cooperative for better mobile handling
-  mapTypeId: "hybrid", // Changed to hybrid view to show satellite + roads
+  mapTypeId: "roadmap", // Changed to hybrid view to show satellite + roads
   fullscreenControl: true, // Added fullscreen control
   streetViewControl: true, // Added street view control
   mapTypeControl: true, // Added map type control
