@@ -3,6 +3,7 @@ import { Phone, Calendar, MessageSquareText } from "lucide-react";
 import Image from "next/image";
 import RenderStars from "@/ui/RenderStars";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 interface DoctorCardAppointmentProps {
   doctor: {
@@ -22,7 +23,7 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
   const t = useTranslations("DoctorCard");
 
   return (
-    <div className="bg-white rounded-lg p-4 shadow-md flex flex-col  gap-4">
+    <div className="bg-white rounded-lg p-6 shadow-md flex flex-col justify-between gap-6">
       <div className="flex flex-col items-center  text-center">
         <div className="relative w-36 h-36 rounded-full overflow-hidden mb-3">
           <Image
@@ -58,14 +59,14 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
       </div>
 
       <div className="grid grid-cols-1 gap-2">
-        <button className="flex items-center justify-center gap-2 border-main border text-main py-2 px-4 rounded-md hover:bg-blue-700 hover:text-white transition-colors w-full">
+        <Link href={'/coominsoon'} className="flex items-center justify-center gap-2 border-main border text-main py-2 px-4 rounded-md hover:bg-blue-700 hover:text-white transition-colors w-full">
           <Phone className="w-4 h-4" />
           {t("schedule")}
-        </button>
-        <button className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors w-full">
+        </Link>
+        <Link href={'/coominsoon'} className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors w-full">
           <MessageSquareText className="w-4 h-4" />
           {t("callNow")}
-        </button>
+        </Link>
       </div>
     </div>
   );

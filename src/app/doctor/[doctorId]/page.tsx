@@ -1,3 +1,4 @@
+import Doctor from "@/components/doctor/Doctor";
 import React from "react";
 interface Props {
   params: Promise<{ doctorId: string }>;
@@ -5,7 +6,12 @@ interface Props {
 // TODO: docn't forget to add generateStaticParams func
 const page = async ({ params }: Props) => {
   const doctorId = (await params).doctorId;
-  return <div>{doctorId}</div>;
+  console.log(doctorId);
+  return (
+    <div>
+      <Doctor />
+    </div>
+  );
 };
 
 export default page;

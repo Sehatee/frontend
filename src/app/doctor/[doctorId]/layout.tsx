@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { MapProvider } from "@/providers/map-provider";
 
 interface Props {
   params: Promise<{ doctorId: string }>;
@@ -15,5 +16,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <div  className="bg-bg">
+      <div className="container mx-auto">
+        <MapProvider>{children}</MapProvider>
+      </div>
+    </div>
+  );
 }

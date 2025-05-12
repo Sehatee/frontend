@@ -127,6 +127,14 @@
     "login": "Login",
     "acceptTerms": "I'accept the terms and conditions"
   },
+  "lastFeatures": {
+    "title": "Start your health journey now",
+    "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
+    "btnText": "Join us now",
+    "doctorsCount": "Number of Doctors",
+    "patientsCount": "Number of Users",
+    "ratings": "Ratings"
+  },
   "About": {
     "title": "About Us",
     "subTitle": "Specialist Platform is a leading digital platform in the field of telemedicine, aiming to provide exceptional medical services in an innovative, safe, and accessible way.",
@@ -338,5 +346,10 @@
     "workDays": "Work Days",
     "callNow": "Chat",
     "schedule": "Direct Contact"
+  },
+  "Doctor": {
+    "reviews": "Reviews",
+    "location": "Location",
+    "patientReviews": "Patient Reviews"
   }
 }

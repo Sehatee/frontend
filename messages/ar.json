@@ -337,5 +337,10 @@
     "workDays": "أيام العمل",
     "callNow": "محادثة",
     "schedule": "التواصل المباشر"
+  },
+  "Doctor": {
+    "reviews": "تقييم",
+    "location": "الموقع",
+    "patientReviews": "تقييمات المرضى"
   }
 }

@@ -16,35 +16,37 @@ const ApplyAppointment = () => {
     image: "/imgs/doctorsteam/doctor3.png",
   };
   return (
-    <div className="grid md:grid-cols-3 grid-cols-1  gap-6  p-6">
+    <div className="grid lg:grid-cols-3 grid-cols-1  gap-6  p-6">
       <DoctorCardAppointment doctor={doctor} />
 
-      <div className="bg-white rounded-lg p-6 shadow-md md:col-span-2 ">
-        <h2 className="text-xl font-semibold mb-6">{t("title")}</h2>
+      <div className="bg-white rounded-lg p-6 shadow-md lg:col-span-2 ">
+        <h2 className="text-2xl font-semibold mb-6">{t("title")}</h2>
 
-        <form className="space-y-4">
+        <form className="space-y-4 ">
           <div className="space-y-4">
-            <div className="relative">
-              <label className="block text-gray-600 mb-1">
-                {t("fullName")}
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <div className="flex justify-between gap-3">
+              <div className="relative w-full">
+                <label className="block text-gray-600 mb-1">
+                  {t("fullName")}
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <User className="w-5 h-5 text-main absolute left-3 top-1/2 -translate-y-1/2" />
+                </div>
               </div>
-            </div>
 
-            <div className="relative">
-              <label className="block text-gray-600 mb-1">{t("phone")}</label>
-              <div className="relative">
-                <input
-                  type="tel"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <Phone className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <div className="relative w-full">
+                <label className="block text-gray-600 mb-1">{t("phone")}</label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <Phone className="w-5 h-5 text-main absolute left-3 top-1/2 -translate-y-1/2" />
+                </div>
               </div>
             </div>
 
@@ -55,7 +57,7 @@ const ApplyAppointment = () => {
                   type="email"
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Mail className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-5 h-5 text-main absolute left-3 top-1/2 -translate-y-1/2" />
               </div>
             </div>
 
@@ -65,10 +67,10 @@ const ApplyAppointment = () => {
               </label>
               <div className="relative">
                 <input
-                  type="datetime-local"
+                  type="date"
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Calendar className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Calendar className="w-5 h-5 text-main absolute left-3 top-1/2 -translate-y-1/2" />
               </div>
             </div>
           </div>
@@ -80,7 +82,7 @@ const ApplyAppointment = () => {
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"
                 placeholder={t("reasonPlaceholder")}
               />
-              <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
+              <FileText className="w-5 h-5 text-main absolute left-3 top-3" />
             </div>
           </div>
 
