@@ -5,6 +5,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
 import "aos/dist/aos.css";
+import { ToastContainer } from "react-toastify";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -27,6 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir} className={font}>
+      <ToastContainer />
       <NextIntlClientProvider>
         <body className="">
           <NavBar />

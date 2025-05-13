@@ -13,10 +13,12 @@ import {
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LangSwitcher from "./lang/LangSwitcher";
 import Image from "next/image";
 import Cookies from "js-cookie";
+import { useUserStore } from "@/stores/user";
+import { handleLogout } from "@/lib/auth";
 
 const NavBar = () => {
   const t = useTranslations("NavBar");
@@ -28,10 +30,18 @@ const NavBar = () => {
 
   const pathName = usePathname();
 
-  // const user = null;
-  const user = {
-    role: "patient",
+  const { user, clearUser, fetchUser } = useUserStore();
+
+  const logout = () => {
+    handleLogout(); // to remove token
+    clearUser(); // to remove user =>  user = null
   };
+  useEffect(() => {
+    const fetchingUser = async () => {
+      await fetchUser();
+    };
+    fetchingUser();
+  }, [fetchUser]);
 
   return (
     <div className="py-3 px-6 bg-bg fixed top-0 left-0 w-full z-20">
@@ -119,11 +129,12 @@ const NavBar = () => {
                   className="w-10 h-10 shadow-md shadow-main rounded-full"
                 >
                   <Image
-                    src={"/imgs/navbar/user.png"}
+                    src={user.picture || "/imgs/doctorsteam/doctor3.png"}
                     alt="user_img"
                     width={500}
                     height={500}
                     className="w-full h-full rounded-full object-cover"
+                    priority={false}
                   />
                 </button>
                 {/* user menu */}
@@ -154,7 +165,7 @@ const NavBar = () => {
                   <div className="flex flex-col gap-2 items-center justify-center mb-2">
                     <div className="w-12 h-12 overflow-hidden rounded-full">
                       <Image
-                        src={"/imgs/navbar/user.png"}
+                        src={user.picture || "/imgs/doctorsteam/doctor3.png"}
                         alt="user_img"
                         width={48}
                         height={48}
@@ -162,7 +173,7 @@ const NavBar = () => {
                       />
                     </div>
                     <h1 className="text-gray-700 font-semibold text-center">
-                      كاس عماد
+                      {user.username}
                     </h1>
                   </div>
                   {/* urls */}
@@ -217,9 +228,7 @@ const NavBar = () => {
                     </li>
                     <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-gray-50 transition-colors">
                       <button
-                        // onClick={() => {
-                        //   setOpenMenuUser(false);
-                        // }}
+                        onClick={logout}
                         className="w-full flex items-center justify-between"
                       >
                         <h1>{userMenuT("logout")}</h1>

@@ -125,7 +125,10 @@
     "btnText": "Sign up",
     "haveAccount": "Already have an account?",
     "login": "Login",
-    "acceptTerms": "I'accept the terms and conditions"
+    "acceptTerms": "I'accept the terms and conditions",
+    "phone": "Phone Number",
+    "uploadAvatar": "Upload Avatar",
+    "loading": "Creating Account..."
   },
   "lastFeatures": {
     "title": "Start your health journey now",
@@ -351,8 +354,8 @@
     "reviews": "Reviews",
     "location": "Location",
     "patientReviews": "Patient Reviews",
-    "writeYourReview":"type a review please",
-    "submit":"submit",
+    "writeYourReview": "type a review please",
+    "submit": "submit",
     "chat": "Chat",
     "book": "Book",
     "experience": "Years of Experience"

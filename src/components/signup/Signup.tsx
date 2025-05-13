@@ -2,30 +2,63 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { Loader2, Phone, Upload } from "lucide-react";
+import Image from "next/image";
+import { handleSignup } from "@/lib/auth";
+import { useUserStore } from "@/stores/user";
 
 const Signup = () => {
   const t = useTranslations("Signup");
-
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: "",
-    termsAccepted: false,
+    phone: "",
+    file: null as File | null,
   });
+  const { setUser } = useUserStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    const { name, value, type, checked, files } = e.target;
+
+    if (type === "file" && files && files[0]) {
+      const file = files[0];
+      setFormData((prev) => ({ ...prev, [name]: file }));
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    setIsLoading(true);
+    try {
+      const res = await handleSignup(formData);
+      setUser(res.user);
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        file: null as File | null,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,6 +66,38 @@ const Signup = () => {
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-6">{t("title")}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Avatar upload field */}
+          <div className="flex flex-col items-center space-y-4">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gray-100">
+              {avatarPreview ? (
+                <Image
+                  src={avatarPreview}
+                  alt="Avatar preview"
+                  width={150}
+                  height={150}
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex items-center justify-center w-full h-full">
+                  <Upload className="w-8 h-8 text-gray-400" />
+                </div>
+              )}
+            </div>
+            <input
+              type="file"
+              name="file"
+              accept="image/*"
+              onChange={handleChange}
+              className="hidden"
+              id="file-upload"
+            />
+            <label
+              htmlFor="file-upload"
+              className="cursor-pointer text-sm text-blue-600 hover:text-blue-700"
+            >
+              {t("uploadAvatar")}
+            </label>
+          </div>
           {/* Username input field with user icon */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -65,7 +130,25 @@ const Signup = () => {
               />
             </div>
           </div>
-
+          {/* Phone input field with phone icon */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              {t("phone")}
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Phone className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              />
+            </div>
+          </div>
           {/* Email input field with email icon */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -162,8 +245,10 @@ const Signup = () => {
             <input
               type="checkbox"
               name="termsAccepted"
-              checked={formData.termsAccepted}
-              onChange={handleChange}
+              checked={termsAccepted}
+              onChange={(e) => {
+                setTermsAccepted(e.target.checked);
+              }}
               required
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
@@ -189,9 +274,17 @@ const Signup = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500"
+            disabled={isLoading}
+            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
-            {t("btnText")}
+            {isLoading ? (
+              <>
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                {t("loading")}
+              </>
+            ) : (
+              t("btnText")
+            )}
           </button>
         </form>
         <div className="mt-4 w-full text-center">
