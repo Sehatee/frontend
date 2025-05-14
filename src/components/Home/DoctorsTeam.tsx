@@ -45,13 +45,16 @@ const DoctorsTeam = () => {
   ];
 
   const [doctors, setDoctors] = useState(group1);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isFirstGroup, setIsFirstGroup] = useState(true);
   const handleNext = () => {
     setDoctors(group2);
+    setIsFirstGroup(false);
   };
 
   const handleBack = () => {
     setDoctors(group1);
+    setIsFirstGroup(true);
   };
 
   return (
@@ -59,13 +62,13 @@ const DoctorsTeam = () => {
       {/* title */}
       <div
         className={`flex flex-col gap-3 my-12 ${
-          locale === "ar" ? "mr-4 sm:mr-20" : "ml-4 sm:ml-20"
+          locale === "ar" ? "xl:mr-16 mr-0" : "xl:ml-16 ml-0"
         }`}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold xl:text-start text-center">
           {t("title")}
         </h1>
-        <p className="text-base sm:text-lg md:text-xl font-medium text-textSecondary mt-2">
+        <p className="text-base sm:text-lg md:text-xl font-medium text-textSecondary mt-2 xl:text-start text-center">
           {t("subTitle")}
         </p>
       </div>
@@ -99,7 +102,7 @@ const DoctorsTeam = () => {
         </button>
         <button
           onClick={handleNext}
-          className={`bg-main p-3 sm:p-4 ${
+          className={`bg-[#3D87F2] p-3 sm:p-4 ${
             locale === "ar" ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"
           } rounded-full`}
         >

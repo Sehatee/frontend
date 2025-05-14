@@ -4,17 +4,28 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 interface DoctorCardProps {
+  id: string;
   name: string;
   rating: number;
   totalRatings: number;
   specialization: string;
   experience: string;
   languages: string[];
-  workDays: string[];
+  workDays: {
+    day:
+      | "Sunday"
+      | "Monday"
+      | "Tuesday"
+      | "Wednesday"
+      | "Thursday"
+      | "Friday"
+      | "Saturday";
+  }[];
   imageUrl: string;
 }
 
 export default function DoctorCard({
+  id,
   name,
   rating,
   totalRatings,
@@ -31,14 +42,14 @@ export default function DoctorCard({
     >
       <div className="w-full md:w-1/3 md:h-auto relative group">
         <Image
-          src={imageUrl}
+          src={imageUrl || '/imgs'}
           alt={name}
           width={300}
           height={400}
           className="w-full h-full rounded-lg object-cover"
         />
         <Link
-          href="/doctor/12"
+          href={`/doctor/${id}`}
           className="absolute top-2 right-2 bg-white/80 hover:bg-white p-2 rounded-full transition-colors group-hover:opacity-100 opacity-0"
         >
           <ExternalLink className="w-5 h-5 text-main" />
@@ -92,7 +103,7 @@ export default function DoctorCard({
                   key={index}
                   className="text-sm md:text-base text-textSecondary"
                 >
-                  {day}
+                  {day.day}
                 </span>
               ))}
             </div>

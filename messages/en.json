@@ -97,6 +97,12 @@
       "specialty": "Psychiatrist",
       "text": "Consultant in psychiatry, providing psychological support and treatment for patients.",
       "btnText": "Call now"
+    },
+    "loading": "Loading doctors...",
+    "noDoctorsFound": "No doctors found",
+    "tryAdjustingFilters": "Try adjusting your search filters",
+    "specialization": {
+      "notSpecified": "General Practice"
     }
   },
   "Features": {

@@ -97,6 +97,12 @@
       "specialty": "طبيب نفسي",
       "text": "استشاري في الطب النفسي، يقدم الدعم والعلاج النفسي للمرضى.",
       "btnText": "اتصل الان"
+    },
+    "loading": "جاري تحميل الأطباء...",
+    "noDoctorsFound": "لم يتم العثور على أطباء",
+    "tryAdjustingFilters": "حاول تعديل عوامل التصفية",
+    "specialization": {
+      "notSpecified": "طب عام"
     }
   },
   "lastFeatures": {
