@@ -42,7 +42,7 @@ export default function DoctorCard({
     >
       <div className="w-full md:w-1/3 md:h-auto relative group">
         <Image
-          src={imageUrl || '/imgs'}
+          src={imageUrl || "/imgs"}
           alt={name}
           width={300}
           height={400}
@@ -73,8 +73,11 @@ export default function DoctorCard({
             </p>
           </div>
         </div>
-
-        <p className="text-sm md:text-base text-textSecondary">{experience}</p>
+        <div className="">
+          <p className=" text-sm md:text-base text-textSecondary line-clamp-3 ">
+            {experience + experience}
+          </p>
+        </div>
 
         <div className="space-y-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
