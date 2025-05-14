@@ -1,12 +1,13 @@
+import { fetchUser } from "@/lib/fetchUser";
 import SideBarDashboards from "@/ui/SideBarDashboards";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import React from "react";
+import ProfileCard from "./ProfileCard";
 
-const Profile = () => {
-  const t = useTranslations("Profile");
-  const links = t.raw('links')
+const Profile = async () => {
+  const t = await getTranslations("Profile");
+  const links = t.raw("links");
+  const user = await fetchUser();
 
   return (
     <div className="flex flex-col gap-6  h-full p-6">
@@ -16,51 +17,17 @@ const Profile = () => {
         links={[
           {
             name: links.l1,
-            href: "/dashboard/patient/profile/info",
+            href: `/dashboard/${user.role}/profile/info`,
           },
           {
             name: links.l2,
-            href: "/dashboard/patient/profile/medicalinfo",
+            href: `/dashboard/${user.role}/profile/medicalinfo`,
           },
         ]}
       />
       <div className="flex flex-col md:flex-row gap-6">
         {/* Profile Card */}
-        <div className="w-full  md:w-80 bg-white rounded-lg p-6 shadow-sm ">
-          <div className="flex flex-col justify-between h-full items-center gap-4">
-            <div className="w-24 h-24 rounded-full overflow-hidden">
-              <Image
-                src="/imgs/navbar/user.png"
-                alt="Profile"
-                width={96}
-                height={96}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="font-bold md:text-xl sm:text-lg text-gray-900 text-center ">
-                محمد احمد
-              </h3>
-              <div className="flex items-center gap-2">
-                <Mail size={16} color="#0B62DE" className="text-gray-500" />
-                <p className="text-sm text-gray-500">mohamed.ahmed@gmail.com</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone size={16} color="#0B62DE" className="text-gray-500" />
-                <p className="text-sm text-gray-500">0599255555</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin size={16} color="#0B62DE" className="text-gray-500" />
-                <p className="text-sm text-gray-500">رفح</p>
-              </div>
-            </div>
-
-            <button className="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-              {t("editProfile")}
-            </button>
-          </div>
-        </div>
+        <ProfileCard />
         {/* Personal Information Form */}
         <div className="flex-1 bg-white rounded-lg p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-gray-800 mb-6">

@@ -356,5 +356,8 @@
     "chat": "محادثة",
     "book": "حجز",
     "experience": "سنوات الخبرة"
+  },
+   "Appointments": {
+    "title": "المواعيد"
   }
 }

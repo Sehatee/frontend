@@ -13,8 +13,8 @@ export default async function RootLayout({
     redirect("/login");
   }
 
-  if (user.role !== "patient") {
-    redirect(`/dashboard/${user.role}/profile`);
-  }
+  // if (user.role !== "patient") {
+  //   redirect(`/dashboard/${user.role}/profile/info`);
+  // }
   return <>{children}</>;
 }

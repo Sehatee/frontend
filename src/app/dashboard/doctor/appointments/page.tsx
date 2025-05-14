@@ -1,10 +1,10 @@
-import Profile from "@/ui/Profile";
+import Appointments from "@/components/dashboard/doctor/appointments/Appointments";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Profile />
+      <Appointments />
     </div>
   );
 };

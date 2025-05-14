@@ -22,7 +22,7 @@
   "Header": {
     "headText1": "We provide you with the latest telemedicine solutions with a selection of specialists.",
     "headText2": "Consult the best doctors online immediately or book an appointment at the clinic easily... All medical services are now at your fingertips.",
-    "btnText": "Start your consultation now"
+    "btnText": "Start now"
   },
   "services": {
     "title": "The services we provide",
@@ -365,5 +365,8 @@
     "chat": "Chat",
     "book": "Book",
     "experience": "Years of Experience"
+  },
+  "Appointments": {
+    "title": "Appointments"
   }
 }
