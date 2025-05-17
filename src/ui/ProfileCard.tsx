@@ -1,47 +1,62 @@
 "use client";
 import { useUserStore } from "@/stores/user";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 
 const ProfileCard = () => {
-  const t = useTranslations("Profile");
   const { user } = useUserStore();
+
   return (
-    <div className="w-full  md:w-80 bg-white rounded-lg p-6 shadow-sm ">
-      <div className="flex flex-col justify-between h-full items-center gap-4">
-        <div className="w-24 h-24 rounded-full overflow-hidden">
-          <Image
-            src={user?.picture || "/imgs/header/doctor.png"}
-            alt="Profile"
-            width={96}
-            height={96}
-            className="w-full h-full object-cover"
-          />
+    <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <div className="flex flex-col items-center gap-6">
+        {/* Profile Image with Border */}
+        <div className="relative">
+          <div className="w-28 h-28 rounded-full overflow-hidden ring-4 ring-main p-1">
+            <Image
+              src={user?.picture || "/imgs/header/doctor.png"}
+              alt="Profile"
+              width={112}
+              height={112}
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white z-10"></div>
         </div>
 
-        <div className="space-y-2">
-          <h3 className="font-bold md:text-xl sm:text-lg text-gray-900 text-center ">
-            {user?.username}
-          </h3>
-          <div className="flex items-center gap-2">
-            <Mail size={16} color="#0B62DE" className="text-gray-500" />
-            <p className="text-sm text-gray-500">{user?.email}</p>
+        {/* User Info */}
+        <div className="text-center space-y-2">
+          <h3 className="text-2xl font-bold text-gray-800">{user?.username}</h3>
+          <p className="text-blue-600 font-medium">{user?.role || "Doctor"}</p>
+        </div>
+
+        {/* Contact Information */}
+        <div className="w-full space-y-3 pt-4 border-t">
+          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
+            <Mail className="w-5 h-5 text-blue-600" />
+            <p className="text-sm">{user?.email}</p>
           </div>
-          <div className="flex items-center gap-2">
-            <Phone size={16} color="#0B62DE" className="text-gray-500" />
-            <p className="text-sm text-gray-500">{user?.phone}</p>
+          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
+            <Phone className="w-5 h-5 text-blue-600" />
+            <p className="text-sm">{user?.phone}</p>
           </div>
-          <div className="flex items-center gap-2">
-            <MapPin size={16} color="#0B62DE" className="text-gray-500" />
-            <p className="text-sm text-gray-500">{user?.location?.addrss}</p>
+          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
+            <MapPin className="w-5 h-5 text-blue-600" />
+            <p className="text-sm">{user?.location?.addrss}</p>
           </div>
         </div>
 
-        <button className="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-          {t("editProfile")}
-        </button>
+        {/* Quick Stats */}
+        <div className="w-full grid grid-cols-2 gap-4 pt-4 border-t">
+          <div className="text-center">
+            <p className="text-2xl font-bold text-blue-600">150+</p>
+            <p className="text-sm text-gray-600">Patients</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-blue-600">4.8</p>
+            <p className="text-sm text-gray-600">Rating</p>
+          </div>
+        </div>
       </div>
     </div>
   );

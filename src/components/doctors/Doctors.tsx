@@ -5,12 +5,19 @@ import { getAllDoctors } from "@/lib/api/doctors";
 import { User } from "@/types/User";
 import { getTranslations } from "next-intl/server";
 import SerchBar from "./SerchBar";
-
-const Doctors = async () => {
+interface DoctorsProps {
+  searchParams: {
+    search?: string;
+    specialization?: string;
+  };
+}
+const Doctors = async ({ searchParams }: DoctorsProps) => {
   const t = await getTranslations("Doctors");
-  const response = await getAllDoctors();
+  const { search, specialization } = searchParams;
+
+  const response = await getAllDoctors(specialization, search);
   const doctors: User[] = response;
-  console.log("docs", doctors);
+  
 
   return (
     <div className="my-36">
@@ -20,7 +27,7 @@ const Doctors = async () => {
       <SerchBar />
       {/* doctors cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 px-4 md:px-8">
-        {doctors ? (
+        {doctors.length > 0 ? (
           doctors.map((doctor) => {
             return (
               <DoctorCard
@@ -38,7 +45,7 @@ const Doctors = async () => {
             );
           })
         ) : (
-          <div className="min-h-[400px] flex items-center justify-center">
+          <div className="min-h-[400px] col-span-1 lg:col-span-2 flex items-center justify-center">
             <div className="text-center">
               <div className="w-16 h-16 text-gray-400 mb-4 mx-auto">
                 <svg

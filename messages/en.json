@@ -364,9 +364,14 @@
     "submit": "submit",
     "chat": "Chat",
     "book": "Book",
-    "experience": "Years of Experience"
+    "experience": "Years of Experience",
+    "noReviews": "No Reviews Yet",
+    "beFirstReview": "Be the first to share your experience with this doctor"
   },
   "Appointments": {
-    "title": "Appointments"
+    "title": "Appointments",
+    "age": "Age",
+    "gender": "Gender",
+    "notes": "Notes"
   }
 }

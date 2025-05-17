@@ -1,3 +1,12 @@
+export type Review = {
+  _id: string;
+  content: string;
+  patientId: User;
+  doctorId: User;
+  rating: number;
+  createdAt: string;
+  updatedAt: string;
+};
 export type User = {
   _id: string;
   username: string;
@@ -20,10 +29,14 @@ export type User = {
   }[];
   location?: {
     type: "Point";
-    coordinates: number[];
+    coordinates: {
+      lat: number;
+      lng: number;
+    };
     addrss?: string;
   };
   active: boolean;
   description: string;
   createdAt: Date;
+  reviews: Review[];
 };

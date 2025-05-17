@@ -6,8 +6,13 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
+  const res = await fetch(
+    `${process.env.API_URL}/doctors/${(await params).doctorId}`
+  );
+  const data = await res.json();
+
   return {
-    title: `doctor ${(await params).doctorId}`,
+    title: `${data.doctor.username}`,
   };
 }
 
@@ -17,7 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div  className="bg-bg">
+    <div className="bg-bg">
       <div className="container mx-auto">
         <MapProvider>{children}</MapProvider>
       </div>

@@ -1,96 +1,52 @@
 import React from "react";
-import {
-  MapPin,
-
-  Calendar,
-  MessageSquare,
-  CalendarPlus,
-} from "lucide-react";
+import { MapPin, Calendar, MessageSquare, CalendarPlus } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import RenderStars from "@/ui/RenderStars";
 import MapComponent from "../map/Map";
 import Review from "./Review";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { getDoctor } from "@/lib/api/doctor";
+import { User } from "@/types/User";
 
-interface Review {
-  id: string;
-  patientName: string;
-  rating: number;
-  comment: string;
-  date: string;
-}
+const Doctor = async ({ doctorId }: { doctorId: string }) => {
+  const t = await getTranslations("Doctor");
+  const response = await getDoctor(doctorId);
+  const doctor: User = response;
 
-const Doctor = () => {
-  const t = useTranslations("Doctor");
+  const reviews = doctor.reviews;
 
-  const doctor = {
-    name: "د. محمد أحمد",
-    specialty: "أخصائي الباطنة العامة",
-    rating: 4.5,
-    totalReviews: 128,
-description: "طبيب متخصص في الباطنة العامة مع خبرة تزيد عن 15 عاماً في تشخيص وعلاج الأمراض الباطنية. حاصل على البورد الأمريكي في الطب الباطني وعضو الجمعية الأمريكية لأطباء الباطنة. يقدم رعاية طبية شاملة ويتميز بنهج إنساني في التعامل مع المرضى.",
-    location: {
-      address: "شارع الملك فهد، الرياض",
-      lat: 24.7136,
-      lng: 46.6753,
-    },
-    workDays: "الأحد - الخميس",
-    image: "/imgs/doctorsteam/doctor5.png",
-  };
-
-  // Sample reviews
-  const reviews: Review[] = [
-    {
-      id: "1",
-      patientName: "أحمد محمد",
-      rating: 5,
-      comment: "طبيب ممتاز وخدمة رائعة",
-      date: "2024-02-15",
-    },
-    {
-      id: "2",
-      patientName: "سارة عبدالله",
-      rating: 4,
-      comment: "تجربة جيدة جداً وعيادة نظيفة ومنظمة",
-      date: "2024-02-10",
-    },
-    {
-      id: "2",
-      patientName: "سارة عبدالله",
-      rating: 4.5,
-      comment: "تجربة جيدة جداً وعيادة نظيفة ومنظمة",
-      date: "2024-02-10",
-    },
-    {
-      id: "2",
-      patientName: "سارة عبدالله",
-      rating: 4,
-      comment: "تجربة جيدة جداً وعيادة نظيفة ومنظمة",
-      date: "2024-02-10",
-    },
-  ];
+  //extract the days
+  const days = doctor.availableHours?.map((day) => {
+    return day.day;
+  });
 
   return (
-    <div className=" px-4 py-8">
+    <div className="px-4 py-8">
       {/* Doctor Profile Header */}
       <div className="bg-white rounded-xl shadow-lg p-8 mb-8 hover:shadow-xl transition-shadow">
         <div className="flex flex-col md:flex-row gap-10 items-center">
           <div className="flex flex-col items-center gap-6 md:w-1/4">
             <div className="relative w-48 h-48 rounded-full overflow-hidden ring-4 ring-main/20">
               <Image
-                src={doctor.image}
-                alt={doctor.name}
+                src={doctor.picture || "imgs/doctorsteam/doctor2.png"}
+                alt={doctor.username}
                 fill
                 className="object-cover hover:scale-105 transition-transform"
               />
             </div>
             <div className="flex gap-4 w-full">
-              <Link href={'/appointment/5'} className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-main to-blue-600 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium">
+              <Link
+                href={"/appointment/5"}
+                className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-main to-blue-600 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium"
+              >
                 <CalendarPlus className="w-5 h-5" />
                 {t("book")}
               </Link>
-              <Link href={'/coominsoon'} className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-orangColor to-orange-500 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium">
+              <Link
+                href={"/coominsoon"}
+                className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-orangColor to-orange-500 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium"
+              >
                 <MessageSquare className="w-5 h-5" />
                 {t("chat")}
               </Link>
@@ -101,16 +57,18 @@ description: "طبيب متخصص في الباطنة العامة مع خبرة
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
               <div className="space-y-4">
                 <h1 className="text-3xl font-bold text-gray-900">
-                  {doctor.name}
+                  {doctor.username}
                 </h1>
                 <div className="bg-blue-50 text-blue-700 px-5 py-2 rounded-full inline-block">
-                  <p className="font-semibold">{doctor.specialty}</p>
+                  <p className="font-semibold">{doctor.specialization}</p>
                 </div>
-                <p className="text-textSecondary leading-relaxed">{doctor.description}</p>
+                <p className="text-textSecondary leading-relaxed">
+                  {doctor.description}
+                </p>
                 <div className="flex items-center gap-3">
-                  <RenderStars rating={doctor.rating} />
+                  <RenderStars rating={doctor.avgRatings} />
                   <span className="text-gray-500 font-medium">
-                    ({doctor.totalReviews} {t("reviews")})
+                    ({doctor.reviews.length} {t("reviews")})
                   </span>
                 </div>
               </div>
@@ -122,7 +80,7 @@ description: "طبيب متخصص في الباطنة العامة مع خبرة
                   <MapPin className="w-6 h-6 text-main" />
                 </div>
                 <span className="text-gray-700 font-medium">
-                  {doctor.location.address}
+                  {doctor.location?.addrss}
                 </span>
               </div>
 
@@ -130,7 +88,9 @@ description: "طبيب متخصص في الباطنة العامة مع خبرة
                 <div className="bg-white p-3 rounded-lg shadow-sm">
                   <Calendar className="w-6 h-6 text-main" />
                 </div>
-                <span className="text-gray-700 font-medium">{doctor.workDays}</span>
+                <span className="text-gray-700 font-medium">
+                  {days?.join(" - ")}
+                </span>
               </div>
             </div>
           </div>
@@ -142,7 +102,10 @@ description: "طبيب متخصص في الباطنة العامة مع خبرة
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4">{t("location")}</h2>
           <div className="h-[300px] rounded-lg overflow-hidden">
-            <MapComponent />
+            <MapComponent
+              lat={doctor.location?.coordinates.lat || 0}
+              lng={doctor.location?.coordinates.lng || 0}
+            />
           </div>
         </div>
 
@@ -150,9 +113,13 @@ description: "طبيب متخصص في الباطنة العامة مع خبرة
         <div className="bg-white rounded-lg shadow-md p-6 h-[400px] relative">
           <h2 className="text-xl font-semibold mb-4">{t("patientReviews")}</h2>
           <div className="space-y-4 overflow-y-auto h-[calc(100%-140px)]">
-            {reviews.map((review) => (
-              <Review review={review} key={review.id} />
-            ))}
+            {reviews && reviews.length > 0 ? (
+              reviews.map((review) => (
+                <Review key={review._id} review={review} />
+              ))
+            ) : (
+              <Review />
+            )}
           </div>
 
           <div className="sticky bottom-0 left-0 right-0 bg-white py-7 border-t">

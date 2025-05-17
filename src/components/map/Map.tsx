@@ -16,22 +16,10 @@ export const defaultMapContainerStyle = {
 };
 
 //for map
-const defaultMapCenter = {
-  lat: 34.46874595896269,
-  lng: 3.2522028525185376,
-};
 
 const defaultMapZoom = 10; // Reduced zoom level to show more area
 
 // Add marker position (same as center for this example)
-
-const defaultMarkerPosition = {
-  lat: 34.67043493529003,
-  lng: 3.2503755365788978,
-};
-
-// Add marker to the map
-<Marker position={defaultMarkerPosition} />;
 
 const defaultMapOptions = {
   zoomControl: true,
@@ -43,7 +31,18 @@ const defaultMapOptions = {
   mapTypeControl: true, // Added map type control
 };
 
-const MapComponent = () => {
+const MapComponent = ({ lat, lng }: { lat: number; lng: number }) => {
+  const defaultMarkerPosition = {
+    lat,
+    lng,
+  };
+  const defaultMapCenter = {
+    lat,
+    lng,
+  };
+
+  // Add marker to the map
+  <Marker position={defaultMarkerPosition} />;
   return (
     <div className="w-full">
       <GoogleMap

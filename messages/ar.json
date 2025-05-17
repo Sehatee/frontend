@@ -355,9 +355,14 @@
     "submit": "نشر",
     "chat": "محادثة",
     "book": "حجز",
-    "experience": "سنوات الخبرة"
+    "experience": "سنوات الخبرة",
+    "noReviews": "لا توجد تقييمات حتى الآن",
+    "beFirstReview": "كن أول من يشارك تجربته مع هذا الطبيب"
   },
-   "Appointments": {
-    "title": "المواعيد"
+  "Appointments": {
+    "title": "المواعيد",
+    "age": "العمر",
+    "gender": "الجنس",
+    "notes": "ملاحظات"
   }
 }

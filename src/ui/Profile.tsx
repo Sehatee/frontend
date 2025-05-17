@@ -98,6 +98,12 @@ const Profile = async () => {
                 />
               </div>
             </div>
+            {/* btn */}
+            <div className="">
+              <button className=" bg-main text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                {t("editProfile")}
+              </button>
+            </div>
           </form>
         </div>
       </div>
