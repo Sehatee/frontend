@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import LangSwitcher from "./lang/LangSwitcher";
 import Image from "next/image";
@@ -29,12 +29,14 @@ const NavBar = () => {
   const locale = Cookies.get("locale");
 
   const pathName = usePathname();
+  const router = useRouter();
 
   const { user, clearUser, fetchUser } = useUserStore();
 
   const logout = () => {
     handleLogout(); // to remove token
     clearUser(); // to remove user =>  user = null
+    router.push("/"); // to redirect to home page
   };
   useEffect(() => {
     const fetchingUser = async () => {

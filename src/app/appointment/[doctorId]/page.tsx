@@ -2,15 +2,15 @@ import ApplyAppointment from "@/components/appointment/ApplyAppointment";
 import React from "react";
 
 interface Props {
-  params: Promise<{ appointmentId: string }>;
+  params: Promise<{ doctorId: string }>;
 }
 const page = async ({ params }: Props) => {
-  const appointmentId = (await params).appointmentId;
-  console.log(appointmentId);
+  const doctorId = (await params).doctorId;
+  console.log(doctorId);
 
   return (
     <div className="mt-16">
-      <ApplyAppointment />
+      <ApplyAppointment doctorId={doctorId} />
     </div>
   );
 };

@@ -338,7 +338,18 @@
     "appointmentDate": "تاريخ ووقت الموعد",
     "reason": "سبب الزيارة",
     "reasonPlaceholder": "يرجى وصف سبب الزيارة...",
-    "submit": "تأكيد الحجز"
+    "submit": "تأكيد الحجز",
+    "loginRequired": "تسجيل الدخول مطلوب",
+    "loginMessage": "يرجى تسجيل الدخول أو إنشاء حساب لحجز موعد",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "myAppointments": "مواعيدي",
+    "noAppointments": "لا توجد مواعيد",
+    "pending": "قيد الانتظار",
+    "approved": "تمت الموافقة",
+    "rejected": "مرفوض",
+    "doctor": "د.",
+    "notes": "ملاحظات"
   },
   "DoctorCard": {
     "experience": "الخبرة",
@@ -364,5 +375,9 @@
     "age": "العمر",
     "gender": "الجنس",
     "notes": "ملاحظات"
+  },
+  "Loading": {
+    "loading": "جاري التحميل...",
+    "pleaseWait": "يرجى الانتظار بينما نقوم بتجهيز المحتوى"
   }
 }

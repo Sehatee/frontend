@@ -37,7 +37,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
             </div>
             <div className="flex gap-4 w-full">
               <Link
-                href={"/appointment/5"}
+                href={`/appointment/${doctorId}`}
                 className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-main to-blue-600 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium"
               >
                 <CalendarPlus className="w-5 h-5" />

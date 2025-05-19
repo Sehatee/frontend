@@ -1,12 +1,12 @@
 import "@/app/globals.css";
 
 interface Props {
-  params: Promise<{ appointmentId: string }>;
+  params: Promise<{ doctorId: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
   return {
-    title: `appointment ${(await params).appointmentId}`,
+    title: `appointment ${(await params).doctorId}`,
   };
 }
 

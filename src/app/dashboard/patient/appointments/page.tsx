@@ -1,10 +1,10 @@
-import CoominSoon from "@/ui/CoominSoon";
+import Appointments from "@/components/dashboard/patient/appointmetns/Appointmetns";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <CoominSoon />
+      <Appointments />
     </div>
   );
 };

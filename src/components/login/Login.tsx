@@ -5,11 +5,13 @@ import { useTranslations } from "next-intl";
 import { handleLogin } from "@/lib/auth";
 import showToast from "@/utils/showToast";
 import { useUserStore } from "@/stores/user";
+import { useRouter } from "next/navigation";
 
-const Login = () => {
+const Login = ({ callBackUrl }: { callBackUrl?: string }) => {
   const t = useTranslations("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const { setUser } = useUserStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,6 +21,11 @@ const Login = () => {
     if (res) {
       setUser(res.user);
       showToast("success", "تم تسجيل الدخول بنجاح");
+      if (callBackUrl) {
+        router.push(callBackUrl);
+      } else {
+        router.push("/");
+      }
     }
   };
 

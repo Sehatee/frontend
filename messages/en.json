@@ -347,7 +347,18 @@
     "appointmentDate": "Appointment Date & Time",
     "reason": "Reason for Visit",
     "reasonPlaceholder": "Please describe your reason for the visit...",
-    "submit": "Confirm Booking"
+    "submit": "Confirm Booking",
+    "loginRequired": "Login Required",
+    "loginMessage": "Please login or create an account to book an appointment",
+    "login": "Login",
+    "signup": "Sign Up",
+    "myAppointments": "My Appointments",
+    "noAppointments": "No appointments found",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "doctor": "Dr.",
+    "notes": "Notes"
   },
   "DoctorCard": {
     "experience": "Experience",
@@ -373,5 +384,9 @@
     "age": "Age",
     "gender": "Gender",
     "notes": "Notes"
+  },
+  "Loading": {
+    "loading": "Loading...",
+    "pleaseWait": "Please wait while we prepare your content"
   }
 }
