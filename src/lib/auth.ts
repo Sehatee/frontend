@@ -1,5 +1,5 @@
 import showToast from "@/utils/showToast";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
 
 export const handleLogin = async (email: string, password: string) => {
@@ -15,9 +15,14 @@ export const handleLogin = async (email: string, password: string) => {
     Cookies.set("token", res.data.token);
     return res.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
     console.log(error);
-    //@ts-expect-error :fix agine
-    showToast("error", error.response.data.message);
+    console.log(axiosError.response?.data);
+    showToast(
+      "error",
+      (axiosError.response?.data as { message: string })?.message ||
+        "An error occurred"
+    );
     return null;
   }
 };

@@ -14,7 +14,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
   const response = await getDoctor(doctorId);
   const doctor: User = response;
 
-  const reviews = doctor.reviews;
+  const reviews = doctor.reviews || [];
 
   //extract the days
   const days = doctor.availableHours?.map((day) => {
@@ -30,7 +30,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
             <div className="relative w-48 h-48 rounded-full overflow-hidden ring-4 ring-main/20">
               <Image
                 src={doctor.picture || "imgs/doctorsteam/doctor2.png"}
-                alt={doctor.username}
+                alt={doctor.username || "username"}
                 fill
                 className="object-cover hover:scale-105 transition-transform"
               />
@@ -63,12 +63,12 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                   <p className="font-semibold">{doctor.specialization}</p>
                 </div>
                 <p className="text-textSecondary leading-relaxed">
-                  {doctor.description}
+                  {doctor.description || ""}
                 </p>
                 <div className="flex items-center gap-3">
-                  <RenderStars rating={doctor.avgRatings} />
+                  <RenderStars rating={doctor.avgRatings || 0} />
                   <span className="text-gray-500 font-medium">
-                    ({doctor.reviews.length} {t("reviews")})
+                    ({doctor.reviews?.length} {t("reviews")})
                   </span>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                   <MapPin className="w-6 h-6 text-main" />
                 </div>
                 <span className="text-gray-700 font-medium">
-                  {doctor.location?.addrss}
+                  {doctor.location?.addrss || "غير معروف"}
                 </span>
               </div>
 
@@ -103,8 +103,8 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
           <h2 className="text-xl font-semibold mb-4">{t("location")}</h2>
           <div className="h-[300px] rounded-lg overflow-hidden">
             <MapComponent
-              lat={doctor.location?.coordinates.lat || 0}
-              lng={doctor.location?.coordinates.lng || 0}
+              lat={doctor.location?.coordinates[0] || 0}
+              lng={doctor.location?.coordinates[1] || 0}
             />
           </div>
         </div>
@@ -113,7 +113,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
         <div className="bg-white rounded-lg shadow-md p-6 h-[400px] relative">
           <h2 className="text-xl font-semibold mb-4">{t("patientReviews")}</h2>
           <div className="space-y-4 overflow-y-auto h-[calc(100%-140px)]">
-            {reviews && reviews.length > 0 ? (
+            {reviews && reviews?.length > 0 ? (
               reviews.map((review) => (
                 <Review key={review._id} review={review} />
               ))

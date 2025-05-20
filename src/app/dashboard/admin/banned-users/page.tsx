@@ -1,10 +1,10 @@
-import MainAdminPage from "@/components/dashboard/admin/MainAdminPage";
+import BannedUsersPage from "@/components/dashboard/admin/banned-users/page";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <MainAdminPage />
+      <BannedUsersPage />
     </div>
   );
 };

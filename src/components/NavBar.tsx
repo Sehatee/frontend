@@ -123,7 +123,7 @@ const NavBar = () => {
           {/* if user is logged in */}
           <div className="flex gap-2">
             {user ? (
-              <div className="relative">
+              <div className="relative z-20">
                 <button
                   onClick={() => {
                     setOpenMenuUser(!openMenuUser);
@@ -141,7 +141,7 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-10 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
+                  className={`absolute z-[9999] w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
                     locale === "ar"
                       ? "-right-32 xs:-right-56"
                       : "-left-32 xs:-left-56"

@@ -115,14 +115,15 @@ export default function DoctorCard({
 
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <Link
-            href={`/appointment/${rating}`}
+            href={`/appointment/${id}`}
             className="bg-main text-white px-4 py-2 rounded-md hover:bg-main/90 transition-colors text-center text-[14px] sm:text-[16px]"
           >
             حجز موعد
           </Link>
-          <button className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px]">
+          <Link
+            href={`/coominsoon`} className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px]">
             اتصال مباشر
-          </button>
+          </Link>
         </div>
       </div>
     </div>

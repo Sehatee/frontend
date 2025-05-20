@@ -1,7 +1,7 @@
 "use client";
 import { applyAppintment } from "@/types/Appointment";
 import { User as userType } from "@/types/User";
-import { Calendar, FileText, Mail, Phone, User } from "lucide-react";
+import { Calendar, FileText, Mail, Phone, User, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -21,7 +21,9 @@ const ApplyAppointmentForm = ({
     date: "",
     notes: "",
   });
-  const token : string | undefined = Cookies.get("token");
+  const [isLoading, setIsLoading] = useState(false);
+  const token: string | undefined = Cookies.get("token");
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -31,9 +33,15 @@ const ApplyAppointmentForm = ({
       [name]: value,
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await applyAppointment(formData, token);
+    setIsLoading(true);
+    try {
+      await applyAppointment(formData, token);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -68,7 +76,7 @@ const ApplyAppointmentForm = ({
               <input
                 type="text"
                 name="username"
-                value={user.username}
+                value={user ? user.username : "username"}
                 disabled
                 onChange={handleChange}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -83,7 +91,7 @@ const ApplyAppointmentForm = ({
               <input
                 type="tel"
                 name="phone"
-                value={user.phone}
+                value={user ? user.phone : "phone"}
                 disabled
                 onChange={handleChange}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -99,7 +107,7 @@ const ApplyAppointmentForm = ({
             <input
               type="email"
               name="email"
-              value={user.email}
+              value={user ? user.email : "email"}
               disabled
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -117,9 +125,14 @@ const ApplyAppointmentForm = ({
               type="date"
               name="date"
               value={formData.date}
+              required
               onChange={handleChange}
-              min={new Date().toISOString().split('T')[0]}
-              max={new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0]}
+              min={new Date().toISOString().split("T")[0]}
+              max={
+                new Date(new Date().getFullYear(), 11, 31)
+                  .toISOString()
+                  .split("T")[0]
+              }
               pattern="\d{2}/\d{2}/\d{4}"
               placeholder="mm/dd/yyyy"
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -135,6 +148,7 @@ const ApplyAppointmentForm = ({
           <textarea
             name="notes"
             value={formData.notes}
+            required
             onChange={handleChange}
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"
             placeholder={t("reasonPlaceholder")}
@@ -145,9 +159,17 @@ const ApplyAppointmentForm = ({
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors font-medium"
+        disabled={isLoading}
+        className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {t("submit")}
+        {isLoading ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" />
+            {t("submitting")}
+          </>
+        ) : (
+          t("submit")
+        )}
       </button>
     </form>
   );

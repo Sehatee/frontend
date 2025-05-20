@@ -8,7 +8,7 @@ const ProfileCard = () => {
   const { user } = useUserStore();
 
   return (
-    <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="sticky z-10  top-20 bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="flex flex-col items-center gap-6">
         {/* Profile Image with Border */}
         <div className="relative">
@@ -47,16 +47,22 @@ const ProfileCard = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="w-full grid grid-cols-2 gap-4 pt-4 border-t">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-blue-600">150+</p>
-            <p className="text-sm text-gray-600">Patients</p>
+        {user?.role === "doctor" && (
+          <div className="w-full grid grid-cols-2 gap-4 pt-4 border-t">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-blue-600">
+                {user.avgRatings}
+              </p>
+              <p className="text-sm text-gray-600">Rating</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-blue-600">
+                {user.reviews?.length || 0}
+              </p>
+              <p className="text-sm text-gray-600">Reviews</p>
+            </div>
           </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold text-blue-600">4.8</p>
-            <p className="text-sm text-gray-600">Rating</p>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -120,7 +120,8 @@
     "btnText": "Login",
     "forgotPassword": "Forgot your password?",
     "noAccount": "Don't have an account?",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "loading": "Signing in..."
   },
   "Signup": {
     "title": "Sign up",
@@ -239,9 +240,30 @@
       "email": "Email",
       "phone": "Phone Number",
       "birthDate": "Birth Date",
-      "address": "Address"
+      "address": "Address",
+      "phonePlaceholder": "Enter your phone number",
+      "addressPlaceholder": "Enter your address",
+      "specialization": "Specialization",
+      "specializationPlaceholder": "Enter your medical specialization",
+      "description": "About You",
+      "descriptionPlaceholder": "Write a brief description about your medical practice and experience",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "workingDays": "Working Days"
     },
-    "editProfile": "Edit Profile"
+    "editProfile": "Edit Profile",
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    },
+    "updating": "Updating...",
+    "profileUpdated": "Profile updated successfully",
+    "updateError": "Failed to update profile"
   },
   "MedicalInfo": {
     "title": "Medical Information",
@@ -358,7 +380,8 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "doctor": "Dr.",
-    "notes": "Notes"
+    "notes": "Notes",
+    "submitting": "Submitting..."
   },
   "DoctorCard": {
     "experience": "Experience",
@@ -383,10 +406,142 @@
     "title": "Appointments",
     "age": "Age",
     "gender": "Gender",
-    "notes": "Notes"
+    "notes": "Notes",
+    "patient": "Patient",
+    "date": "Date",
+    "appointmentDetails": "Appointment Details",
+    "status": "Status"
   },
   "Loading": {
     "loading": "Loading...",
     "pleaseWait": "Please wait while we prepare your content"
+  },
+  "TermsAndConditions": {
+    "title": "Terms and Conditions",
+    "lastUpdate": "Last Update: May 15, 2025",
+    "intro": "Welcome to our website specialized in providing telemedicine services. By using our website and its services, you acknowledge that you have read, understood, and agreed to the following terms. If you do not agree to any of them, please do not use the website.",
+    "sections": [
+      {
+        "title": "1. Nature of Services",
+        "content": [
+          "We provide a platform for booking appointments and conducting remote medical consultations with licensed doctors.",
+          "These consultations are not a complete substitute for a clinical examination, and you may be advised to visit a doctor in person in some cases."
+        ]
+      },
+      {
+        "title": "2. Data and Medical Files Privacy",
+        "content": [
+          "We are committed to the confidentiality of all files and medical information you share through the platform.",
+          "Your data is stored securely, in accordance with best data protection practices.",
+          "By sharing analyses or reports, you grant doctors permission to view them for diagnostic and evaluation purposes only."
+        ]
+      },
+      {
+        "title": "3. Booking and Payment",
+        "content": [
+          "The website allows you to book appointments with available doctors and pay for consultations via electronic payment methods.",
+          "If you are unable to complete the consultation for any reason, you can contact us to reschedule or request a refund according to our cancellation policy."
+        ]
+      },
+      {
+        "title": "4. Usage Responsibility",
+        "content": [
+          "The website acts as an intermediary between the user and the doctor and is not responsible for any medical decisions made by the doctor.",
+          "The platform must be used only for legal purposes, and not misused for any improper or fraudulent activity."
+        ]
+      },
+      {
+        "title": "6. Disclaimer",
+        "content": [
+          "We are not responsible for any direct or indirect damage resulting from the use of the website or any technical malfunction.",
+          "The medical services provided depend on the information provided by the user, and it is the user's responsibility to provide accurate and complete data."
+        ]
+      },
+      {
+        "title": "7. Intellectual Property",
+        "content": [
+          "All digital content, such as texts, designs, images, trademarks, and software, is owned by the website and legally protected.",
+          "Copying or distributing any part of the website without prior written permission is prohibited."
+        ]
+      },
+      {
+        "title": "8. Modification of Terms",
+        "content": [
+          "We may update these terms at any time, and users will be notified when necessary.",
+          "Your continued use of the platform after modification means your acceptance of the new terms."
+        ]
+      }
+    ]
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy and Security Policy",
+    "intro": "At Okhssai, we are committed to protecting your privacy and ensuring the security of your personal information. This policy aims to explain how we collect, use, and protect the data you provide when using our website.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": [
+          "When you use the Okhssai website, we may collect the following information:",
+          "Full name.",
+          "Email address and phone number.",
+          "Basic medical information provided by the user when requesting a consultation or booking an appointment.",
+          "Your geographic location (when needed to determine the nearest doctor).",
+          "Usage data (such as the pages you visit and how you interact with the website)."
+        ]
+      },
+      {
+        "title": "2. How We Use the Information",
+        "content": [
+          "We use the information we collect for the following purposes:",
+          "Providing online booking and medical consultation services.",
+          "Communicating with you regarding your appointments or inquiries.",
+          "Improving user experience and developing our services.",
+          "Ensuring compliance with local medical laws."
+        ]
+      },
+      {
+        "title": "3. Information Sharing",
+        "content": [
+          "We are committed not to share your personal or medical information with any third party except in the following cases:",
+          "With doctors for the purpose of providing medical consultations.",
+          "When required by law or official authorities.",
+          "With service providers who help us operate the website, provided they adhere to strict confidentiality standards."
+        ]
+      },
+      {
+        "title": "4. Data Security",
+        "content": [
+          "We use advanced security technologies and procedures to protect your data from unauthorized access, use, or disclosure.",
+          "All sensitive information is encrypted and stored securely."
+        ]
+      },
+      {
+        "title": "5. Cookies and Tracking Technologies",
+        "content": [
+          "We may use cookies and similar technologies to enhance your experience and analyze website usage.",
+          "You can control or disable cookies through your browser settings, but this may affect some website features."
+        ]
+      },
+      {
+        "title": "6. Your Rights",
+        "content": [
+          "You have the right to:",
+          "Access your personal information.",
+          "Modify or delete your data upon request.",
+          "Withdraw your consent to our use of your data at any time."
+        ]
+      },
+      {
+        "title": "7. Policy Updates",
+        "content": [
+          "We may update this policy from time to time. Any changes will be posted on this page with the review date updated below.",
+          "Last Update: May 18, 2025"
+        ]
+      }
+    ]
+  },
+  "DashboardAdmin": {
+    "title": "Dashboard",
+    "welcome": "Welcome, Admin!",
+    "charts": "General statistics"
   }
 }

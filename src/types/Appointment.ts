@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export type applyAppintment = {
   doctorId: string;
   date: string;
@@ -5,7 +7,7 @@ export type applyAppintment = {
 };
 export type Appointment = {
   _id: string;
-  patientId: string;
+  patientId: User;
   doctorId: string;
   date: string;
   notes: string;

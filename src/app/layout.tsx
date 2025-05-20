@@ -27,14 +27,14 @@ export default async function RootLayout({
   // const font = locale === "ar" ? cairo.className : geist.className;
 
   return (
-    <html lang={locale} dir={dir}>
-      <ToastContainer />
-      <NextIntlClientProvider>
-        <body className="">
+    <html lang={locale} dir={dir} suppressHydrationWarning={true}>
+      <body className="" suppressHydrationWarning={true}>
+        <NextIntlClientProvider locale={locale}>
+          <ToastContainer />
           <NavBar />
           <div className="mt-16">{children}</div>
-        </body>
-      </NextIntlClientProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

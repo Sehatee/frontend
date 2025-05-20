@@ -1,10 +1,10 @@
-import MainAdminPage from "@/components/dashboard/admin/MainAdminPage";
+import AppointmentsPage from "@/components/dashboard/admin/appointments/page";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <MainAdminPage />
+      <AppointmentsPage />
     </div>
   );
 };
