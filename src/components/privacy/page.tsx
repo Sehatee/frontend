@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslations, useLocale } from "next-intl";
 
-const Terms = () => {
-  const t = useTranslations("TermsAndConditions");
+const Privacy = () => {
+  const t = useTranslations("PrivacyPolicy");
   const locale = useLocale();
 
   // Get sections as an array from the translation file
@@ -15,7 +15,6 @@ const Terms = () => {
   return (
     <div className={`${dirClass} max-w-[800px] mx-auto font-inherit pt-6 px-4`}>
       <h2 className="text-[#2563eb] text-center font-bold mb-6">{t("title")}</h2>
-      <div className="text-[#888] text-base mb-2">{t("lastUpdate")}</div>
       <div className="mb-6">{t("intro")}</div>
       {sections.map((section: { title: string, content: string[] }, idx: number) => (
         <div key={idx} className="mb-6">
@@ -29,4 +28,4 @@ const Terms = () => {
   )
 }
 
-export default Terms
+export default Privacy

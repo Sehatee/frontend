@@ -22,7 +22,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
     switch (status.toLowerCase()) {
       case "pending":
         return "bg-yellow-100 text-yellow-800";
-      case "approved":
+      case "completed":
         return "bg-green-100 text-green-800";
       case "rejected":
         return "bg-red-100 text-red-800";
@@ -53,7 +53,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
         <div className="flex items-center gap-2 text-gray-600">
           <User className="w-4 h-4" />
           <span>
-            {t("doctor")} {appointment.doctorId}
+            {t("doctor")} {appointment.doctorId.username}
           </span>
         </div>
 

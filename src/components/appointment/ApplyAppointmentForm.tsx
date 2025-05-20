@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { applyAppointment } from "@/lib/api/appointment";
+import { useRouter } from "next/navigation";
 
 const ApplyAppointmentForm = ({
   user,
@@ -22,6 +23,7 @@ const ApplyAppointmentForm = ({
     notes: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const token: string | undefined = Cookies.get("token");
 
   const handleChange = (
@@ -39,6 +41,7 @@ const ApplyAppointmentForm = ({
     setIsLoading(true);
     try {
       await applyAppointment(formData, token);
+      router.push('/dashboard/patient/appointments')
     } finally {
       setIsLoading(false);
     }

@@ -1,73 +1,38 @@
-"use client";
-
-import { useTranslations } from "next-intl";
 import AppointmentCard from "./AppointmentCard";
-import { useState } from "react";
-import { X, FileText, User } from "lucide-react";
+// import { X, FileText, User } from "lucide-react";
 import { Appointment } from "@/types/Appointment";
+import { getTranslations } from "next-intl/server";
+import { getAllAppintmentsByDoctor } from "@/lib/api/appointment";
+import { cookies } from "next/headers";
 
-const Appointments = () => {
-  const t = useTranslations("Appointments");
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
-
+const Appointments = async () => {
+  const t = await getTranslations("Appointments");
+  const token = (await cookies()).get("token")?.value;
   // Sample appointments data
-  const appointments: Appointment[] = [
-    {
-      _id: "1",
-      patientId: {
-        _id: "patient1",
-        username: "imad",
-        email: "imad@example.com",
-        role: "patient",
-        avgRatings: 0,
-        active: true,
-        description: "",
-        createdAt: new Date(),
-        reviews: []
-      },
-      doctorId: "doctor1",
-      date: "2024-02-20",
-      notes: "Regular checkup",
-      status: "upcoming",
-      createdAt: "2024-02-19"
-    },
-    {
-      _id: "2",
-      patientId: {
-        _id: "patient2",
-        username: "imad",
-        email: "imad@example.com",
-        role: "patient",
-        avgRatings: 0,
-        active: true,
-        description: "",
-        createdAt: new Date(),
-        reviews: []
-      },
-      doctorId: "doctor1",
-      date: "2024-02-20",
-      notes: "Follow-up appointment",
-      status: "upcoming",
-      createdAt: "2024-02-19"
-    }
-  ];
+  const appointments: Appointment[] = await getAllAppintmentsByDoctor(
+    token || ""
+  );
+  
 
   return (
     <div className="p-6 relative">
       <h2 className="text-2xl font-semibold mb-6">{t("title")}</h2>
 
       <div className="space-y-8">
-        {appointments.map((appointment) => (
-          <div
-            key={appointment._id}
-            onClick={() => setSelectedAppointment(appointment)}
-          >
-            <AppointmentCard appointment={appointment} />
+        {appointments.length > 0 ? (
+          appointments.map((appointment) => (
+            <div key={appointment._id}>
+              <AppointmentCard appointment={appointment} />
+            </div>
+          ))
+        ) : (
+          <div className="shadow-md rounded-lg ">
+            <h1 className="text-main text-3xl">لا توجد اي مواعيد لديك</h1>
           </div>
-        ))}
+        )}
       </div>
 
-      {/* Patient Information Modal */}
+      {/* Patient Information Modal
       {selectedAppointment && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 relative">
@@ -108,7 +73,7 @@ const Appointments = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -2,39 +2,9 @@ import RenderStars from "@/ui/RenderStars";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { User } from "@/types/User";
 
-interface DoctorCardProps {
-  id: string;
-  name: string;
-  rating: number;
-  totalRatings: number;
-  specialization: string;
-  experience: string;
-  languages: string[];
-  workDays: {
-    day:
-      | "Sunday"
-      | "Monday"
-      | "Tuesday"
-      | "Wednesday"
-      | "Thursday"
-      | "Friday"
-      | "Saturday";
-  }[];
-  imageUrl: string;
-}
-
-export default function DoctorCard({
-  id,
-  name,
-  rating,
-  totalRatings,
-  specialization,
-  experience,
-  languages,
-  workDays,
-  imageUrl,
-}: DoctorCardProps) {
+export default function DoctorCard({ doctor }: { doctor: User }) {
   return (
     <div
       dir=""
@@ -42,14 +12,14 @@ export default function DoctorCard({
     >
       <div className="w-full md:w-1/3 md:h-auto relative group">
         <Image
-          src={imageUrl || "/imgs"}
-          alt={name}
+          src={doctor.picture || "/imgs"}
+          alt={doctor.username}
           width={300}
           height={400}
           className="w-full h-full rounded-lg object-cover"
         />
         <Link
-          href={`/doctor/${id}`}
+          href={`/doctor/${doctor._id}`}
           className="absolute top-2 right-2 bg-white/80 hover:bg-white p-2 rounded-full transition-colors group-hover:opacity-100 opacity-0"
         >
           <ExternalLink className="w-5 h-5 text-main" />
@@ -60,68 +30,38 @@ export default function DoctorCard({
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div>
             <h3 className="text-lg md:text-xl font-semibold text-gray-800">
-              {name}
+              {doctor.username}
             </h3>
             <div className="flex items-center gap-2 mt-1">
-              <RenderStars rating={rating} />
-              <span className="text-gray-500 text-sm">({totalRatings})</span>
+              <RenderStars rating={doctor.avgRatings} />
+              <span className="text-gray-500 text-sm">({doctor.reviews.length})</span>
             </div>
           </div>
           <div>
             <p className="text-main bg-secondary p-1 px-2 rounded-full text-sm md:text-base">
-              {specialization}
+              {doctor.specialization}
             </p>
           </div>
         </div>
         <div className="">
           <p className=" text-sm md:text-base text-textSecondary line-clamp-3 ">
-            {experience + experience}
+            {doctor.description}
           </p>
         </div>
 
-        <div className="space-y-3">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-            <span className="text-sm md:text-base text-textSecondary">
-              اللغات:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {languages.map((lang, index) => (
-                <span
-                  key={index}
-                  className="text-sm md:text-base text-textSecondary"
-                >
-                  {lang}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-            <span className="text-sm md:text-base text-textSecondary">
-              أيام العمل:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {workDays.map((day, index) => (
-                <span
-                  key={index}
-                  className="text-sm md:text-base text-textSecondary"
-                >
-                  {day.day}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        
 
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <Link
-            href={`/appointment/${id}`}
+            href={`/appointment/${doctor._id}`}
             className="bg-main text-white px-4 py-2 rounded-md hover:bg-main/90 transition-colors text-center text-[14px] sm:text-[16px]"
           >
             حجز موعد
           </Link>
           <Link
-            href={`/coominsoon`} className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px]">
+            href={`/coominsoon`}
+            className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px]"
+          >
             اتصال مباشر
           </Link>
         </div>

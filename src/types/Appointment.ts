@@ -8,7 +8,7 @@ export type applyAppintment = {
 export type Appointment = {
   _id: string;
   patientId: User;
-  doctorId: string;
+  doctorId: User;
   date: string;
   notes: string;
   status: string;

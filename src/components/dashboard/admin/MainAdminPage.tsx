@@ -1,11 +1,26 @@
-
 import React from "react";
 import AdminStatsChart from "./chart/page";
 import Card from "./card/page";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { User } from "@/types/User";
+import { getAllUsers } from "@/lib/api/admin";
+import { cookies } from "next/headers";
 
-const MainAdminPage = () => {
-  const t = useTranslations("DashboardAdmin");
+const MainAdminPage = async () => {
+  const t = await getTranslations("DashboardAdmin");
+  const token = (await cookies()).get("token")?.value;
+  const data = await getAllUsers(token || "");
+  const allUsers = data.resalut;
+  const activeUsers = data.users.filter(
+    (user: User) => user.appointments?.length || -1 > 0
+  ).length;
+
+  const blockUsers = data.users.filter(
+    (user: User) => user.active === false
+  ).length;
+  const doctors = data.users.filter(
+    (user: User) => user.role === "doctor"
+  ).length;
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -15,17 +30,31 @@ const MainAdminPage = () => {
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Card title="عدد المستخدمين" value="1200" href="/dashboard/admin/users" />
-        <Card title="عدد الأطباء" value="350" href="/dashboard/admin/doctors" />
-        <Card title="عدد المواعيد" value="1800" href="/dashboard/admin/appointments" />
-        <Card title="المستخدمون المحظورون" value="12" href="/dashboard/admin/banned-users" />
+        <Card
+          title="عدد المستخدمين"
+          value={allUsers}
+          href="/dashboard/admin/users"
+        />
+        <Card
+          title="عدد الأطباء"
+          value={doctors}
+          href="/dashboard/admin/doctors"
+        />
+        <Card
+          title="حساب نشط"
+          value={activeUsers}
+          href="/dashboard/admin/appointments"
+        />
+        <Card
+          title="المستخدمون المحظورون"
+          value={blockUsers}
+          href="/dashboard/admin/banned-users"
+        />
       </section>
 
       <AdminStatsChart />
     </div>
   );
 };
-
-
 
 export default MainAdminPage;

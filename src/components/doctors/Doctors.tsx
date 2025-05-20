@@ -17,32 +17,25 @@ const Doctors = async ({ searchParams }: DoctorsProps) => {
 
   const response = await getAllDoctors(specialization, search);
   const doctors: User[] = response;
-  
+  const optionsSpecializationS = Array.from(
+    new Set(
+      doctors.map((doctor) => {
+        return doctor.specialization;
+      })
+    )
+  );
 
   return (
     <div className="my-36">
       {/* main text */}
       <TextHeader title={t("title")} subTitle={t("subTitle")} />
       {/* side bar to search */}
-      <SerchBar />
+      <SerchBar options={optionsSpecializationS} />
       {/* doctors cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 px-4 md:px-8">
         {doctors.length > 0 ? (
           doctors.map((doctor) => {
-            return (
-              <DoctorCard
-                key={doctor._id}
-                id={doctor._id}
-                name={doctor.username}
-                rating={doctor.avgRatings}
-                totalRatings={12}
-                specialization={doctor.specialization || ""}
-                experience={doctor.description}
-                languages={["ar"]}
-                workDays={[{ day: "Sunday" }]}
-                imageUrl={doctor.picture || ""}
-              />
-            );
+            return <DoctorCard doctor={doctor} key={doctor._id} />;
           })
         ) : (
           <div className="min-h-[400px] col-span-1 lg:col-span-2 flex items-center justify-center">

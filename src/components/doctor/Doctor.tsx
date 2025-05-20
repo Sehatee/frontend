@@ -14,12 +14,30 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
   const response = await getDoctor(doctorId);
   const doctor: User = response;
 
-  const reviews = doctor.reviews || [];
+  // Check if doctor data is null or doctorId is invalid
+  if (doctor === undefined) {
+    return (
+      <div className="px-4 py-8 min-h-screen">
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 hover:shadow-xl transition-shadow">
+          <h1 className="text-3xl font-bold text-gray-900">Doctor Not Found</h1>
+          <p className="text-textSecondary leading-relaxed">
+            The doctor information is unavailable or the ID provided is invalid.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-  //extract the days
+  const reviews = doctor.reviews || [];
   const days = doctor.availableHours?.map((day) => {
-    return day.day;
+    return t(`days.${day.day.toLowerCase()}`);
   });
+  console.log(
+    "days",
+    doctor.availableHours?.map((day) => {
+      return day.day;
+    })
+  );
 
   return (
     <div className="px-4 py-8">

@@ -2,7 +2,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ options }: { options: (string | undefined)[] }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -41,8 +41,11 @@ const SearchBar = () => {
         className="w-full md:w-1/3 h-12 border-2 border-gray-300 rounded-lg px-4 focus:outline-none focus:border-main transition-colors"
       >
         <option value="">جميع التخصصات</option>
-        <option value="ain">عين</option>
-        <option value="core">جسم</option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );

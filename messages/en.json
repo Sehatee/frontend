@@ -377,7 +377,7 @@
     "myAppointments": "My Appointments",
     "noAppointments": "No appointments found",
     "pending": "Pending",
-    "approved": "Approved",
+    "completed": "completed",
     "rejected": "Rejected",
     "doctor": "Dr.",
     "notes": "Notes",
@@ -400,7 +400,16 @@
     "book": "Book",
     "experience": "Years of Experience",
     "noReviews": "No Reviews Yet",
-    "beFirstReview": "Be the first to share your experience with this doctor"
+    "beFirstReview": "Be the first to share your experience with this doctor",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
   },
   "Appointments": {
     "title": "Appointments",

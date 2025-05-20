@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 
-function Card({ title, value, href }: { title: string; value: string; href: string }) {
+function Card({ title, value, href }: { title: string; value: number; href: string }) {
   return (
     <div>
          <Link href={href} className="block">

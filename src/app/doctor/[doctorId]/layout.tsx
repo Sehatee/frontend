@@ -6,13 +6,20 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const res = await fetch(
-    `${process.env.API_URL}/doctors/${(await params).doctorId}`
-  );
-  const data = await res.json();
+  let title = "";
+  try {
+    const res = await fetch(
+      `${process.env.API_URL}/doctors/${(await params).doctorId}`
+    );
+    const data = await res.json();
+    title = data.doctor.username;
+  } catch (error) {
+    console.log(error);
+    title = `error`;
+  }
 
   return {
-    title: `${data.doctor.username}`,
+    title: title,
   };
 }
 

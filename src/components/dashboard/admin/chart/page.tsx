@@ -24,10 +24,12 @@ const AdminStatsChart: React.FC = () => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={[
-              { name: "المستخدمون", value: 1400 },
+              { name: "المستخدمون", value: 1290 },
               { name: "الأطباء", value: 900 },
               { name: "المواعيد", value: 1200 },
               { name: "المحظورون", value: 150 },
+              { name: "السجلات الطبية", value: 150 },
+
             ]}
             barCategoryGap={40}
           >

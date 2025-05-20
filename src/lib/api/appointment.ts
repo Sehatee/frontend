@@ -29,11 +29,35 @@ export const applyAppointment = async (
     return null;
   }
 };
-export const getAllAppintmentsByPatient = async () => {
+export const getAllAppintmentsByPatient = async (token: string) => {
   try {
-    const res = await fetch(`${baseUrl}/apoointments`);
+    const res = await fetch(`${baseUrl}/appointments/patient`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await res.json();
-    return data;
+    return data.data.appointments;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.log(axiosError.response?.data);
+    showToast(
+      "error",
+      (axiosError.response?.data as { message: string })?.message ||
+        "An error occurred"
+    );
+    return null;
+  }
+};
+export const getAllAppintmentsByDoctor = async (token: string) => {
+  try {
+    const res = await fetch(`${baseUrl}/appointments`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    return data.data.appointments;
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
