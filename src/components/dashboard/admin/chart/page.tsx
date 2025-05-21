@@ -1,10 +1,25 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 import { useTranslations } from "next-intl";
 
-
-const AdminStatsChart: React.FC = () => {
+const AdminStatsChart = ({
+  data,
+}: {
+  data: {
+    usersBlock: number;
+    usersCount: number;
+    doctorsCount: number;
+    appointmentsCount: number;
+  } | null;
+}) => {
   const [xAxisFontSize, setXAxisFontSize] = useState(20);
 
   useEffect(() => {
@@ -19,24 +34,29 @@ const AdminStatsChart: React.FC = () => {
   const t = useTranslations("DashboardAdmin");
   return (
     <section className="bg-white p-4 rounded-xl shadow-sm">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">{t("charts")}</h2>
+      <h2 className="text-xl font-semibold mb-4 text-gray-800">
+        {t("charts")}
+      </h2>
       <div style={{ width: "100%", height: 350, direction: "rtl" }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={[
-              { name: "المستخدمون", value: 1290 },
-              { name: "الأطباء", value: 900 },
-              { name: "المواعيد", value: 1200 },
-              { name: "المحظورون", value: 150 },
-              { name: "السجلات الطبية", value: 150 },
-
+              { name: "المستخدمون", value: data?.usersCount },
+              { name: "الأطباء", value: data?.doctorsCount },
+              { name: "المواعيد", value: data?.appointmentsCount },
+              { name: "المحظورون", value: data?.usersBlock },
             ]}
             barCategoryGap={40}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis
               dataKey="name"
-              tick={{ fontSize: xAxisFontSize, fontWeight: "bold", fill: "#2F2F2F", dy: 5 }}
+              tick={{
+                fontSize: xAxisFontSize,
+                fontWeight: "bold",
+                fill: "#2F2F2F",
+                dy: 5,
+              }}
               axisLine={{ stroke: "#868686", strokeWidth: 3 }}
               tickLine={false}
             />
@@ -45,7 +65,12 @@ const AdminStatsChart: React.FC = () => {
               axisLine={{ stroke: "#868686", strokeWidth: 3 }}
               tickLine={false}
             />
-            <Bar dataKey="value" fill="#156BF6" radius={[12, 12, 0, 0]} barSize={70} />
+            <Bar
+              dataKey="value"
+              fill="#156BF6"
+              radius={[12, 12, 0, 0]}
+              barSize={70}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

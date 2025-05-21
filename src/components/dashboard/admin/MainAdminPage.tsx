@@ -2,25 +2,13 @@ import React from "react";
 import AdminStatsChart from "./chart/page";
 import Card from "./card/page";
 import { getTranslations } from "next-intl/server";
-import { User } from "@/types/User";
-import { getAllUsers } from "@/lib/api/admin";
+import { getAnalysis } from "@/lib/api/admin";
 import { cookies } from "next/headers";
 
 const MainAdminPage = async () => {
   const t = await getTranslations("DashboardAdmin");
   const token = (await cookies()).get("token")?.value;
-  const data = await getAllUsers(token || "");
-  const allUsers = data.resalut;
-  const activeUsers = data.users.filter(
-    (user: User) => user.appointments?.length || -1 > 0
-  ).length;
-
-  const blockUsers = data.users.filter(
-    (user: User) => user.active === false
-  ).length;
-  const doctors = data.users.filter(
-    (user: User) => user.role === "doctor"
-  ).length;
+  const data = await getAnalysis(token || "");
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -32,27 +20,35 @@ const MainAdminPage = async () => {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Card
           title="عدد المستخدمين"
-          value={allUsers}
+          value={data?.users.resalut}
           href="/dashboard/admin/users"
+        />
+
+        <Card
+          title="المستخدمون المحظورون"
+          value={data?.usersBlock.length}
+          href="/dashboard/admin/banned-users"
         />
         <Card
           title="عدد الأطباء"
-          value={doctors}
+          value={data?.doctors.resalut}
           href="/dashboard/admin/doctors"
         />
         <Card
-          title="حساب نشط"
-          value={activeUsers}
+          title="عدد المواعيد الكلي"
+          value={data?.appointments.total}
           href="/dashboard/admin/appointments"
-        />
-        <Card
-          title="المستخدمون المحظورون"
-          value={blockUsers}
-          href="/dashboard/admin/banned-users"
         />
       </section>
 
-      <AdminStatsChart />
+      <AdminStatsChart
+        data={{
+          doctorsCount: data?.doctors.resalut,
+          usersBlock: data?.usersBlock.length,
+          usersCount: data?.users.resalut,
+          appointmentsCount: data?.appointments.total,
+        }}
+      />
     </div>
   );
 };

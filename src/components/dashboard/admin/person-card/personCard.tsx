@@ -1,22 +1,24 @@
+import { User } from "@/types/User";
+import Image from "next/image";
 import React from "react";
 
-interface GenericTableRowsProps<T> {
-  data: T[];
-  statusClass: (status: string) => string;
-  handleEdit: (item: T) => void;
+interface GenericTableRowsProps {
+  data: User[];
+  statusClass: (status: boolean) => string;
+  handleEdit: (item: User) => void;
   columns: {
-    key: keyof T | "edit";
+    key: keyof User | "edit";
     label: string;
-    render?: (item: T) => React.ReactNode;
+    render?: (item: User) => React.ReactNode;
   }[];
 }
 
-function GenericTableRows<T>({ data, statusClass, handleEdit, columns }: GenericTableRowsProps<T>) {
+function GenericTableRows({ data, statusClass, handleEdit, columns }: GenericTableRowsProps) {
   return (
     <>
       {data.map((item) => (
-        <tr key={(item as any).id} className="hover:bg-gray-50 border-b last:border-none">
-          {columns.map(({ key, render, label }) => {
+        <tr key={item._id} className="hover:bg-gray-50 border-b last:border-none">
+          {columns.map(({ key, render }) => {
             if (key === "edit") {
               return (
                 <td key="edit" className="px-4 py-4">
@@ -30,35 +32,37 @@ function GenericTableRows<T>({ data, statusClass, handleEdit, columns }: Generic
               );
             }
 
-            const value = item[key as keyof T];
+            const value = item[key];
 
-            // تخصيص خاص للحالة (status)
-            if (key === "status" && typeof value === "string") {
+            // Status handling
+            if (key === "active") {
               return (
-                <td key={key as string} className="px-4 py-4">
-                  <span className={statusClass(value)}>
-                    {value === "نشط" ? "متصل" : value === "محظور" ? "محظور" : "غير متصل"}
+                <td key={key} className="px-4 py-4">
+                  <span className={statusClass(value as boolean)}>
+                    {value ? "متصل" : "غير متصل"}
                   </span>
                 </td>
               );
             }
 
-            // خصائص صورة + اسم خاصة بالعمود الأول (مثلًا 'name' مع avatar)
-            if (key === "name" && "avatar" in item) {
+            // Username and picture handling
+            if (key === "username" && item.picture) {
               return (
-                <td key={key as string} className="px-4 py-4 flex items-center gap-3">
-                  <img
-                    src={(item as any).avatar}
+                <td key={key} className="px-4 py-4 flex items-center gap-3">
+                  <Image
+                    src={item.picture}
                     alt={value as string}
+                    width={100}
+                    height={100}
                     className="w-10 h-10 rounded-full object-cover border"
                   />
-                  <span className="font-bold text-sm">{value}</span>
+                  <span className="font-bold text-sm">{String(value)}</span>
                 </td>
               );
             }
 
             return (
-              <td key={key as string} className="px-4 py-4 text-sm text-gray-600">
+              <td key={key} className="px-4 py-4 text-sm text-gray-600">
                 {render ? render(item) : value as React.ReactNode}
               </td>
             );

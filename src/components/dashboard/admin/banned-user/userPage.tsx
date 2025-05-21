@@ -1,24 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import GenericTableRows from "../person-card/personCard"; 
-import GenericUserModal from "../popup/pop"
+import GenericTableRows from "../person-card/personCard";
+import GenericUserModal from "../popup/pop";
+import { User } from "@/types/User";
 
+export default function BannedUsersPageClient({
+  bannedUsers,
+}: {
+  bannedUsers: User[];
+}) {
+  const [selectedUser, setSelectedUser] = useState<null | User>(null);
 
-type BannedUser = {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  status: string;
-  bannedDate: string;
-  reason: string;
-};
-
-export default function BannedUsersPageClient({ bannedUsers }: { bannedUsers: BannedUser[] }) {
-  const [selectedUser, setSelectedUser] = useState<null | BannedUser>(null);
-
-  const handleEdit = (user: BannedUser) => {
+  const handleEdit = (user: User) => {
     setSelectedUser(user);
   };
 
@@ -26,56 +20,55 @@ export default function BannedUsersPageClient({ bannedUsers }: { bannedUsers: Ba
     setSelectedUser(null);
   };
 
-  const statusClass = (status: string) =>
-    status === "محظور"
+  const statusClass = (active: boolean) =>
+    !active
       ? "bg-red-500 text-white px-4 py-1 rounded-full text-xs font-semibold"
       : "bg-gray-200 text-gray-600 px-4 py-1 rounded-full text-xs font-semibold";
 
   return (
     <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
-      <h1 className="text-2xl font-bold mb-8 text-gray-800">جدول المستخدمين المحظورين</h1>
+      <h1 className="text-2xl font-bold mb-8 text-gray-800">
+        جدول المستخدمين المحظورين
+      </h1>
       <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
         <table className="min-w-full text-right">
           <thead>
             <tr className="text-gray-500 text-xs uppercase border-b">
               <th className="px-4 py-3">المستخدم</th>
               <th className="px-4 py-3">البريد الإلكتروني</th>
-              <th className="px-4 py-3">سبب الحظر</th>
               <th className="px-4 py-3">الحالة</th>
-              <th className="px-4 py-3">تاريخ الحظر</th>
               <th className="px-4 py-3">تعديل</th>
             </tr>
           </thead>
           <tbody>
-          <GenericTableRows
+            <GenericTableRows
               data={bannedUsers}
               statusClass={statusClass}
               handleEdit={handleEdit}
               columns={[
-                { key: "name", label: "المستخدم" },
+                { key: "username", label: "المستخدم" },
                 { key: "email", label: "البريد الإلكتروني" },
-                { key: "reason", label: "سبب الحظر" },
-                { key: "status", label: "الحالة" },
-                { key: "bannedDate", label: "تاريخ الحظر" },
+                { key: "active", label: "الحالة" },
                 { key: "edit", label: "تعديل" },
               ]}
-            />          </tbody>
+            />
+          </tbody>
         </table>
       </div>
 
-        {selectedUser && (
+      {selectedUser && (
         <GenericUserModal
-        avatar={selectedUser.avatar}
-        name={selectedUser.name}
-        subtitle={selectedUser.reason}
-        title="تعديل المستخدم المحظور"
-        headerColorFrom="red"
-        headerColorTo="rose"
-        primaryActionLabel="رفع الحظر"
-        secondaryActionLabel="حذف الحساب"
-        closeModal={closeModal}
-      />
-    )}    
-</div>
+          picture={selectedUser.picture || ""}
+          username={selectedUser.username}
+          subtitle={selectedUser.description}
+          title="تعديل المستخدم المحظور"
+          headerColorFrom="red"
+          headerColorTo="rose"
+          primaryActionLabel="رفع الحظر"
+          secondaryActionLabel="حذف الحساب"
+          closeModal={closeModal}
+        />
+      )}
+    </div>
   );
 }
