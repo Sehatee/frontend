@@ -4,13 +4,18 @@ import { useState } from "react";
 import GenericTableRows from "../person-card/personCard";
 import GenericUserModal from "../popup/pop";
 import { User } from "@/types/User";
+import { activeOrDeleteUser } from "@/lib/api/admin";
+import Cookies from "js-cookie";
+import Link from "next/link";
 
 export default function BannedUsersPageClient({
-  bannedUsers,
+  bannedUsers: initialBannedUsers,
 }: {
   bannedUsers: User[];
 }) {
+  const [bannedUsers, setBannedUsers] = useState<User[]>(initialBannedUsers);
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
+  const token = Cookies.get("token");
 
   const handleEdit = (user: User) => {
     setSelectedUser(user);
@@ -20,6 +25,18 @@ export default function BannedUsersPageClient({
     setSelectedUser(null);
   };
 
+  const handleUserUpdated = async (userId: string, active: boolean) => {
+    try {
+      await activeOrDeleteUser(userId, active, token || "");
+      setBannedUsers((prevUsers) =>
+        prevUsers.filter((user) => user._id !== userId)
+      );
+      closeModal();
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
   const statusClass = (active: boolean) =>
     !active
       ? "bg-red-500 text-white px-4 py-1 rounded-full text-xs font-semibold"
@@ -27,6 +44,17 @@ export default function BannedUsersPageClient({
 
   return (
     <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
+      {/* Breadcrumb navigation */}
+      <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+        <Link
+          href={"/dashboard/admin"}
+          className="hover:text-main transition duration-200"
+        >
+          لوحة التحكم
+        </Link>
+        <span className="text-gray-400">/</span>
+        <span>المحظورون</span>
+      </div>
       <h1 className="text-2xl font-bold mb-8 text-gray-800">
         جدول المستخدمين المحظورين
       </h1>
@@ -65,7 +93,10 @@ export default function BannedUsersPageClient({
           headerColorFrom="red"
           headerColorTo="rose"
           primaryActionLabel="رفع الحظر"
-          secondaryActionLabel="حذف الحساب"
+          secondaryActionLabel=""
+          onPrimaryAction={() =>
+            handleUserUpdated(selectedUser._id, selectedUser.active)
+          }
           closeModal={closeModal}
         />
       )}

@@ -16,7 +16,8 @@
       "settings": "الإعدادات",
       "appointments": "المواعيد",
       "logout": "تسجيل الخروج",
-      "support": "الدعم"
+      "support": "الدعم",
+      "medicalRecords": "السجلات الطبية"
     }
   },
   "Header": {
@@ -372,7 +373,25 @@
     "rejected": "مرفوض",
     "doctor": "د.",
     "notes": "ملاحظات",
-    "submitting": "جاري الإرسال..."
+    "submitting": "جاري الإرسال...",
+    "patientName": "إسم المريض",
+    "date": "التاريخ",
+
+    "status": {
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل",
+      "rejected": "مرفوض"
+    },
+    "actions": {
+      "createMedicalRecord": "إنشاء سجل طبي",
+      "deleteAppointment": "حذف الموعد"
+    },
+    "deleteConfirmation": {
+      "title": "حذف الموعد",
+      "message": "هل أنت متأكد من رغبتك في حذف هذا الموعد؟",
+      "cancel": "إلغاء",
+      "confirm": "حذف"
+    }
   },
   "DoctorCard": {
     "experience": "الخبرة",
@@ -544,5 +563,48 @@
     "title": "لوحة التحكم",
     "welcome": "مرحبًا بك يا مشرف!",
     "charts": "الإحصائيات العامة"
+  },
+  "MedicalRecord": {
+    "title": "السجل الطبي",
+    "subtitle": "تفاصيل المريض والسجل الطبي الكامل",
+    "name": "أحمد محمد عبدالله",
+    "currentDiagnosis": "التشخيص الحالي",
+    "medicalFilesTitle": "الملفات الطبية المرفوعة",
+    "medicalFilesDesc": "لتنزيل صور وتقارير وفحوصات قام المريض برفعها",
+    "lastUpdateTitle": "آخر تحديث:",
+    "lastUpdateDate": "10 مايو 2024",
+    "treatmentPlan": "الخطة العلاجية",
+    "btn": "تعديل",
+    "titleCreate": "إنشاء سجل طبي",
+    "form": {
+      "diagnosis": {
+        "label": "التشخيص"
+      },
+      "treatment": {
+        "label": "العلاج"
+      },
+      "attachments": {
+        "label": "المرفقات",
+        "helpText": "يمكنك تحميل ملفات متعددة (PDF، DOC، صور)"
+      },
+      "buttons": {
+        "cancel": "إلغاء",
+        "create": "إنشاء"
+      }
+    },
+    "addFile": "إضافة",
+    "patientRecord": "سجلات المرضى",
+    "patientRecord2": "هنا يمكنك عرض وإدارة جميع سجلاتك الطبية بأمان وسهولة.",
+    "lastVisit": "آخر زيارة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "visit": "زيارة",
+    "editRecord": "تعديل السجل الطبي",
+    "diagnosis": "التشخيص",
+    "treatment": "العلاج",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirmDelete": "تأكيد الحذف",
+    "deleteWarning": "هل أنت متأكد أنك تريد حذف هذا السجل الطبي؟ لا يمكن التراجع عن هذا الإجراء."
   }
 }

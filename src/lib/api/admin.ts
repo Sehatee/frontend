@@ -1,5 +1,6 @@
 import { User } from "@/types/User";
-import { AxiosError } from "axios";
+import showToast from "@/utils/showToast";
+import axios, { AxiosError } from "axios";
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 export const getAnalysis = async (token: string) => {
   try {
@@ -22,7 +23,7 @@ export const getAnalysis = async (token: string) => {
       cache: "no-cache",
     });
     const data = await res.json();
-    
+
     const usersBlock = data.data.users.filter((user: User) => !user.active);
     return {
       users: data.data,
@@ -36,5 +37,56 @@ export const getAnalysis = async (token: string) => {
     console.log(axiosError.response?.data);
 
     return null;
+  }
+};
+export const createUser = async (data: FormData, token: string) => {
+  try {
+    const res = await axios.post(`${baseUrl}/users/create`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    showToast("success", "created a user ");
+    return res.data.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.log(axiosError.response?.data);
+    showToast(
+      "error",
+      (axiosError.response?.data as { message: string })?.message ||
+        "An error occurred"
+    );
+    return axiosError.response?.data;
+  }
+};
+export const activeOrDeleteUser = async (
+  id: string,
+  active: boolean,
+  token: string
+) => {
+  try {
+    const res = await axios.patch(
+      `${baseUrl}/users/${id}`,
+      {
+        active: !active,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    showToast("success", `${!active ? "active a user" : "delete a user"}`);
+    return res.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.log(axiosError.response?.data);
+    showToast(
+      "error",
+      (axiosError.response?.data as { message: string })?.message ||
+        "An error occurred"
+    );
+    return axiosError.response?.data;
   }
 };

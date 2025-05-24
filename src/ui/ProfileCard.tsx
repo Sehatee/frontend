@@ -8,7 +8,7 @@ const ProfileCard = () => {
   const { user } = useUserStore();
 
   return (
-    <div className="sticky z-10  top-20 bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="  top-20 bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="flex flex-col items-center gap-6">
         {/* Profile Image with Border */}
         <div className="relative">

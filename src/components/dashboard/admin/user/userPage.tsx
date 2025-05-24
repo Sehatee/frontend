@@ -5,10 +5,20 @@ import GenericTableRows from "../person-card/personCard";
 import GenericUserModal from "../popup/pop";
 import { User } from "@/types/User";
 import CreateUserModal from "./CreateUserModal";
+import { activeOrDeleteUser } from "@/lib/api/admin";
+import Cookies from "js-cookie";
+import Link from "next/link";
 
-export default function UsersPageClient({ users }: { users: User[] }) {
+export default function UsersPageClient({
+  users: initialUsers,
+}: {
+  users: User[];
+}) {
+  const [users, setUsers] = useState<User[]>(initialUsers);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const token = Cookies.get("token");
+
   const handleEdit = (user: User) => {
     setSelectedUser(user);
   };
@@ -21,21 +31,47 @@ export default function UsersPageClient({ users }: { users: User[] }) {
   const handleCreateUser = () => {
     setIsModalOpen(true);
   };
-  
+
+  const handleUserUpdated = async (userId: string, active: boolean) => {
+    try {
+      await activeOrDeleteUser(userId, active, token || "");
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user._id === userId ? { ...user, active: !active } : user
+        )
+      );
+      closeModal();
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
   const statusClass = (status: boolean) =>
     status
       ? "bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-semibold"
       : "bg-gray-200 text-gray-600 px-4 py-1 rounded-full text-xs font-semibold";
 
   return (
-    <div className=" min-h-screen bg-gray-100 p-6" dir="rtl">
+    <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
+      {/* Breadcrumb navigation */}
+      <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+        <Link
+          href={"/dashboard/admin"}
+          className="hover:text-main transition duration-200"
+        >
+          لوحة التحكم
+        </Link>
+        <span className="text-gray-400">/</span>
+        <span>المستخدمين</span>
+      </div>
+
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-gray-800">جدول المستخدمين</h1>
         <button
           onClick={handleCreateUser}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
         >
-          <span>إضافة مستخدم جديد</span>
+          <span>إضافة </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -52,7 +88,7 @@ export default function UsersPageClient({ users }: { users: User[] }) {
           </svg>
         </button>
       </div>
-      <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
+      <div className="relative bg-white rounded-2xl shadow p-6 overflow-x-auto">
         <table className="min-w-full text-right">
           <thead>
             <tr className="text-gray-500 text-xs uppercase border-b">
@@ -93,17 +129,18 @@ export default function UsersPageClient({ users }: { users: User[] }) {
           title="تعديل المستخدم"
           headerColorFrom="blue"
           headerColorTo="cyan"
-          primaryActionLabel="تعديل المعلومات"
-          secondaryActionLabel="حذف الحساب"
+          primaryActionLabel=""
+          secondaryActionLabel={!selectedUser.active ? "رفع الحظر" : "حظر"}
+          onSecondaryAction={() =>
+            handleUserUpdated(selectedUser._id, selectedUser.active)
+          }
           closeModal={closeModal}
         />
       )}
-
       {isModalOpen && (
         <CreateUserModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onSubmit={() => {}}
         />
       )}
     </div>

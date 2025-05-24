@@ -15,7 +15,7 @@ const Appointments = async () => {
   
 
   return (
-    <div className="p-6 relative">
+    <div className="p-6 relative min-h-screen">
       <h2 className="text-2xl font-semibold mb-6">{t("title")}</h2>
 
       <div className="space-y-8">

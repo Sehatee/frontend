@@ -69,3 +69,26 @@ export const getAllAppintmentsByDoctor = async (token: string) => {
     return null;
   }
 };
+export const deleteAppointment = async (
+  appointmentId: string,
+  token: string
+) => {
+  try {
+    await axios.delete(`${baseUrl}/appointments/${appointmentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    showToast("success", "Appointment deleted successfully");
+    return;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.log(axiosError.response?.data);
+    showToast(
+      "error",
+      (axiosError.response?.data as { message: string })?.message ||
+        "An error occurred"
+    );
+    return null;
+  }
+};

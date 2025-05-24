@@ -2,6 +2,7 @@
 import {
   Bell,
   CalendarCheck,
+  ClipboardMinus,
   Headset,
   HeartHandshake,
   LogOut,
@@ -13,7 +14,7 @@ import {
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LangSwitcher from "./lang/LangSwitcher";
 import Image from "next/image";
 import Cookies from "js-cookie";
@@ -25,11 +26,24 @@ const NavBar = () => {
   const userMenuT = useTranslations("NavBar.userMenu");
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [openMenuUser, setOpenMenuUser] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const locale = Cookies.get("locale");
-
   const pathName = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenuUser(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const { user, clearUser, fetchUser } = useUserStore();
 
@@ -123,7 +137,7 @@ const NavBar = () => {
           {/* if user is logged in */}
           <div className="flex gap-2">
             {user ? (
-              <div className="relative z-20">
+              <div className="relative z-20" ref={menuRef}>
                 <button
                   onClick={() => {
                     setOpenMenuUser(!openMenuUser);
@@ -180,42 +194,94 @@ const NavBar = () => {
                   </div>
                   {/* urls */}
                   <ul className="mt-5 flex flex-col gap-2 text-gray-700 font-semibold">
-                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
-                      <Link
-                        href={`/dashboard/${user.role}/profile/info`}
-                        className="flex items-center justify-between"
-                      >
-                        <h1>{userMenuT("profile")}</h1>
-                        <UserRound fill="#0B62DE" stroke="none" />
-                      </Link>
-                    </li>
-                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
-                      <Link
-                        href={`/dashboard/${user.role}/settings/notifications`}
-                        className="flex items-center justify-between"
-                      >
-                        <h1>{userMenuT("notifications")}</h1>
-                        <Bell fill="#0B62DE" stroke="none" />
-                      </Link>
-                    </li>
-                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
-                      <Link
-                        href={`/dashboard/${user.role}/appointments/`}
-                        className="flex items-center justify-between"
-                      >
-                        <h1>{userMenuT("appointments")}</h1>
-                        <CalendarCheck color="#0B62DE" />
-                      </Link>
-                    </li>
-                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
-                      <Link
-                        href={`/dashboard/${user.role}/settings/account`}
-                        className="flex items-center justify-between"
-                      >
-                        <h1>{userMenuT("settings")}</h1>
-                        <Settings fill="#0B62DE" stroke="white" />
-                      </Link>
-                    </li>
+                    {user.role === "admin" ? (
+                      <>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href="/dashboard/admin/users"
+                            className="flex items-center justify-between"
+                          >
+                            <h1>المستخدمين</h1>
+                            <UserRound fill="#0B62DE" stroke="none" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href="/dashboard/admin/appointments"
+                            className="flex items-center justify-between"
+                          >
+                            <h1>المواعيد</h1>
+                            <CalendarCheck color="#0B62DE" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href="/dashboard/admin/banned-users"
+                            className="flex items-center justify-between"
+                          >
+                            <h1>المحظورين </h1>
+                            <UserRound fill="#DE0B0B" stroke="none" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href="/dashboard/admin/doctors"
+                            className="flex items-center justify-between"
+                          >
+                            <h1>الأطباء</h1>
+                            <UserRound fill="#0B62DE" stroke="white" />
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href={`/dashboard/${user.role}/profile/info`}
+                            className="flex items-center justify-between"
+                          >
+                            <h1>{userMenuT("profile")}</h1>
+                            <UserRound fill="#0B62DE" stroke="none" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href={`/dashboard/${user.role}/settings/notifications`}
+                            className="flex items-center justify-between"
+                          >
+                            <h1>{userMenuT("notifications")}</h1>
+                            <Bell fill="#0B62DE" stroke="none" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href={`/dashboard/${user.role}/appointments/`}
+                            className="flex items-center justify-between"
+                          >
+                            <h1>{userMenuT("appointments")}</h1>
+                            <CalendarCheck color="#0B62DE" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href={`/dashboard/${user.role}/appointments/`}
+                            className="flex items-center justify-between"
+                          >
+                            <h1>{userMenuT("medicalRecords")}</h1>
+                            <ClipboardMinus color="#0B62DE" />
+                          </Link>
+                        </li>
+                        <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
+                          <Link
+                            href={`/dashboard/${user.role}/settings/account`}
+                            className="flex items-center justify-between"
+                          >
+                            <h1>{userMenuT("settings")}</h1>
+                            <Settings fill="#0B62DE" stroke="white" />
+                          </Link>
+                        </li>
+                      </>
+                    )}
                   </ul>
                   {/* logout */}
                   <ul className="mt-5 flex flex-col gap-1 text-gray-700 font-semibold">
@@ -228,13 +294,15 @@ const NavBar = () => {
                         <Headset color="#0B62DE" />
                       </Link>
                     </li>
-                    <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-gray-50 transition-colors">
+                    <li className="bg-white  py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-red-500 transition-colors group">
                       <button
                         onClick={logout}
                         className="w-full flex items-center justify-between"
                       >
-                        <h1>{userMenuT("logout")}</h1>
-                        <LogOut color="red" />
+                        <h1 className="group-hover:text-white">
+                          {userMenuT("logout")}
+                        </h1>
+                        <LogOut className="text-red-600 group-hover:text-white" />
                       </button>
                     </li>
                   </ul>
@@ -315,7 +383,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="relative text-center group">
-            <Link href={"/"}>
+            <Link href={"/services"}>
               <h1>{t("services")}</h1>
               {/* hover effect */}
               <div

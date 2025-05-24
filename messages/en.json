@@ -16,7 +16,8 @@
       "settings": "Settings",
       "appointments": "Appointments",
       "logout": "Logout",
-      "support": "Support"
+      "support": "Support",
+      "medicalRecords": "Medical Records"
     }
   },
   "Header": {
@@ -381,7 +382,25 @@
     "rejected": "Rejected",
     "doctor": "Dr.",
     "notes": "Notes",
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+    "patientName": "Patient Name",
+    "date": "Date",
+
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    },
+    "actions": {
+      "createMedicalRecord": "Create Medical Record",
+      "deleteAppointment": "Delete Appointment"
+    },
+    "deleteConfirmation": {
+      "title": "Delete Appointment",
+      "message": "Are you sure you want to delete this appointment?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    }
   },
   "DoctorCard": {
     "experience": "Experience",
@@ -552,5 +571,46 @@
     "title": "Dashboard",
     "welcome": "Welcome, Admin!",
     "charts": "General statistics"
+  },
+  "MedicalRecord": {
+    "title": "Medical Record",
+    "subtitle": "Patient details and full medical record",
+    "name": "Ahmed Mohamed Abdullah",
+    "currentDiagnosis": "Current Diagnosis",
+    "medicalFilesTitle": "Uploaded Medical Files",
+    "medicalFilesDesc": "To download images, reports, and tests uploaded by the patient",
+    "lastUpdateTitle": "Last Update:",
+    "lastUpdateDate": "10 May 2024",
+    "treatmentPlan": "Treatment Plan",
+    "btn": "Edit",
+    "titleCreate": "Create Medical Record",
+    "form": {
+      "diagnosis": {
+        "label": "Diagnosis"
+      },
+      "treatment": {
+        "label": "Treatment"
+      },
+      "attachments": {
+        "label": "Attachments",
+        "helpText": "You can upload multiple files (PDF, DOC, Images)"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "patientRecord": "Medical Records",
+    "patientRecord2": "Here you can view and manage all your medical records securely and easily.",
+    "edit": "edit",
+    "delete": "delete",
+    "visit": "visit",
+    "editRecord": "Edit Medical Record",
+    "diagnosis": "Diagnosis",
+    "treatment": "Treatment",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirmDelete": "Confirm Delete",
+    "deleteWarning": "Are you sure you want to delete this medical record? This action cannot be undone."
   }
 }

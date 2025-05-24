@@ -7,9 +7,9 @@ import { FlagIcon, FlagIconCode } from "react-flag-kit";
 
 const LangSwitcher = () => {
   const languages: { key: FlagIconCode; code: string; name: string }[] = [
-    { key: "SA", code: "ar", name: "العربية" },
+    { key: "DZ", code: "ar", name: "العربية" },
     { key: "GB", code: "en", name: "English" },
-    // { key: 'FR', code: 'fr', name: 'Français' },
+    // { key: "FR", code: "fr", name: "Français" },
   ];
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);

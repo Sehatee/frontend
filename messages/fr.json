@@ -1,0 +1,571 @@
+{
+  "HomePage": {
+    "title": "Bienvenue !"
+  },
+  "NavBar": {
+    "LogoName": "Ma Santé",
+    "home": "Accueil",
+    "doctors": "Médecins",
+    "services": "Nos Services",
+    "about": "À Propos",
+    "login": "Connexion",
+    "signup": "Inscription",
+    "userMenu": {
+      "profile": "Profil",
+      "notifications": "Notifications",
+      "settings": "Paramètres",
+      "appointments": "Rendez-vous",
+      "logout": "Déconnexion",
+      "support": "Support",
+      "medicalRecords": "Dossiers Médicaux"
+    }
+  },
+  "Header": {
+    "headText1": "Nous vous offrons les dernières solutions médicales à distance avec une élite de spécialistes",
+    "headText2": "Consultez les meilleurs médecins en ligne immédiatement ou réservez un rendez-vous en clinique facilement.. Tous les services médicaux sont maintenant à votre portée",
+    "btnText": "Commencez votre consultation maintenant"
+  },
+  "services": {
+    "title": "Les services que nous offrons",
+    "subTitle": "Nous sommes toujours là pour vous fournir soins et conseils",
+    "services": [
+      {
+        "title": "Consultation Médicale",
+        "text": "Communiquez directement avec les médecins via des consultations vidéo ou chat, et obtenez votre réponse dans les plus brefs délais.",
+        "img": "/imgs/services/ser1.png"
+      },
+      {
+        "title": "Médecins par Spécialité",
+        "text": "Recherchez des médecins par spécialité, localisation, langue, ou évaluations des utilisateurs.",
+        "img": "/imgs/services/ser2.png"
+      },
+      {
+        "title": "Réservation de Rendez-vous",
+        "text": "Réservez votre rendez-vous avec le médecin approprié en quelques étapes seulement, sans besoin d'attendre longtemps.",
+        "img": "/imgs/services/ser3.png"
+      }
+    ]
+  },
+  "MyServices": {
+    "title": "Nos Services Médicaux",
+    "subTitle": "Nous offrons une gamme complète de services médicaux à distance via notre plateforme, pour vous garantir des soins de santé d'excellence aux plus hauts standards de qualité et d'efficacité",
+    "services": [
+      {
+        "title": "Consultation Médicale",
+        "text": "Communiquez directement avec les médecins via des consultations vidéo ou chat, et obtenez votre réponse dans les plus brefs délais.",
+        "icon": "Video"
+      },
+      {
+        "title": "Réservation de Rendez-vous",
+        "text": "Réservez votre rendez-vous avec des médecins spécialisés facilement et simplement, et obtenez les soins dont vous avez besoin.",
+        "icon": "CalendarCheck"
+      },
+      {
+        "title": "Suivi Médical Continu",
+        "text": "Bénéficiez d'un suivi médical continu grâce à des consultations régulières avec les médecins, pour garantir votre santé et votre sécurité.",
+        "icon": "HeartPulse"
+      }
+    ],
+    "ADS": {
+      "title": "Avez-vous besoin d'aide pour choisir le service approprié ?",
+      "text": "Nous offrons une gamme complète de services médicaux à distance via notre plateforme, pour vous garantir des soins de santé d'excellence aux plus hauts standards de qualité et d'efficacité",
+      "btnText": "Contactez-nous"
+    }
+  },
+  "Doctors": {
+    "title": "Équipe Médicale",
+    "subTitle": "Une élite de médecins spécialisés pour fournir les meilleurs soins de santé à distance",
+    "sec1": {
+      "name": "Dr. Ahmed Al-Ali",
+      "specialty": "Médecin Généraliste",
+      "text": "Consultant en médecine générale, ayant une vaste expérience dans la fourniture de soins de santé aux patients.",
+      "btnText": "Appeler maintenant"
+    },
+    "sec2": {
+      "name": "Dr. Mohamed Ben Zidane",
+      "specialty": "Pédiatre",
+      "text": "Consultant en pédiatrie, fournissant des soins complets aux enfants de tous âges.",
+      "btnText": "Appeler maintenant"
+    },
+    "sec3": {
+      "name": "Dr. Sarah Al-Naimi",
+      "specialty": "Gynécologue-Obstétricienne",
+      "text": "Consultante en gynécologie et obstétrique, fournissant des soins complets aux femmes.",
+      "btnText": "Appeler maintenant"
+    },
+    "sec4": {
+      "name": "Dr. Ali Al-Shamri",
+      "specialty": "Psychiatre",
+      "text": "Consultant en psychiatrie, fournissant soutien et traitement psychologique aux patients.",
+      "btnText": "Appeler maintenant"
+    },
+    "loading": "Chargement des médecins...",
+    "noDoctorsFound": "Aucun médecin trouvé",
+    "tryAdjustingFilters": "Essayez d'ajuster les filtres",
+    "specialization": {
+      "notSpecified": "Médecine générale"
+    }
+  },
+  "lastFeatures": {
+    "title": "Commencez votre parcours de santé maintenant",
+    "subTitle": "Nous sommes là pour vous fournir le soutien médical que vous méritez. Consultez une élite de médecins certifiés facilement et à tout moment qui vous convient, et profitez d'un service sûr, rapide et personnalisé selon vos besoins de santé.",
+    "btnText": "Rejoignez-nous maintenant",
+    "doctorsCount": "Nombre de médecins",
+    "patientsCount": "Nombre d'utilisateurs",
+    "ratings": "Évaluations"
+  },
+  "Login": {
+    "title": "Connexion",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "btnText": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "signup": "Créer un compte",
+    "loading": "Connexion en cours..."
+  },
+  "Signup": {
+    "title": "Créer un compte",
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "btnText": "Créer un compte",
+    "haveAccount": "Avez-vous déjà un compte ?",
+    "login": "Se connecter",
+    "acceptTerms": "J'accepte les termes et conditions",
+    "phone": "Numéro de téléphone",
+    "uploadAvatar": "Télécharger une photo",
+    "loading": "Création du compte en cours..."
+  },
+  "About": {
+    "title": "À Propos",
+    "subTitle": "La plateforme Spécialiste est une plateforme numérique leader dans le domaine des soins de santé à distance, visant à fournir des services médicaux d'excellence de manière innovante, sûre et facilement accessible.",
+    "vision": "Notre Vision",
+    "visionText": "Fournir des soins de santé d'excellence grâce à l'utilisation de la technologie moderne, et atteindre les plus hauts niveaux de qualité et d'efficacité dans les services médicaux fournis.",
+    "mission": "Notre Mission",
+    "missionText": "Fournir des services médicaux innovants, sûrs et facilement accessibles, grâce à une plateforme numérique intégrée qui rassemble médecins et patients, et garantit la fourniture de soins de santé d'excellence.",
+    "someServices": [
+      {
+        "id": 0,
+        "text": "Fournir des consultations médicales à distance 24h/24"
+      },
+      {
+        "id": 1,
+        "text": "Obtenez des prescriptions médicales précises des médecins facilement et en toute sécurité"
+      },
+      {
+        "id": 2,
+        "text": "Effectuer des analyses médicales et obtenir les résultats rapidement et avec précision"
+      },
+      {
+        "id": 3,
+        "text": "Réservez votre rendez-vous avec des médecins spécialisés facilement"
+      },
+      {
+        "id": 4,
+        "text": "Suivi régulier avec les médecins pour garantir votre santé et votre sécurité"
+      }
+    ],
+    "values": {
+      "title": "Nos Valeurs",
+      "subTitle": "Nous croyons en l'importance des valeurs fondamentales qui guident notre travail et définissent notre identité, et nous nous engageons à les appliquer dans tous les aspects de nos services.",
+      "valuesList": [
+        {
+          "id": 0,
+          "text": "Professionnalisme",
+          "icon": "Briefcase",
+          "description": "Nous nous engageons à fournir nos services au plus haut niveau de professionnalisme."
+        },
+        {
+          "id": 1,
+          "text": "Innovation",
+          "icon": "Lightbulb",
+          "description": "Nous cherchons toujours à fournir des solutions innovantes qui répondent aux besoins de nos clients."
+        },
+        {
+          "id": 2,
+          "text": "Honnêteté",
+          "icon": "ShieldCheck",
+          "description": "Nous veillons à traiter avec honnêteté et transparence dans tous nos services."
+        },
+        {
+          "id": 3,
+          "text": "Collaboration",
+          "icon": "Users",
+          "description": "Nous travaillons dans un esprit d'équipe pour atteindre nos objectifs communs."
+        }
+      ]
+    }
+  },
+  "Footer": {
+    "logoName": "Ma Santé",
+    "description": "La plateforme Ma Santé est avec vous à chaque étape vers une meilleure santé, et nous sommes toujours heureux de votre contact",
+    "mainMenu": {
+      "title": "Menu Principal",
+      "home": "Accueil",
+      "about": "À Propos",
+      "doctors": "Médecins"
+    },
+    "contactUs": {
+      "title": "Contactez-nous",
+      "consultation": "Consultation médicale",
+      "helpCenter": "Centre d'aide"
+    },
+    "importantInfo": {
+      "title": "Informations Importantes",
+      "privacy": "Confidentialité et Sécurité",
+      "terms": "Politique d'utilisation"
+    },
+    "copyright": "© Ma Santé 2024. Tous droits réservés"
+  },
+  "Profile": {
+    "title": "Profil",
+    "links": {
+      "l1": "Informations Personnelles",
+      "l2": "Informations Médicales"
+    },
+    "personalInfo": {
+      "title": "Informations Personnelles",
+      "subtitle": "Informations personnelles et de contact",
+      "fullName": "Nom complet",
+      "email": "Adresse e-mail",
+      "phone": "Numéro de téléphone",
+      "birthDate": "Date de naissance",
+      "address": "Adresse",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "addressPlaceholder": "Entrez votre adresse",
+      "specialization": "Spécialisation",
+      "specializationPlaceholder": "Entrez votre spécialisation médicale",
+      "description": "À propos de vous",
+      "descriptionPlaceholder": "Rédigez une brève description de votre pratique médicale et de votre expérience",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "workingDays": "Jours de travail"
+    },
+    "days": {
+      "sunday": "Dimanche",
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi"
+    },
+    "editProfile": "Modifier le profil",
+    "updating": "Mise à jour en cours...",
+    "profileUpdated": "Profil mis à jour avec succès",
+    "updateError": "Échec de la mise à jour du profil"
+  },
+  "MedicalInfo": {
+    "title": "Informations Médicales",
+    "subtitle": "Informations médicales et de santé",
+    "height": "Taille",
+    "weight": "Poids",
+    "bloodType": "Groupe sanguin",
+    "chronicDiseases": "Maladies chroniques"
+  },
+  "Settings": {
+    "title": "Paramètres",
+    "links": {
+      "l1": "Compte",
+      "l2": "Notifications"
+    },
+    "changePassword": {
+      "title": "Changer le mot de passe",
+      "subtitle": "Changez votre mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "submit": "Changer le mot de passe"
+    },
+    "deleteAccount": {
+      "title": "Supprimer le compte",
+      "description": "Lorsque vous supprimez votre compte, toutes vos données et informations personnelles seront définitivement supprimées",
+      "button": "Supprimer le compte"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "filterBy": "Filtrer par",
+      "filters": {
+        "all": "Toutes les notifications",
+        "unread": "Non lues",
+        "read": "Lues",
+        "system": "Notifications système"
+      },
+      "notifications": {
+        "appointment": {
+          "title": "Confirmation de nouveau rendez-vous",
+          "description": "Vous avez un nouveau rendez-vous avec Dr. Ahmed Al-Ali jeudi à 10h00",
+          "time": "Il y a 5 minutes"
+        },
+        "system": {
+          "title": "Mise à jour des informations du compte",
+          "description": "Les informations de votre compte ont été mises à jour avec succès",
+          "time": "Il y a une heure"
+        }
+      }
+    }
+  },
+  "ComingSoon": {
+    "title": "Bientôt disponible",
+    "description": "Nous travaillons sur quelque chose de formidable. Restez à l'écoute !",
+    "loading": "Chargement en cours..."
+  },
+  "Support": {
+    "title": "Support technique",
+    "subtitle": "Obtenez de l'aide de l'équipe de support via les canaux suivants",
+    "liveChat": {
+      "title": "Chat en direct",
+      "description": "Contactez immédiatement l'équipe de support via le chat en direct",
+      "button": "Commencer la conversation"
+    },
+    "callUs": {
+      "title": "Appelez-nous",
+      "description": "L'équipe de support est disponible pour vous aider par téléphone",
+      "phone": "+123 4567 8910",
+      "workingHours": "Disponible : Dimanche - Jeudi, 8h00 - 20h00"
+    },
+    "faq": {
+      "title": "Questions fréquemment posées",
+      "questions": [
+        {
+          "question": "Quels services offrez-vous ?",
+          "answer": "Nous offrons des services médicaux complets incluant les consultations en ligne, la réservation de rendez-vous et les prescriptions médicales."
+        },
+        {
+          "question": "Comment puis-je réserver un rendez-vous ?",
+          "answer": "Vous pouvez facilement réserver un rendez-vous via notre plateforme en choisissant le médecin approprié et l'heure disponible."
+        },
+        {
+          "question": "Quels sont les modes de paiement disponibles ?",
+          "answer": "Nous acceptons plusieurs modes de paiement incluant les cartes de crédit et de débit ainsi que les portefeuilles numériques."
+        },
+        {
+          "question": "Comment puis-je annuler ou reprogrammer mon rendez-vous ?",
+          "answer": "Vous pouvez annuler ou reprogrammer votre rendez-vous via votre tableau de bord personnel 24 heures avant le rendez-vous prévu."
+        },
+        {
+          "question": "Mes informations médicales sont-elles sécurisées ?",
+          "answer": "Oui, nous utilisons des technologies de cryptage et des procédures de sécurité avancées pour protéger toutes vos informations médicales et personnelles."
+        }
+      ]
+    }
+  },
+  "Appointment": {
+    "title": "Réserver un rendez-vous",
+    "fullName": "Nom complet",
+    "phone": "Numéro de téléphone",
+    "email": "Adresse e-mail",
+    "appointmentDate": "Date et heure du rendez-vous",
+    "reason": "Motif de la visite",
+    "reasonPlaceholder": "Veuillez décrire le motif de la visite...",
+    "submit": "Confirmer la réservation",
+    "loginRequired": "Connexion requise",
+    "loginMessage": "Veuillez vous connecter ou créer un compte pour réserver un rendez-vous",
+    "login": "Se connecter",
+    "signup": "Créer un compte",
+    "myAppointments": "Mes rendez-vous",
+    "noAppointments": "Aucun rendez-vous",
+    "pending": "En attente",
+    "completed": "Approuvé",
+    "rejected": "Rejeté",
+    "doctor": "Dr.",
+    "notes": "Notes",
+    "submitting": "Envoi en cours...",
+    "patientName": "Nom du patient",
+    "date": "Date",
+    "status": {
+      "pending": "En attente",
+      "completed": "Terminé",
+      "rejected": "Rejeté"
+    },
+    "actions": {
+      "createMedicalRecord": "Créer un dossier médical",
+      "deleteAppointment": "Supprimer le rendez-vous"
+    }
+  },
+  "DoctorCard": {
+    "experience": "Expérience",
+    "languages": "Langues",
+    "workDays": "Jours de travail",
+    "callNow": "Chat",
+    "schedule": "Contact direct"
+  },
+  "Doctor": {
+    "reviews": "Évaluation",
+    "location": "Localisation",
+    "patientReviews": "Avis des patients",
+    "writeYourReview": "Laisser un commentaire",
+    "submit": "Publier",
+    "chat": "Chat",
+    "book": "Réserver",
+    "experience": "Années d'expérience",
+    "noReviews": "Aucun avis pour le moment",
+    "beFirstReview": "Soyez le premier à partager votre expérience avec ce médecin",
+    "days": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    }
+  },
+  "Appointments": {
+    "title": "Rendez-vous",
+    "age": "Âge",
+    "gender": "Sexe",
+    "notes": "Notes",
+    "patient": "Nom du patient",
+    "date": "Date",
+    "appointmentDetails": "Détails du rendez-vous",
+    "status": "Statut"
+  },
+  "Loading": {
+    "loading": "Chargement en cours...",
+    "pleaseWait": "Veuillez patienter pendant que nous préparons le contenu"
+  },
+  "TermsAndConditions": {
+    "title": "Termes et Conditions",
+    "lastUpdate": "Dernière mise à jour : 15 mai 2025",
+    "intro": "Nous vous souhaitons la bienvenue sur notre site spécialisé dans la fourniture de services médicaux à distance. En utilisant le site et ses services, vous reconnaissez avoir lu, compris et accepté les conditions suivantes. Si vous n'acceptez aucune d'entre elles, veuillez ne pas utiliser le site.",
+    "sections": [
+      {
+        "title": "1. Nature des services",
+        "content": [
+          "Nous fournissons une plateforme pour la réservation de rendez-vous et la conduite de consultations médicales à distance avec des médecins licenciés.",
+          "Ces consultations ne constituent pas un substitut complet à l'examen clinique, et une visite personnelle chez le médecin peut être conseillée dans certains cas."
+        ]
+      },
+      {
+        "title": "2. Confidentialité des données et dossiers médicaux",
+        "content": [
+          "Nous nous engageons à maintenir la confidentialité de tous les dossiers et informations médicales que vous partagez via la plateforme.",
+          "Vos données sont stockées de manière sécurisée, conformément aux meilleures pratiques de protection des données.",
+          "En partageant vos analyses ou rapports, vous accordez aux médecins l'autorisation d'y accéder uniquement à des fins de diagnostic et d'évaluation."
+        ]
+      },
+      {
+        "title": "3. Réservation et paiement",
+        "content": [
+          "Le site permet de réserver des rendez-vous avec les médecins disponibles et de payer le coût de la consultation via des moyens de paiement électroniques.",
+          "En cas d'impossibilité de compléter la consultation pour quelque raison que ce soit, vous pouvez nous contacter pour reprogrammer ou demander un remboursement selon notre politique d'annulation."
+        ]
+      },
+      {
+        "title": "4. Responsabilité d'utilisation",
+        "content": [
+          "Le site fonctionne comme intermédiaire entre l'utilisateur et le médecin, et n'assume aucune responsabilité pour les décisions médicales prises par le médecin.",
+          "La plateforme doit être utilisée uniquement à des fins légales, et ne doit pas être utilisée de manière abusive dans toute activité illégale ou frauduleuse."
+        ]
+      },
+      {
+        "title": "6. Limitation de responsabilité",
+        "content": [
+          "Nous n'assumons aucune responsabilité pour tout dommage direct ou indirect résultant de l'utilisation du site ou de tout dysfonctionnement technique.",
+          "Les services médicaux fournis dépendent des informations fournies par l'utilisateur, et il lui incombe de fournir des données précises et complètes."
+        ]
+      },
+      {
+        "title": "7. Propriété intellectuelle",
+        "content": [
+          "Tous les contenus numériques, tels que les textes, designs, images, marques commerciales et logiciels, appartiennent au site et sont protégés légalement.",
+          "Il est interdit de copier ou distribuer toute partie du site sans autorisation écrite préalable."
+        ]
+      },
+      {
+        "title": "8. Modification des conditions",
+        "content": [
+          "Nous pouvons mettre à jour ces conditions à tout moment, et les utilisateurs en seront informés si nécessaire.",
+          "Votre utilisation continue de la plateforme après modification signifie votre acceptation des nouvelles conditions."
+        ]
+      }
+    ]
+  },
+  "PrivacyPolicy": {
+    "title": "Politique de Confidentialité et de Sécurité",
+    "intro": "Sur le site Spécialiste, nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos informations personnelles. Cette politique vise à expliquer comment nous collectons, utilisons et protégeons les données que vous fournissez lors de l'utilisation de notre site.",
+    "sections": [
+      {
+        "title": "1. Informations que nous collectons",
+        "content": [
+          "Lors de votre utilisation du site \"Spécialiste\", nous pouvons collecter les informations suivantes :",
+          "Nom complet.",
+          "Adresse e-mail et numéro de téléphone.",
+          "Informations médicales de base fournies par l'utilisateur lors de la demande de consultation ou de réservation de rendez-vous.",
+          "Votre localisation géographique (si nécessaire pour identifier le médecin le plus proche).",
+          "Données d'utilisation (comme les pages que vous visitez et votre interaction avec le site)."
+        ]
+      },
+      {
+        "title": "2. Comment nous utilisons les informations",
+        "content": [
+          "Nous utilisons les informations que nous collectons aux fins suivantes :",
+          "Fournir des services de réservation et de consultations médicales en ligne.",
+          "Communiquer avec vous concernant vos rendez-vous ou vos questions.",
+          "Améliorer l'expérience utilisateur et développer nos services.",
+          "Assurer la conformité avec les lois médicales locales."
+        ]
+      },
+      {
+        "title": "3. Partage des informations",
+        "content": [
+          "Nous ne vendons ni ne partageons vos données personnelles avec des tiers, sauf dans les cas suivants :",
+          "Avec votre consentement explicite.",
+          "Avec les médecins contractés avec nous pour vous fournir le service.",
+          "Si la loi l'exige en vertu d'une ordonnance judiciaire ou d'une autorité gouvernementale autorisée."
+        ]
+      },
+      {
+        "title": "4. Sécurité des informations",
+        "content": [
+          "Nous utilisons un ensemble de mesures de sécurité pour protéger vos informations, notamment :",
+          "Cryptage des données sensibles.",
+          "Protection des serveurs du site avec des pare-feu et des mesures de sécurité avancées.",
+          "Permettre uniquement aux employés autorisés d'accéder à vos informations, si nécessaire."
+        ]
+      },
+      {
+        "title": "5. Cookies",
+        "content": [
+          "Notre site utilise des cookies pour améliorer l'expérience de navigation et analyser l'utilisation. Vous pouvez modifier les paramètres de votre navigateur pour désactiver les cookies, mais cela peut affecter certaines fonctionnalités du site."
+        ]
+      },
+      {
+        "title": "6. Droits de l'utilisateur",
+        "content": [
+          "Vous avez le droit de :",
+          "Accéder à vos informations personnelles.",
+          "Modifier ou supprimer vos données sur demande.",
+          "Retirer votre consentement à notre utilisation de vos données à tout moment."
+        ]
+      },
+      {
+        "title": "7. Modifications de la politique",
+        "content": [
+          "Nous pouvons mettre à jour cette politique de temps à autre. Tout changement sera publié sur cette page avec une mise à jour de la date de révision ci-dessous.",
+          "Dernière mise à jour : 18 mai 2025"
+        ]
+      }
+    ]
+  },
+  "DashboardAdmin": {
+    "title": "Tableau de bord",
+    "welcome": "Bienvenue administrateur !",
+    "charts": "Statistiques générales"
+  },
+  "MedicalRecord": {
+    "title": "Dossier Médical",
+    "subtitle": "Détails du patient et dossier médical complet",
+    "name": "Ahmed Mohamed Abdallah",
+    "currentDiagnosis": "Diagnostic actuel",
+    "medicalFilesTitle": "Fichiers médicaux téléchargés",
+    "medicalFilesDesc": "Pour télécharger les images, rapports et examens que le patient a téléchargés",
+    "lastUpdateTitle": "Dernière mise à jour :",
+    "lastUpdateDate": "10 mai 2024",
+    "treatmentPlan": "Plan de traitement",
+    "btn": "Modifier"
+  }
+}

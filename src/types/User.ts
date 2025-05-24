@@ -1,12 +1,5 @@
-export type Review = {
-  _id: string;
-  content: string;
-  patientId: User;
-  doctorId: User;
-  rating: number;
-  createdAt: string;
-  updatedAt: string;
-};
+import { Review } from "./Review";
+
 export type User = {
   _id: string;
   username: string;
@@ -22,14 +15,7 @@ export type User = {
   }[];
   avgRatings: number;
   availableHours?: {
-    day:
-      | "Sunday"
-      | "Monday"
-      | "Tuesday"
-      | "Wednesday"
-      | "Thursday"
-      | "Friday"
-      | "Saturday";
+    day: string;
   }[];
   location?: {
     type: "Point";
@@ -47,14 +33,7 @@ export type updateUser = {
   phone?: string;
   specialization?: string;
   availableHours?: {
-    day:
-      | "Sunday"
-      | "Monday"
-      | "Tuesday"
-      | "Wednesday"
-      | "Thursday"
-      | "Friday"
-      | "Saturday";
+    day: string;
   }[];
   location?: {
     type: "Point";
@@ -62,4 +41,24 @@ export type updateUser = {
     addrss?: string;
   };
   description?: string;
+};
+export type CreateUser = {
+  username?: string;
+  email?: string;
+  phone?: string;
+  role: "admin" | "doctor" | "patient";
+  active: boolean;
+  picture: string;
+  specialization?: string;
+  availableHours?: {
+    day: string;
+  }[];
+  location?: {
+    type: "Point";
+    coordinates: number[];
+    addrss?: string;
+  };
+  description?: string;
+  password: string;
+  confirmPassword: string;
 };

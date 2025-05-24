@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { cookies } from "next/headers";
 
 export const fetchUser = async () => {
@@ -11,10 +11,10 @@ export const fetchUser = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(res.data.user);
+
     return res.data.user;
   } catch (error) {
-    console.error("Error fetching user:", error);
-    return null;
+    const axiosError = error as AxiosError;
+    return axiosError;
   }
 };

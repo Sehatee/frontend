@@ -3,6 +3,7 @@
 import { getAnalysis } from "@/lib/api/admin";
 import { Appointment } from "@/types/Appointment";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import React from "react";
 
 const statusClass = (status: string) =>
@@ -16,6 +17,17 @@ export default async function AppointmentsPage() {
   const appointments: Appointment[] = data?.appointments.appointments;
   return (
     <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
+      {/* Breadcrumb navigation */}
+      <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+        <Link
+          href={"/dashboard/admin"}
+          className="hover:text-main transition duration-200"
+        >
+          لوحة التحكم
+        </Link>
+        <span className="text-gray-400">/</span>
+        <span>المواعيد</span>
+      </div>
       <h1 className="text-2xl font-bold mb-8 text-gray-800">جدول المواعيد</h1>
       <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
         {appointments.length === 0 ? (

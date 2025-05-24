@@ -8,6 +8,8 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getDoctor } from "@/lib/api/doctor";
 import { User } from "@/types/User";
+import AddReview from "./AddReview";
+import { Review as ReviewType } from "@/types/Review";
 
 const Doctor = async ({ doctorId }: { doctorId: string }) => {
   const t = await getTranslations("Doctor");
@@ -132,7 +134,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
           <h2 className="text-xl font-semibold mb-4">{t("patientReviews")}</h2>
           <div className="space-y-4 overflow-y-auto h-[calc(100%-140px)]">
             {reviews && reviews?.length > 0 ? (
-              reviews.map((review) => (
+              reviews.map((review: ReviewType) => (
                 <Review key={review._id} review={review} />
               ))
             ) : (
@@ -140,21 +142,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
             )}
           </div>
 
-          <div className="sticky bottom-0 left-0 right-0 bg-white py-7 border-t">
-            <form className="flex gap-2">
-              <input
-                type="text"
-                placeholder={t("writeYourReview")}
-                className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                {t("submit")}
-              </button>
-            </form>
-          </div>
+          <AddReview doctorId={doctor._id} />
         </div>
       </div>
     </div>

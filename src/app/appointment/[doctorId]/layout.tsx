@@ -1,4 +1,6 @@
 import "@/app/globals.css";
+import { fetchUser } from "@/lib/fetchUser";
+import { redirect } from "next/navigation";
 
 interface Props {
   params: Promise<{ doctorId: string }>;
@@ -15,6 +17,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await fetchUser();
+  if (user.role !== "pateint") {
+    redirect("/doctors");
+  }
   return (
     <div className="bg-bg  ">
       <div className="container mx-auto  ">{children}</div>
