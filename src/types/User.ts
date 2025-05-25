@@ -25,6 +25,7 @@ export type User = {
   active: boolean;
   description: string;
   createdAt: Date;
+  updatedAt: Date;
   reviews: Review[];
 };
 export type updateUser = {

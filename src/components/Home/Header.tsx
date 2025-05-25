@@ -53,22 +53,6 @@ const Header = () => {
           </span>
         </button>
       </div>
-
-      <div
-        className={`absolute bottom-0 ${
-          locale === "en" ? "xl:right-5 right-0" : "xl:left-5 left-0"
-        } xl:w-[687px] lg:w-[600px] md:w-[500px] hidden md:block`}
-      >
-        <Image
-          width={687}
-          height={687}
-          alt="docImage"
-          src={"/imgs/header/doctor.png"}
-          className={`w-full h-auto object-contain  ${
-            locale === "en" ? "scale-x-[-1]" : ""
-          }`}
-        />
-      </div>
     </div>
   );
 };

@@ -90,7 +90,7 @@ const Review = ({ review }: ReviewProps) => {
         <div className="flex items-start gap-4">
           <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
             <Image
-              src={currentReview.patientId.picture || "/imgs/navbar/user.png"}
+              src={currentReview.patientId.picture || ""}
               alt={currentReview.patientId.username}
               fill
               className="object-cover"
@@ -125,7 +125,7 @@ const Review = ({ review }: ReviewProps) => {
                     <Trash2 className="w-4 h-4 text-red-500" />
                   </button>
                   <span className="text-sm text-gray-500">
-                    {new Date(currentReview.createdAt).toLocaleDateString()}
+                    {currentReview.createdAt.split("T")[0]}
                   </span>
                 </div>
               )}

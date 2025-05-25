@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { fetchUser } from "@/lib/fetchUser";
 import { MapProvider } from "@/providers/map-provider";
 
 interface Props {
@@ -28,6 +29,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await fetchUser();
   return (
     <div className="bg-bg">
       <div className="container mx-auto">

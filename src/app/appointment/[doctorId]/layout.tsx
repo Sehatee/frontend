@@ -18,7 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const user = await fetchUser();
-  if (user.role !== "pateint") {
+  if (user && user.role !== "patient") {
     redirect("/doctors");
   }
   return (

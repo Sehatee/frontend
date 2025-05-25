@@ -3,13 +3,13 @@ import { MapPin, Calendar, MessageSquare, CalendarPlus } from "lucide-react";
 import Image from "next/image";
 import RenderStars from "@/ui/RenderStars";
 import MapComponent from "../map/Map";
-import Review from "./Review";
+
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getDoctor } from "@/lib/api/doctor";
 import { User } from "@/types/User";
-import AddReview from "./AddReview";
-import { Review as ReviewType } from "@/types/Review";
+
+import Reviews from "./Reviews";
 
 const Doctor = async ({ doctorId }: { doctorId: string }) => {
   const t = await getTranslations("Doctor");
@@ -129,21 +129,8 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
           </div>
         </div>
 
-        {/* Reviews Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 h-[400px] relative">
-          <h2 className="text-xl font-semibold mb-4">{t("patientReviews")}</h2>
-          <div className="space-y-4 overflow-y-auto h-[calc(100%-140px)]">
-            {reviews && reviews?.length > 0 ? (
-              reviews.map((review: ReviewType) => (
-                <Review key={review._id} review={review} />
-              ))
-            ) : (
-              <Review />
-            )}
-          </div>
-
-          <AddReview doctorId={doctor._id} />
-        </div>
+        {/* Reviews section */}
+        <Reviews doctorId={doctor._id} initialReviews={reviews} />
       </div>
     </div>
   );

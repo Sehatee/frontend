@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Mail, Phone, Download, FileText } from "lucide-react";
+import { Mail, Phone, Download, FileText, AlertCircle } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { MedicalRecordPateint } from "@/types/MedicalRecord";
 import Image from "next/image";
@@ -14,7 +14,42 @@ const MedicalRecordPatient = ({
   const t = useTranslations("MedicalRecord");
 
   const [record] = useState<MedicalRecordPateint>(medicalRecord);
+  if (!record._id) {
+    return (
+      <div className="rtl min-h-screen pt-6 pb-20 px-4 md:px-14 mx-auto bg-[#f7fafd]">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          <div>
+            <h2
+              className={`text-[#174ea6] text-[2.1rem] font-bold mb-2 ${
+                locale === "en" ? "text-left" : "text-center md:text-right"
+              }`}
+            >
+              {t("title")}
+            </h2>
+          </div>
+        </div>
 
+        <div className="bg-white rounded-2xl p-8 mb-10 shadow-md shadow-[#e3edfa] flex flex-col items-center justify-center text-center">
+          <div className="bg-[#f7fafd] rounded-full w-16 h-16 flex items-center justify-center mb-4">
+            <AlertCircle size={32} className="text-[#e57373]" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">
+            Medical Record Not Found
+          </h3>
+          <p className="text-[#666] mb-6">
+            The requested medical record could not be found or may have been
+            deleted.
+          </p>
+          <button
+            className="bg-[#2d6cdf] text-white rounded-lg px-6 py-2 hover:bg-[#174ea6] transition-colors duration-200"
+            onClick={() => window.history.back()}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
   const medicalFiles = record.attachments.map((file) => {
     return file;
   });

@@ -5,8 +5,18 @@ import { Star } from "lucide-react";
 import Cookies from "js-cookie";
 import { createReview } from "@/lib/api/review";
 import { useUserStore } from "@/stores/user";
-const AddReview = ({ doctorId }: { doctorId: string }) => {
+import { Review } from "@/types/Review";
+const AddReview = ({
+  doctorId,
+  reviews,
+  setReviews,
+}: {
+  doctorId: string;
+  reviews: Review[];
+  setReviews: React.Dispatch<React.SetStateAction<Review[]>>;
+}) => {
   const t = useTranslations("Doctor");
+
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
   const locale = Cookies.get("locale");
@@ -20,6 +30,7 @@ const AddReview = ({ doctorId }: { doctorId: string }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Submit logic here (e.g., API call)
+    console.log(token);
     const newReview = await createReview(token || " ", doctorId, {
       content,
       rating,
@@ -29,6 +40,8 @@ const AddReview = ({ doctorId }: { doctorId: string }) => {
         ...user,
         reviews: [...user.reviews, newReview._id],
       });
+      console.log(newReview)
+      setReviews([...reviews, newReview]);
     }
     setContent("");
     setRating(0);

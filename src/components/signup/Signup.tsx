@@ -6,6 +6,8 @@ import { Loader2, Phone, Upload } from "lucide-react";
 import Image from "next/image";
 import { handleSignup } from "@/lib/auth";
 import { useUserStore } from "@/stores/user";
+import { useRouter } from "next/navigation";
+import showToast from "@/utils/showToast";
 
 const Signup = () => {
   const t = useTranslations("Signup");
@@ -20,7 +22,8 @@ const Signup = () => {
     phone: "",
     file: null as File | null,
   });
-  const { setUser } = useUserStore();
+  const router = useRouter();
+  const {  setUser } = useUserStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked, files } = e.target;
@@ -47,15 +50,14 @@ const Signup = () => {
     setIsLoading(true);
     try {
       const res = await handleSignup(formData);
-      setUser(res.user);
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        phone: "",
-        file: null as File | null,
-      });
+      if (res) {
+        setUser(res.user);
+      
+        showToast("success", "Signup successful");
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -259,7 +261,11 @@ const Signup = () => {
                   t("acceptTerms").split(" ")[1],
                 ].join(" ")}
               </span>{" "}
-              <Link href={"/terms"} className="text-main hover:underline">
+              <Link
+                href={"/terms"}
+                target="_blank"
+                className="text-main hover:underline"
+              >
                 {[
                   t("acceptTerms").split(" ")[2],
                   t("acceptTerms").split(" ")[3],

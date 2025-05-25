@@ -6,6 +6,7 @@ import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
 import "aos/dist/aos.css";
 import { ToastContainer } from "react-toastify";
+import { fetchUser } from "@/lib/fetchUser";
 
 // const cairo = Cairo({
 //   subsets: ["arabic"],
@@ -24,6 +25,8 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
+  const user = await fetchUser();
+  console.log(user);
   // const font = locale === "ar" ? cairo.className : geist.className;
 
   return (

@@ -47,7 +47,7 @@ export const createUser = async (data: FormData, token: string) => {
       },
     });
 
-    showToast("success", "created a user ");
+    showToast("success", "إنشاء مستخدم جديد");
     return res.data.data;
   } catch (error) {
     const axiosError = error as AxiosError;
@@ -77,7 +77,7 @@ export const activeOrDeleteUser = async (
         },
       }
     );
-    showToast("success", `${!active ? "active a user" : "delete a user"}`);
+    showToast("success", `${!active ? "تفعيل مستخدم " : "delete a user"}`);
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;

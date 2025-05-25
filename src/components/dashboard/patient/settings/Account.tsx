@@ -1,17 +1,37 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { AlertCircle, Eye, EyeOff } from "lucide-react";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import SideBarDashboards from "@/ui/SideBarDashboards";
-
+import { updatePassword } from "@/lib/api/profile";
+import Cookies from "js-cookie";
+import { useUserStore } from "@/stores/user";
 export const Account = () => {
   const t = useTranslations("Settings");
   const links = t.raw("links");
 
+  const [data, setData] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const token = Cookies.get("token");
+  const { setUser } = useUserStore();
+  const handleUpdatePassword = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await updatePassword(data, token || "");
 
+      if (res && res.user) {
+        setUser(res.user);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="min-h-screen p-4">
       {/* ✅ Sidebar الأفقي + ثابت في الأعلى */}
@@ -45,7 +65,7 @@ export const Account = () => {
             {t("changePassword.subtitle")}
           </p>
 
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleUpdatePassword}>
             {/* current */}
             <div className="relative">
               <label className="text-sm text-gray-600 mb-1 block">
@@ -53,6 +73,14 @@ export const Account = () => {
               </label>
               <div className="relative">
                 <input
+                  onChange={(e) => {
+                    setData((oldData) => {
+                      return {
+                        ...oldData,
+                        oldPassword: e.target.value,
+                      };
+                    });
+                  }}
                   type={showPassword ? "text" : "password"}
                   className="w-full p-2 pr-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
                 />
@@ -73,6 +101,14 @@ export const Account = () => {
               </label>
               <div className="relative">
                 <input
+                  onChange={(e) => {
+                    setData((oldData) => {
+                      return {
+                        ...oldData,
+                        newPassword: e.target.value,
+                      };
+                    });
+                  }}
                   type={showNewPassword ? "text" : "password"}
                   className="w-full p-2 pr-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
                 />
@@ -93,6 +129,14 @@ export const Account = () => {
               </label>
               <div className="relative">
                 <input
+                  onChange={(e) => {
+                    setData((oldData) => {
+                      return {
+                        ...oldData,
+                        confirmPassword: e.target.value,
+                      };
+                    });
+                  }}
                   type={showConfirmPassword ? "text" : "password"}
                   className="w-full p-2 pr-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
                 />

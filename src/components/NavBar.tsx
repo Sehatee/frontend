@@ -279,7 +279,7 @@ const NavBar = () => {
                         </li>
                         <li className="bg-white py-2.5 xs:py-3 px-5 xs:px-7 rounded-xl hover:bg-gray-50 transition-colors">
                           <Link
-                            href={`/dashboard/${user.role}/appointments/`}
+                            href={`/dashboard/${user.role}/medical-records/`}
                             className="flex items-center justify-between"
                           >
                             <h1>{userMenuT("medicalRecords")}</h1>

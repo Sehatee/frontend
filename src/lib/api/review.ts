@@ -36,15 +36,11 @@ export const updateReview = async (
   data: UpdateReview
 ) => {
   try {
-    const res = await axios.patch(
-      `${baseUrl}/reviews/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.patch(`${baseUrl}/reviews/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;

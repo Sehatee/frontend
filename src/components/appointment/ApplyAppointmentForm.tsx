@@ -40,8 +40,10 @@ const ApplyAppointmentForm = ({
     e.preventDefault();
     setIsLoading(true);
     try {
-      await applyAppointment(formData, token);
-      router.push('/dashboard/patient/appointments')
+      const res = await applyAppointment(formData, token);
+      if (res) {
+        router.push("/dashboard/patient/appointments");
+      }
     } finally {
       setIsLoading(false);
     }
