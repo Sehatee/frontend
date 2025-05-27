@@ -4,7 +4,6 @@ export const getAllDoctors = async (
 ) => {
   try {
     if (specialization && search) {
-      
       const res = await fetch(
         `${process.env.API_URL}/doctors?specialization=${specialization}&query=${search}`
       );

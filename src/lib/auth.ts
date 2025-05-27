@@ -9,6 +9,9 @@ export const handleLogin = async (email: string, password: string) => {
       {
         email,
         password,
+      },
+      {
+        withCredentials: true,
       }
     );
 
@@ -46,15 +49,12 @@ export const handleSignup = async (formdata: {
   data.append("phone", formdata.phone);
   data.append("file", formdata.file);
   try {
-
-
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
       data
     );
 
     Cookies.set("token", res.data.token);
-    
 
     return res.data;
   } catch (error) {

@@ -1,6 +1,6 @@
 "use client";
 import { Appointment } from "@/types/Appointment";
-import { Calendar, FileText, Trash, Plus } from "lucide-react";
+import { Calendar, FileText, Trash, Plus, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useState, useRef } from "react";
 import MedicalRecordModal from "./MedicalRecordModal";
@@ -13,6 +13,8 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   const [showActions, setShowActions] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isCreatingRecord, setIsCreatingRecord] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const token = Cookies.get("token");
 
@@ -30,7 +32,15 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   };
 
   const handleCreateMedicalRecord = async (data: FormData) => {
-    await createMedicalRecord(data, token || "");
+    setIsCreatingRecord(true);
+    try {
+      await createMedicalRecord(data, token || "");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error creating medical record:", error);
+    } finally {
+      setIsCreatingRecord(false);
+    }
   };
 
   const handleDelete = () => {
@@ -38,11 +48,11 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   };
 
   const confirmDelete = async () => {
+    setIsDeleting(true);
     try {
       await deleteAppointment(appointment._id, token || "");
       setShowDeleteModal(false);
 
-      // Animate and remove the card
       if (cardRef.current) {
         cardRef.current.style.transition = "all 0.3s ease-out";
         cardRef.current.style.opacity = "0";
@@ -56,6 +66,8 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
       }
     } catch (error) {
       console.error("Error deleting appointment:", error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -105,8 +117,13 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
                   onClick={() => setIsModalOpen(true)}
                   className="p-1 text-green-600 hover:text-green-800 transition-colors relative group"
                   title={t("actions.createMedicalRecord")}
+                  disabled={isCreatingRecord}
                 >
-                  <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                  {isCreatingRecord ? (
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                  ) : (
+                    <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                  )}
                   <span className="absolute -top-8 right-0 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     {t("actions.createMedicalRecord")}
                   </span>
@@ -115,8 +132,13 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
                   onClick={handleDelete}
                   className="p-1 text-red-600 hover:text-red-800 transition-colors"
                   title={t("actions.deleteAppointment")}
+                  disabled={isDeleting}
                 >
-                  <Trash className="w-4 h-4 sm:w-5 sm:h-5" />
+                  {isDeleting ? (
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                  ) : (
+                    <Trash className="w-4 h-4 sm:w-5 sm:h-5" />
+                  )}
                 </button>
               </div>
             )}
@@ -144,13 +166,16 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
               <button
                 onClick={() => setShowDeleteModal(false)}
                 className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                disabled={isDeleting}
               >
                 {t("deleteConfirmation.cancel")}
               </button>
               <button
                 onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors flex items-center gap-2"
+                disabled={isDeleting}
               >
+                {isDeleting && <Loader2 className="w-4 h-4 animate-spin" />}
                 {t("deleteConfirmation.confirm")}
               </button>
             </div>

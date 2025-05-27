@@ -14,11 +14,12 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
   doctor,
 }) => {
   const t = useTranslations("DoctorCard");
+  const translateDay = useTranslations("Doctor");
   //extract the days
   const days = doctor.availableHours?.map((day) => {
-    return day.day;
+    return translateDay(`days.${day.day.toLowerCase()}`);
   });
-  console.log('days',days)
+
   return (
     <div className="bg-white rounded-lg p-6 shadow-md flex flex-col justify-between gap-6">
       <div className="flex flex-col items-center  text-center">

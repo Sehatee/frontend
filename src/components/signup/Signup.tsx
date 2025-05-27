@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Loader2, Phone, Upload } from "lucide-react";
 import Image from "next/image";
 import { handleSignup } from "@/lib/auth";
-import { useUserStore } from "@/stores/user";
 import { useRouter } from "next/navigation";
 import showToast from "@/utils/showToast";
 
@@ -23,7 +22,6 @@ const Signup = () => {
     file: null as File | null,
   });
   const router = useRouter();
-  const {  setUser } = useUserStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked, files } = e.target;
@@ -51,10 +49,8 @@ const Signup = () => {
     try {
       const res = await handleSignup(formData);
       if (res) {
-        setUser(res.user);
-      
-        showToast("success", "Signup successful");
-        router.push("/");
+        showToast("success", "تم تسجيل حسابك بنجاح ، سجل دخول للإكمال من فضلك");
+        router.push("/login");
       }
     } catch (error) {
       console.error(error);

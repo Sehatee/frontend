@@ -3,10 +3,11 @@ import { updateUserProfile } from "@/lib/api/profile";
 import { User } from "@/types/User";
 import { useTranslations } from "next-intl";
 import React, { FormEvent, useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Upload } from "lucide-react";
 import showToast from "@/utils/showToast";
 import Cookies from "js-cookie";
 import { AxiosError } from "axios";
+import Image from "next/image";
 
 const days = [
   "Sunday",
@@ -22,6 +23,9 @@ const FormUpdateUser = ({ user }: { user: User }) => {
   const t = useTranslations("Profile");
   const [isLoading, setIsLoading] = useState(false);
   const token = Cookies.get("token") || undefined;
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(
+    user.picture || null
+  );
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,
@@ -33,16 +37,32 @@ const FormUpdateUser = ({ user }: { user: User }) => {
       address: user.location?.addrss || "",
     },
     workingDays: user.availableHours?.map((h) => h.day) || [],
+    file: null as File | null,
   });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target as HTMLInputElement;
+
+    if (type === "file" && files && files[0]) {
+      const file = files[0];
+      setFormData((prev) => ({
+        ...prev,
+        file: file,
+      }));
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleCoordinatesChange = (field: "lat" | "lng", value: string) => {
@@ -77,7 +97,6 @@ const FormUpdateUser = ({ user }: { user: User }) => {
             day as
               | "Sunday"
               | "Monday"
-              | "v"
               | "Wednesday"
               | "Thursday"
               | "Friday"
@@ -91,29 +110,39 @@ const FormUpdateUser = ({ user }: { user: User }) => {
     setIsLoading(true);
 
     try {
-      const updateData = {
-        username: formData.username,
-        email: formData.email,
-        phone: formData.phone,
-        ...(user.role === "doctor" && {
-          specialization: formData.specialization,
-          description: formData.description,
-          location: {
-            type: "Point" as const,
-            coordinates: [
-              formData.location.coordinates[0],
-              formData.location.coordinates[1],
-            ],
-            addrss: formData.location.address,
-          },
-          availableHours: formData.workingDays.map((day) => ({
-            day,
-          })),
-        }),
-      };
-      console.log(updateData)
-      await updateUserProfile(updateData, token);
+      // Create FormData object for file upload
+      const data = new FormData();
 
+      // Add basic user data
+      data.append("username", formData.username);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone);
+      if (formData.file) {
+        data.append("file", formData.file);
+      }
+
+      // Add doctor-specific data if applicable
+      if (user.role === "doctor") {
+        data.append("specialization", formData.specialization);
+        data.append("description", formData.description);
+
+        // Add location data as JSON string
+        const locationData = {
+          type: "Point",
+          coordinates: [
+            formData.location.coordinates[0],
+            formData.location.coordinates[1],
+          ],
+          addrss: formData.location.address,
+        };
+        data.append("location", JSON.stringify(locationData));
+
+        // Add available hours
+        const availableHours = formData.workingDays.map((day) => ({ day }));
+        data.append("availableHours", JSON.stringify(availableHours));
+      }
+      console.log(data.get("location"));
+      await updateUserProfile(data, token);
       showToast("success", t("profileUpdated"));
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -121,12 +150,13 @@ const FormUpdateUser = ({ user }: { user: User }) => {
       showToast(
         "error",
         (axiosError.response?.data as { message: string })?.message ||
-          "An error occurred"
+          "حدث خطأ"
       );
     } finally {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     console.log(formData);
   }, [formData]);
@@ -137,6 +167,39 @@ const FormUpdateUser = ({ user }: { user: User }) => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-6 bg-white p-6 rounded-lg max-w-3xl mx-auto"
     >
+      {/* Avatar upload field */}
+      <div className="flex flex-col items-center space-y-4">
+        <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gray-100">
+          {avatarPreview ? (
+            <Image
+              src={avatarPreview}
+              alt="Avatar preview"
+              width={150}
+              height={150}
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-full">
+              <Upload className="w-8 h-8 text-gray-400" />
+            </div>
+          )}
+        </div>
+        <input
+          type="file"
+          name="file"
+          accept="image/*"
+          onChange={handleChange}
+          className="hidden"
+          id="file-upload"
+        />
+        <label
+          htmlFor="file-upload"
+          className="cursor-pointer text-sm text-blue-600 hover:text-blue-700"
+        >
+          {t("personalInfo.uploadPicture") || "Upload Picture"}
+        </label>
+      </div>
+
       <div className="flex flex-col gap-2">
         <label className="text-sm font-medium text-gray-700">
           {t("personalInfo.fullName")}

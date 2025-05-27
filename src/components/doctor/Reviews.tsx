@@ -4,6 +4,7 @@ import Review from "./Review";
 import { Review as ReviewType } from "@/types/Review";
 import AddReview from "./AddReview";
 import { useTranslations } from "next-intl";
+import { useUserStore } from "@/stores/user";
 
 const Reviews = ({
   doctorId,
@@ -13,6 +14,7 @@ const Reviews = ({
   initialReviews: ReviewType[];
 }) => {
   const t = useTranslations("Doctor");
+  const { user } = useUserStore();
   const [allReviews, setAllReviews] = useState(initialReviews);
   return (
     <>
@@ -29,11 +31,13 @@ const Reviews = ({
           )}
         </div>
 
-        <AddReview
-          doctorId={doctorId}
-          reviews={allReviews}
-          setReviews={setAllReviews}
-        />
+        {user?.role === "patient" && (
+          <AddReview
+            doctorId={doctorId}
+            reviews={allReviews}
+            setReviews={setAllReviews}
+          />
+        )}
       </div>
     </>
   );

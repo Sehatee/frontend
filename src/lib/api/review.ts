@@ -25,7 +25,7 @@ export const createReview = async (
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }
@@ -48,7 +48,7 @@ export const updateReview = async (
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }
@@ -68,7 +68,7 @@ export const deleteReview = async (token: string, id: string) => {
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }

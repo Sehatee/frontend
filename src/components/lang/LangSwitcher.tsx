@@ -13,9 +13,10 @@ const LangSwitcher = () => {
   ];
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(Cookies.get("locale") || "ar");
-  const selectedLanguage =
-    languages.find((lang) => lang.code === currentLang) || languages[1];
+  const [currentLang, setCurrentLang] = useState(Cookies.get("locale"));
+  const selectedLanguage = languages.find(
+    (lang) => lang.code === currentLang
+  ) || { key: "GB", code: "en", name: "English" };
   const handleLanguageChange = (newLang: string) => {
     Cookies.set("locale", newLang);
     setCurrentLang(newLang);

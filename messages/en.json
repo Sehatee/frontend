@@ -8,6 +8,7 @@
     "doctors": "Doctors",
     "services": "Services",
     "about": "About",
+    "pricing": "Pricing",
     "login": "Login",
     "signup": "Signup",
     "userMenu": {
@@ -250,7 +251,8 @@
       "descriptionPlaceholder": "Write a brief description about your medical practice and experience",
       "latitude": "Latitude",
       "longitude": "Longitude",
-      "workingDays": "Working Days"
+      "workingDays": "Working Days",
+      "uploadPicture": "please upload your image"
     },
     "editProfile": "Edit Profile",
     "days": {
@@ -292,7 +294,12 @@
     "deleteAccount": {
       "title": "Delete Account",
       "description": "When you delete your account, all your data and personal information will be permanently deleted",
-      "button": "Delete Account"
+      "button": "Delete Account",
+      "confirmTitle": "Delete Account",
+      "confirmDescription": "Are you sure you want to delete your account?",
+      "confirmButton": "Delete Account",
+      "cancel": "Cancel", 
+      "confirm": "Delete"
     },
     "notifications": {
       "title": "Notifications",
@@ -428,7 +435,8 @@
       "friday": "Friday",
       "saturday": "Saturday",
       "sunday": "Sunday"
-    }
+    },
+    "submitting":"loding ..."
   },
   "Appointments": {
     "title": "Appointments",

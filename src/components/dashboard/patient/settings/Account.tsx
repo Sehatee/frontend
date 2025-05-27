@@ -1,14 +1,16 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { AlertCircle, Eye, EyeOff } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import SideBarDashboards from "@/ui/SideBarDashboards";
-import { updatePassword } from "@/lib/api/profile";
+import { updatePassword, updateUserProfile } from "@/lib/api/profile";
 import Cookies from "js-cookie";
 import { useUserStore } from "@/stores/user";
+
 export const Account = () => {
   const t = useTranslations("Settings");
   const links = t.raw("links");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [data, setData] = useState({
     oldPassword: "",
@@ -19,9 +21,11 @@ export const Account = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const token = Cookies.get("token");
-  const { setUser } = useUserStore();
+  const { user, setUser, clearUser } = useUserStore();
+
   const handleUpdatePassword = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await updatePassword(data, token || "");
 
@@ -30,6 +34,24 @@ export const Account = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const [isDeactivating, setIsDeactivating] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const handalDisActiveAccount = async () => {
+    setIsDeactivating(true);
+    try {
+      const data = new FormData();
+      data.append("active", "false");
+      await updateUserProfile(data, token || "");
+      clearUser();
+      setShowConfirmModal(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsDeactivating(false);
     }
   };
   return (
@@ -44,11 +66,11 @@ export const Account = () => {
             links={[
               {
                 name: links.l1,
-                href: "/dashboard/patient/settings/account",
+                href: `/dashboard/${user?.role}/settings/account`,
               },
               {
                 name: links.l2,
-                href: "/dashboard/patient/settings/notifications",
+                href: `/dashboard/${user?.role}/settings/notifications`,
               },
             ]}
           />
@@ -156,8 +178,10 @@ export const Account = () => {
 
             <button
               type="submit"
-              className="bg-main text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors w-full"
+              disabled={isLoading}
+              className="bg-main text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
               {t("changePassword.submit")}
             </button>
           </form>
@@ -174,12 +198,50 @@ export const Account = () => {
               <p className="text-sm text-gray-500 mb-4">
                 {t("deleteAccount.description")}
               </p>
-              <button className="text-red-500 border border-red-500 py-2 px-4 rounded-md hover:bg-red-50 transition-colors">
+              <button
+                onClick={() => setShowConfirmModal(true)}
+                className="text-red-500 border border-red-500 py-2 px-4 rounded-md hover:bg-red-50 transition-colors"
+                disabled={isDeactivating}
+              >
+                {isDeactivating && <Loader2 className="w-4 h-4 animate-spin" />}
                 {t("deleteAccount.button")}
               </button>
             </div>
           </div>
         </div>
+
+        {/* Confirmation Modal */}
+        {showConfirmModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
+                {t("deleteAccount.confirmTitle")}
+              </h2>
+              <p className="text-gray-600 mb-6">
+                {t("deleteAccount.confirmDescription")}
+              </p>
+              <div className="flex justify-end gap-4">
+                <button
+                  onClick={() => setShowConfirmModal(false)}
+                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                  disabled={isDeactivating}
+                >
+                  {t("deleteAccount.cancel")}
+                </button>
+                <button
+                  onClick={handalDisActiveAccount}
+                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors flex items-center gap-2"
+                  disabled={isDeactivating}
+                >
+                  {isDeactivating && (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  )}
+                  {t("deleteAccount.confirm")}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
     e.preventDefault();
 
     if (userData.password !== userData.confirmPassword) {
-      showToast("error", "Passwords do not match");
+      showToast("error", "كلمات المرور غير متطابقة");
       return;
     }
 
@@ -74,7 +74,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
       formData.append("file", file);
     } catch (error) {
       console.error("Error converting image URL to file:", error);
-      showToast("error", "Error processing image");
+      showToast("error", "خطأ في معالجة الصورة");
       return;
     }
 
@@ -234,7 +234,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 <input
                   type="text"
                   name="addrss"
-                  
                   value={userData.location?.addrss}
                   onChange={(e) => {
                     setUserData((prev) => ({
@@ -255,7 +254,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 </label>
                 <input
                   type="number"
-                  
                   step="any"
                   value={userData.location?.coordinates[0] || ""}
                   onChange={(e) => {
@@ -282,7 +280,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 <input
                   type="number"
                   step="any"
-                  
                   value={userData.location?.coordinates[1] || ""}
                   onChange={(e) => {
                     setUserData((prev) => ({

@@ -134,13 +134,13 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="relative text-center group">
-              <Link href={"/about"}>
-                <h1>التسعيرة</h1>
+              <Link href={"/pricing"}>
+                <h1>{t('pricing')}</h1>
                 {/* hover effect */}
                 <div
                   className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
                   ${
-                    pathName === "/about"
+                    pathName === "/pricing"
                       ? "w-5 opacity-100"
                       : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
                   }

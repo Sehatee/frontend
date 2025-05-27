@@ -1,11 +1,12 @@
 "use client";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
-import { Star } from "lucide-react";
+import { Star, Loader2 } from "lucide-react";
 import Cookies from "js-cookie";
 import { createReview } from "@/lib/api/review";
 import { useUserStore } from "@/stores/user";
 import { Review } from "@/types/Review";
+import showToast from "@/utils/showToast";
 const AddReview = ({
   doctorId,
   reviews,
@@ -19,6 +20,7 @@ const AddReview = ({
 
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const locale = Cookies.get("locale");
   const token = Cookies.get("token");
   const { user, setUser } = useUserStore();
@@ -29,22 +31,33 @@ const AddReview = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Submit logic here (e.g., API call)
-    console.log(token);
-    const newReview = await createReview(token || " ", doctorId, {
-      content,
-      rating,
-    });
-    if (user) {
-      setUser({
-        ...user,
-        reviews: [...user.reviews, newReview._id],
-      });
-      console.log(newReview)
-      setReviews([...reviews, newReview]);
+    if (!content || rating === 0) {
+      return showToast("error", "من فضلك أدخل تقييم صحيح");
     }
-    setContent("");
-    setRating(0);
+
+    setIsLoading(true);
+    try {
+      // Submit logic here (e.g., API call)
+      console.log(token);
+      const newReview = await createReview(token || " ", doctorId, {
+        content,
+        rating,
+      });
+      if (user) {
+        setUser({
+          ...user,
+          reviews: [...user.reviews, newReview._id],
+        });
+
+        setReviews([...reviews, newReview]);
+      }
+      setContent("");
+      setRating(0);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -57,6 +70,7 @@ const AddReview = ({
             className="w-full px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            disabled={isLoading}
           />
           <div
             className={`absolute ${
@@ -66,10 +80,10 @@ const AddReview = ({
             {[1, 2, 3, 4, 5].map((star) => (
               <div key={star} className="relative flex items-center">
                 <Star
-                  onClick={() => handleStarClick(star)}
+                  onClick={() => !isLoading && handleStarClick(star)}
                   className={`w-5 h-5 cursor-pointer ${
-                    rating >= star ? "text-yellow-400" : "text-gray-300"
-                  }`}
+                    isLoading ? "opacity-50" : ""
+                  } ${rating >= star ? "text-yellow-400" : "text-gray-300"}`}
                   fill={rating >= star ? "currentColor" : "none"}
                   strokeWidth={1.5}
                 />
@@ -79,9 +93,19 @@ const AddReview = ({
         </div>
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className={`px-6 py-2 bg-blue-600 text-white rounded-lg transition-colors flex items-center justify-center ${
+            isLoading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-700"
+          }`}
+          disabled={isLoading}
         >
-          {t("submit")}
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              {t("submitting")}
+            </>
+          ) : (
+            t("submit")
+          )}
         </button>
       </form>
     </div>

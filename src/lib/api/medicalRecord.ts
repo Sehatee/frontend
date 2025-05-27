@@ -15,7 +15,7 @@ export const getAllMedicalRecordsByDoctor = async (token: string) => {
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
-    showToast("error", "Failed to fetch doctor's medical records");
+    showToast("error", "فشل في جلب السجلات الطبية للطبيب");
     return [];
   }
 };
@@ -32,7 +32,7 @@ export const getAllMedicalRecordsByPatient = async (token: string) => {
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
-    showToast("error", "Failed to fetch patient's medical records");
+    showToast("error", "فشل في جلب السجلات الطبية للمريض");
     return [];
   }
 };
@@ -85,15 +85,14 @@ export const createMedicalRecord = async (data: FormData, token: string) => {
       },
     });
     const medicalRecord = res.data;
-    showToast("success", "Medical record created successfully");
+    showToast("success", "تم إنشاء السجل الطبي بنجاح");
     return medicalRecord;
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
     showToast(
       "error",
-      (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+      (axiosError.response?.data as { message: string })?.message || "حدث خطأ"
     );
     return null;
   }
@@ -111,15 +110,14 @@ export const updateMedicalRecord = async (
       },
     });
     const updatedMedicalrecord = res.data;
-    showToast("success", "Medical record updated successfully");
+    showToast("success", "تم تحديث السجل الطبي بنجاح");
     return updatedMedicalrecord;
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
     showToast(
       "error",
-      (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+      (axiosError.response?.data as { message: string })?.message || "حدث خطأ"
     );
     return null;
   }
@@ -132,14 +130,13 @@ export const deleteMedicalrecord = async (token: string, id: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    showToast("success", "Medical record deleted successfully");
+    showToast("success", "تم حذف السجل الطبي بنجاح");
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
     showToast(
       "error",
-      (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+      (axiosError.response?.data as { message: string })?.message || "حدث خطأ"
     );
     return null;
   }

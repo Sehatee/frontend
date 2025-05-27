@@ -3,7 +3,7 @@ import { Review as ReviewType, UpdateReview } from "@/types/Review";
 import RenderStars from "@/ui/RenderStars";
 import { MessageCircle, Trash2, Edit2, Star } from "lucide-react";
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent,  useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { deleteReview, updateReview } from "@/lib/api/review";
 import Cookies from "js-cookie";
@@ -19,13 +19,19 @@ const Review = ({ review }: ReviewProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [editRating, setEditRating] = useState(0);
+
   const [currentReview, setCurrentReview] = useState<ReviewType | undefined>(
     review
   );
   const { user } = useUserStore();
-  const isMyReview = user?.reviews.some((reviewUser: ReviewType) => {
-    return reviewUser._id === review?._id;
-  });
+
+  const isMyReview = useMemo(() => {
+    return (
+      user?.reviews.some((reviewUser: ReviewType) => {
+        return reviewUser._id === review?._id;
+      }) || false
+    );
+  }, [user?.reviews, review?._id]);
 
   const token = Cookies.get("token");
 

@@ -1,19 +1,19 @@
-import { updateUser } from "@/types/User";
 import showToast from "@/utils/showToast";
 import axios, { AxiosError } from "axios";
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const updateUserProfile = async (
-  data: updateUser,
+  data: FormData,
   token: string | undefined
 ) => {
   try {
     const res = await axios.patch(`${baseUrl}/auth/me`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-dat",
       },
     });
+    
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;
@@ -37,7 +37,7 @@ export const updatePassword = async (
       },
     });
 
-    showToast("success", "update password good");
+    showToast("success", "تم تحديث كلمة المرور بنجاح");
 
     console.log(res.data.token);
     return res.data.user;
@@ -47,7 +47,7 @@ export const updatePassword = async (
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     throw axiosError;
   }

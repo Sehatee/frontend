@@ -14,7 +14,7 @@ export const applyAppointment = async (
         "Content-Type": "application/json",
       },
     });
-    showToast("success", "Appointment applied successfully");
+    showToast("success", "تم تقديم الموعد بنجاح");
     console.log(res);
     return res.data;
   } catch (error) {
@@ -24,7 +24,7 @@ export const applyAppointment = async (
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }
@@ -44,7 +44,7 @@ export const getAllAppintmentsByPatient = async (token: string) => {
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }
@@ -64,7 +64,7 @@ export const getAllAppintmentsByDoctor = async (token: string) => {
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }
@@ -79,7 +79,7 @@ export const deleteAppointment = async (
         Authorization: `Bearer ${token}`,
       },
     });
-    showToast("success", "Appointment deleted successfully");
+    showToast("success", "تم حذف الموعد بنجاح");
     return;
   } catch (error) {
     const axiosError = error as AxiosError;
@@ -87,7 +87,7 @@ export const deleteAppointment = async (
     showToast(
       "error",
       (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+        "حدث خطأ"
     );
     return null;
   }

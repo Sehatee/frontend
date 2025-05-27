@@ -47,15 +47,14 @@ export const createUser = async (data: FormData, token: string) => {
       },
     });
 
-    showToast("success", "إنشاء مستخدم جديد");
+    showToast("success", "تم إنشاء مستخدم");
     return res.data.data;
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
     showToast(
       "error",
-      (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+      (axiosError.response?.data as { message: string })?.message || "حدث خطأ"
     );
     return axiosError.response?.data;
   }
@@ -77,15 +76,14 @@ export const activeOrDeleteUser = async (
         },
       }
     );
-    showToast("success", `${!active ? "تفعيل مستخدم " : "delete a user"}`);
+    showToast("success", `${!active ? "تفعيل مستخدم" : "حذف مستخدم"}`);
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError.response?.data);
     showToast(
       "error",
-      (axiosError.response?.data as { message: string })?.message ||
-        "An error occurred"
+      (axiosError.response?.data as { message: string })?.message || "حدث خطأ"
     );
     return axiosError.response?.data;
   }

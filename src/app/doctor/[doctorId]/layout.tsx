@@ -31,7 +31,7 @@ export default async function RootLayout({
 }>) {
   await fetchUser();
   return (
-    <div className="bg-bg">
+    <div className="bg-bg min-h-screen">
       <div className="container mx-auto">
         <MapProvider>{children}</MapProvider>
       </div>

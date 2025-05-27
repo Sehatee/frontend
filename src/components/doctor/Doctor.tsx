@@ -34,12 +34,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
   const days = doctor.availableHours?.map((day) => {
     return t(`days.${day.day.toLowerCase()}`);
   });
-  console.log(
-    "days",
-    doctor.availableHours?.map((day) => {
-      return day.day;
-    })
-  );
+  
 
   return (
     <div className="px-4 py-8">

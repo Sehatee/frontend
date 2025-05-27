@@ -12,12 +12,12 @@ const ProfileCard = () => {
       <div className="flex flex-col items-center gap-6">
         {/* Profile Image with Border */}
         <div className="relative">
-          <div className="w-28 h-28 rounded-full overflow-hidden ring-4 ring-main p-1">
+          <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-main p-1">
             <Image
               src={user?.picture || "/imgs/header/doctor.png"}
               alt="Profile"
-              width={112}
-              height={112}
+              width={300}
+              height={400}
               className="w-full h-full object-cover rounded-full"
             />
           </div>
@@ -40,10 +40,12 @@ const ProfileCard = () => {
             <Phone className="w-5 h-5 text-blue-600" />
             <p className="text-sm">{user?.phone}</p>
           </div>
-          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
-            <MapPin className="w-5 h-5 text-blue-600" />
-            <p className="text-sm">{user?.location?.addrss}</p>
-          </div>
+          {user?.role === "doctor" && (
+            <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
+              <MapPin className="w-5 h-5 text-blue-600" />
+              <p className="text-sm">{user?.location?.addrss}</p>
+            </div>
+          )}
         </div>
 
         {/* Quick Stats */}

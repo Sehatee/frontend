@@ -8,6 +8,7 @@
     "doctors": "الأطباء",
     "services": "خدمتنا",
     "about": "من نحن",
+    "pricing": "التسعيرة",
     "login": "دخول",
     "signup": "التسجيل",
     "userMenu": {
@@ -241,7 +242,8 @@
       "descriptionPlaceholder": "اكتب وصفاً موجزاً عن ممارستك الطبية وخبرتك",
       "latitude": "خط العرض",
       "longitude": "خط الطول",
-      "workingDays": "أيام العمل"
+      "workingDays": "أيام العمل",
+      "uploadPicture": "إرفع صورتك الشخصية"
     },
     "days": {
       "sunday": "الأحد",
@@ -283,7 +285,12 @@
     "deleteAccount": {
       "title": "حذف الحساب",
       "description": "عند حذف حسابك، سيتم حذف جميع بياناتك ومعلوماتك الشخصية بشكل نهائي",
-      "button": "حذف الحساب"
+      "button": "حذف الحساب",
+      "confirmTitle": "حذف الحساب",
+      "confirmDescription": "هل أنت متأكد أنك تريد حذف حسابك؟",
+      "confirmButton": "حذف الحساب",
+      "cancel": "إلغاء",
+      "confirm": "حذف"
     },
     "notifications": {
       "title": "الإشعارات",
@@ -419,7 +426,8 @@
       "friday": "الجمعة",
       "saturday": "السبت",
       "sunday": "الأحد"
-    }
+    },
+    "submitting": "جاري التحميل ..."
   },
   "Appointments": {
     "title": "المواعيد",
