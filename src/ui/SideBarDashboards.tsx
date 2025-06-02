@@ -13,7 +13,7 @@ const SideBarDashboards = ({
 }) => {
   const pathName = usePathname();
   return (
-    <div className="sticky  top-20 z-20 bg-secondary w-full rounded-lg  py-2 px-3">
+    <div className=" bg-secondary w-full rounded-lg  py-2 px-3">
       <div className="flex  justify-center gap-6 text-sm w-full">
         {links.map((link, index) => (
           <Link

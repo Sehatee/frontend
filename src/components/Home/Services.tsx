@@ -10,7 +10,7 @@ const Services = () => {
   const services = t.raw("services");
   useEffect(() => {
     Aos.init({
-      duration: 1000,
+      duration: 800,
       once: false,
       easing: "ease-in-out-back",
       offset: 100,
@@ -38,7 +38,7 @@ const Services = () => {
             <div
               key={index}
               data-aos="fade-up"
-              data-aos-delay={`${index * 200}`}
+              data-aos-delay={`${index * 100}`}
               data-aos-anchor-placement="center-bottom"
               className="flex flex-col md:items-center p-4  rounded-lg "
             >
@@ -52,7 +52,7 @@ const Services = () => {
               <h2 className="self-center md:self-start text-xl md:text-2xl font-bold text-ft mt-8 max-[340px]:text-base whitespace-nowrap">
                 {feature.title}
               </h2>
-              <p className="self-center text-center md:text-start md:self-start md:text-xl text-base  md:leading-loose leading-loose  text-textSecondary mt-3 w-[280px]">
+              <p className="self-center text-center md:text-start md:self-start md:text-lg text-base  md:leading-loose leading-loose  text-textSecondary mt-3 w-[280px]">
                 {feature.text}
               </p>
             </div>

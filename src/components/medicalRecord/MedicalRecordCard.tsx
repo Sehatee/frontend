@@ -151,17 +151,17 @@ function MedicalRecordCard({
             <FileText className="w-16 h-16 text-main" />
           </div>
           <h3 className="text-2xl font-semibold text-main mb-3">
-            No Medical Records Found
+            لم يتم العثور على سجلات طبية
           </h3>
           <p className="text-[#666] text-center max-w-md mb-8">
-            There are currently no medical records available for this patient
+            لا توجد حاليًا أي سجلات طبية متاحة لهذا المريض.{" "}
           </p>
           <Link
-            href="/dashboard/doctor"
+            href="/"
             className="px-6 py-3 bg-gradient-to-r bg-main text-white rounded-lg hover:shadow-lg transition-all duration-300 flex items-center gap-2"
           >
             <Eye size={18} />
-            Back to home
+            لعودة إلى الصفحة الرئيسية
           </Link>
         </div>
       )}

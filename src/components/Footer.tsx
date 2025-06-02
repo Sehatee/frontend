@@ -1,3 +1,4 @@
+import { HeartHandshake } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
@@ -13,7 +14,7 @@ const Footer = () => {
           <Link href="/" className="inline-block">
             <h2 className="text-main text-2xl font-bold flex items-center gap-2">
               <span>{t("logoName")}</span>
-              <span>❤️</span>
+              <HeartHandshake color="#0B62DE" size={25} />
             </h2>
           </Link>
           <div className="mt-6">
@@ -24,8 +25,12 @@ const Footer = () => {
           {/* Social Media Links */}
           <ul className="mt-10 flex gap-4 ">
             <li>
-              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-blue-600 transition-all duration-300 ease-in-out">
+              <Link
+                href="https://www.facebook.com/profile.php?id=61576613216012"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-blue-600 transition-all duration-300 ease-in-out"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -37,8 +42,12 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-sky-500 transition-all duration-300 ease-in-out">
+              <Link
+                href="https://x.com/sehatte_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-sky-500 transition-all duration-300 ease-in-out"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -50,8 +59,12 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-pink-600 transition-all duration-300 ease-in-out">
+              <Link
+                href="https://www.instagram.com/sehatte/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-pink-600 transition-all duration-300 ease-in-out"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -67,7 +80,9 @@ const Footer = () => {
 
         {/* Main Navigation */}
         <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">{t("mainMenu.title")}</h3>
+          <h3 className="text-gray-900 font-semibold mb-4">
+            {t("mainMenu.title")}
+          </h3>
           <ul className="space-y-2">
             <li>
               <Link href="/" className="text-gray-600 hover:text-main">
@@ -87,26 +102,11 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact Us */}
+        {/* Important Information - معلومات تهمك */}
         <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">{t("contactUs.title")}</h3>
-          <ul className="space-y-2">
-            <li>
-              <Link href="/contact" className="text-gray-600 hover:text-main">
-                {t("contactUs.consultation")}
-              </Link>
-            </li>
-            <li>
-              <Link href="/help" className="text-gray-600 hover:text-main">
-                {t("contactUs.helpCenter")}
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Important Information */}
-        <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">{t("importantInfo.title")}</h3>
+          <h3 className="text-gray-900 font-semibold mb-4">
+            {t("importantInfo.title")}
+          </h3>
           <ul className="space-y-2">
             <li>
               <Link href="/privacy" className="text-gray-600 hover:text-main">
@@ -120,14 +120,34 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+
+        {/* Contact Us - تواصل معنا */}
+        <div className="text-right">
+          <h3 className="text-gray-900 font-semibold mb-4">
+            {t("contactUs.title")}
+          </h3>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/support" className="text-gray-600 hover:text-main">
+                {t("contactUs.helpCenter")}
+              </Link>
+            </li>
+            <li>
+              <a
+                href="mailto:contact@sehatte.com"
+                className="text-blue-500 hover:underline"
+              >
+                contact@sehatte.com
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <hr className="my-8 border-gray-300" />
 
       <div className="text-center">
-        <p className="text-slate-600 text-sm">
-          {t("copyright")}
-        </p>
+        <p className="text-slate-600 text-sm">{t("copyright")}</p>
       </div>
     </footer>
   );

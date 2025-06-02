@@ -17,7 +17,7 @@ const About = () => {
   const someServices = t.raw("someServices");
   const valuesList = t.raw("values.valuesList");
   return (
-    <div className="my-36">
+    <div className="my-32">
       {/* main text */}
       <TextHeader title={t("title")} subTitle={t("subTitle")} />
       {/* vision  */}

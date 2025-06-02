@@ -22,13 +22,13 @@
     }
   },
   "Header": {
-    "headText1": "We provide you with the latest telemedicine solutions with a selection of specialists.",
-    "headText2": "Consult the best doctors online immediately or book an appointment at the clinic easily... All medical services are now at your fingertips.",
+    "headText1": "Remote medical services with top specialists.",
+    "headText2": "Consult doctors online or easily book an appointment.Your medical services in one place.",
     "btnText": "Start now"
   },
   "services": {
-    "title": "The services we provide",
-    "subTitle": "We are always here to provide you with care and consultation",
+    "title": "Our services",
+    "subTitle": "We’re always here to offer you care and advice",
     "services": [
       {
         "title": "Medical Consultation",
@@ -100,20 +100,14 @@
       "text": "Consultant in psychiatry, providing psychological support and treatment for patients.",
       "btnText": "Call now"
     },
+    "book": "Book now",
+    "call": "Direct Call",
     "loading": "Loading doctors...",
     "noDoctorsFound": "No doctors found",
     "tryAdjustingFilters": "Try adjusting your search filters",
     "specialization": {
       "notSpecified": "General Practice"
     }
-  },
-  "Features": {
-    "title": "Start your health journey now",
-    "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
-    "btnText": "Join us now",
-    "doctorsCount": "Number of Doctors",
-    "patientsCount": "Number of Patients",
-    "ratings": "Ratings"
   },
   "Login": {
     "title": "Login",
@@ -140,11 +134,11 @@
     "loading": "Creating Account..."
   },
   "lastFeatures": {
-    "title": "Start your health journey now",
+    "title": "Start your health journey",
     "subTitle": "We are here to provide you with the medical support you deserve. Consult a selection of certified doctors easily and at any time that suits you, and enjoy a safe, fast, and personalized service for your health needs.",
     "btnText": "Join us now",
-    "doctorsCount": "Number of Doctors",
-    "patientsCount": "Number of Users",
+    "doctorsCount": "Doctors",
+    "patientsCount": "Users",
     "ratings": "Ratings"
   },
   "About": {
@@ -298,7 +292,7 @@
       "confirmTitle": "Delete Account",
       "confirmDescription": "Are you sure you want to delete your account?",
       "confirmButton": "Delete Account",
-      "cancel": "Cancel", 
+      "cancel": "Cancel",
       "confirm": "Delete"
     },
     "notifications": {
@@ -340,7 +334,7 @@
     "callUs": {
       "title": "Call Us",
       "description": "Our support team is available to help you by phone",
-      "phone": "+123 4567 8910",
+      "phone": "+213 770 770 770",
       "workingHours": "Available: Sun - Thu, 8:00 AM - 8:00 PM"
     },
     "faq": {
@@ -427,6 +421,14 @@
     "experience": "Years of Experience",
     "noReviews": "No Reviews Yet",
     "beFirstReview": "Be the first to share your experience with this doctor",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "editReview": "Edit Review",
+    "save": "Save",
+    "content": "Content",
+    "rating": "Rating",
+    "deleteReviewConfirm": "Are you sure you want to delete this review?",
+    "confirmDelete": "Confirm Delete",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -436,7 +438,7 @@
       "saturday": "Saturday",
       "sunday": "Sunday"
     },
-    "submitting":"loding ..."
+    "submitting": "loding ..."
   },
   "Appointments": {
     "title": "Appointments",
@@ -487,21 +489,21 @@
         ]
       },
       {
-        "title": "6. Disclaimer",
+        "title": "5. Disclaimer",
         "content": [
           "We are not responsible for any direct or indirect damage resulting from the use of the website or any technical malfunction.",
           "The medical services provided depend on the information provided by the user, and it is the user's responsibility to provide accurate and complete data."
         ]
       },
       {
-        "title": "7. Intellectual Property",
+        "title": "6. Intellectual Property",
         "content": [
           "All digital content, such as texts, designs, images, trademarks, and software, is owned by the website and legally protected.",
           "Copying or distributing any part of the website without prior written permission is prohibited."
         ]
       },
       {
-        "title": "8. Modification of Terms",
+        "title": "7. Modification of Terms",
         "content": [
           "We may update these terms at any time, and users will be notified when necessary.",
           "Your continued use of the platform after modification means your acceptance of the new terms."

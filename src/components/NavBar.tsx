@@ -64,10 +64,10 @@ const NavBar = () => {
       {/* in Large Screen */}
       <div className="flex gap-7 items-center justify-between">
         {/* Logo  */}
-        <div className="flex items-center gap-1">
+        <Link href="/" className="flex items-center gap-1">
           <HeartHandshake color="#0B62DE" size={25} />
           <h1 className="font-semibold">{t("LogoName")}</h1>
-        </div>
+        </Link>
         {/* Menu and btns */}
         <div className=" w-full flex gap-9  justify-end">
           {/* Menu */}
@@ -135,7 +135,7 @@ const NavBar = () => {
             </li>
             <li className="relative text-center group">
               <Link href={"/pricing"}>
-                <h1>{t('pricing')}</h1>
+                <h1>{t("pricing")}</h1>
                 {/* hover effect */}
                 <div
                   className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
@@ -152,7 +152,7 @@ const NavBar = () => {
           {/* if user is logged in */}
           <div className="flex gap-2">
             {user ? (
-              <div className="relative z-20" ref={menuRef}>
+              <div className="relative z-30" ref={menuRef}>
                 <button
                   onClick={() => {
                     setOpenMenuUser(!openMenuUser);
@@ -170,7 +170,7 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-[9999] w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
+                  className={`absolute z-40 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
                     locale === "ar"
                       ? "-right-32 xs:-right-56"
                       : "-left-32 xs:-left-56"

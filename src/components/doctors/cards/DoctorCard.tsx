@@ -8,15 +8,15 @@ export default function DoctorCard({ doctor }: { doctor: User }) {
   return (
     <div
       dir=""
-      className="bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-4 w-full max-w-3xl p-4"
+      className="bg-white  border rounded-lg shadow-md flex flex-col md:flex-row gap-4 m:w-[400px] md:w-full max-w-3xl p-4 mx-auto"
     >
-      <div className="w-full md:w-1/3 md:h-auto relative group">
+      <div className="sm:w-[400px] h-[250px] md:w-1/3 md:h-auto relative group">
         <Image
           src={doctor.picture || "/imgs"}
           alt={doctor.username}
           width={300}
           height={400}
-          className="w-full h-full rounded-lg object-cover"
+          className="w-full h-full rounded-lg object-cover object-top"
         />
         <Link
           href={`/doctor/${doctor._id}`}
@@ -60,7 +60,7 @@ export default function DoctorCard({ doctor }: { doctor: User }) {
           </Link>
           <Link
             href={`/coominsoon`}
-            className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px]"
+            className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px] text-center"
           >
             اتصال مباشر
           </Link>

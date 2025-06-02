@@ -24,7 +24,7 @@ export const useUserStore = create<{
             },
           }
         );
-        console.log("user", res.data.user);
+
         set({ user: res.data.user });
       } catch {
         set({

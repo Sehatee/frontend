@@ -6,6 +6,7 @@ import SideBarDashboards from "@/ui/SideBarDashboards";
 import { updatePassword, updateUserProfile } from "@/lib/api/profile";
 import Cookies from "js-cookie";
 import { useUserStore } from "@/stores/user";
+import { useRouter } from "next/navigation";
 
 export const Account = () => {
   const t = useTranslations("Settings");
@@ -22,7 +23,7 @@ export const Account = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const token = Cookies.get("token");
   const { user, setUser, clearUser } = useUserStore();
-
+  const router = useRouter();
   const handleUpdatePassword = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -44,9 +45,12 @@ export const Account = () => {
     setIsDeactivating(true);
     try {
       const data = new FormData();
-      data.append("active", "false");
+      const active = false;
+      // Ensure active is always appended as a boolean value
+      data.append("active", String(active));
       await updateUserProfile(data, token || "");
       clearUser();
+      router.push("/login");
       setShowConfirmModal(false);
     } catch (error) {
       console.log(error);
@@ -61,20 +65,20 @@ export const Account = () => {
       {/* ✅ المحتوى */}
       <div className="mt-6 flex flex-col gap-6 max-w-3xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
-        <div className="sticky top-20  z-10 ">
-          <SideBarDashboards
-            links={[
-              {
-                name: links.l1,
-                href: `/dashboard/${user?.role}/settings/account`,
-              },
-              {
-                name: links.l2,
-                href: `/dashboard/${user?.role}/settings/notifications`,
-              },
-            ]}
-          />
-        </div>
+
+        <SideBarDashboards
+          links={[
+            {
+              name: links.l1,
+              href: `/dashboard/${user?.role}/settings/account`,
+            },
+            {
+              name: links.l2,
+              href: `/dashboard/${user?.role}/settings/notifications`,
+            },
+          ]}
+        />
+
         {/* Change Password */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-2">

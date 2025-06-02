@@ -19,11 +19,11 @@ const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
   return (
     <div
       data-aos="fade-up"
-      data-aos-delay="200"
+      data-aos-delay="100"
       data-aos-duration="800"
       className={`relative bg-[#3F89F0] flex w-full max-w-[520px]  s:pt-4 pt-[140px] ${
         isRTL ? "pr-[180px]" : "pl-[180px]"
-      } mt-20 rounded-2xl mx-auto sm:mx-0`}
+      } min-[1296px]:mt-20 mt-4 rounded-2xl mx-auto sm:mx-0`}
     >
       <div
         className={`absolute ${
@@ -59,7 +59,7 @@ const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
         <button
           className={`flex gap-2 my-6 text-base${
             isRTL ? "mr-4 sm:mr-6" : "ml-4 sm:ml-6"
-          } px-4 py-1 border-2 rounded-lg font-semibold shadow-[0_0_10px_2px_#a2c5f646] hover:bg-[#000000] hover:shadow-[#7cc0be84] transition duration-300`}
+          } px-4 py-1 border-2 rounded-lg font-semibold shadow-[0_0_10px_2px_#a2c5f646] hover:bg-[#47bbff78] hover:shadow-[#7cc0be84] transition duration-300`}
         >
           <p>{isRTL ? "اتصل الان" : "Call Now"}</p>
 
