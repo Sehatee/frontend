@@ -18,7 +18,7 @@ const ProfileCard = () => {
               alt="Profile"
               width={300}
               height={400}
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover object-top rounded-full"
             />
           </div>
           <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white z-10"></div>

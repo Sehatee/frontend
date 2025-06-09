@@ -21,12 +21,14 @@ const Support = () => {
           <h2 className="text-xl font-semibold mb-2">
             {t("liveChat.title")}
           </h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 mb-7">
             {t("liveChat.description")}
           </p>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+          <a  
+          href="mailto:contact@sehatte.com"
+          className="bg-blue-600 text-white px-7 py-2 rounded-md hover:bg-blue-700 transition-colors">
             {t("liveChat.button")}
-          </button>
+          </a>
         </div>
 
         <div className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow">

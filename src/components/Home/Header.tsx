@@ -2,7 +2,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+import Link from "next/link";
 const Header = () => {
   const t = useTranslations("Header");
   const locale = useLocale();
@@ -43,15 +43,14 @@ const Header = () => {
         <p className="text-lg line-clamp-2 sm:line-clamp-0 md:text-lg xl:w-[560px] md:w-[420px] w-[250px]  lg:leading-10 md:leading-8 text-ft2 xl:mt-12 lg:mt-6 mt-4">
           {t("headText2")}
         </p>
-        <button
-          className={`sm:mt-24 mt-20 ${
-            locale === "en" ? "lg:ml-20 ml-6" : "lg:mr-20 sm:mr-6 mr-0"
-          }`}
-        >
-          <span className="sm:text-lg text-white sm:font-bold font-semibold sm:px-10 px-8 sm:py-4 py-2 rounded-xl mt-4 hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
+        <div className={`sm:mt-24 mt-20 ${
+            locale === "en" ? "lg:ml-20 ml-6" : "lg:mr-20 sm:mr-6 mr-0" }`}>
+        <Link href="/doctors">
+          <span className="sm:text-lg  text-white sm:font-bold font-semibold sm:px-10 px-8 sm:py-4 py-2 rounded-xl mt-4 hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
             {t("btnText")}
           </span>
-        </button>
+        </Link>
+        </div>
       </div>
 
       <div

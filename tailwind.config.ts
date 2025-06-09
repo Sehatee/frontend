@@ -30,20 +30,6 @@ export default {
         xl: "1280px",
         "2xl": "1440px",
       },
-      animation: {
-        "zoom-in": "zoomIn 0.5s ease-out forwards",
-        "fade-up": "fadeUp 0.5s ease-out forwards",
-      },
-      keyframes: {
-        zoomIn: {
-          "0%": { transform: "scale(0)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
     },
   },
   plugins: [scrollbar],

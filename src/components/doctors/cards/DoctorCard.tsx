@@ -3,14 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { User } from "@/types/User";
+import {useTranslations} from "next-intl";
 
 export default function DoctorCard({ doctor }: { doctor: User }) {
+  const t = useTranslations("Doctors");
   return (
     <div
       dir=""
       className="bg-white  border rounded-lg shadow-md flex flex-col md:flex-row gap-4 m:w-[400px] md:w-full max-w-3xl p-4 mx-auto"
     >
-      <div className="sm:w-[400px] h-[250px] md:w-1/3 md:h-auto relative group">
+      <div className="sm:w-[400px] h-[250px]  md:w-1/3 md:h-auto relative group">
         <Image
           src={doctor.picture || "/imgs"}
           alt={doctor.username}
@@ -56,13 +58,13 @@ export default function DoctorCard({ doctor }: { doctor: User }) {
             href={`/appointment/${doctor._id}`}
             className="bg-main text-white px-4 py-2 rounded-md hover:bg-main/90 transition-colors text-center text-[14px] sm:text-[16px]"
           >
-            حجز موعد
+            {t("book")}
           </Link>
           <Link
-            href={`/coominsoon`}
+            href={`/directCall`}
             className="text-main border border-main px-4 md:px-6 py-2 rounded-md hover:bg-main/10 transition-colors text-[14px] sm:text-[16px] text-center"
           >
-            اتصال مباشر
+            {t("call")}
           </Link>
         </div>
       </div>

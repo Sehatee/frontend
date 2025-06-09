@@ -10,6 +10,7 @@ import {
   Settings,
   UserRound,
   X,
+  Home, User, Stethoscope, Info, BadgeDollarSign
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -31,7 +32,18 @@ const NavBar = () => {
   const locale = Cookies.get("locale");
   const pathName = usePathname();
   const router = useRouter();
-
+  
+      useEffect(() => {
+        if (openMenu) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+        return () => {
+          document.body.style.overflow = "";
+        };
+      }, [openMenu]);
+      
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -164,7 +176,7 @@ const NavBar = () => {
                     alt="user_img"
                     width={500}
                     height={500}
-                    className="w-full h-full rounded-full object-cover"
+                    className="w-full h-full rounded-full object-cover object-top"
                     priority={false}
                   />
                 </button>
@@ -200,7 +212,7 @@ const NavBar = () => {
                         alt="user_img"
                         width={48}
                         height={48}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     <h1 className="text-gray-700 font-semibold text-center">
@@ -341,7 +353,9 @@ const NavBar = () => {
             {/* lang switcher and menu  */}
             <div className="flex gap-2">
               {/* Lang Switcher */}
+              <div className="md:block hidden">
               <LangSwitcher />
+              </div>
               {/* Menu toggle */}
               <button
                 onClick={() => setOpenMenu(!openMenu)}
@@ -357,80 +371,89 @@ const NavBar = () => {
           </div>
         </div>
       </div>
+        
       {/* in Small Screen */}
-      <div
-        className={`fixed md:hidden top-0 left-0 bg-black/40 z-10 shadow-xl  px-6  py-4 w-full h-full transition-all duration-300 ease-in-out ${
-          openMenu
-            ? "opacity-100 scale-100 translate-y-0"
-            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-        }`}
-      >
-        {/* Menu */}
-        <ul className="flex flex-col gap-6 items-center justify-center text-white w-full h-full  font-semibold">
-          <li className="relative text-center group">
-            <Link href={"/"}>
-              <h1>{t("home")}</h1>
-              {/* hover effect */}
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
-                  ${
-                    pathName === "/"
-                      ? "w-5 opacity-100"
-                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
-                  }
-                `}
-              ></div>
-            </Link>
-          </li>
-          <li className="relative text-center group">
-            <Link href={"/doctors"}>
-              <h1>{t("doctors")}</h1>
-              {/* hover effect */}
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
-                  ${
-                    pathName === "/doctors"
-                      ? "w-5 opacity-100"
-                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
-                  }
-                `}
-              ></div>{" "}
-            </Link>
-          </li>
-          <li className="relative text-center group">
-            <Link href={"/services"}>
-              <h1>{t("services")}</h1>
-              {/* hover effect */}
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
-                  ${
-                    pathName === "/services"
-                      ? "w-5 opacity-100"
-                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
-                  }
-                `}
-              ></div>{" "}
-            </Link>
-          </li>
-          <li className="relative text-center group">
-            <Link href={"/about"}>
-              <h1>{t("about")}</h1>
-              {/* hover effect */}
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 mt-1 h-[3px] rounded bg-main transition-all duration-300
-                  ${
-                    pathName === "/about"
-                      ? "w-5 opacity-100"
-                      : "w-0 group-hover:w-5 opacity-0 group-hover:opacity-100"
-                  }
-                `}
-              ></div>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+        <div
+          className={`fixed md:hidden top-0 ${locale === "ar" ? "right-0" : "left-0"} bg-black/40 z-50 w-full h-full transition-opacity duration-300 ease-in-out ${
+            openMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setOpenMenu(false)}
+        >
+          <div
+            className={`bg-gradient-to-bl from-blue-50 via-white to-blue-50 absolute top-0 ${locale === "ar" ? "left-0" : "right-0"} w-[280px] h-full bg-white ${locale === "ar" ? "rounded-r-xl" : "rounded-l-xl"} shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+              openMenu
+              ? "translate-x-0"
+              : locale === "ar"
+              ? "-translate-x-full" 
+              : "translate-x-full" 
+            }`}
+          >
 
-export default NavBar;
+            {/* Menu Items */}
+            <ul className="flex flex-col py-4 text-gray-800 text-lg font-semibold space-y-2">
+              <Link
+                href="/"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Home className="w-5 h-5" />
+                <span>{t("home")}</span>
+              </Link>
+
+              <Link
+                href="/doctors"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/doctors" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <User className="w-5 h-5" />
+                <span>{t("doctors")}</span>
+              </Link>
+
+              <Link
+                href="/services"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/services" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Stethoscope className="w-5 h-5" />
+                <span>{t("services")}</span>
+              </Link>
+
+              <Link
+                href="/about"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/about" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Info className="w-5 h-5" />
+                <span>{t("about")}</span>
+              </Link>
+
+              <Link
+                href="/pricing"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/pricing" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <BadgeDollarSign className="w-5 h-5" />
+                <span>{t("pricing")}</span>
+              </Link>
+            </ul>
+            <div className="flex justify-between items-center  px-4 py-6 border-t border-b border-gray-100 rounded-t-xl">
+            <p className="text-sm text-gray-500 mb-2">{t("language")}</p>
+                <LangSwitcher />
+            </div>
+          </div>
+        </div>
+    </div>
+    );
+  };
+
+  export default NavBar;

@@ -24,6 +24,7 @@ const Login = ({ callBackUrl }: { callBackUrl?: string }) => {
 
       if (res) {
         setUser(res.user);
+        localStorage.setItem("token", res.token);
         showToast("success", "تم تسجيل الدخول بنجاح");
         if (callBackUrl) {
           router.push(callBackUrl);
