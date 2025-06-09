@@ -15,7 +15,7 @@ export const applyAppointment = async (
       },
     });
     showToast("success", "تم تقديم الموعد بنجاح");
-    console.log(res);
+   
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;

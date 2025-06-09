@@ -39,7 +39,7 @@ export const updatePassword = async (
 
     showToast("success", "تم تحديث كلمة المرور بنجاح");
 
-    console.log(res.data.token);
+    
     return res.data.user;
   } catch (error) {
     const axiosError = error as AxiosError;

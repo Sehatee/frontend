@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { MessageCircle } from "lucide-react";
-import { getDoctor } from "@/lib/api/doctor";
-import Image from 'next/image';
+import { getDoctorFromChat } from "@/lib/api/doctor";
+import Image from "next/image";
 import { useLocale } from "next-intl";
 
 type Message = {
@@ -39,7 +39,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     if (doctorId) {
-      getDoctor(doctorId).then((doctor) => {
+      getDoctorFromChat(doctorId).then((doctor) => {
         if (doctor) {
           setSelectedDoctor(doctor);
 
@@ -55,7 +55,10 @@ const ChatPage = () => {
                 isReceived: true,
               };
               setMessages([welcomeMessage]);
-              localStorage.setItem(localStorageKey, JSON.stringify([welcomeMessage]));
+              localStorage.setItem(
+                localStorageKey,
+                JSON.stringify([welcomeMessage])
+              );
             }, 1000);
           }
 
@@ -89,7 +92,9 @@ const ChatPage = () => {
 
       const stored = localStorage.getItem(conversationsKey);
       const previous = stored ? JSON.parse(stored) : [];
-      const exists = previous.find((doc: Doctor) => doc._id === selectedDoctor._id);
+      const exists = previous.find(
+        (doc: Doctor) => doc._id === selectedDoctor._id
+      );
       if (!exists) {
         const updated = [...previous, selectedDoctor];
         localStorage.setItem(conversationsKey, JSON.stringify(updated));
@@ -127,7 +132,9 @@ const ChatPage = () => {
   };
 
   const handleDeleteConversation = (doctorId: string) => {
-    const updatedDoctors = conversationDoctors.filter((doc) => doc._id !== doctorId);
+    const updatedDoctors = conversationDoctors.filter(
+      (doc) => doc._id !== doctorId
+    );
     setConversationDoctors(updatedDoctors);
     localStorage.setItem(conversationsKey, JSON.stringify(updatedDoctors));
     localStorage.removeItem(`chat_messages_${doctorId}`);
@@ -152,15 +159,26 @@ const ChatPage = () => {
   return (
     <div className="flex h-[90vh] bg-bg p-4">
       {/* الشريط الجانبي */}
-      <div className={`w-1/4 bg-white border-r ${isArabic ? 'rounded-tr-xl' : 'rounded-tl-xl'}`}>
-        <h2 className="text-xl font-bold p-4 border-b text-right text-blue-800">محادثاتي</h2>
+      <div
+        className={`w-1/4 bg-white border-r ${
+          isArabic ? "rounded-tr-xl" : "rounded-tl-xl"
+        }`}
+      >
+        <h2 className="md:text-xl text-base font-bold p-4 border-b text-right text-blue-800">
+          محادثاتي
+        </h2>
 
         {conversationDoctors.map((doc) => (
           <div
             key={doc._id}
-            className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out hover:shadow-sm cursor-pointer border-b-[1px] border-gray-300 mb-1 shadow-sm shadow-gray-100 ${selectedDoctor?._id === doc._id ? 'bg-blue-50' : ''}`}
+            className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out hover:shadow-sm cursor-pointer border-b-[1px] border-gray-300 mb-1 shadow-sm shadow-gray-100 ${
+              selectedDoctor?._id === doc._id ? "bg-blue-50" : ""
+            }`}
           >
-            <div onClick={() => handleSelectDoctor(doc)} className="flex items-center gap-4 w-full">
+            <div
+              onClick={() => handleSelectDoctor(doc)}
+              className="flex items-center gap-4 w-full"
+            >
               <Image
                 src={doc.picture}
                 alt="doctor"
@@ -169,9 +187,15 @@ const ChatPage = () => {
                 className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main"
               />
               <div className="flex flex-col space-y-2">
-                <p className="font-bold md:text-sm text-xs sm:block hidden">{doc.username}</p>
-                <p className="text-xs text-blue-700 md:block hidden">{doc.specialization}</p>
-                <p className="text-xs text-gray-500 truncate max-w-[150px] md:block hidden">{getLastMessage(doc._id)}</p>
+                <p className="font-bold md:text-sm text-xs sm:block hidden">
+                  {doc.username}
+                </p>
+                <p className="text-xs text-blue-700 md:block hidden">
+                  {doc.specialization}
+                </p>
+                <p className="text-xs text-gray-500 truncate max-w-[150px] md:block hidden">
+                  {getLastMessage(doc._id)}
+                </p>
               </div>
             </div>
 
@@ -190,7 +214,11 @@ const ChatPage = () => {
       {/* نافذة المحادثة */}
       <div className="flex flex-col flex-1">
         {selectedDoctor && (
-          <div className={`bg-gradient-to-r from-blue-600 to-blue-400 text-white p-4 flex gap-4 items-center py-6 ${isArabic ? 'rounded-tl-xl' : 'rounded-tr-xl'}`}>
+          <div
+            className={`bg-gradient-to-r from-blue-600 to-blue-400 text-white p-4 flex gap-4 items-center py-6 ${
+              isArabic ? "rounded-tl-xl" : "rounded-tr-xl"
+            }`}
+          >
             <Image
               src={selectedDoctor.picture}
               alt="avatar"
@@ -209,7 +237,9 @@ const ChatPage = () => {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`flex items-center gap-2 group ${msg.isReceived ? "" : "flex-row-reverse"}`}
+              className={`flex items-center gap-2 group ${
+                msg.isReceived ? "" : "flex-row-reverse"
+              }`}
             >
               {msg.isReceived ? (
                 <Image
@@ -239,7 +269,9 @@ const ChatPage = () => {
               )}
               <div className="relative">
                 <div
-                  className={`border text-right p-3 rounded-2xl max-w-xs shadow ${msg.isReceived ? "bg-white" : "bg-blue-600 text-white"}`}
+                  className={`border text-right p-3 rounded-2xl max-w-xs shadow ${
+                    msg.isReceived ? "bg-white" : "bg-blue-600 text-white"
+                  }`}
                 >
                   {msg.text}
                 </div>
