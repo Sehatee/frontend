@@ -5,6 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { getDoctorFromChat } from "@/lib/api/doctor";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import { useUserStore } from "@/stores/user";
 
 type Message = {
   text: string;
@@ -29,6 +30,8 @@ const ChatPage = () => {
   const isArabic = useLocale() === "ar";
 
   const conversationsKey = "chat_conversations";
+
+  const { user } = useUserStore();
 
   useEffect(() => {
     const stored = localStorage.getItem(conversationsKey);
@@ -156,6 +159,14 @@ const ChatPage = () => {
     return "لا توجد رسائل بعد";
   };
 
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-gray-500">يرجى تسجيل الدخول لعرض المحادثات</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="flex h-[90vh] bg-bg p-4">
       {/* الشريط الجانبي */}
