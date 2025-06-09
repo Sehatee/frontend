@@ -2,32 +2,53 @@
 import Cookies from "js-cookie";
 import { ArrowDown } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";
 
 const LangSwitcher = () => {
   const languages: { key: FlagIconCode; code: string; name: string }[] = [
     { key: "DZ", code: "ar", name: "العربية" },
     { key: "GB", code: "en", name: "English" },
-    // { key: "FR", code: "fr", name: "Français" },
   ];
+
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(Cookies.get("locale"));
-  const selectedLanguage = languages.find(
-    (lang) => lang.code === currentLang
-  ) || { key: "GB", code: "en", name: "English" };
+  const [currentLang, setCurrentLang] = useState<string | undefined>(undefined);
+
+  // ✅ قراءة اللغة من الكوكيز بعد أن يكون المكون في المتصفح
+  useEffect(() => {
+    const langFromCookie = Cookies.get("locale") || "en";
+    setCurrentLang(langFromCookie);
+  }, []);
+
+  // ✅ تعيين لغة افتراضية مؤقتة (قبل تحميل اللغة من الكوكيز)
+  const selectedLanguage =
+    languages.find((lang) => lang.code === currentLang) || {
+      key: "GB",
+      code: "en",
+      name: "English",
+    };
+
   const handleLanguageChange = (newLang: string) => {
     Cookies.set("locale", newLang);
     setCurrentLang(newLang);
     setIsOpen(false);
     router.refresh();
   };
-  console.log(currentLang);
+
+  // ✅ لا تعرض شيء حتى يتم تحميل اللغة (لحل مشكلة التفاوت في التصيير)
+  if (!currentLang) return null;
+
   return (
-    <div className="relative inline-block text-left z-10">
+    <div
+      className="relative inline-block text-left z-10"
+      onClick={(e) => e.stopPropagation()}
+    >
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(!isOpen);
+        }}
         className="flex items-center gap-2 p-1 py-3 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none transition"
       >
         <FlagIcon code={selectedLanguage.key} size={24} />
@@ -40,8 +61,11 @@ const LangSwitcher = () => {
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                onClick={() => handleLanguageChange(lang.code)}
-                className={`flex justify-center   px-4 py-2 text-sm hover:bg-gray-100 transition ${
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleLanguageChange(lang.code);
+                }}
+                className={`flex justify-center px-4 py-2 text-sm hover:bg-gray-100 transition ${
                   currentLang === lang.code ? "bg-gray-100 font-semibold" : ""
                 }`}
               >

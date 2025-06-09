@@ -11,6 +11,7 @@
     "pricing": "Pricing",
     "login": "Login",
     "signup": "Signup",
+    "language": "Language",
     "userMenu": {
       "profile": "Profile",
       "notifications": "Notifications",
@@ -100,6 +101,8 @@
       "text": "Consultant in psychiatry, providing psychological support and treatment for patients.",
       "btnText": "Call now"
     },
+    "search":"Search for a doctor",
+    "spec":"All specialties",
     "book": "Book now",
     "call": "Direct Call",
     "loading": "Loading doctors...",
@@ -511,6 +514,19 @@
       }
     ]
   },
+  "DirectCall": {
+     "title": "What symptoms are you experiencing?",
+     "placeholder": "Briefly explain your condition or inquiry to the doctor",
+     "char": "0/200 characters",
+     "upload": "Attach images or medical file",
+     "opt": "(Optional)",
+     "check": "I confirm that I understand the services provided by the medical site and agree to proceed",
+     "submit": "Confirm Booking",
+     "Termstitle": "Consent Form",
+     "showTerms": "Show Consent Form",
+     "continue": "Continue",
+"Termscontent": "I understand that I have chosen remote consultation to address my medical condition and receive medical advice. I understand that telehealth involves the use of electronic communications to enable healthcare providers at different locations to share patient medical information, with the aim of improving patient care. Healthcare providers include: primary care providers, specialists, and/or subspecialists, nurse practitioners, registered nurses, medical assistants, and other healthcare providers who are part of my clinical care team. My information may be used for diagnosis, treatment, follow-up, and/or education.\n\nTelehealth includes the electronic transmission of health information, such as reports on the course and progress of the disease, assessments, physiological biological data, and various digital media. I understand that the privacy and confidentiality laws that protect healthcare information also apply to telehealth or telemedicine. I consent to the sharing of my protected health information by My Health Telehealth Company with relevant parties, as described in the privacy policy of My Health Telehealth Company.\n\nI understand and expressly agree to My Health obtaining, using, storing, and disclosing information about me, including my image, to other relevant parties, as necessary to provide telehealth/telemedicine services. I am aware of the potential risks associated with transmitting information over the internet, such as security breaches. I know that electronic systems will use security protocols to protect my data, and I acknowledge that other individuals (besides my clinical care team or medical consultants) may access my information during the telehealth session and will adhere to privacy and security policies.\n\nI understand that technical issues may occur during the session, such as internet signal disruptions or internet infrastructure issues (e.g., poor image or sound quality, communication interruptions, audio interference). I hereby release My Health Telehealth Services and all members of my care team from any data loss due to technical problems. I understand that the health information I provide during the telehealth/telemedicine service may be the sole source of information for the medical professionals involved in my assessment and treatment. I also understand that if the telemedicine doctor believes that I would be better served by another form of consultation, such as in-person services, I will be asked to visit a clinic, hospital, general practitioner, or specialist who can provide such services in my area. My Health Telehealth Services doctors cannot be held responsible for advice, recommendations, and/or decisions based on incomplete or inaccurate information provided by me or others.\n\nI understand that telehealth service is not for emergency consultations, and I must contact local emergency services in case of a suspected condition. In an emergency, I understand that it is my responsibility to advise local medical providers, and the responsibility of the telehealth provider will end upon the termination of the remote consultation. I acknowledge that my healthcare information may be shared with authorized staff at My Health Telehealth Services for various purposes, such as claims preparation, scheduling, and billing.\n\nI have the right to withhold or withdraw consent for telehealth services at any time and switch to traditional in-person clinic services. Withdrawing my consent will not affect future care services or benefits. I agree that any disputes arising from the remote consultation will be resolved under the laws and will be raised with the telehealth provider in the first instance.\n\nI understand that the consultation may be recorded for quality assurance and training purposes. I am satisfied with the answers provided to my questions. I hereby agree to use telehealth/telemedicine services under the terms and conditions outlined above. By checking the box in the digital form, I attest to the following: I have been informed of all the risks, consequences, and benefits of telehealth. My treating physician and My Health have discussed the information provided in a language I can understand. I have had the opportunity to ask questions about the information provided in this form and about the remote consultation. All my questions have been answered, and I understand and agree to all the written information provided above."
+},
   "PrivacyPolicy": {
     "title": "Privacy and Security Policy",
     "intro": "At Okhssai, we are committed to protecting your privacy and ensuring the security of your personal information. This policy aims to explain how we collect, use, and protect the data you provide when using our website.",

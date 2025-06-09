@@ -47,7 +47,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                 src={doctor.picture || "imgs/doctorsteam/doctor2.png"}
                 alt={doctor.username || "username"}
                 fill
-                className="object-cover hover:scale-105 transition-transform"
+                className="object-cover hover:scale-105 transition-transform object-top"
               />
             </div>
             <div className="flex gap-4 w-full">
@@ -59,7 +59,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                 {t("book")}
               </Link>
               <Link
-                href={"/coominsoon"}
+                href={`/chat?doctorId=${doctor._id}`}
                 className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-orangColor to-orange-500 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium"
               >
                 <MessageSquare className="w-5 h-5" />

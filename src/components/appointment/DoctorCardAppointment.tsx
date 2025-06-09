@@ -28,7 +28,7 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
             src={doctor.picture || "imgs/doctorsteam/doctor2.png"}
             alt={doctor.username}
             fill
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
 
@@ -58,14 +58,14 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
 
       <div className="grid grid-cols-1 gap-2">
         <Link
-          href={"/coominsoon"}
+          href={"/directCall"}
           className="flex items-center justify-center gap-2 border-main border text-main py-2 px-4 rounded-md hover:bg-blue-700 hover:text-white transition-colors w-full"
         >
           <Phone className="w-4 h-4" />
           {t("schedule")}
         </Link>
         <Link
-          href={"/coominsoon"}
+          href={`/chat?doctorId=${doctor._id}`}
           className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors w-full"
         >
           <MessageSquareText className="w-4 h-4" />

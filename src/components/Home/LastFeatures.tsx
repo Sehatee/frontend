@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import "aos/dist/aos.css";
+import Link from "next/link";
 
 // دالة العد التصاعدي بدون مكتبات
 const useCountUp = (end: number, duration: number, start: boolean) => {
@@ -89,12 +90,13 @@ const LastFeatures = () => {
               </span>
             </p>
           </div>
-
-          <button className="mt-6 w-full sm:w-auto">
-            <span className="block text-lg sm:text-2xl 2xl:text-3xl text-white font-semibold px-8 sm:px-20 2xl:px-40 py-3 sm:py-[14px] rounded-xl hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
+            
+          <Link href="/pricing"
+           className="mt-6 w-full sm:w-auto">
+            <span className="block text-lg text-center sm:text-2xl 2xl:text-3xl text-white font-semibold px-8 sm:px-20 2xl:px-40 py-3 sm:py-[14px] rounded-xl hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
               {t("btnText")}
             </span>
-          </button>
+          </Link>
         </div>
 
         <div className="md:block hidden mt-6 w-full md:w-1/2">

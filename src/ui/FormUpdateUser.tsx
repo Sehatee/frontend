@@ -176,7 +176,7 @@ const FormUpdateUser = ({ user }: { user: User }) => {
               alt="Avatar preview"
               width={150}
               height={150}
-              className="object-cover w-full h-full"
+              className="object-cover object-top w-full h-full"
             />
           ) : (
             <div className="flex items-center justify-center w-full h-full">
