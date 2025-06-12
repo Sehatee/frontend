@@ -52,6 +52,12 @@ export const metadata: Metadata = {
     follow: true,
     nocache: false,
   },
+  manifest: "/manifest.json",
+  themeColor: "#0B62DE",
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/icon-512.png",
+  },
 };
 export default async function RootLayout({
   children,
@@ -65,12 +71,24 @@ export default async function RootLayout({
   const font = cairo.className;
 
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      suppressHydrationWarning={true}
-      className={font}
-    >
+      <html
+        lang={locale}
+        dir={dir}
+        suppressHydrationWarning={true}
+        className={font}
+      >
+      <head>
+        {/* روابط PWA */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0B62DE" />
+
+        {/* دعم iOS */}
+        <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="صحتي" />
+      </head>
+
       <body className="" suppressHydrationWarning={true}>
         <NextIntlClientProvider locale={locale}>
           <ToastContainer />
