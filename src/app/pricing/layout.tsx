@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "التسعيرة - أسعار خدمات منصة صحتي",
+  title: "التسعير - أسعار خدمات منصة صحتي",
   description: "اطلع على تفاصيل أسعار الاستشارات الطبية والحجز أونلاين عبر منصة صحتي، مع خطط مرنة تناسب احتياجاتك.",
   keywords: [
     "التسعيرة",

@@ -1,0 +1,22 @@
+{
+    "name": "صحتي",
+    "short_name": "صحتي",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0B62DE",
+    "description": "منصة صحتي توفر لك استشارات طبية عن بُعد مع نخبة من الأطباء المتخصصين، احجز موعدك بسهولة وتلقَّ الرعاية الطبية من أي مكان.",
+    "icons": [
+      {
+        "src": "/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
