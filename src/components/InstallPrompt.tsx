@@ -25,20 +25,15 @@ const InstallPrompt = () => {
     const handler = (e: BeforeInstallPromptEvent) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setTimeout(() => {
-        setShowPrompt(true);
-      }, 4000);
+      setShowPrompt(true);
     };
 
     window.addEventListener("beforeinstallprompt", handler as EventListener);
 
     return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handler as EventListener
-      );
+      window.removeEventListener("beforeinstallprompt", handler as EventListener);
     };
-  });
+  }, []);
 
   // زر التحميل
   const handleInstall = async () => {
@@ -55,10 +50,7 @@ const InstallPrompt = () => {
   if (!showPrompt) return null;
 
   return (
-    <div
-      className="fixed bottom-4 w-full flex justify-center z-50"
-      data-aos="fade-up"
-    >
+    <div className="fixed bottom-4 w-full flex justify-center z-50" data-aos="fade-up">
       <div className="bg-white border border-gray-200 shadow-xl rounded-xl flex items-start justify-between p-4 gap-4 text-sm w-[90%] md:max-w-sm">
         <div>
           <p className="font-bold text-blue-700">تطبيق صحتي</p>
