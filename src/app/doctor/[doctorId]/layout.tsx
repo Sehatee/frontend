@@ -1,6 +1,8 @@
 import "@/app/globals.css";
+import Footer from "@/components/Footer";
 import { fetchUser } from "@/lib/fetchUser";
 import { MapProvider } from "@/providers/map-provider";
+
 
 interface Props {
   params: Promise<{ doctorId: string }>;
@@ -35,6 +37,7 @@ export default async function RootLayout({
       <div className="container mx-auto">
         <MapProvider>{children}</MapProvider>
       </div>
+      <Footer />
     </div>
   );
 }

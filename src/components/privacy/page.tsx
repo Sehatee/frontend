@@ -13,7 +13,7 @@ const Privacy = () => {
   const dirClass = isArabic ? "rtl text-right" : "ltr text-left";
 
   return (
-    <div className={`${dirClass} max-w-[800px] mx-auto font-inherit pt-6 px-4`}>
+    <div className={`${dirClass} max-w-[800px] mx-auto font-inherit pt-6 px-4 my-20`}>
       <h2 className="text-[#2563eb] text-center font-bold mb-6">{t("title")}</h2>
       <div className="mb-6">{t("intro")}</div>
       {sections.map((section: { title: string, content: string[] }, idx: number) => (

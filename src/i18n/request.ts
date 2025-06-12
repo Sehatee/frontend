@@ -2,7 +2,7 @@ import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
 
 export default getRequestConfig(async () => {
-  let locale = "en"; // اللغة الافتراضية
+  let locale = "ar"; // اللغة الافتراضية
   const cookieStore = await cookies();
 
   // قراءة الكوكيز التي تحتوي على لغة المستخدم

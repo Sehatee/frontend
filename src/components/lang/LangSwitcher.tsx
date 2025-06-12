@@ -17,17 +17,18 @@ const LangSwitcher = () => {
 
   // ✅ قراءة اللغة من الكوكيز بعد أن يكون المكون في المتصفح
   useEffect(() => {
-    const langFromCookie = Cookies.get("locale") || "en";
+    const langFromCookie = Cookies.get("locale") || "ar";
     setCurrentLang(langFromCookie);
   }, []);
 
   // ✅ تعيين لغة افتراضية مؤقتة (قبل تحميل اللغة من الكوكيز)
-  const selectedLanguage =
-    languages.find((lang) => lang.code === currentLang) || {
-      key: "GB",
-      code: "en",
-      name: "English",
-    };
+  const selectedLanguage = languages.find(
+    (lang) => lang.code === currentLang
+  ) || {
+    key: "DZ",
+    code: "ar",
+    name: "العربية",
+  };
 
   const handleLanguageChange = (newLang: string) => {
     Cookies.set("locale", newLang);
