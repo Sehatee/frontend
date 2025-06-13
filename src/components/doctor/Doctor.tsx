@@ -50,7 +50,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                 className="object-cover hover:scale-105 transition-transform object-top"
               />
             </div>
-            <div className="flex gap-4 w-full">
+            <div className="flex lg:flex-row md:flex-col gap-4 w-full">
               <Link
                 href={`/appointment/${doctorId}`}
                 className="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-main to-blue-600 text-white py-3 px-6 rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all font-medium"
@@ -94,7 +94,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
                 <div className="bg-white p-3 rounded-lg shadow-sm">
                   <MapPin className="w-6 h-6 text-main" />
                 </div>
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-700 font-medium line-clamp-3">
                   {doctor.location?.addrss || "غير معروف"}
                 </span>
               </div>

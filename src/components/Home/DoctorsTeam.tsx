@@ -12,6 +12,7 @@ const DoctorsTeam = () => {
 
   const group1 = [
     {
+      id: "683b10730c2b8b4677654004",
       name: "د. أحمد عيسى",
       specialty: "أخصائي طب وجراحة العيون",
       description:
@@ -19,6 +20,7 @@ const DoctorsTeam = () => {
       img: "/imgs/doctorsteam/doctor2.png",
     },
     {
+      id: "683b16340c2b8b4677654372",
       name: "د. يوسف أنس",
       specialty: "أخصائي أمراض القلب",
       description:
@@ -29,6 +31,7 @@ const DoctorsTeam = () => {
 
   const group2 = [
     {
+      id: "683b188d0c2b8b46776543ed",
       name: "د. ياسين محمد",
       specialty: "استشاري طب الأطفال وحديثي الولادة",
       description:
@@ -36,6 +39,7 @@ const DoctorsTeam = () => {
       img: "/imgs/doctorsteam/doctor6.png",
     },
     {
+      id: "683b19ff0c2b8b467765448c",
       name: "د. أيمن جاد",
       specialty: "أخصائي الأمراض الجلدية والتجميل",
       description:
@@ -46,6 +50,7 @@ const DoctorsTeam = () => {
 
   const group3 = [
     {
+      id: "683b1c6e0c2b8b4677654588",
       name: "د. محمد مصعب",
       specialty: "استشاري طب الأسرة",
       description:
@@ -53,6 +58,7 @@ const DoctorsTeam = () => {
       img: "/imgs/doctorsteam/doctor7.png",
     },
     {
+      id: "683b1fbd0c2b8b467765466c",
       name: "د. خالد أسامة",
       specialty: "أخصائي جراحة العظام والمفاصل",
       description:
@@ -109,6 +115,7 @@ const DoctorsTeam = () => {
         {doctors.map((doc, index) => (
           <DoctorCard
             key={index}
+            id={doc.id}
             name={doc.name}
             specialty={doc.specialty}
             description={doc.description}
@@ -118,6 +125,7 @@ const DoctorsTeam = () => {
       </div>
       <div className="min-[1296px]:hidden w-full flex flex-col items-center">
         <DoctorCard
+         id={allDoctors[currentIndex].id}
           name={allDoctors[currentIndex].name}
           specialty={allDoctors[currentIndex].specialty}
           description={allDoctors[currentIndex].description}

@@ -2,17 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import "aos/dist/aos.css";
-
+import Link from "next/link";
 import { Phone } from "lucide-react";
 
 interface DoctorCardProps {
+  id: string;
   name: string;
   specialty: string;
   description: string;
   img: string;
 }
 
-const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
+const DoctorCard = ({ id,name, specialty, description, img }: DoctorCardProps) => {
   const locale = useLocale();
   const isRTL = locale === "ar";
 
@@ -56,15 +57,15 @@ const DoctorCard = ({ name, specialty, description, img }: DoctorCardProps) => {
           {description}
         </p>
 
-        <button
-          className={`flex gap-2 my-6 text-base${
+        <Link
+          href={`/doctor/${id}`}
+          className={`w-fit flex gap-2 my-6 text-base ${
             isRTL ? "mr-4 sm:mr-6" : "ml-4 sm:ml-6"
           } px-4 py-1 border-2 rounded-lg font-semibold shadow-[0_0_10px_2px_#a2c5f646] hover:bg-[#47bbff78] hover:shadow-[#7cc0be84] transition duration-300`}
         >
           <p>{isRTL ? "اتصل الان" : "Call Now"}</p>
-
           <Phone className="s:w-5 w-0 stroke-none fill-white" />
-        </button>
+        </Link>
       </div>
     </div>
   );
