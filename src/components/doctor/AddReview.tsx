@@ -62,7 +62,7 @@ const AddReview = ({
   };
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 bg-white py-7 border-t">
+    <div className="bg-white py-7 border-t">
       <form className="flex gap-2 items-center" onSubmit={handleSubmit}>
         <div className="relative flex-1">
           <input
