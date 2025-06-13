@@ -10,11 +10,7 @@ import {
   Settings,
   UserRound,
   X,
-  Home,
-  User,
-  Stethoscope,
-  Info,
-  BadgeDollarSign,
+  Home, User, Stethoscope, Info, BadgeDollarSign
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -36,18 +32,18 @@ const NavBar = () => {
   const locale = Cookies.get("locale");
   const pathName = usePathname();
   const router = useRouter();
-
-  useEffect(() => {
-    if (openMenu) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [openMenu]);
-
+  
+      useEffect(() => {
+        if (openMenu) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+        return () => {
+          document.body.style.overflow = "";
+        };
+      }, [openMenu]);
+      
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -358,7 +354,7 @@ const NavBar = () => {
             <div className="flex gap-2">
               {/* Lang Switcher */}
               <div className="md:block hidden">
-                <LangSwitcher />
+              <LangSwitcher />
               </div>
               {/* Menu toggle */}
               <button
@@ -375,102 +371,89 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-
+        
       {/* in Small Screen */}
-      <div
-        className={`fixed md:hidden top-0 ${
-          locale === "ar" ? "right-0" : "left-0"
-        } bg-black/40 z-50 w-full h-full transition-opacity duration-300 ease-in-out ${
-          openMenu ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setOpenMenu(false)}
-      >
         <div
-          className={`bg-gradient-to-bl from-blue-50 via-white to-blue-50 absolute top-0 ${
-            locale === "ar" ? "left-0" : "right-0"
-          } w-[280px] h-full bg-white ${
-            locale === "ar" ? "rounded-r-xl" : "rounded-l-xl"
-          } shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
-            openMenu
+          className={`fixed md:hidden top-0 ${locale === "ar" ? "right-0" : "left-0"} bg-black/40 z-50 w-full h-full transition-opacity duration-300 ease-in-out ${
+            openMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setOpenMenu(false)}
+        >
+          <div
+            className={`bg-gradient-to-bl from-blue-50 via-white to-blue-50 absolute top-0 ${locale === "ar" ? "left-0" : "right-0"} w-[280px] h-full bg-white ${locale === "ar" ? "rounded-r-xl" : "rounded-l-xl"} shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+              openMenu
               ? "translate-x-0"
               : locale === "ar"
-              ? "-translate-x-full"
-              : "translate-x-full"
-          }`}
-        >
-          {/* Menu Items */}
-          <ul className="flex flex-col py-4 text-gray-800 text-lg font-semibold space-y-2">
-            <Link
-              href="/"
-              className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
-                pathName === "/" ? "text-blue-600 font-bold" : "text-gray-600"
-              }`}
-              onClick={() => setOpenMenu(false)}
-            >
-              <Home className="w-5 h-5" />
-              <span>{t("home")}</span>
-            </Link>
+              ? "-translate-x-full" 
+              : "translate-x-full" 
+            }`}
+          >
 
-            <Link
-              href="/doctors"
-              className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
-                pathName === "/doctors"
-                  ? "text-blue-600 font-bold"
-                  : "text-gray-600"
-              }`}
-              onClick={() => setOpenMenu(false)}
-            >
-              <User className="w-5 h-5" />
-              <span>{t("doctors")}</span>
-            </Link>
+            {/* Menu Items */}
+            <ul className="flex flex-col py-4 text-gray-800 text-lg font-semibold space-y-2">
+              <Link
+                href="/"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Home className="w-5 h-5" />
+                <span>{t("home")}</span>
+              </Link>
 
-            <Link
-              href="/services"
-              className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
-                pathName === "/services"
-                  ? "text-blue-600 font-bold"
-                  : "text-gray-600"
-              }`}
-              onClick={() => setOpenMenu(false)}
-            >
-              <Stethoscope className="w-5 h-5" />
-              <span>{t("services")}</span>
-            </Link>
+              <Link
+                href="/doctors"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/doctors" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <User className="w-5 h-5" />
+                <span>{t("doctors")}</span>
+              </Link>
 
-            <Link
-              href="/about"
-              className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
-                pathName === "/about"
-                  ? "text-blue-600 font-bold"
-                  : "text-gray-600"
-              }`}
-              onClick={() => setOpenMenu(false)}
-            >
-              <Info className="w-5 h-5" />
-              <span>{t("about")}</span>
-            </Link>
+              <Link
+                href="/services"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/services" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Stethoscope className="w-5 h-5" />
+                <span>{t("services")}</span>
+              </Link>
 
-            <Link
-              href="/pricing"
-              className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
-                pathName === "/pricing"
-                  ? "text-blue-600 font-bold"
-                  : "text-gray-600"
-              }`}
-              onClick={() => setOpenMenu(false)}
-            >
-              <BadgeDollarSign className="w-5 h-5" />
-              <span>{t("pricing")}</span>
-            </Link>
-          </ul>
-          <div className="flex justify-between items-center  px-4 py-6 border-t border-b border-gray-100 rounded-t-xl">
+              <Link
+                href="/about"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/about" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <Info className="w-5 h-5" />
+                <span>{t("about")}</span>
+              </Link>
+
+              <Link
+                href="/pricing"
+                className={`flex items-center gap-3 h-20 px-4 rounded-xl hover:bg-secondary transition duration-200 ${
+                  pathName === "/pricing" ? "text-blue-600 font-bold" : "text-gray-600"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <BadgeDollarSign className="w-5 h-5" />
+                <span>{t("pricing")}</span>
+              </Link>
+            </ul>
+            <div className="flex justify-between items-center  px-4 py-6 border-t border-b border-gray-100 rounded-t-xl">
             <p className="text-sm text-gray-500 mb-2">{t("language")}</p>
-            <LangSwitcher />
+                <LangSwitcher />
+            </div>
           </div>
         </div>
-      </div>
     </div>
-  );
-};
+    );
+  };
 
-export default NavBar;
+  export default NavBar;
