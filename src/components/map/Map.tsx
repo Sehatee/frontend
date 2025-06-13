@@ -17,7 +17,7 @@ export const defaultMapContainerStyle = {
 
 //for map
 
-const defaultMapZoom = 10; // Reduced zoom level to show more area
+const defaultMapZoom = 19; // Reduced zoom level to show more area
 
 // Add marker position (same as center for this example)
 
@@ -29,6 +29,7 @@ const defaultMapOptions = {
   fullscreenControl: true, // Added fullscreen control
   streetViewControl: true, // Added street view control
   mapTypeControl: true, // Added map type control
+  
 };
 
 const MapComponent = ({ lat, lng }: { lat: number; lng: number }) => {
@@ -42,7 +43,7 @@ const MapComponent = ({ lat, lng }: { lat: number; lng: number }) => {
   };
 
   // Add marker to the map
-  <Marker position={defaultMarkerPosition} />;
+  <Marker position={defaultMarkerPosition}  />;
   return (
     <div className="w-full">
       <GoogleMap

@@ -22,6 +22,7 @@ const AddReview = ({
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const locale = Cookies.get("locale");
+
   const token = Cookies.get("token");
   const { user, setUser } = useUserStore();
 
