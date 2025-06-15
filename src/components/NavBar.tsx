@@ -182,11 +182,11 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-40 w-[280px] xs:w-[350px] flex flex-col justify-between top-14 ${
+                  className={`absolute z-40 w-[300px] md:w-[350px] flex flex-col  justify-between top-14 ${
                     locale === "ar"
-                      ? "-right-32 xs:-right-56"
-                      : "-left-32 xs:-left-56"
-                  } bg-secondary shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
+                      ? "md:-right-72 -right-56"
+                      : "md:-left-72 -left-56"
+                  } bg-secondary md:text-base text-sm shadow-md shadow-gray-300 rounded-md p-3 transition-all duration-300 ease-in-out ${
                     openMenuUser
                       ? "opacity-100 scale-100 translate-y-0"
                       : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -194,7 +194,7 @@ const NavBar = () => {
                   dir={locale === "ar" ? "rtl" : "ltr"}
                 >
                   {/* btn close  */}
-                  <div className="flex justify-end">
+                  <div className="fixed">
                     <button
                       onClick={() => {
                         setOpenMenuUser(false);
@@ -205,7 +205,7 @@ const NavBar = () => {
                     </button>
                   </div>
                   {/* user informations */}
-                  <div className="flex flex-col gap-2 items-center justify-center mb-2">
+                  <div className="flex flex-col gap-2 items-center justify-center mt-1">
                     <div className="w-12 h-12 overflow-hidden rounded-full">
                       <Image
                         src={user.picture || "/imgs/doctorsteam/doctor3.png"}
