@@ -146,7 +146,7 @@
   },
   "About": {
     "title": "About Us",
-    "subTitle": "Specialist Platform is a leading digital platform in the field of telemedicine, aiming to provide exceptional medical services in an innovative, safe, and accessible way.",
+    "subTitle": "Sehati Platform is a leading digital platform in the field of telehealth, aiming to provide exceptional medical services in an innovative, safe, and easily accessible way.",
     "vision": "Our Vision",
     "visionText": "To become the leading health partner for individuals and families by providing distinguished remote medical services and leveraging technology to improve the quality of healthcare and ease of access.",
     "mission": "Our Mission",
@@ -529,12 +529,12 @@
 },
   "PrivacyPolicy": {
     "title": "Privacy and Security Policy",
-    "intro": "At Okhssai, we are committed to protecting your privacy and ensuring the security of your personal information. This policy aims to explain how we collect, use, and protect the data you provide when using our website.",
+    "intro": "At Sehatte, we are committed to protecting your privacy and ensuring the security of your personal information. This policy aims to explain how we collect, use, and protect the data you provide when using our website.",
     "sections": [
       {
         "title": "1. Information We Collect",
         "content": [
-          "When you use the Okhssai website, we may collect the following information:",
+          "When you use the Sehatte website, we may collect the following information:",
           "Full name.",
           "Email address and phone number.",
           "Basic medical information provided by the user when requesting a consultation or booking an appointment.",
