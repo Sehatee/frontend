@@ -17,7 +17,7 @@ const LangSwitcher = () => {
 
   // ✅ قراءة اللغة من الكوكيز بعد أن يكون المكون في المتصفح
   useEffect(() => {
-    const langFromCookie = Cookies.get("locale") || "ar";
+    const langFromCookie = Cookies.get("locale") || "en";
     setCurrentLang(langFromCookie);
   }, []);
 
@@ -25,9 +25,9 @@ const LangSwitcher = () => {
   const selectedLanguage = languages.find(
     (lang) => lang.code === currentLang
   ) || {
-    key: "DZ",
-    code: "ar",
-    name: "العربية",
+    key: "GB",
+    code: "en",
+    name: "English",
   };
 
   const handleLanguageChange = (newLang: string) => {
