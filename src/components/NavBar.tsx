@@ -324,12 +324,12 @@ const NavBar = () => {
                     <li className="bg-white  py-2.5 xs:py-3 px-5 xs:px-7 rounded-b-xl hover:bg-red-500 transition-colors group">
                       <button
                         onClick={logout}
-                        className="w-full flex items-center justify-between"
+                        className="w-full flex items-center justify-between "
                       >
                         <h1 className="group-hover:text-white">
                           {userMenuT("logout")}
                         </h1>
-                        <LogOut className="text-red-600 group-hover:text-white" />
+                        <LogOut className="text-red-600 group-hover:text-white " />
                       </button>
                     </li>
                   </ul>

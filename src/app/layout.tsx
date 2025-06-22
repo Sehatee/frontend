@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
-import { Cairo } from "next/font/google";
+import { Cairo, Poppins } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
@@ -10,6 +10,11 @@ import { fetchUser } from "@/lib/fetchUser";
 
 const cairo = Cairo({
   subsets: ["arabic"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -68,7 +73,7 @@ export default async function RootLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
   const user = await fetchUser();
   console.log(user);
-  const font = cairo.className;
+  const font = locale === "ar" ? cairo.className : poppins.className;
 
   return (
       <html

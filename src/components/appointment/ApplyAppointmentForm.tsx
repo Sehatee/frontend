@@ -143,7 +143,7 @@ const ApplyAppointmentForm = ({
               }
               pattern="\d{2}/\d{2}/\d{4}"
               placeholder="mm/dd/yyyy"
-              disabled
+              
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <Calendar className="w-5 h-5 text-main absolute left-3 top-1/2 -translate-y-1/2" />
