@@ -26,7 +26,7 @@ export const getAllDoctors = async (
 
     const res = await fetch(`${process.env.API_URL}/doctors`);
     const data = await res.json();
-    return data.doctors;
+    return data.doctors || [];
   } catch (error) {
     console.log("error", error);
     return [];
