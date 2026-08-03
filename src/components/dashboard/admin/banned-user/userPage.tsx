@@ -37,41 +37,39 @@ export default function BannedUsersPageClient({
     }
   };
 
-  const statusClass = (active: boolean) =>
-    !active
-      ? "bg-red-500 text-white px-4 py-1 rounded-full text-xs font-semibold"
-      : "bg-gray-200 text-gray-600 px-4 py-1 rounded-full text-xs font-semibold";
+  const statusVariant = (active: boolean) =>
+    active ? "neutral" : "rejected";
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
+    <div className="min-h-screen bg-bg p-6" dir="rtl">
       {/* Breadcrumb navigation */}
-      <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      <div className="flex items-center gap-2 text-sm text-ft2 mb-4">
         <Link
           href={"/dashboard/admin"}
           className="hover:text-main transition duration-200"
         >
           لوحة التحكم
         </Link>
-        <span className="text-gray-400">/</span>
+        <span className="text-ft2/60">/</span>
         <span>المحظورون</span>
       </div>
-      <h1 className="text-2xl font-bold mb-8 text-gray-800">
+      <h2 className="text-2xl font-bold mb-6 text-ft">
         جدول المستخدمين المحظورين
-      </h1>
-      <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
-        <table className="min-w-full text-right">
+      </h2>
+      <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
+        <table className="min-w-full text-start">
           <thead>
-            <tr className="text-gray-500 text-xs uppercase border-b">
+            <tr className="bg-secondary text-ft text-xs uppercase tracking-wide">
               <th className="px-4 py-3">المستخدم</th>
               <th className="px-4 py-3">البريد الإلكتروني</th>
               <th className="px-4 py-3">الحالة</th>
               <th className="px-4 py-3">تعديل</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-secondary">
             <GenericTableRows
               data={bannedUsers}
-              statusClass={statusClass}
+              statusVariant={statusVariant}
               handleEdit={handleEdit}
               columns={[
                 { key: "username", label: "المستخدم" },
@@ -90,8 +88,6 @@ export default function BannedUsersPageClient({
           username={selectedUser.username}
           subtitle={selectedUser.description}
           title="تعديل المستخدم المحظور"
-          headerColorFrom="red"
-          headerColorTo="rose"
           primaryActionLabel="رفع الحظر"
           secondaryActionLabel=""
           onPrimaryAction={() =>

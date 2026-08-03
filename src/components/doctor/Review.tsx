@@ -1,9 +1,10 @@
 "use client";
 import { Review as ReviewType, UpdateReview } from "@/types/Review";
 import RenderStars from "@/ui/RenderStars";
+import Modal from "@/ui/Modal";
 import { MessageCircle, Trash2, Edit2, Star } from "lucide-react";
 import Image from "next/image";
-import React, { FormEvent,  useMemo, useState } from "react";
+import React, { FormEvent, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { deleteReview, updateReview } from "@/lib/api/review";
 import Cookies from "js-cookie";
@@ -61,8 +62,6 @@ const Review = ({ review }: ReviewProps) => {
         content: editContent,
         rating: editRating,
       };
-      console.log(updateData);
-      console.log(updateData);
       const updatedReview = await updateReview(
         token || "",
         currentReview._id,
@@ -87,62 +86,72 @@ const Review = ({ review }: ReviewProps) => {
     typeof window !== "undefined" ? document.documentElement.lang : "en";
   const dir = ["ar", "he", "fa", "ur"].includes(lang) ? "rtl" : "ltr";
 
+  const initials = (currentReview.patientId.username || "").trim().charAt(0);
+
   return (
     <>
       <div
-        className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+        className="rounded-2xl border border-secondary bg-white p-6"
         dir={dir}
       >
         <div className="flex items-start gap-4">
-          <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-            <Image
-              src={currentReview.patientId.picture || ""}
-              alt={currentReview.patientId.username}
-              fill
-              className="object-cover"
-            />
+          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-main">
+            {currentReview.patientId.picture ? (
+              <Image
+                src={currentReview.patientId.picture}
+                alt={currentReview.patientId.username}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <span className="font-display text-lg font-bold text-white">
+                  {initials}
+                </span>
+              </div>
+            )}
           </div>
 
-          <div className="flex-1">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-gray-900">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-semibold text-ft">
                   {currentReview.patientId.username}
                 </span>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <RenderStars rating={currentReview.rating} />
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-ft2">
                     ({currentReview.rating})
                   </span>
                 </div>
               </div>
               {isMyReview && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                   <button
                     onClick={openEditModal}
-                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    className="rounded-full p-1.5 text-ft2 transition-colors hover:bg-secondary hover:text-main"
                   >
-                    <Edit2 className="w-4 h-4 text-gray-500" />
+                    <Edit2 className="size-4" />
                   </button>
                   <button
                     onClick={() => setIsDeleteModalOpen(true)}
-                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    className="rounded-full p-1.5 text-accent transition-colors hover:bg-accent/10"
                   >
-                    <Trash2 className="w-4 h-4 text-red-500" />
+                    <Trash2 className="size-4" />
                   </button>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-ft2">
                     {currentReview.createdAt.split("T")[0]}
                   </span>
                 </div>
               )}
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-2">
+            <p className="mt-2 leading-relaxed text-ft2">
               {currentReview.content}
             </p>
 
-            <div className="flex items-center gap-2 text-gray-500 text-sm">
-              <MessageCircle className="w-4 h-4" />
+            <div className="mt-3 flex items-center gap-2 text-sm text-ft2">
+              <MessageCircle className="size-4" />
               <span>Review</span>
             </div>
           </div>
@@ -150,98 +159,79 @@ const Review = ({ review }: ReviewProps) => {
       </div>
 
       {/* Delete Confirmation Modal */}
-      {isDeleteModalOpen && isMyReview && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          dir={dir}
-        >
-          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
-            <h3 className="text-lg font-semibold mb-4">{t("confirmDelete")}</h3>
-            <p className="text-gray-600 mb-6">{t("deleteReviewConfirm")}</p>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={() => setIsDeleteModalOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                {t("cancel")}
-              </button>
-              <button
-                onClick={handleDelete}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-              >
-                {t("delete")}
-              </button>
-            </div>
-          </div>
+      <Modal
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        title={t("confirmDelete")}
+      >
+        <p className="text-ft2">{t("deleteReviewConfirm")}</p>
+        <div className="mt-6 flex justify-end gap-3" dir={dir}>
+          <button
+            onClick={() => setIsDeleteModalOpen(false)}
+            className="btn-ghost px-5 py-2.5 text-sm"
+          >
+            {t("cancel")}
+          </button>
+          <button
+            onClick={handleDelete}
+            className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-accent/90"
+          >
+            <Trash2 className="size-4" />
+            {t("delete")}
+          </button>
         </div>
-      )}
+      </Modal>
 
       {/* Edit Modal */}
-      {isEditModalOpen && isMyReview && (
-        <form
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          dir={dir}
-          onSubmit={handleEdit}
-        >
-          <div
-            className="bg-white rounded-lg p-6 max-w-md w-full mx-4"
-            dir={dir}
-          >
-            <h3 className="text-lg font-semibold mb-4">{t("editReview")}</h3>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                التقييم
-              </label>
-              <div className="flex items-center gap-2 ">
-                <div className="flex gap-1" dir="rtl">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <div
-                      dir="rtl"
-                      key={star}
-                      className="relative flex items-center"
-                    >
-                      <Star
-                        className={`w-5 h-5 cursor-pointer ${
-                          editRating >= star
-                            ? "text-yellow-400"
-                            : "text-gray-300"
-                        }`}
-                        fill={editRating >= star ? "currentColor" : "none"}
-                        onClick={() => handleRatingClick(star)}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                المحتوى
-              </label>
-              <textarea
-                placeholder={editContent}
-                onChange={(e) => setEditContent(e.target.value)}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                rows={4}
-              />
-            </div>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={() => setIsEditModalOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                إلغاء
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                حفظ
-              </button>
+      <Modal
+        open={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        title={t("editReview")}
+      >
+        <form className="space-y-5" dir={dir} onSubmit={handleEdit}>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-ft">
+              {t("rating")}
+            </label>
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  onClick={() => handleRatingClick(star)}
+                  className={`size-6 cursor-pointer ${
+                    editRating >= star ? "text-star" : "text-ft2"
+                  }`}
+                  fill={editRating >= star ? "currentColor" : "none"}
+                  strokeWidth={1.5}
+                />
+              ))}
             </div>
           </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-ft">
+              {t("content")}
+            </label>
+            <textarea
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              rows={4}
+              className="w-full rounded-xl border border-secondary bg-bg p-4 text-ft placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30 transition"
+            />
+          </div>
+          <div className="flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => setIsEditModalOpen(false)}
+              className="btn-ghost px-5 py-2.5 text-sm"
+            >
+              {t("cancel")}
+            </button>
+            <button type="submit" className="btn-primary px-5 py-2.5 text-sm">
+              {t("save")}
+            </button>
+          </div>
         </form>
-      )}
+      </Modal>
     </>
   );
 };

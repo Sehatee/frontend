@@ -43,3 +43,6 @@ next-env.d.ts
 
 # todo file 
 Todo.txt
+
+# history 
+.history

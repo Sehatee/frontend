@@ -7,18 +7,18 @@ const Footer = () => {
   const t = useTranslations("Footer");
 
   return (
-    <footer className="tracking-wide px-10 pt-12 pb-6 bg-secondary">
+    <footer className="tracking-wide px-10 pt-12 pb-6 bg-main text-white">
       <div className="flex flex-wrap justify-between gap-10">
         {/* Logo and Description */}
-        <div className="max-w-md text-right">
+        <div className="max-w-md text-start">
           <Link href="/" className="inline-block">
-            <h2 className="text-main text-2xl font-bold flex items-center gap-2">
+            <h2 className="text-white text-2xl font-bold flex items-center gap-2">
               <span>{t("logoName")}</span>
-              <HeartHandshake color="#0B62DE" size={25} />
+              <HeartHandshake size={25} />
             </h2>
           </Link>
           <div className="mt-6">
-            <p className="text-slate-600 leading-relaxed text-sm">
+            <p className="text-white/70 leading-relaxed text-sm">
               {t("description")}
             </p>
           </div>
@@ -29,7 +29,7 @@ const Footer = () => {
                 href="https://www.facebook.com/profile.php?id=61576613216012"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-blue-600 transition-all duration-300 ease-in-out"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-accent transition-all duration-300 ease-in-out"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const Footer = () => {
                 href="https://x.com/sehatte_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-sky-500 transition-all duration-300 ease-in-out"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-accent transition-all duration-300 ease-in-out"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ const Footer = () => {
                 href="https://www.instagram.com/sehatte/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-main rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-pink-600 transition-all duration-300 ease-in-out"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transform hover:scale-110 hover:bg-accent transition-all duration-300 ease-in-out"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,23 +79,23 @@ const Footer = () => {
         </div>
 
         {/* Main Navigation */}
-        <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">
+        <div className="text-start">
+          <h3 className="text-white font-semibold mb-4">
             {t("mainMenu.title")}
           </h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/" className="text-gray-600 hover:text-main">
+              <Link href="/" className="text-white/70 hover:text-white transition-colors">
                 {t("mainMenu.home")}
               </Link>
             </li>
             <li>
-              <Link href="/about" className="text-gray-600 hover:text-main">
+              <Link href="/about" className="text-white/70 hover:text-white transition-colors">
                 {t("mainMenu.about")}
               </Link>
             </li>
             <li>
-              <Link href="/doctors" className="text-gray-600 hover:text-main">
+              <Link href="/doctors" className="text-white/70 hover:text-white transition-colors">
                 {t("mainMenu.doctors")}
               </Link>
             </li>
@@ -103,18 +103,18 @@ const Footer = () => {
         </div>
 
         {/* Important Information - معلومات تهمك */}
-        <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">
+        <div className="text-start">
+          <h3 className="text-white font-semibold mb-4">
             {t("importantInfo.title")}
           </h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/privacy" className="text-gray-600 hover:text-main">
+              <Link href="/privacy" className="text-white/70 hover:text-white transition-colors">
                 {t("importantInfo.privacy")}
               </Link>
             </li>
             <li>
-              <Link href="/terms" className="text-gray-600 hover:text-main">
+              <Link href="/terms" className="text-white/70 hover:text-white transition-colors">
                 {t("importantInfo.terms")}
               </Link>
             </li>
@@ -122,20 +122,20 @@ const Footer = () => {
         </div>
 
         {/* Contact Us - تواصل معنا */}
-        <div className="text-right">
-          <h3 className="text-gray-900 font-semibold mb-4">
+        <div className="text-start">
+          <h3 className="text-white font-semibold mb-4">
             {t("contactUs.title")}
           </h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/support" className="text-gray-600 hover:text-main">
+              <Link href="/support" className="text-white/70 hover:text-white transition-colors">
                 {t("contactUs.helpCenter")}
               </Link>
             </li>
             <li>
               <a
                 href="mailto:contact@sehatte.com"
-                className="text-blue-500 hover:underline"
+                className="text-white hover:underline"
               >
                 contact@sehatte.com
               </a>
@@ -144,10 +144,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="my-8 border-gray-300" />
+      <hr className="my-8 border-white/15" />
 
       <div className="text-center">
-        <p className="text-slate-600 text-sm">{t("copyright")}</p>
+        <p className="text-white/60 text-sm">{t("copyright")}</p>
       </div>
     </footer>
   );

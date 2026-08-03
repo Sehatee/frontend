@@ -94,24 +94,19 @@ const DoctorsTeam = () => {
   };
 
   return (
-    <div className="my-24 px-4 sm:px-6 md:px-8">
+    <div className="py-20 px-4 sm:px-6 md:px-8 md:py-28">
       {/* title */}
-      <div
-        className={`flex flex-col gap-3 my-12 ${
-          locale === "ar" ? "min-[1296px]:mr-16 mr-0" : "xl:ml-16 ml-0"
-        }`}
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold min-[1296px]:text-start text-center">
+      <div className="mb-12 flex flex-col text-start md:mb-16">
+        <span className="eyebrow">{t("eyebrow")}</span>
+        <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold text-ft">
           {t("title")}
         </h1>
-        <p className="hidden md:block text-base sm:text-lg md:text-xl font-medium text-textSecondary mt-2 min-[1296px]:text-start text-center">
-          {t("subTitle")}
-        </p>
+        <p className="mt-3 max-w-[60ch] text-ft2">{t("subTitle")}</p>
       </div>
       {/* team */}
 
       {/* Show all cards on md and larger screens */}
-      <div className="hidden min-[1296px]:grid grid-cols-1 max-[1296px]:grid-cols-1 min-[1296px]:grid-cols-2 gap-6 justify-items-center items-center mx-auto">
+      <div className="hidden min-[1296px]:grid grid-cols-2 gap-8 justify-items-center items-center mx-auto">
         {doctors.map((doc, index) => (
           <DoctorCard
             key={index}
@@ -125,7 +120,7 @@ const DoctorsTeam = () => {
       </div>
       <div className="min-[1296px]:hidden w-full flex flex-col items-center">
         <DoctorCard
-         id={allDoctors[currentIndex].id}
+          id={allDoctors[currentIndex].id}
           name={allDoctors[currentIndex].name}
           specialty={allDoctors[currentIndex].specialty}
           description={allDoctors[currentIndex].description}
@@ -135,30 +130,28 @@ const DoctorsTeam = () => {
       <div className="flex justify-center gap-2 min-[1296px]:mt-16 mt-10">
         <button
           onClick={handleBack}
-          className={`hidden min-[1296px]:block p-3 sm:p-4 ${
-            locale === "ar" ? "pl-4 sm:pl-5" : "pr-4 sm:pr-5"
-          } rounded-full  bg-[#D4D4D4]`}
+          aria-label={locale === "ar" ? "السابق" : "Previous"}
+          className="hidden min-[1296px]:block p-3 sm:p-4 rounded-full bg-secondary border border-main/10 shadow-md shadow-main/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent"
         >
           <Image
             width={24}
             height={24}
             src={`/imgs/doctorsteam/${locale === "ar" ? "back" : "next"}.png`}
-            alt="backImg"
+            alt={locale === "ar" ? "السابق" : "Previous"}
             className="w-5 sm:w-6"
           />
         </button>
 
         <button
           onClick={handleNext}
-          className={`hidden min-[1296px]:block p-3 sm:p-4 ${
-            locale === "ar" ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"
-          } rounded-full bg-[#3D87F2]`}
+          aria-label={locale === "ar" ? "التالي" : "Next"}
+          className="hidden min-[1296px]:block p-3 sm:p-4 rounded-full bg-main shadow-md shadow-main/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-mainLight"
         >
           <Image
             width={24}
             height={24}
             src={`/imgs/doctorsteam/${locale === "ar" ? "next" : "back"}.png`}
-            alt="nextImg"
+            alt={locale === "ar" ? "التالي" : "Next"}
             className="w-5 sm:w-6"
           />
         </button>
@@ -167,30 +160,28 @@ const DoctorsTeam = () => {
 
         <button
           onClick={handleBackSmall}
-          className={`min-[1296px]:hidden bg-[#D4D4D4] p-3 sm:p-4 ${
-            locale === "ar" ? "pl-4 sm:pl-5" : "pr-4 sm:pr-5"
-          } rounded-full`}
+          aria-label={locale === "ar" ? "السابق" : "Previous"}
+          className="min-[1296px]:hidden p-3 sm:p-4 rounded-full bg-secondary border border-main/10 shadow-md shadow-main/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent"
         >
           <Image
             width={24}
             height={24}
             src={`/imgs/doctorsteam/${locale === "ar" ? "back" : "next"}.png`}
-            alt="backImg"
+            alt={locale === "ar" ? "السابق" : "Previous"}
             className="w-5 sm:w-6"
           />
         </button>
 
         <button
           onClick={handleNextSmall}
-          className={`min-[1296px]:hidden bg-[#3D87F2] p-3 sm:p-4 ${
-            locale === "ar" ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"
-          } rounded-full`}
+          aria-label={locale === "ar" ? "التالي" : "Next"}
+          className="min-[1296px]:hidden p-3 sm:p-4 rounded-full bg-main shadow-md shadow-main/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-mainLight"
         >
           <Image
             width={24}
             height={24}
             src={`/imgs/doctorsteam/${locale === "ar" ? "next" : "back"}.png`}
-            alt="nextImg"
+            alt={locale === "ar" ? "التالي" : "Next"}
             className="w-5 sm:w-6"
           />
         </button>

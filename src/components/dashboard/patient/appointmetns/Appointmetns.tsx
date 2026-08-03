@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { Appointment } from "@/types/Appointment";
 import AppointmentCard from "./AppointmentCard";
 import { Calendar } from "lucide-react";
+
 const Appointments = async () => {
   const t = await getTranslations("Appointment");
   const cookiesStore = await cookies();
@@ -12,17 +13,17 @@ const Appointments = async () => {
   const appointments: Appointment[] = await getAllAppintmentsByPatient(
     token || ""
   );
-  console.log(appointments);
-  console.log(token);
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold mb-6">{t("myAppointments")}</h2>
+      <h2 className="mb-6 text-2xl font-bold text-ft">{t("myAppointments")}</h2>
 
       {appointments.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
-          <Calendar className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-          <p>{t("noAppointments")}</p>
+        <div className="rounded-3xl border border-secondary bg-white px-6 py-14 text-center">
+          <span className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary text-main">
+            <Calendar className="h-8 w-8" />
+          </span>
+          <p className="text-ft2">{t("noAppointments")}</p>
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

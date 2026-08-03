@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { Phone, Paperclip, CheckCircle2, X } from "lucide-react";
 
 function DirectCall() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,139 +28,117 @@ function DirectCall() {
   }
 
   return (
-    <div className="bg-white mt-32 p-6 md:p-8 rounded-2xl shadow-md max-w-xl w-full mx-auto border ">
-      {/* العنوان */}
-      <h2 className="text-2xl font-bold text-center mb-6 text-black">
-        {t("title")}
-      </h2>
-
-      {/* مربع النص */}
-      <textarea
-        dir={textDirection}
-        value={text}
-        onChange={(e) => {
-          if(e.target.value.length <= 200) {
-            setText(e.target.value);
-          }
-          
-        }}
-        maxLength={200}
-        placeholder={t("placeholder")}
-        className="w-full h-32 border rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none mb-1"
-      ></textarea>
-      <p className="text-sm text-gray-500 mb-4">{`${text.length}/200 ${t('char').split(' ')[1]}`}</p>
-
-      {/* رفع ملف */}
-      <label className="flex items-center justify-between px-4 py-3 border rounded-xl cursor-pointer mb-6">
-        <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-          {/* أيقونة ورق */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 10.828a4 4 0 00-5.656-5.656L5.343 12.172a6 6 0 008.485 8.485L20.485 14"
-            />
-          </svg>
-          <span>{t("upload")}</span>
-          <span className="text-gray-400">{t("opt")}</span>
+    <div className="mx-auto w-full max-w-xl px-4 pb-20 pt-10">
+      {/* banner */}
+      <div className="relative overflow-hidden rounded-[2rem] bg-main p-10 text-center shadow-lg shadow-main/25">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -end-20 -top-20 h-56 w-56 rounded-full bg-white/10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-10 -start-10 h-32 w-32 rounded-full border-2 border-accent/70"
+        />
+        <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent shadow-lg shadow-black/10">
+          <Phone className="size-7 text-white" />
         </div>
-        <input type="file" className="hidden" />
-      </label>
-
-      {/* الموافقة */}
-      <div className="flex items-start gap-2 mb-6">
-        <input type="checkbox" id="agree" className="mt-1" />
-        <label
-          htmlFor="agree"
-          className="text-sm leading-relaxed text-gray-700"
-        >
-          {t("check")}
-          <button
-            type="button"
-            onClick={() => setIsModalOpen(true)}
-            className="text-blue-600 hover:underline"
-          >
-            {t("showTerms")}
-          </button>
-        </label>
+        <h1 className="relative mt-5 font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
+          {t("title")}
+        </h1>
       </div>
 
-      {/* زر تأكيد */}
-      <button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-3 rounded-xl transition"
-        onClick={handleSubmit}
-      >
-        {t("submit")}
-      </button>
+      {/* form card */}
+      <div className="mt-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm sm:p-8">
+        <textarea
+          dir={textDirection}
+          value={text}
+          onChange={(e) => {
+            if (e.target.value.length <= 200) {
+              setText(e.target.value);
+            }
+          }}
+          maxLength={200}
+          placeholder={t("placeholder")}
+          className="w-full h-32 resize-none rounded-xl border border-secondary bg-bg p-4 text-sm text-ft placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30 transition"
+        ></textarea>
+        <p className="mb-4 mt-1 text-sm text-ft2">{`${text.length}/200 ${t('char').split(' ')[1]}`}</p>
+
+        {/* رفع ملف */}
+        <label className="mb-6 flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-secondary bg-bg px-4 py-3 transition hover:border-main/40">
+          <div className="flex items-center gap-2 text-sm font-semibold text-ft">
+            <Paperclip className="size-4 text-main" />
+            <span>{t("upload")}</span>
+            <span className="text-ft2">{t("opt")}</span>
+          </div>
+          <input type="file" className="hidden" />
+        </label>
+
+        {/* الموافقة */}
+        <div className="mb-6 flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="agree"
+            className="mt-1 size-4 accent-[oklch(0.52_0.165_256)]"
+          />
+          <label
+            htmlFor="agree"
+            className="text-sm leading-relaxed text-ft2"
+          >
+            {t("check")}
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="ms-1 font-semibold text-main hover:underline"
+            >
+              {t("showTerms")}
+            </button>
+          </label>
+        </div>
+
+        {/* زر تأكيد */}
+        <button
+          className="btn-primary w-full text-lg"
+          onClick={handleSubmit}
+        >
+          {t("submit")}
+        </button>
+      </div>
 
       {/* Toast Notification */}
       {showToast && (
-        <div className="fixed top-[72px] left-0 right-0 flex items-center justify-center">
-          <div className="bg-green-100 text-black p-4 rounded-md shadow-lg flex items-center space-x-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-green-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+        <div className="fixed top-[72px] start-0 end-0 z-50 flex items-center justify-center px-4">
+          <div className="flex items-center gap-3 rounded-2xl border border-secondary bg-white p-4 shadow-xl">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary">
+              <CheckCircle2 className="size-5 text-main" />
+            </span>
             <div>
-              <p className="font-bold">تم تأكيد الحجز</p>
-              <p className="text-sm">
+              <p className="font-bold text-ft">تم تأكيد الحجز</p>
+              <p className="text-sm text-ft2">
                 سيتم التواصل معك قريبًا من قبل الطبيب المختص. شكرًا لثقتك
                 بمنصتنا
               </p>
             </div>
             <button
-              className="ml-auto text-gray-500 hover:text-gray-700"
+              className="ms-auto rounded-full p-1 text-ft2 transition hover:bg-secondary hover:text-main"
               onClick={() => setShowToast(false)}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <X className="size-5" />
             </button>
           </div>
         </div>
       )}
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center ">
-          <div className="bg-white max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 rounded-xl shadow-lg relative">
-            <h2 className="text-xl font-bold text-center mb-4 text-main mt-2">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ft/40 p-4">
+          <div className="relative max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-secondary bg-white p-6 shadow-2xl">
+            <h2 className="mb-4 mt-2 text-center font-display text-xl font-bold text-main">
               {t("Termstitle")}
             </h2>
-            <div
-              className={`text-sm text-ft leading-loose whitespace-pre-wrap px-3`}
-            >
+            <div className="whitespace-pre-wrap px-3 text-sm leading-loose text-ft">
               <p>{t("Termscontent")}</p>
             </div>
             <button
-              className="bg-main text-white w-full py-2 mt-5 text-lg rounded-md hover:bg-blue-700"
+              className="btn-primary mt-5 w-full"
               onClick={() => setIsModalOpen(false)}
             >
               {t("continue")}

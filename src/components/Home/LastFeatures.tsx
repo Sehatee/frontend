@@ -56,57 +56,69 @@ const LastFeatures = () => {
   }, []);
 
   return (
-    <div className="bg-bg flex flex-col items-center py-5" ref={ref}>
-      <div className="flex flex-col-reverse md:flex-row items-center w-full px-4 md:px-8 py-10 gap-7 lg:gap-14 2xl:gap-20">
-        <div className="flex flex-col w-full md:w-1/2 my-auto">
-          <h1 className="xl:text-5xl lg:mr-4 text-4xl md:text-start text-center font-bold text-ft">
+    <div
+      className="relative w-full overflow-hidden bg-main py-20 md:py-28"
+      ref={ref}
+    >
+      <div className="pointer-events-none absolute -top-32 -end-32 h-[420px] w-[420px] rounded-full bg-white/5" />
+      <div className="pointer-events-none absolute -bottom-40 -start-24 h-[380px] w-[380px] rounded-full bg-accent/15" />
+
+      <div className="relative flex flex-col-reverse items-center gap-12 px-4 md:flex-row md:px-8 lg:gap-16 lg:px-16 2xl:px-24">
+        <div className="flex w-full flex-col items-center md:w-[58%] md:items-start">
+          <h1 className="text-center text-3xl sm:text-4xl md:text-start md:text-5xl font-bold text-white">
             {t("title")}
           </h1>
-          <p className=" md:text-start lg:mr-4 text-center lg:text-2xl text-xl text-ft2 mt-6 lg:mb-10  lg:leading-9 leading-8 2xl:w-[640px] w-full">
+          <p className="mt-5 max-w-[55ch] text-center leading-relaxed text-white/80 md:text-start lg:text-xl">
             {t("subTitle")}
           </p>
-          <div className="flex flex-col sm:flex-row  justify-center  gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-28 lg:py-8 py-4">
-            <p className="text-2xl lg:text-3xl text-center font-bold text-main">
-              {Math.round(numOfPatients)}
-              <span className="text-ft2 mt-2 text-base sm:text-xl block font-normal">
+          <div className="mt-10 flex flex-wrap justify-center gap-10 md:justify-start lg:gap-14">
+            <div className="text-center md:text-start">
+              <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                {Math.round(numOfPatients)}
+              </h2>
+              <span className="mt-1 block text-sm font-normal text-white/70 lg:text-base">
                 {t("patientsCount")}
               </span>
-            </p>
+            </div>
 
-            <p className="text-2xl lg:text-3xl text-center font-bold text-main">
-              {Math.round(numOfDoctors)}
-              <span className="block text-base sm:text-xl mt-2 text-ft2 font-normal">
+            <div className="text-center md:text-start">
+              <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                {Math.round(numOfDoctors)}
+              </h2>
+              <span className="mt-1 block text-sm font-normal text-white/70 lg:text-base">
                 {t("doctorsCount")}
               </span>
-            </p>
+            </div>
 
-            <p className="text-2xl lg:text-3xl text-center font-bold text-main">
-              {numOfRatings.toFixed(1)}/5
-              <span className="text-yellow-400 text-2xl sm:text-3xl mr-1">
-                ★
-              </span>
-              <span className="block text-base sm:text-xl mt-2 text-ft2 font-normal">
+            <div className="text-center md:text-start">
+              <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                {numOfRatings.toFixed(1)}
+                <span className="text-accent text-3xl lg:text-4xl">★</span>
+              </h2>
+              <span className="mt-1 block text-sm font-normal text-white/70 lg:text-base">
                 {t("ratings")}
               </span>
-            </p>
+            </div>
           </div>
-            
-          <Link href="/pricing"
-           className="mt-6 w-full sm:w-auto">
-            <span className="block text-lg text-center sm:text-2xl 2xl:text-3xl text-white font-semibold px-8 sm:px-20 2xl:px-40 py-3 sm:py-[14px] rounded-xl hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
-              {t("btnText")}
-            </span>
+
+          <Link
+            href="/pricing"
+            className="mt-10 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-cream hover:shadow-xl hover:shadow-black/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            {t("btnText")}
           </Link>
         </div>
 
-        <div className="md:block hidden mt-6 w-full md:w-1/2">
-          <Image
-            width={400}
-            height={400}
-            alt="docImg"
-            src={"/imgs/lastFeatures/building.png"}
-            className="mx-auto md:w-full"
-          />
+        <div className="hidden w-full max-w-[420px] md:block md:max-w-[480px]">
+          <div className="rounded-[2rem] bg-white p-6 shadow-2xl shadow-black/20">
+            <Image
+              width={400}
+              height={400}
+              alt="building"
+              src={"/imgs/lastFeatures/building.png"}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </div>
     </div>

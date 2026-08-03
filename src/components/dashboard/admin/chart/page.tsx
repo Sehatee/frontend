@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { useTranslations } from "next-intl";
 
+const MAIN_HEX = "#0a5cd3";
+
 const AdminStatsChart = ({
   data,
 }: {
@@ -33,10 +35,13 @@ const AdminStatsChart = ({
 
   const t = useTranslations("DashboardAdmin");
   return (
-    <section className="bg-white p-4 rounded-xl shadow-sm">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">
-        {t("charts")}
-      </h2>
+    <section className="bg-white rounded-2xl border border-secondary p-6 shadow-sm">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="font-display text-xl font-bold text-ft">
+          {t("charts")}
+        </h2>
+        <span className="eyebrow">{t("charts")}</span>
+      </div>
       <div style={{ width: "100%", height: 350, direction: "rtl" }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -48,26 +53,26 @@ const AdminStatsChart = ({
             ]}
             barCategoryGap={40}
           >
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e6effc" />
             <XAxis
               dataKey="name"
               tick={{
                 fontSize: xAxisFontSize,
                 fontWeight: "bold",
-                fill: "#2F2F2F",
+                fill: "#667383",
                 dy: 5,
               }}
-              axisLine={{ stroke: "#868686", strokeWidth: 3 }}
+              axisLine={{ stroke: "#9db2cc", strokeWidth: 3 }}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 18, fill: "#333", dx: -36 }}
-              axisLine={{ stroke: "#868686", strokeWidth: 3 }}
+              tick={{ fontSize: 18, fill: "#667383", dx: -36 }}
+              axisLine={{ stroke: "#9db2cc", strokeWidth: 3 }}
               tickLine={false}
             />
             <Bar
               dataKey="value"
-              fill="#156BF6"
+              fill={MAIN_HEX}
               radius={[12, 12, 0, 0]}
               barSize={70}
             />

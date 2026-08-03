@@ -1,5 +1,6 @@
 import SideBarDashboards from "@/ui/SideBarDashboards";
 import { useTranslations } from "next-intl";
+import { Activity, Droplets, Ruler, Weight } from "lucide-react";
 import React from "react";
 
 export const MedicalInfo = () => {
@@ -8,13 +9,20 @@ export const MedicalInfo = () => {
 
   const links = t2.raw("links");
 
+  const items = [
+    { icon: Ruler, label: t("height"), value: "175" },
+    { icon: Weight, label: t("weight"), value: "75" },
+    { icon: Droplets, label: t("bloodType"), value: "A+" },
+    { icon: Activity, label: t("chronicDiseases"), value: "—" },
+  ];
+
   return (
-    <div className="flex flex-col gap-6  h-full p-6">
-      <h1 className="w-1/3  text-2xl font-bold text-gray-900">{t("title")}</h1>
+    <div className="flex h-full flex-col gap-6 p-6">
+      <h1 className="text-2xl font-bold text-ft">{t("title")}</h1>
       <SideBarDashboards
         links={[
           {
-            name: links.l1 ,
+            name: links.l1,
             href: "/dashboard/patient/profile/info",
           },
           {
@@ -23,57 +31,21 @@ export const MedicalInfo = () => {
           },
         ]}
       />
-      <div className=" flex-1 bg-white rounded-lg p-6 shadow-sm">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          {t("title")}
-        </h2>
-        <p className="text-sm text-gray-500 mb-6">{t("subtitle")}</p>
+      <div className="flex-1 rounded-3xl border border-secondary bg-white p-8">
+        <h2 className="text-xl font-bold text-ft">{t("title")}</h2>
+        <p className="mb-8 mt-1 text-sm text-ft2">{t("subtitle")}</p>
 
-        <form className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Height */}
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-600">{t("height")}</label>
-              <input
-                type="number"
-                placeholder="175"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
-              />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map(({ icon: Icon, label, value }) => (
+            <div key={label} className="rounded-2xl bg-secondary p-6">
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-main shadow-sm">
+                <Icon className="h-6 w-6" />
+              </span>
+              <p className="text-sm text-ft2">{label}</p>
+              <p className="mt-1 text-lg font-semibold text-ft">{value}</p>
             </div>
-
-            {/* Weight */}
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-600">{t("weight")}</label>
-              <input
-                type="number"
-                placeholder="75"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
-              />
-            </div>
-
-            {/* Blood Type */}
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-600">{t("bloodType")}</label>
-              <input
-                type="text"
-                placeholder="A+"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
-              />
-            </div>
-
-            {/* Chronic Diseases */}
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-600">
-                {t("chronicDiseases")}
-              </label>
-              <input
-                type="text"
-                placeholder="-"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-main"
-              />
-            </div>
-          </div>
-        </form>
+          ))}
+        </div>
       </div>
     </div>
   );

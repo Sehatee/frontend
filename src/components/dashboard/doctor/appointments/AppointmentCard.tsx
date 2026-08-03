@@ -1,12 +1,15 @@
 "use client";
 import { Appointment } from "@/types/Appointment";
-import { Calendar, FileText, Trash, Plus, Loader2 } from "lucide-react";
+import { Calendar, FileText, Plus, Trash2, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useState, useRef } from "react";
 import MedicalRecordModal from "./MedicalRecordModal";
 import Cookies from "js-cookie";
 import { createMedicalRecord } from "@/lib/api/medicalRecord";
 import { deleteAppointment } from "@/lib/api/appointment";
+import StatusBadge, { statusVariant } from "@/ui/StatusBadge";
+import Modal from "@/ui/Modal";
+import Image from "next/image";
 
 const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   const t = useTranslations("Appointment");
@@ -18,18 +21,17 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const token = Cookies.get("token");
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "pending":
-        return "bg-yellow-100 text-yellow-800";
-      case "completed":
-        return "bg-green-100 text-green-800";
-      case "rejected":
-        return "bg-red-100 text-red-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
-  };
+  const statusKey = appointment.status.toLowerCase();
+  const statusLabel =
+    t(statusKey) === statusKey ? appointment.status : t(statusKey);
+
+  const patient = appointment.patientId;
+  const initials = (patient.username ?? "")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("");
 
   const handleCreateMedicalRecord = async (data: FormData) => {
     setIsCreatingRecord(true);
@@ -76,69 +78,80 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
       <div
         ref={cardRef}
         key={appointment._id}
-        className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 hover:shadow-md transition-shadow relative w-full"
+        className="relative w-full rounded-2xl border border-secondary bg-white p-6 transition-shadow hover:shadow-md"
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-          <div className="flex flex-col space-y-2 w-full sm:w-auto">
-            <div>
-              <h3 className="font-medium text-blue-600 text-sm sm:text-base">
-                {t("patientName")}: {appointment.patientId.username}
-              </h3>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-textSecondary">
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4 flex-shrink-0" />
-                <span className="text-xs sm:text-sm">{appointment.date}</span>
-              </div>
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-main text-white">
+              {patient.picture ? (
+                <Image
+                  src={patient.picture}
+                  alt={patient.username}
+                  width={56}
+                  height={56}
+                  className="h-full w-full object-cover object-top"
+                />
+              ) : (
+                <span className="text-lg font-bold">{initials || "P"}</span>
+              )}
+            </span>
 
-              <div className="flex items-center gap-1">
-                <FileText className="w-4 h-4 flex-shrink-0" />
-                <span className="text-xs sm:text-sm break-all">
-                  {appointment.notes}
-                </span>
+            <div className="min-w-0">
+              <h3 className="truncate font-semibold text-ft">
+                <span className="text-ft2">{t("patientName")}:</span>{" "}
+                {patient.username}
+              </h3>
+
+              <div className="mt-1.5 flex flex-col gap-1.5 text-ft2 sm:flex-row sm:items-center sm:gap-4">
+                <div className="flex items-center gap-1.5 text-sm">
+                  <Calendar className="h-4 w-4 flex-shrink-0 text-main" />
+                  <span>{appointment.date}</span>
+                </div>
+
+                {appointment.notes && (
+                  <div className="flex items-center gap-1.5 text-sm">
+                    <FileText className="h-4 w-4 flex-shrink-0 text-main" />
+                    <span className="break-all">{appointment.notes}</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
-          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2">
-            <span
-              className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm bg-blue-50 text-blue-600 ${getStatusColor(
-                appointment.status
-              )}`}
-            >
-              {t(appointment.status.toLowerCase())}
-            </span>
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <StatusBadge variant={statusVariant(appointment.status)}>
+              {statusLabel}
+            </StatusBadge>
 
             {showActions && (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="p-1 text-green-600 hover:text-green-800 transition-colors relative group"
                   title={t("actions.createMedicalRecord")}
                   disabled={isCreatingRecord}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-main px-4 py-2 text-sm font-semibold text-white transition hover:bg-mainLight hover:shadow disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isCreatingRecord ? (
-                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
-                    <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <Plus className="h-4 w-4" />
                   )}
-                  <span className="absolute -top-8 right-0 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {t("actions.createMedicalRecord")}
-                  </span>
+                  {t("actions.createMedicalRecord")}
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="p-1 text-red-600 hover:text-red-800 transition-colors"
                   title={t("actions.deleteAppointment")}
                   disabled={isDeleting}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-red-200 px-4 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isDeleting ? (
-                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
-                    <Trash className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <Trash2 className="h-4 w-4" />
                   )}
+                  {t("actions.deleteAppointment")}
                 </button>
               </div>
             )}
@@ -153,35 +166,30 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
         onSubmit={handleCreateMedicalRecord}
       />
 
-      {showDeleteModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
-            <h3 className="text-lg font-medium mb-4">
-              {t("deleteConfirmation.title")}
-            </h3>
-            <p className="text-gray-600 mb-6">
-              {t("deleteConfirmation.message")}
-            </p>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setShowDeleteModal(false)}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                disabled={isDeleting}
-              >
-                {t("deleteConfirmation.cancel")}
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors flex items-center gap-2"
-                disabled={isDeleting}
-              >
-                {isDeleting && <Loader2 className="w-4 h-4 animate-spin" />}
-                {t("deleteConfirmation.confirm")}
-              </button>
-            </div>
-          </div>
+      <Modal
+        open={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        title={t("deleteConfirmation.title")}
+      >
+        <p className="text-ft2">{t("deleteConfirmation.message")}</p>
+        <div className="mt-6 flex justify-end gap-3">
+          <button
+            onClick={() => setShowDeleteModal(false)}
+            className="text-sm font-medium text-ft2 transition-colors hover:text-ft"
+            disabled={isDeleting}
+          >
+            {t("deleteConfirmation.cancel")}
+          </button>
+          <button
+            onClick={confirmDelete}
+            className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={isDeleting}
+          >
+            {isDeleting && <Loader2 className="h-4 w-4 animate-spin" />}
+            {t("deleteConfirmation.confirm")}
+          </button>
         </div>
-      )}
+      </Modal>
     </>
   );
 };

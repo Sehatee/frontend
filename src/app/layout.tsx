@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
-import { Cairo, Poppins } from "next/font/google";
+import { El_Messiri, Readex_Pro } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
@@ -8,13 +8,16 @@ import "aos/dist/aos.css";
 import { ToastContainer } from "react-toastify";
 import { fetchUser } from "@/lib/fetchUser";
 
-const cairo = Cairo({
-  subsets: ["arabic"],
+const elMessiri = El_Messiri({
+  subsets: ["arabic", "latin"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const readexPro = Readex_Pro({
+  subsets: ["arabic", "latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
     nocache: false,
   },
   manifest: "/manifest.json",
-  themeColor: "#0B62DE",
+  themeColor: "#0a5cd3",
   icons: {
     icon: "/icons/icon-192.png",
     apple: "/icons/icon-512.png",
@@ -72,20 +75,17 @@ export default async function RootLayout({
   const locale = await getLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
   const user = await fetchUser();
-  console.log(user);
-  const font = locale === "ar" ? cairo.className : poppins.className;
 
   return (
-      <html
-        lang={locale}
-        dir={dir}
-        suppressHydrationWarning={true}
-        className={font}
-      >
+    <html
+      lang={locale}
+      dir={dir}
+      suppressHydrationWarning={true}
+      className={`${elMessiri.variable} ${readexPro.variable} ${elMessiri.className}`}>
       <head>
         {/* روابط PWA */}
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0B62DE" />
+        <meta name="theme-color" content="#0a5cd3" />
 
         {/* دعم iOS */}
         <link rel="apple-touch-icon" href="/icons/icon-512.png" />

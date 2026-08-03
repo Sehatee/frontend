@@ -3,6 +3,7 @@ import { Appointment } from "@/types/Appointment";
 import { CreateMedicalRecord } from "@/types/MedicalRecord";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
+import Modal from "@/ui/Modal";
 
 interface MedicalRecordModalProps {
   isOpen: boolean;
@@ -44,74 +45,72 @@ const MedicalRecordModal = ({
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">{t("titleCreate")}</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              {t("form.diagnosis.label")}
-            </label>
-            <textarea
-              className="w-full border rounded-lg p-2"
-              value={formData.diagnosis}
-              onChange={(e) =>
-                setFormData({ ...formData, diagnosis: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              {t("form.treatment.label")}
-            </label>
-            <textarea
-              className="w-full border rounded-lg p-2"
-              value={formData.treatment}
-              onChange={(e) =>
-                setFormData({ ...formData, treatment: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              {t("form.attachments.label")}
-            </label>
-            <input
-              type="file"
-              multiple
-              onChange={(e) => {
-                setSelectedFiles(e.target.files);
-              }}
-              className="w-full p-2 border rounded-lg"
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              {t("form.attachments.helpText")}
-            </p>
-          </div>
-          <div className="flex justify-end space-x-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800"
-            >
-              {t("form.buttons.cancel")}
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-              {t("form.buttons.create")}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Modal open={isOpen} onClose={onClose} title={t("titleCreate")}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="diagnosis" className="text-sm font-medium text-ft">
+            {t("form.diagnosis.label")}
+          </label>
+          <textarea
+            id="diagnosis"
+            className="w-full rounded-xl border border-secondary bg-bg p-3 text-ft placeholder:text-ft2/70 transition focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
+            value={formData.diagnosis}
+            onChange={(e) =>
+              setFormData({ ...formData, diagnosis: e.target.value })
+            }
+            rows={3}
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="treatment" className="text-sm font-medium text-ft">
+            {t("form.treatment.label")}
+          </label>
+          <textarea
+            id="treatment"
+            className="w-full rounded-xl border border-secondary bg-bg p-3 text-ft placeholder:text-ft2/70 transition focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
+            value={formData.treatment}
+            onChange={(e) =>
+              setFormData({ ...formData, treatment: e.target.value })
+            }
+            rows={3}
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="attachments" className="text-sm font-medium text-ft">
+            {t("form.attachments.label")}
+          </label>
+          <input
+            id="attachments"
+            type="file"
+            multiple
+            onChange={(e) => {
+              setSelectedFiles(e.target.files);
+            }}
+            className="w-full rounded-xl border border-secondary bg-bg p-2.5 text-sm text-ft2 file:me-2 file:rounded-lg file:border-0 file:bg-main file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-white hover:file:bg-mainLight"
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          />
+          <p className="text-xs text-ft2">{t("form.attachments.helpText")}</p>
+        </div>
+        <div className="mt-2 flex justify-end gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-main px-5 py-2.5 text-sm font-semibold text-main transition hover:bg-secondary"
+          >
+            {t("form.buttons.cancel")}
+          </button>
+          <button
+            type="submit"
+            className="btn-primary px-6 py-2.5 text-sm"
+          >
+            {t("form.buttons.create")}
+          </button>
+        </div>
+      </form>
+    </Modal>
   );
 };
 

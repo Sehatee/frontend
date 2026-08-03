@@ -1,13 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import Modal from "@/ui/Modal";
 
 interface GenericUserModalProps {
   picture: string;
   username: string;
   subtitle?: string;
   title: string;
-  headerColorFrom: string;
-  headerColorTo: string;
   primaryActionLabel: string;
   onPrimaryAction?: () => void;
   secondaryActionLabel?: string;
@@ -20,8 +20,6 @@ const GenericUserModal: React.FC<GenericUserModalProps> = ({
   username,
   subtitle,
   title,
-  headerColorFrom,
-  headerColorTo,
   primaryActionLabel,
   onPrimaryAction,
   secondaryActionLabel,
@@ -29,28 +27,31 @@ const GenericUserModal: React.FC<GenericUserModalProps> = ({
   closeModal,
 }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-      <div className="bg-[#f5f6fa] rounded-2xl shadow-2xl p-0 w-full max-w-xs text-center relative overflow-hidden">
-        <div className={`bg-gradient-to-tr from-${headerColorFrom} to-${headerColorTo} h-24 relative flex justify-center items-end`}>
-          <div className="absolute left-1/2 -bottom-12 transform -translate-x-1/2">
+    <Modal open onClose={closeModal} title={title}>
+      <div className="flex flex-col items-center gap-3 pt-2">
+        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-main ring-4 ring-secondary">
+          {picture ? (
             <Image
               src={picture}
               alt={username}
               width={96}
               height={96}
-              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
+              className="h-full w-full object-cover"
             />
-          </div>
+          ) : (
+            <span className="text-3xl font-bold text-white">
+              {username.charAt(0)}
+            </span>
+          )}
         </div>
-        <div className="pt-16 pb-6 px-4">
-          <h2 className={`text-xl font-bold text-${headerColorFrom}-700 mb-1`}>{title}</h2>
-          <p className={`text-base text-${headerColorFrom}-500 mb-1`}>{username}</p>
-          {subtitle && <p className="text-sm text-gray-500 mb-4">{subtitle}</p>}
+        <h3 className="text-xl font-bold text-ft">{username}</h3>
+        {subtitle && <p className="text-sm text-ft2 text-center">{subtitle}</p>}
 
+        <div className="mt-2 w-full space-y-3">
           {primaryActionLabel && primaryActionLabel !== "" && (
             <button
               onClick={onPrimaryAction}
-              className="w-full flex items-center justify-center bg-gradient-to-r from-yellow-400 to-orange-400 text-white py-2 rounded-xl mb-3 text-base font-semibold shadow hover:from-yellow-500 hover:to-orange-500 transition"
+              className="btn-primary w-full"
             >
               {primaryActionLabel}
             </button>
@@ -58,20 +59,20 @@ const GenericUserModal: React.FC<GenericUserModalProps> = ({
           {secondaryActionLabel && secondaryActionLabel !== "" && (
             <button
               onClick={onSecondaryAction}
-              className="w-full flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 text-white py-2 rounded-xl mb-3 text-base font-semibold shadow hover:from-pink-600 hover:to-rose-600 transition"
+              className="flex w-full items-center justify-center rounded-xl bg-accent px-7 py-3.5 text-base font-semibold text-white transition-all duration-300 ease-out hover:opacity-90"
             >
               {secondaryActionLabel}
             </button>
           )}
           <button
-            className="w-full flex items-center justify-center bg-gray-300 text-gray-700 py-2 rounded-xl text-base font-semibold hover:bg-gray-400 transition"
+            className="btn-ghost w-full"
             onClick={closeModal}
           >
             إغلاق
           </button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 

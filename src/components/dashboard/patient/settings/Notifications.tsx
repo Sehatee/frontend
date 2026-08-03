@@ -1,16 +1,13 @@
 'use client'
 import React, { useState } from 'react'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { ChevronDown } from 'lucide-react'
 import NotitficationCard from './NotitficationCard'
-
 
 const Notifications = () => {
   const t = useTranslations('Settings.notifications')
   const [filterOpen, setFilterOpen] = useState(false)
   const [selectedFilter, setSelectedFilter] = useState('all')
-  const locale = useLocale()
-  const isRTL = locale === 'ar'
 
   const filters = [
     { id: 'all', label: t('filters.all') },
@@ -20,19 +17,19 @@ const Notifications = () => {
   ]
 
   return (
-    <div className="space-y-6 min-h-screen p-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-900">{t('title')}</h2>
+    <div className="min-h-screen space-y-6 p-6">
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="text-2xl font-bold text-ft">{t('title')}</h2>
         <div className="relative">
           <button
             onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center gap-2 px-4 py-2 border rounded-lg text-gray-700 hover:bg-gray-50"
+            className="flex items-center gap-2 rounded-xl border border-secondary bg-white px-4 py-2.5 text-sm font-medium text-ft transition-colors hover:bg-secondary"
           >
             {t('filterBy')}
-            <ChevronDown className="w-4 h-4" />
+            <ChevronDown className="h-4 w-4 text-main" />
           </button>
           {filterOpen && (
-            <div className={`absolute ${isRTL ? 'left-0' : 'right-0'} mt-2 w-48 bg-white border rounded-lg shadow-lg py-1 z-10`}>
+            <div className="absolute end-0 z-10 mt-2 w-48 rounded-xl border border-secondary bg-white py-1 shadow-lg">
               {filters.map((filter) => (
                 <button
                   key={filter.id}
@@ -40,7 +37,11 @@ const Notifications = () => {
                     setSelectedFilter(filter.id)
                     setFilterOpen(false)
                   }}
-                  className={`w-full text-${isRTL ? 'right' : 'left'} px-4 py-2 text-sm hover:bg-gray-50 ${selectedFilter === filter.id ? 'text-main' : 'text-gray-700'}`}
+                  className={`block w-full px-4 py-2 text-start text-sm transition-colors hover:bg-secondary ${
+                    selectedFilter === filter.id
+                      ? 'font-semibold text-main'
+                      : 'text-ft2'
+                  }`}
                 >
                   {filter.label}
                 </button>

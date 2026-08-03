@@ -21,11 +21,14 @@
     }
   },
   "Header": {
+    "eyebrow": "Téléconsultation de confiance en Algérie",
+    "trustLabel": "La confiance des patients à travers l'Algérie",
     "headText1": "Nous vous offrons les dernières solutions médicales à distance avec une élite de spécialistes",
     "headText2": "Consultez les meilleurs médecins en ligne immédiatement ou réservez un rendez-vous en clinique facilement.. Tous les services médicaux sont maintenant à votre portée",
     "btnText": "Commencez votre consultation maintenant"
   },
   "services": {
+    "eyebrow": "Ce que nous proposons",
     "title": "Les services que nous offrons",
     "subTitle": "Nous sommes toujours là pour vous fournir soins et conseils",
     "services": [
@@ -49,6 +52,7 @@
   "MyServices": {
     "title": "Nos Services Médicaux",
     "subTitle": "Nous offrons une gamme complète de services médicaux à distance via notre plateforme, pour vous garantir des soins de santé d'excellence aux plus hauts standards de qualité et d'efficacité",
+    "eyebrow": "Tout ce dont vous avez besoin, au même endroit",
     "services": [
       {
         "title": "Consultation Médicale",
@@ -69,10 +73,12 @@
     "ADS": {
       "title": "Avez-vous besoin d'aide pour choisir le service approprié ?",
       "text": "Nous offrons une gamme complète de services médicaux à distance via notre plateforme, pour vous garantir des soins de santé d'excellence aux plus hauts standards de qualité et d'efficacité",
-      "btnText": "Contactez-nous"
+      "btnText": "Contactez-nous",
+      "eyebrow": "Nous sommes là pour vous aider"
     }
   },
   "Doctors": {
+    "eyebrow": "Nos médecins de confiance",
     "title": "Équipe Médicale",
     "subTitle": "Une élite de médecins spécialisés pour fournir les meilleurs soins de santé à distance",
     "sec1": {
@@ -104,7 +110,10 @@
     "tryAdjustingFilters": "Essayez d'ajuster les filtres",
     "specialization": {
       "notSpecified": "Médecine générale"
-    }
+    },
+    "doctorsCount": "Médecins",
+    "noDoctorsEyebrow": "Résultats de recherche",
+    "resetFilters": "Réinitialiser la recherche"
   },
   "lastFeatures": {
     "title": "Commencez votre parcours de santé maintenant",
@@ -122,7 +131,18 @@
     "forgotPassword": "Mot de passe oublié ?",
     "noAccount": "Vous n'avez pas de compte ?",
     "signup": "Créer un compte",
-    "loading": "Connexion en cours..."
+    "loading": "Connexion en cours...",
+    "subtitle": "Bon retour — connectez-vous pour continuer vos soins",
+    "brandEyebrow": "Sehatee",
+    "brandTitle": "Votre santé commence par la confiance",
+    "brandSub": "Prenez rendez-vous, consultez votre médecin et suivez votre état — le tout au même endroit, pensé pour votre confort.",
+    "cardTitle": "Formule de soins complète",
+    "cardSub": "Consultations et rendez-vous couverts par un seul abonnement pratique.",
+    "cardTag": "Assuré",
+    "feature1": "Prenez rendez-vous en moins d'une minute",
+    "feature2": "Médecins agréés et de confiance",
+    "feature3": "Suivi 24h/24 et 7j/7",
+    "trust": "Rejoignez plus de 10 000 patients qui nous font confiance"
   },
   "Signup": {
     "title": "Créer un compte",
@@ -136,15 +156,28 @@
     "acceptTerms": "J'accepte les termes et conditions",
     "phone": "Numéro de téléphone",
     "uploadAvatar": "Télécharger une photo",
-    "loading": "Création du compte en cours..."
+    "loading": "Création du compte en cours...",
+    "subtitle": "Commencez votre parcours santé avec nous",
+    "brandEyebrow": "Sehatee",
+    "brandTitle": "Rejoignez notre famille de soins",
+    "brandSub": "Créez votre compte en une minute et commencez votre parcours vers une meilleure santé.",
+    "cardTitle": "Formule de soins complète",
+    "cardSub": "Consultations et rendez-vous couverts par un seul abonnement pratique.",
+    "cardTag": "Assuré",
+    "feature1": "Un dossier médical numérique qui vous suit",
+    "feature2": "Médecins agréés et de confiance",
+    "feature3": "Suivi 24h/24 et 7j/7",
+    "trust": "Rejoignez plus de 10 000 patients qui nous font confiance"
   },
   "About": {
     "title": "À Propos",
     "subTitle": "La plateforme Spécialiste est une plateforme numérique leader dans le domaine des soins de santé à distance, visant à fournir des services médicaux d'excellence de manière innovante, sûre et facilement accessible.",
+    "eyebrow": "Une plateforme numérique algérienne",
     "vision": "Notre Vision",
     "visionText": "Fournir des soins de santé d'excellence grâce à l'utilisation de la technologie moderne, et atteindre les plus hauts niveaux de qualité et d'efficacité dans les services médicaux fournis.",
     "mission": "Notre Mission",
     "missionText": "Fournir des services médicaux innovants, sûrs et facilement accessibles, grâce à une plateforme numérique intégrée qui rassemble médecins et patients, et garantit la fourniture de soins de santé d'excellence.",
+    "missionEyebrow": "Ce que nous faisons",
     "someServices": [
       {
         "id": 0,
@@ -170,6 +203,7 @@
     "values": {
       "title": "Nos Valeurs",
       "subTitle": "Nous croyons en l'importance des valeurs fondamentales qui guident notre travail et définissent notre identité, et nous nous engageons à les appliquer dans tous les aspects de nos services.",
+      "eyebrow": "Ce qui nous guide",
       "valuesList": [
         {
           "id": 0,
@@ -241,7 +275,8 @@
       "descriptionPlaceholder": "Rédigez une brève description de votre pratique médicale et de votre expérience",
       "latitude": "Latitude",
       "longitude": "Longitude",
-      "workingDays": "Jours de travail"
+      "workingDays": "Jours de travail",
+      "uploadPicture": "Téléchargez votre photo de profil"
     },
     "days": {
       "sunday": "Dimanche",
@@ -282,7 +317,11 @@
     "deleteAccount": {
       "title": "Supprimer le compte",
       "description": "Lorsque vous supprimez votre compte, toutes vos données et informations personnelles seront définitivement supprimées",
-      "button": "Supprimer le compte"
+      "button": "Supprimer le compte",
+      "confirmTitle": "Supprimer le compte",
+      "confirmDescription": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
     },
     "notifications": {
       "title": "Notifications",
@@ -315,6 +354,7 @@
   "Support": {
     "title": "Support technique",
     "subtitle": "Obtenez de l'aide de l'équipe de support via les canaux suivants",
+    "eyebrow": "Nous sommes là pour vous aider",
     "liveChat": {
       "title": "Chat en direct",
       "description": "Contactez immédiatement l'équipe de support via le chat en direct",
@@ -354,6 +394,8 @@
   },
   "Appointment": {
     "title": "Réserver un rendez-vous",
+    "eyebrow": "Un pas vous sépare de votre rendez-vous",
+    "subTitle": "Confirmez les détails de votre réservation et nous vous contacterons bientôt",
     "fullName": "Nom complet",
     "phone": "Numéro de téléphone",
     "email": "Adresse e-mail",
@@ -369,6 +411,8 @@
     "noAppointments": "Aucun rendez-vous",
     "pending": "En attente",
     "completed": "Approuvé",
+    "confirmed": "Confirmé",
+    "cancelled": "Annulé",
     "rejected": "Rejeté",
     "doctor": "Dr.",
     "notes": "Notes",
@@ -378,11 +422,19 @@
     "status": {
       "pending": "En attente",
       "completed": "Terminé",
+      "confirmed": "Confirmé",
+      "cancelled": "Annulé",
       "rejected": "Rejeté"
     },
     "actions": {
       "createMedicalRecord": "Créer un dossier médical",
       "deleteAppointment": "Supprimer le rendez-vous"
+    },
+    "deleteConfirmation": {
+      "title": "Supprimer le rendez-vous",
+      "message": "Êtes-vous sûr de vouloir supprimer ce rendez-vous ?",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
     }
   },
   "DoctorCard": {
@@ -411,7 +463,9 @@
       "friday": "Vendredi",
       "saturday": "Samedi",
       "sunday": "Dimanche"
-    }
+    },
+    "about": "À propos du médecin",
+    "verified": "Médecin vérifié"
   },
   "Appointments": {
     "title": "Rendez-vous",
@@ -429,6 +483,7 @@
   },
   "TermsAndConditions": {
     "title": "Termes et Conditions",
+    "eyebrow": "Avant de commencer",
     "lastUpdate": "Dernière mise à jour : 15 mai 2025",
     "intro": "Nous vous souhaitons la bienvenue sur notre site spécialisé dans la fourniture de services médicaux à distance. En utilisant le site et ses services, vous reconnaissez avoir lu, compris et accepté les conditions suivantes. Si vous n'acceptez aucune d'entre elles, veuillez ne pas utiliser le site.",
     "sections": [
@@ -486,6 +541,7 @@
   },
   "PrivacyPolicy": {
     "title": "Politique de Confidentialité et de Sécurité",
+    "eyebrow": "Votre vie privée compte",
     "intro": "Sur le site Spécialiste, nous nous engageons à protéger votre vie privée et à garantir la sécurité de vos informations personnelles. Cette politique vise à expliquer comment nous collectons, utilisons et protégeons les données que vous fournissez lors de l'utilisation de notre site.",
     "sections": [
       {
@@ -566,6 +622,23 @@
     "lastUpdateTitle": "Dernière mise à jour :",
     "lastUpdateDate": "10 mai 2024",
     "treatmentPlan": "Plan de traitement",
-    "btn": "Modifier"
+    "btn": "Modifier",
+    "titleCreate": "Créer un dossier médical",
+    "form": {
+      "diagnosis": {
+        "label": "Diagnostic"
+      },
+      "treatment": {
+        "label": "Traitement"
+      },
+      "attachments": {
+        "label": "Pièces jointes",
+        "helpText": "Vous pouvez télécharger plusieurs fichiers (PDF, DOC, images)"
+      },
+      "buttons": {
+        "cancel": "Annuler",
+        "create": "Créer"
+      }
+    }
   }
 }

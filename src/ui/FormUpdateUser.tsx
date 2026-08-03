@@ -2,12 +2,21 @@
 import { updateUserProfile } from "@/lib/api/profile";
 import { User } from "@/types/User";
 import { useTranslations } from "next-intl";
-import React, { FormEvent, useEffect, useState } from "react";
-import { Loader2, Upload } from "lucide-react";
+import React, { FormEvent, useState } from "react";
+import {
+  Loader2,
+  Mail,
+  MapPin,
+  Phone,
+  Stethoscope,
+  Upload,
+  User as UserIcon,
+} from "lucide-react";
 import showToast from "@/utils/showToast";
 import Cookies from "js-cookie";
 import { AxiosError } from "axios";
 import Image from "next/image";
+import Field from "@/ui/Field";
 
 const days = [
   "Sunday",
@@ -29,7 +38,7 @@ const FormUpdateUser = ({ user }: { user: User }) => {
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,
-    phone: user.phone || "", // Since it's not in the user object
+    phone: user.phone || "",
     specialization: user.specialization || "",
     description: user.description || "",
     location: {
@@ -87,6 +96,7 @@ const FormUpdateUser = ({ user }: { user: User }) => {
       },
     }));
   };
+
   const handleDayChange = (day: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -97,6 +107,7 @@ const FormUpdateUser = ({ user }: { user: User }) => {
             day as
               | "Sunday"
               | "Monday"
+              | "Tuesday"
               | "Wednesday"
               | "Thursday"
               | "Friday"
@@ -110,10 +121,8 @@ const FormUpdateUser = ({ user }: { user: User }) => {
     setIsLoading(true);
 
     try {
-      // Create FormData object for file upload
       const data = new FormData();
 
-      // Add basic user data
       data.append("username", formData.username);
       data.append("email", formData.email);
       data.append("phone", formData.phone);
@@ -121,12 +130,10 @@ const FormUpdateUser = ({ user }: { user: User }) => {
         data.append("file", formData.file);
       }
 
-      // Add doctor-specific data if applicable
       if (user.role === "doctor") {
         data.append("specialization", formData.specialization);
         data.append("description", formData.description);
 
-        // Add location data as JSON string
         const locationData = {
           type: "Point",
           coordinates: [
@@ -137,11 +144,10 @@ const FormUpdateUser = ({ user }: { user: User }) => {
         };
         data.append("location", JSON.stringify(locationData));
 
-        // Add available hours
         const availableHours = formData.workingDays.map((day) => ({ day }));
         data.append("availableHours", JSON.stringify(availableHours));
       }
-      console.log(data.get("location"));
+
       await updateUserProfile(data, token);
       showToast("success", t("profileUpdated"));
     } catch (error) {
@@ -157,30 +163,25 @@ const FormUpdateUser = ({ user }: { user: User }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
-  // Update the coordinate inputs in the form
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 bg-white p-6 rounded-lg max-w-3xl mx-auto"
+      className="flex flex-col gap-6 rounded-3xl border border-secondary bg-white p-8 shadow-sm"
     >
       {/* Avatar upload field */}
-      <div className="flex flex-col items-center space-y-4">
-        <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gray-100">
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative h-32 w-32 overflow-hidden rounded-full bg-secondary">
           {avatarPreview ? (
             <Image
               src={avatarPreview}
               alt="Avatar preview"
               width={150}
               height={150}
-              className="object-cover object-top w-full h-full"
+              className="h-full w-full object-cover object-top"
             />
           ) : (
-            <div className="flex items-center justify-center w-full h-full">
-              <Upload className="w-8 h-8 text-gray-400" />
+            <div className="flex h-full w-full items-center justify-center">
+              <Upload className="h-8 w-8 text-ft2" />
             </div>
           )}
         </div>
@@ -194,178 +195,152 @@ const FormUpdateUser = ({ user }: { user: User }) => {
         />
         <label
           htmlFor="file-upload"
-          className="cursor-pointer text-sm text-blue-600 hover:text-blue-700"
+          className="cursor-pointer text-sm font-medium text-main transition hover:underline"
         >
           {t("personalInfo.uploadPicture") || "Upload Picture"}
         </label>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-gray-700">
-          {t("personalInfo.fullName")}
-        </label>
-        <div className="relative">
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50"
-          />
-        </div>
-      </div>
+      <Field
+        id="username"
+        label={t("personalInfo.fullName")}
+        icon={UserIcon}
+        type="text"
+        name="username"
+        value={formData.username}
+        onChange={(e) => handleChange(e)}
+      />
 
-      {/* Update other input fields similarly */}
-      <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-gray-700">
-          {t("personalInfo.email")}
-        </label>
-        <div className="relative">
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
-          />
-        </div>
-      </div>
+      <Field
+        id="email"
+        label={t("personalInfo.email")}
+        icon={Mail}
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={(e) => handleChange(e)}
+      />
 
-      <div className="flex w-full flex-col gap-2">
-        <label className="text-sm font-medium text-gray-700">
-          {t("personalInfo.phone")}
-        </label>
-        <div className="relative">
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder={t("personalInfo.phonePlaceholder")}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
-          />
-        </div>
-      </div>
+      <Field
+        id="phone"
+        label={t("personalInfo.phone")}
+        icon={Phone}
+        type="tel"
+        name="phone"
+        value={formData.phone}
+        placeholder={t("personalInfo.phonePlaceholder")}
+        onChange={(e) => handleChange(e)}
+      />
 
       {user.role === "doctor" && (
         <>
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">
-              {t("personalInfo.specialization")}
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                name="specialization"
-                value={formData.specialization}
-                onChange={handleChange}
-                placeholder={t("personalInfo.specializationPlaceholder")}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
-              />
-            </div>
-          </div>
+          <Field
+            id="specialization"
+            label={t("personalInfo.specialization")}
+            icon={Stethoscope}
+            type="text"
+            name="specialization"
+            value={formData.specialization}
+            placeholder={t("personalInfo.specializationPlaceholder")}
+            onChange={(e) => handleChange(e)}
+          />
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">
+            <label htmlFor="description" className="text-sm font-medium text-ft">
               {t("personalInfo.description")}
             </label>
             <textarea
+              id="description"
               name="description"
               value={formData.description}
               onChange={handleChange}
               placeholder={t("personalInfo.descriptionPlaceholder")}
               rows={4}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50 placeholder-gray-400 resize-none"
+              className="w-full resize-none rounded-xl border border-secondary bg-bg px-4 py-3 text-ft placeholder:text-ft2/70 transition focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
             />
           </div>
 
           {/* Location */}
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">
+          <div className="flex flex-col gap-3">
+            <span className="text-sm font-medium text-ft">
               {t("personalInfo.address")}
-            </label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="address"
-                placeholder={t("personalInfo.addressPlaceholder")}
-                value={formData.location.address}
-                onChange={handleAddressChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50 placeholder-gray-400"
+            </span>
+            <Field
+              id="address"
+              icon={MapPin}
+              type="text"
+              name="address"
+              placeholder={t("personalInfo.addressPlaceholder")}
+              value={formData.location.address}
+              onChange={handleAddressChange}
+            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <Field
+                id="latitude"
+                label={t("personalInfo.latitude")}
+                type="number"
+                name="latitude"
+                value={formData.location.coordinates[0]}
+                onChange={(e) =>
+                  handleCoordinatesChange("lat", e.target.value)
+                }
+                placeholder={t("personalInfo.latitude")}
               />
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs text-gray-500">
-                    {t("personalInfo.latitude")}{" "}
-                    <span className="text-gray-400">(e.g., 36.7538)</span>
-                  </label>
-                  <input
-                    type="number"
-                    name="latitude"
-                    value={formData.location.coordinates[0]}
-                    onChange={(e) =>
-                      handleCoordinatesChange("lat", e.target.value)
-                    }
-                    placeholder={t("personalInfo.latitude")}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs text-gray-500">
-                    {t("personalInfo.longitude")}{" "}
-                    <span className="text-gray-400">(e.g., 3.0588)</span>
-                  </label>
-                  <input
-                    type="number"
-                    name="longitude"
-                    value={formData.location.coordinates[1]}
-                    onChange={(e) =>
-                      handleCoordinatesChange("lng", e.target.value)
-                    }
-                    placeholder={t("personalInfo.longitude")}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main/20 focus:border-main transition-all duration-200 bg-gray-50/50"
-                  />
-                </div>
-              </div>
+              <Field
+                id="longitude"
+                label={t("personalInfo.longitude")}
+                type="number"
+                name="longitude"
+                value={formData.location.coordinates[1]}
+                onChange={(e) =>
+                  handleCoordinatesChange("lng", e.target.value)
+                }
+                placeholder={t("personalInfo.longitude")}
+              />
             </div>
           </div>
 
           {/* Working Days */}
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">
+          <div className="flex flex-col gap-3">
+            <span className="text-sm font-medium text-ft">
               {t("personalInfo.workingDays")}
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {days.map((day) => (
-                <label
-                  key={day}
-                  className="flex items-center gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                >
-                  <input
-                    type="checkbox"
-                    checked={formData.workingDays.includes(day)}
-                    onChange={() => handleDayChange(day)}
-                    className="w-4 h-4 text-main border-gray-300 rounded focus:ring-main"
-                  />
-                  <span className="text-sm text-gray-700">
-                    {t(`days.${day.toLowerCase()}`)}
-                  </span>
-                </label>
-              ))}
+            </span>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              {days.map((day) => {
+                const checked = formData.workingDays.includes(day);
+                return (
+                  <label
+                    key={day}
+                    className={`flex cursor-pointer items-center gap-2 rounded-xl border p-3 text-sm transition-colors ${
+                      checked
+                        ? "border-main bg-secondary font-medium text-main"
+                        : "border-secondary bg-bg text-ft2 hover:bg-secondary"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => handleDayChange(day)}
+                      className="h-4 w-4 rounded border-secondary text-main focus:ring-2 focus:ring-main/30"
+                    />
+                    <span>{t(`days.${day.toLowerCase()}`)}</span>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </>
       )}
 
-      <div className="mt-4">
+      <div className="mt-2">
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full md:w-auto px-8 py-2.5 bg-main text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors duration-200 font-medium shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-main/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               {t("updating")}
             </>
           ) : (

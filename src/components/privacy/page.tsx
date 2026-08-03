@@ -1,31 +1,39 @@
-import React from 'react'
-import { useTranslations, useLocale } from "next-intl";
+import React from "react";
+import { useTranslations } from "next-intl";
 
 const Privacy = () => {
   const t = useTranslations("PrivacyPolicy");
-  const locale = useLocale();
 
   // Get sections as an array from the translation file
   const sections = t.raw("sections");
 
-  // Set direction and textAlign based on locale
-  const isArabic = locale === "ar";
-  const dirClass = isArabic ? "rtl text-right" : "ltr text-left";
-
   return (
-    <div className={`${dirClass} max-w-[800px] mx-auto font-inherit pt-6 px-4 my-20`}>
-      <h2 className="text-[#2563eb] text-center font-bold mb-6">{t("title")}</h2>
-      <div className="mb-6">{t("intro")}</div>
-      {sections.map((section: { title: string, content: string[] }, idx: number) => (
-        <div key={idx} className="mb-6">
-          <div className="font-bold text-lg mb-2">{section.title}</div>
-          {section.content.map((line: string, i: number) => (
-            <div key={i} className="text-[#444] text-base mb-1">{line}</div>
-          ))}
-        </div>
-      ))}
+    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
+      <div className="flex flex-col items-center gap-3 text-center">
+        <span className="eyebrow">{t("eyebrow")}</span>
+        <h1 className="font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl md:text-5xl">
+          {t("title")}
+        </h1>
+      </div>
+      <p className="mt-10 leading-loose text-ft2 lg:text-lg">{t("intro")}</p>
+      {sections.map(
+        (section: { title: string; content: string[] }, idx: number) => (
+          <section key={idx} className="mt-10">
+            <h2 className="font-display text-xl font-bold text-ft sm:text-2xl">
+              {section.title}
+            </h2>
+            <div className="mt-3 space-y-2">
+              {section.content.map((line: string, i: number) => (
+                <p key={i} className="leading-loose text-ft2">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </section>
+        )
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Privacy
+export default Privacy;

@@ -5,37 +5,33 @@ import { Appointment } from "@/types/Appointment";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
-
-const statusClass = (status: string) =>
-  status === "تمت"
-    ? "bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"
-    : "bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs font-semibold";
+import { StatusBadge, statusVariant } from "@/ui/StatusBadge";
 
 export default async function AppointmentsPage() {
   const token = (await cookies()).get("token")?.value;
   const data = await getAnalysis(token || "");
   const appointments: Appointment[] = data?.appointments.appointments;
   return (
-    <div className="min-h-screen bg-gray-100 p-6" dir="rtl">
+    <div className="min-h-screen bg-bg p-6" dir="rtl">
       {/* Breadcrumb navigation */}
-      <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      <div className="flex items-center gap-2 text-sm text-ft2 mb-4">
         <Link
           href={"/dashboard/admin"}
           className="hover:text-main transition duration-200"
         >
           لوحة التحكم
         </Link>
-        <span className="text-gray-400">/</span>
+        <span className="text-ft2/60">/</span>
         <span>المواعيد</span>
       </div>
-      <h1 className="text-2xl font-bold mb-8 text-gray-800">جدول المواعيد</h1>
-      <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
-        {appointments.length === 0 ? (
-          <p>لا توجد مواعيد مسجلة.</p>
+      <h2 className="text-2xl font-bold mb-6 text-ft">جدول المواعيد</h2>
+      <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
+        {!appointments || appointments.length === 0 ? (
+          <p className="p-6 text-ft2">لا توجد مواعيد مسجلة.</p>
         ) : (
-          <table className="min-w-full text-right">
+          <table className="min-w-full text-start">
             <thead>
-              <tr className="text-gray-500 text-xs uppercase border-b">
+              <tr className="bg-secondary text-ft text-xs uppercase tracking-wide">
                 <th className="px-4 py-3">المريض</th>
                 <th className="px-4 py-3">الطبيب</th>
                 <th className="px-4 py-3">التاريخ</th>
@@ -43,25 +39,25 @@ export default async function AppointmentsPage() {
                 <th className="px-4 py-3">الحالة</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-secondary">
               {appointments.map((appointment) => (
                 <tr
                   key={appointment._id}
-                  className="hover:bg-gray-50 border-b last:border-none"
+                  className="hover:bg-bg transition-colors"
                 >
-                  <td className="px-4 py-4 text-sm font-semibold">
+                  <td className="px-4 py-4 text-sm font-semibold text-ft">
                     {appointment.patientId.username}
                   </td>
-                  <td className="px-4 py-4 text-sm">
+                  <td className="px-4 py-4 text-sm text-ft2">
                     {appointment.doctorId.username}
                   </td>
-                  <td className="px-4 py-4 text-sm">
+                  <td className="px-4 py-4 text-sm text-ft2">
                     {appointment.date.split("T")[0]}
                   </td>
                   <td className="px-4 py-4 text-sm">
-                    <span className={statusClass(appointment.status)}>
+                    <StatusBadge variant={statusVariant(appointment.status)}>
                       {appointment.status}
-                    </span>
+                    </StatusBadge>
                   </td>
                 </tr>
               ))}

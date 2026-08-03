@@ -1,14 +1,20 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
+import { Star, Stethoscope } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
 const Header = () => {
   const t = useTranslations("Header");
+  const nav = useTranslations("NavBar");
+  const lf = useTranslations("lastFeatures");
   const locale = useLocale();
+  const reduce = useReducedMotion();
 
-  // Track screen width
   const [isUnderM, setIsUnderM] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,56 +25,171 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const headline = t("headText1");
+  const periodIndex = headline.indexOf(".");
+  const splitHeadline =
+    periodIndex > -1 && headline.slice(periodIndex + 1).trim().length > 0;
+  const headlineStart = splitHeadline
+    ? headline.slice(0, periodIndex + 1)
+    : headline;
+  const headlineAccent = splitHeadline ? headline.slice(periodIndex + 1) : "";
+
+  const canAnimate = mounted && !reduce;
+  const motionProps = (delay: number) =>
+    canAnimate
+      ? {
+          initial: { opacity: 0, y: 24 },
+          animate: { opacity: 1, y: 0 },
+          transition: {
+            duration: 0.7,
+            ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            delay,
+          },
+        }
+      : { initial: false };
+
   return (
-    <div className="flex relative lg:justify-between justify-start w-full xl:h-[700px] lg:h-[600px] md:h-[530px] m:h-[420px] h-[530px]">
+    <section className="relative overflow-hidden pt-6 sm:pt-10">
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
+
       <Image
         src={
           isUnderM
             ? `/imgs/header/${locale === "ar" ? "shape3.svg" : "shape4.svg"}`
             : `/imgs/header/${locale === "ar" ? "shape1.svg" : "shape2.svg"}`
         }
-        alt="background shape"
+        alt=""
         fill
-        className="object-cover object-center -z-10"
         priority
+        sizes="100vw"
+        className="-z-10 object-cover object-center"
       />
-      <div
-        className={`${
-          locale === "en" ? "lg:ml-20 ml-6" : "lg:mr-20 mr-6"
-        } m:mt-14 mt-8`}
-      >
-        <h1 className="xl:text-6xl lg:text-5xl md:text-4xl text-3xl xl:w-[600px] lg:w-[500px] sm:w-[400px] w-[300px] xl:leading-[5.5rem] lg:leading-[4.5rem] md:leading-[4rem] leading-normal font-bold text-ft ">
-          {t("headText1")}
-        </h1>
-        <p className="text-lg line-clamp-2 sm:line-clamp-0 md:text-lg xl:w-[560px] md:w-[420px] w-[250px]  lg:leading-10 md:leading-8 text-ft2 xl:mt-12 lg:mt-6 mt-4">
-          {t("headText2")}
-        </p>
-        <div className={`sm:mt-24 mt-20 ${
-            locale === "en" ? "lg:ml-20 ml-6" : "lg:mr-20 sm:mr-6 mr-0" }`}>
-        <Link href="/doctors">
-          <span className="sm:text-lg  text-white sm:font-bold font-semibold sm:px-10 px-8 sm:py-4 py-2 rounded-xl mt-4 hoverBtn bg-[#3D87F2] shadow-lg shadow-[#a2c5f6]">
-            {t("btnText")}
-          </span>
-        </Link>
-        </div>
-      </div>
 
-      <div
-        className={`absolute bottom-0 ${
-          locale === "en" ? "xl:right-5 right-0" : "xl:left-5 left-0"
-        } xl:w-[687px] lg:w-[600px] md:w-[500px] hidden md:block`}
-      >
-        <Image
-          width={687}
-          height={687}
-          alt="docImage"
-          src={"/imgs/header/doctor.png"}
-          className={`w-full h-auto object-contain  ${
-            locale === "en" ? "scale-x-[-1]" : ""
-          }`}
-        />
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-16 px-4 pb-20 sm:px-6 md:pb-24 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-12 lg:pb-28 xl:px-16">
+        <motion.div
+          {...motionProps(0.1)}
+          className="relative isolate w-full max-w-xl lg:w-[55%]"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute -start-20 -top-20 -z-10 h-80 w-80 rounded-full sm:h-96 sm:w-96"
+            style={{
+              background:
+                "radial-gradient(closest-side, oklch(0.97 0.012 90), transparent)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -z-10 bottom-0 end-4 h-48 w-48"
+            style={{
+              backgroundImage:
+                "radial-gradient(oklch(0.52 0.165 256 / 0.08) 1.5px, transparent 1.5px)",
+              backgroundSize: "22px 22px",
+              maskImage: "radial-gradient(closest-side, black, transparent)",
+              WebkitMaskImage:
+                "radial-gradient(closest-side, black, transparent)",
+            }}
+          />
+
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <h1 className="mt-6 max-w-[17ch] text-4xl font-bold leading-[1.1] text-ft sm:text-5xl xl:text-6xl xl:leading-[1.12] 2xl:text-7xl">
+            {headlineStart}
+            {splitHeadline && (
+              <span className="text-main">{headlineAccent}</span>
+            )}
+          </h1>
+          <p className="mt-6 max-w-[55ch] text-base leading-relaxed text-ft2 sm:text-lg xl:text-xl">
+            {t("headText2")}
+          </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link href="/doctors" className="btn-primary">
+              {t("btnText")}
+            </Link>
+            <Link href="/about" className="btn-ghost">
+              {nav("about")}
+            </Link>
+          </div>
+          <div className="mt-8 flex items-center gap-3">
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  size={18}
+                  fill="currentColor"
+                  className="fill-accent text-accent"
+                />
+              ))}
+            </div>
+            <span className="text-sm text-ft2">{t("trustLabel")}</span>
+          </div>
+        </motion.div>
+
+        <motion.div
+          {...motionProps(0.35)}
+          className="relative isolate hidden w-full md:block lg:w-[45%]"
+        >
+          <div className="relative mx-auto w-full max-w-[440px]">
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-10 -start-8 -z-10 h-64 w-64 rounded-full bg-cream sm:h-80 sm:w-80"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute -end-8 -top-8 -z-10 h-36 w-36 rounded-full border-2 border-accent sm:h-44 sm:w-44"
+            />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-[2.5rem] bg-secondary">
+              <Image
+                src="/imgs/header/doctor.png"
+                alt="Doctor"
+                width={687}
+                height={687}
+                priority
+                className={`h-full w-full object-cover object-top ${
+                  locale === "en" ? "scale-x-[-1]" : ""
+                }`}
+              />
+            </div>
+            <div
+              className="absolute start-4 top-6 flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl shadow-[oklch(0.23_0.025_256/0.12)]"
+              style={{ animation: "float 6s ease-in-out infinite" }}
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary">
+                <Star
+                  size={18}
+                  fill="currentColor"
+                  className="fill-accent text-accent"
+                />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-xl font-bold text-ft">4.9</span>
+                <span className="text-sm text-ft2">{lf("ratings")}</span>
+              </span>
+            </div>
+            <div
+              className="absolute bottom-6 end-4 flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl shadow-[oklch(0.23_0.025_256/0.12)]"
+              style={{ animation: "float 7s ease-in-out 1.2s infinite" }}
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary">
+                <Stethoscope size={18} className="text-main" />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-xl font-bold text-ft">37</span>
+                <span className="text-sm text-ft2">{lf("doctorsCount")}</span>
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -16,24 +16,24 @@ const NotitficationCard = ({
 }: NotificationCardProps) => {
   return (
     <div
-      className={`p-4 border rounded-lg ${isRead ? "bg-gray-50" : "bg-white"}`}
+      className={`rounded-2xl border border-secondary p-5 ${
+        isRead ? "bg-bg" : "bg-white shadow-sm"
+      }`}
     >
-      <div className="flex items-start gap-3">
-        <div
-          className={`p-2 rounded-full ${
-            isRead ? "bg-gray-100" : "bg-blue-50"
+      <div className="flex items-start gap-4">
+        <span
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
+            isRead ? "bg-secondary text-ft2" : "bg-secondary text-main"
           }`}
         >
-          <Bell
-            className={`w-5 h-5 ${isRead ? "text-gray-600" : "text-main"}`}
-          />
-        </div>
-        <div className="flex-1">
-          <h3 className="font-medium text-gray-900">{title}</h3>
-          <p className="text-sm text-gray-600 mt-1">{description}</p>
-          {time && (
-            <span className="text-xs text-gray-500 mt-2 block">{time}</span>
-          )}
+          <Bell className="h-5 w-5" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <h3 className={`font-semibold ${isRead ? "text-ft2" : "text-ft"}`}>
+            {title}
+          </h3>
+          <p className="mt-1 text-sm text-ft2">{description}</p>
+          {time && <span className="mt-2 block text-xs text-ft2/70">{time}</span>}
         </div>
       </div>
     </div>

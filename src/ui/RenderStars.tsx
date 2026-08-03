@@ -20,15 +20,14 @@ const RenderStars = ({ rating }: Props) => {
           return (
             <div key={index} className="relative">
               <Star
-                className="w-5 h-5 text-gray-300"
+                className="size-5 text-ft2"
                 strokeWidth={1.5}
-                fill="white"
-                stroke="#FBBF24"
+                fill="none"
               />
               <StarHalf
-                className={`w-5 h-5 text-yellow-400 absolute top-0 ${isRTL ? "right-0 scale-x-[-1]" : "left-0"}`}
+                className={`size-5 text-star absolute top-0 ${isRTL ? "right-0 scale-x-[-1]" : "left-0"}`}
                 strokeWidth={1.5}
-                fill="#FBBF24"
+                fill="currentColor"
               />
             </div>
           );
@@ -37,10 +36,9 @@ const RenderStars = ({ rating }: Props) => {
         return (
           <Star
             key={index}
-            className={`w-5 h-5 ${isFullStar ? "text-yellow-400" : "text-gray-300"}`}
+            className={`size-5 ${isFullStar ? "text-star" : "text-ft2"}`}
             strokeWidth={1.5}
-            fill={isFullStar ? "#FBBF24" : "white"}
-            stroke="#FBBF24"
+            fill={isFullStar ? "currentColor" : "none"}
           />
         );
       })}

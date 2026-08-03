@@ -1,10 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { MessageCircle } from "lucide-react";
+import { Send } from "lucide-react";
 import { getDoctorFromChat } from "@/lib/api/doctor";
 import Image from "next/image";
-import { useLocale } from "next-intl";
 import { useUserStore } from "@/stores/user";
 
 type Message = {
@@ -27,7 +26,6 @@ const ChatPage = () => {
   const [conversationDoctors, setConversationDoctors] = useState<Doctor[]>([]);
   const searchParams = useSearchParams();
   const doctorId = searchParams.get("doctorId");
-  const isArabic = useLocale() === "ar";
 
   const conversationsKey = "chat_conversations";
 
@@ -162,7 +160,7 @@ const ChatPage = () => {
   if (!user) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-gray-500">يرجى تسجيل الدخول لعرض المحادثات</p>
+        <p className="text-ft2">يرجى تسجيل الدخول لعرض المحادثات</p>
       </div>
     );
   }
@@ -170,20 +168,16 @@ const ChatPage = () => {
   return (
     <div className="flex h-[90vh] bg-bg p-4">
       {/* الشريط الجانبي */}
-      <div
-        className={`w-1/4 bg-white border-r ${
-          isArabic ? "rounded-tr-xl" : "rounded-tl-xl"
-        }`}
-      >
-        <h2 className="md:text-xl text-base font-bold p-4 border-b text-right text-blue-800">
+      <div className="w-1/4 bg-white border-e border-secondary rounded-s-2xl overflow-hidden">
+        <h2 className="md:text-xl text-base font-bold p-4 border-b border-secondary text-start text-main">
           محادثاتي
         </h2>
 
         {conversationDoctors.map((doc) => (
           <div
             key={doc._id}
-            className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out hover:shadow-sm cursor-pointer border-b-[1px] border-gray-300 mb-1 shadow-sm shadow-gray-100 ${
-              selectedDoctor?._id === doc._id ? "bg-blue-50" : ""
+            className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out cursor-pointer border-b-[1px] border-secondary ${
+              selectedDoctor?._id === doc._id ? "bg-secondary" : ""
             }`}
           >
             <div
@@ -195,16 +189,16 @@ const ChatPage = () => {
                 alt="doctor"
                 width={40}
                 height={40}
-                className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main"
+                className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main/20"
               />
               <div className="flex flex-col space-y-2">
-                <p className="font-bold md:text-sm text-xs sm:block hidden">
+                <p className="font-bold md:text-sm text-xs sm:block hidden text-ft">
                   {doc.username}
                 </p>
-                <p className="text-xs text-blue-700 md:block hidden">
+                <p className="text-xs text-main md:block hidden">
                   {doc.specialization}
                 </p>
-                <p className="text-xs text-gray-500 truncate max-w-[150px] md:block hidden">
+                <p className="text-xs text-ft2 truncate max-w-[150px] md:block hidden">
                   {getLastMessage(doc._id)}
                 </p>
               </div>
@@ -213,7 +207,7 @@ const ChatPage = () => {
             {/* زر الحذف */}
             <button
               onClick={() => handleDeleteConversation(doc._id)}
-              className="absolute top-2 left-2 hidden group-hover:flex items-center justify-center w-5 h-5 rounded-full bg-blue-50 text-xs"
+              className="absolute top-2 end-2 hidden group-hover:flex items-center justify-center w-5 h-5 rounded-full bg-secondary text-main text-xs"
               title="حذف المحادثة"
             >
               ×
@@ -223,23 +217,22 @@ const ChatPage = () => {
       </div>
 
       {/* نافذة المحادثة */}
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 rounded-e-2xl overflow-hidden">
         {selectedDoctor && (
-          <div
-            className={`bg-gradient-to-r from-blue-600 to-blue-400 text-white p-4 flex gap-4 items-center py-6 ${
-              isArabic ? "rounded-tl-xl" : "rounded-tr-xl"
-            }`}
-          >
+          <div className="bg-main text-white p-4 flex gap-4 items-center py-6">
             <Image
               src={selectedDoctor.picture}
               alt="avatar"
               width={40}
               height={40}
-              className="h-10 w-10 rounded-full bg-secondary object-cover object-top"
+              className="h-10 w-10 rounded-full bg-secondary object-cover object-top ring-2 ring-white/30"
             />
-            <div className="text-right">
+            <div className="text-start">
               <p className="font-bold">{selectedDoctor.username}</p>
-              <p className="text-sm">{selectedDoctor.specialization}</p>
+              <p className="text-sm text-white/80 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+                {selectedDoctor.specialization}
+              </p>
             </div>
           </div>
         )}
@@ -261,7 +254,7 @@ const ChatPage = () => {
                   className="h-9 w-9 rounded-full bg-secondary object-cover object-top"
                 />
               ) : (
-                <div className="h-9 w-9 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center">
+                <div className="h-9 w-9 rounded-full bg-secondary text-main flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-5 h-5"
@@ -280,15 +273,17 @@ const ChatPage = () => {
               )}
               <div className="relative">
                 <div
-                  className={`border text-right p-3 rounded-2xl max-w-xs shadow ${
-                    msg.isReceived ? "bg-white" : "bg-blue-600 text-white"
+                  className={`border text-start p-3 rounded-2xl max-w-xs shadow-sm ${
+                    msg.isReceived
+                      ? "bg-secondary text-ft rounded-bl-md"
+                      : "bg-main text-white rounded-br-md"
                   }`}
                 >
                   {msg.text}
                 </div>
                 <button
                   onClick={() => handleDeleteMessage(index)}
-                  className="absolute -top-2 -left-2 bg-red-100 text-ft text-xs rounded-full w-5 h-5 hidden group-hover:flex items-center justify-center"
+                  className="absolute -top-2 -end-2 bg-secondary text-ft text-xs rounded-full w-5 h-5 hidden group-hover:flex items-center justify-center"
                   title="حذف"
                 >
                   ×
@@ -299,21 +294,22 @@ const ChatPage = () => {
         </div>
 
         {/* إدخال الرسائل */}
-        <div className="p-4 bg-white border-t flex gap-2 items-center">
-          <button
-            className="rounded-full p-2 text-white bg-blue-600 hover:bg-blue-700"
-            onClick={handleSendMessage}
-          >
-            <MessageCircle className="h-5 w-5" />
-          </button>
+        <div className="p-4 bg-white border-t border-secondary flex gap-2 items-center">
           <input
             type="text"
             placeholder="اكتب رسالتك هنا..."
-            className="flex-1 text-right border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 text-start border border-secondary rounded-xl bg-bg px-4 py-3 text-ft placeholder:text-ft2/70 focus:outline-none focus:border-main focus:ring-2 focus:ring-main/30 transition"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
+          <button
+            className="rounded-full p-3 text-white bg-main hover:bg-mainLight transition-colors"
+            onClick={handleSendMessage}
+            aria-label="send"
+          >
+            <Send className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ interface DoctorCardProps {
   img: string;
 }
 
-const DoctorCard = ({ id,name, specialty, description, img }: DoctorCardProps) => {
+const DoctorCard = ({ id, name, specialty, description, img }: DoctorCardProps) => {
   const locale = useLocale();
   const isRTL = locale === "ar";
 
@@ -22,49 +22,45 @@ const DoctorCard = ({ id,name, specialty, description, img }: DoctorCardProps) =
       data-aos="fade-up"
       data-aos-delay="100"
       data-aos-duration="800"
-      className={`relative bg-[#3F89F0] flex w-full max-w-[520px]  s:pt-4 pt-[140px] ${
-        isRTL ? "pr-[180px]" : "pl-[180px]"
-      } min-[1296px]:mt-20 mt-4 rounded-2xl mx-auto sm:mx-0`}
+      className="relative flex w-full max-w-[560px] mx-auto flex-col overflow-hidden rounded-[2rem] bg-main md:flex-row"
     >
-      <div
-        className={`absolute ${
-          isRTL ? "md:-right-32 xs:-right-12" : "md:-left-32 xs:-left-12"
-        } bottom-0 ${!isRTL ? "scale-x-[-1]" : ""}  sm:block`}
-      >
-        <Image
-          width={350}
-          height={350}
-          alt="docImg"
-          src={img}
-          className="md:w-[350px] h-auto sm:w-[280px] xs:w-[260px] "
-        />
-      </div>
-      <div
-        className={`text-bg sm:pt-6 xs-0 ${
-          isRTL ? "pl-4 sm:pl-10 mr-4 sm:mr-6" : "pr-4 sm:pr-10 ml-4 sm:ml-6"
-        } w-full sm:w-auto`}
-      >
-        <h1 className="text-xl sm:text-2xl font-bold s:static absolute top-5 right-24">
-          {name}
-          <span className="block  text-sm mt-1 font-light">{specialty}</span>
-        </h1>
+      <div className="pointer-events-none absolute -top-16 -end-16 h-48 w-48 rounded-full bg-white/10" />
+      <div className="pointer-events-none absolute bottom-6 start-6 h-3 w-3 rounded-full bg-accent" />
 
-        <p
-          className={`text-[13px] line-clamp-5 w-full sm:w-[270px] s:mt-4 s:static relative -top-10 ${
-            isRTL ? "-right-3" : "right-3"
-          } leading-loose`}
-        >
+      <div
+        className={`relative w-full p-5 sm:p-6 md:absolute md:inset-y-0 md:w-[46%] md:p-6 ${
+          isRTL ? "md:end-0 md:ps-0" : "md:start-0 md:pe-0"
+        }`}
+      >
+        <div className="h-52 xs:h-64 sm:h-72 md:h-full overflow-hidden rounded-[1.5rem] ring-2 ring-white/20">
+          <Image
+            src={img}
+            alt={name}
+            width={350}
+            height={350}
+            className="h-full w-full object-cover object-top"
+          />
+        </div>
+      </div>
+
+      <div
+        className={`relative flex flex-col items-start px-5 sm:px-6 pt-1 pb-8 sm:pb-10 md:pt-10 md:pb-12 ${
+          isRTL ? "md:pe-[50%] md:ps-8" : "md:ps-[50%] md:pe-8"
+        }`}
+      >
+        <h1 className="text-xl sm:text-2xl font-bold text-white">{name}</h1>
+        <span className="mt-2 inline-block rounded-full bg-white/15 px-3 py-1 text-sm text-cream">
+          {specialty}
+        </span>
+        <p className="mt-4 text-[13px] sm:text-sm leading-relaxed text-white/80">
           {description}
         </p>
-
         <Link
           href={`/doctor/${id}`}
-          className={`w-fit flex gap-2 my-6 text-base ${
-            isRTL ? "mr-4 sm:mr-6" : "ml-4 sm:ml-6"
-          } px-4 py-1 border-2 rounded-lg font-semibold shadow-[0_0_10px_2px_#a2c5f646] hover:bg-[#47bbff78] hover:shadow-[#7cc0be84] transition duration-300`}
+          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-main transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white"
         >
-          <p>{isRTL ? "اتصل الان" : "Call Now"}</p>
-          <Phone className="s:w-5 w-0 stroke-none fill-white" />
+          <Phone className="h-4 w-4" />
+          {isRTL ? "اتصل الان" : "Call Now"}
         </Link>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import {
   Briefcase,
-  Check,
+  CheckCircle2,
   Handshake,
   Lightbulb,
   ShieldCheck,
@@ -11,6 +11,7 @@ import {
 import { useTranslations } from "next-intl";
 import React from "react";
 import AboutCard from "./AboutCard";
+import TextHeader from "@/ui/TextHeader";
 
 const About = () => {
   const t = useTranslations("About");
@@ -18,50 +19,75 @@ const About = () => {
   const valuesList = t.raw("values.valuesList");
 
   return (
-    <div className="mt-28 space-y-24">
+    <div className="mt-24 space-y-20 md:space-y-28">
       {/* من نحن */}
-      <section className="grid lg:grid-cols-2 gap-10 m:mx-20 mx-5 lg:mx-10 text-lg">
-        <div className="lg:mx-auto">
-        <h2 className="text-4xl mb-5 font-bold text-blue-700">{t("title")}</h2>
-        <p className="text-textSecondary text-xl  leading-loose max-w-xl ">{t("subTitle")}</p>
-        </div>  
-      {/* رؤيتنا */}
-        <div className="bg-[#eef4ff] lg:mx-auto mr-auto mt-5 p-6 shadow-sm space-y-4 leading-loose rounded-xl max-w-[500px]  ">
-          <h3 className="text-2xl font-bold text-main">{t("vision")}</h3>
-          <p className="text-textSecondary">{t("visionText")}</p>
+      <section className="grid gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-14">
+        <div className="relative isolate overflow-hidden rounded-[2.5rem] bg-secondary px-8 py-12 sm:px-12 md:py-16">
+          <div
+            aria-hidden="true"
+            className="absolute -end-16 -top-16 h-56 w-56 rounded-full bg-white/60"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-20 -start-16 h-64 w-64 rounded-full bg-accent/10"
+          />
+          <div className="relative">
+            <span className="eyebrow">{t("eyebrow")}</span>
+            <h1 className="mt-5 font-display text-4xl font-bold leading-[1.15] text-ft sm:text-5xl">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-[45ch] leading-loose text-ft2 lg:text-lg">
+              {t("subTitle")}
+            </p>
+            <div className="mt-8 rounded-2xl bg-white/80 p-6 shadow-sm shadow-main/5">
+              <h3 className="text-2xl font-bold text-main">{t("vision")}</h3>
+              <p className="mt-2 leading-loose text-ft2">{t("visionText")}</p>
+            </div>
+          </div>
         </div>
-      </section>
 
-      {/* الرسالة */}
-      
-        <section className="lg:mx-40 m:mx-20 mx-5">
-          <h3 className="text-3xl mb-2 font-bold text-main">{t("mission")}</h3>
-          <p className="text-textSecondary text-[19px]">{t("missionText")}</p>
-          <ul className="space-y-2 mt-4">
+        <div>
+          <span className="eyebrow">{t("missionEyebrow")}</span>
+          <h2 className="mt-4 font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl">
+            {t("mission")}
+          </h2>
+          <p className="mt-4 leading-loose text-ft2 lg:text-lg">
+            {t("missionText")}
+          </p>
+          <ul className="mt-8 space-y-3">
             {someServices.map((service: { id: number; text: string }) => (
-              <li key={service.id} className="flex text-lg items-start gap-3">
-                <Check className="text-white mt-1 bg-main rounded-full p-1" size={20} />
-                <span className="text-textSecondary">{service.text}</span>
+              <li key={service.id} className="flex items-start gap-3">
+                <CheckCircle2
+                  size={24}
+                  className="mt-0.5 shrink-0 text-main"
+                  strokeWidth={1.75}
+                />
+                <span className="leading-loose text-ft2">{service.text}</span>
               </li>
             ))}
           </ul>
-        </section>        
-     
+        </div>
+      </section>
 
       {/* القيم */}
-      <section className="text-center pb-28 bg-[#eef4ff] p-10 space-y-12">
-        <div>
-          <h2 className="text-3xl mb-2 font-bold text-main">{t("values.title")}</h2>
-          <p className="text-textSecondary max-w-3xl mx-auto">{t("values.subTitle")}</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <section className="bg-bg px-5 pb-24 pt-16 sm:px-8 md:pb-28 lg:px-14">
+        <TextHeader
+          title={t("values.title")}
+          subTitle={t("values.subTitle")}
+          eyebrow={t("values.eyebrow")}
+          accent
+        />
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {valuesList.map(
-            (value: {
-              id: number;
-              text: string;
-              icon: string;
-              description: string;
-            }) => (
+            (
+              value: {
+                id: number;
+                text: string;
+                icon: string;
+                description: string;
+              },
+              index: number
+            ) => (
               <AboutCard
                 key={value.id}
                 icon={
@@ -77,6 +103,8 @@ const About = () => {
                 }
                 title={value.text}
                 des={value.description}
+                number={index + 1}
+                variant={index % 2 === 1 ? "main" : "default"}
               />
             )
           )}

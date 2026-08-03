@@ -15,5 +15,9 @@ export default async function RootLayout({
   // if (user.role !== "admin") {
   //   redirect(`/dashboard/${user.role}/profile/info`);
   // }
-  return <>{children}</>;
+  return (
+    <div className="bg-backgroundDashboards py-3">
+      <div className="container mx-auto">{children}</div>
+    </div>
+  );
 }

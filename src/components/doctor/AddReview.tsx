@@ -7,6 +7,7 @@ import { createReview } from "@/lib/api/review";
 import { useUserStore } from "@/stores/user";
 import { Review } from "@/types/Review";
 import showToast from "@/utils/showToast";
+
 const AddReview = ({
   doctorId,
   reviews,
@@ -21,7 +22,6 @@ const AddReview = ({
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const locale = Cookies.get("locale");
 
   const token = Cookies.get("token");
   const { user, setUser } = useUserStore();
@@ -38,7 +38,6 @@ const AddReview = ({
 
     setIsLoading(true);
     try {
-      // Submit logic here (e.g., API call)
       console.log(token);
       const newReview = await createReview(token || " ", doctorId, {
         content,
@@ -62,52 +61,52 @@ const AddReview = ({
   };
 
   return (
-    <div className="bg-white py-7 border-t">
-      <form className="flex gap-2 items-center" onSubmit={handleSubmit}>
-        <div className="relative flex-1">
-          <input
-            type="text"
-            placeholder={t("writeYourReview")}
-            className="w-full px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            disabled={isLoading}
-          />
-          <div
-            className={`absolute ${
-              locale === "ar" ? "left-3" : "right-3"
-            } top-1/2 -translate-y-1/2 flex gap-1`}
-          >
-            {[1, 2, 3, 4, 5].map((star) => (
-              <div key={star} className="relative flex items-center">
-                <Star
-                  onClick={() => !isLoading && handleStarClick(star)}
-                  className={`w-5 h-5 cursor-pointer ${
-                    isLoading ? "opacity-50" : ""
-                  } ${rating >= star ? "text-yellow-400" : "text-gray-300"}`}
-                  fill={rating >= star ? "currentColor" : "none"}
-                  strokeWidth={1.5}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <button
-          type="submit"
-          className={`px-6 py-2 bg-blue-600 text-white rounded-lg transition-colors flex items-center justify-center ${
-            isLoading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-700"
-          }`}
+    <div className="border-t border-secondary bg-white p-4 sm:p-6">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <textarea
+          rows={3}
+          placeholder={t("writeYourReview")}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              {t("submitting")}
-            </>
-          ) : (
-            t("submit")
-          )}
-        </button>
+          className="w-full rounded-xl border border-secondary bg-bg p-4 text-ft placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30 transition"
+        />
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star
+                key={star}
+                onClick={() => !isLoading && handleStarClick(star)}
+                className={`size-6 cursor-pointer transition ${
+                  isLoading ? "opacity-50" : ""
+                } ${rating >= star ? "text-star" : "text-ft2"}`}
+                fill={rating >= star ? "currentColor" : "none"}
+                strokeWidth={1.5}
+              />
+            ))}
+            {rating > 0 && (
+              <span className="ms-2 text-sm font-semibold text-main">
+                {rating}/5
+              </span>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="btn-primary w-full sm:w-auto"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                {t("submitting")}
+              </>
+            ) : (
+              t("submit")
+            )}
+          </button>
+        </div>
       </form>
     </div>
   );

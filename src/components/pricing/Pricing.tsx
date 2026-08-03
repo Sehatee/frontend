@@ -1,17 +1,30 @@
 "use client";
 import React, { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function PricingPage() {
   const [isMonthly, setIsMonthly] = useState(true);
   const [activeTab, setActiveTab] = useState<"doctors" | "patients">("doctors");
 
+  type Plan = {
+    icon?: React.ReactNode;
+    label?: string;
+    title: string;
+    desc: string;
+    price: number;
+    period: string;
+    features: string[];
+    button: string;
+    popular: boolean;
+  };
+
   // بيانات باقات الأطباء
-  const doctorPlans = [
+  const doctorPlans: Plan[] = [
     {
       icon: (
-        <div className="bg-gradient-to-tr from-blue-100 to-purple-100 rounded-xl w-12 h-12 flex items-center justify-center mb-4">
-          <svg width="28" height="28" fill="none">
-            <circle cx="14" cy="14" r="12" fill="#6366F1" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+          <svg width="28" height="28" fill="currentColor" className="text-main">
+            <circle cx="14" cy="14" r="12" />
           </svg>
         </div>
       ),
@@ -30,9 +43,9 @@ export default function PricingPage() {
     },
     {
       icon: (
-        <div className="bg-gradient-to-tr from-blue-100 to-purple-100 rounded-xl w-12 h-12 flex items-center justify-center mb-4">
-          <svg width="28" height="28" fill="none">
-            <rect x="4" y="4" width="20" height="20" rx="4" fill="#6366F1" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+          <svg width="28" height="28" fill="currentColor" className="text-main">
+            <rect x="4" y="4" width="20" height="20" rx="4" />
           </svg>
         </div>
       ),
@@ -52,9 +65,9 @@ export default function PricingPage() {
     },
     {
       icon: (
-        <div className="bg-gradient-to-tr from-blue-100 to-purple-100 rounded-xl w-12 h-12 flex items-center justify-center mb-4">
-          <svg width="28" height="28" fill="none">
-            <polygon points="14,4 24,24 4,24" fill="#6366F1" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+          <svg width="28" height="28" fill="currentColor" className="text-main">
+            <polygon points="14,4 24,24 4,24" />
           </svg>
         </div>
       ),
@@ -77,7 +90,7 @@ export default function PricingPage() {
   ];
 
   // بيانات باقات المرضى
-  const patientPlans = [
+  const patientPlans: Plan[] = [
     {
       title: "مجانية",
       desc: "خطة مجانية مناسبة لاستخدام الأساسي",
@@ -123,38 +136,39 @@ export default function PricingPage() {
   const plans = activeTab === "doctors" ? doctorPlans : patientPlans;
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-tr from-blue-50 via-white to-purple-50 py-6 px-4">
-      <div className="flex flex-col items-start w-full max-w-7xl mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-3 text-right">
+    <div className="flex min-h-screen flex-col items-center bg-bg px-4 py-16 md:py-20">
+      {/* العنوان */}
+      <div className="mb-10 flex w-full max-w-7xl flex-col items-center gap-3 text-center">
+        <span className="eyebrow">الاشتراكات</span>
+        <h1 className="font-display text-3xl font-bold text-ft sm:text-4xl md:text-5xl">
           باقات الاشتراك
         </h1>
-        <h2 className="text-lg md:text-xl text-gray-500 mb-8 text-right">
-          اختر ما يناسبك
-        </h2>
+        <h2 className="text-lg md:text-xl text-ft2">اختر ما يناسبك</h2>
       </div>
+
       {/* أزرار التبديل بين الشهري والسنوي */}
-      <div className="flex justify-center items-center gap-4 mb-4">
+      <div className="mb-4 flex items-center justify-center gap-4">
         <span
-          className={`cursor-pointer font-semibold ${
-            isMonthly ? "text-blue-800" : "text-gray-500"
+          className={`cursor-pointer font-semibold transition-colors ${
+            isMonthly ? "text-main" : "text-ft2"
           }`}
           onClick={() => setIsMonthly(true)}
         >
           شهريًا
         </span>
         <div
-          className="w-12 h-6 bg-blue-200 rounded-full relative cursor-pointer"
+          className="relative h-6 w-12 cursor-pointer rounded-full border border-main/20 bg-secondary"
           onClick={() => setIsMonthly(!isMonthly)}
         >
           <div
-            className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-all duration-300 ${
-              isMonthly ? "right-0.5" : "left-0.5"
+            className={`absolute top-0.5 h-5 w-5 rounded-full bg-main shadow transition-all duration-300 ${
+              isMonthly ? "start-0.5" : "end-0.5"
             }`}
           ></div>
         </div>
         <span
-          className={`cursor-pointer font-semibold ${
-            !isMonthly ? "text-blue-800" : "text-gray-500"
+          className={`cursor-pointer font-semibold transition-colors ${
+            !isMonthly ? "text-main" : "text-ft2"
           }`}
           onClick={() => setIsMonthly(false)}
         >
@@ -163,30 +177,30 @@ export default function PricingPage() {
       </div>
       {/* رسالة التوفير عند السنوي */}
       {!isMonthly && (activeTab === "doctors" || activeTab === "patients") && (
-        <div className="flex justify-center mb-6">
-          <span className="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">
+        <div className="mb-6 flex justify-center">
+          <span className="rounded-full bg-secondary px-4 py-1 text-sm font-semibold text-main">
             وفر حتى 20% عند الاشتراك السنوي
           </span>
         </div>
       )}
 
       {/* أزرار التبديل بين باقات الأطباء وباقات المرضى */}
-      <div className="flex justify-center gap-2 mb-20">
+      <div className="mb-16 flex justify-center gap-2">
         <button
-          className={`px-6 py-2 rounded-full font-semibold transition ${
+          className={`rounded-full px-6 py-2 font-semibold transition-all duration-300 ${
             activeTab === "doctors"
-              ? "bg-blue-700 text-white"
-              : "bg-blue-100 text-blue-700"
+              ? "bg-main text-white shadow-md shadow-main/20"
+              : "bg-secondary text-main hover:bg-secondary/70"
           }`}
           onClick={() => setActiveTab("doctors")}
         >
           باقات الأطباء
         </button>
         <button
-          className={`px-6 py-2 rounded-full font-semibold transition ${
+          className={`rounded-full px-6 py-2 font-semibold transition-all duration-300 ${
             activeTab === "patients"
-              ? "bg-blue-700 text-white"
-              : "bg-blue-100 text-blue-700"
+              ? "bg-main text-white shadow-md shadow-main/20"
+              : "bg-secondary text-main hover:bg-secondary/70"
           }`}
           onClick={() => setActiveTab("patients")}
         >
@@ -196,73 +210,103 @@ export default function PricingPage() {
 
       {/* عرض الباقات */}
       <div
-        className={`grid grid-cols-1 md:grid-cols-${plans.length} gap-8 max-w-6xl w-full`}
+        className={`grid w-full max-w-6xl grid-cols-1 gap-8 ${
+          activeTab === "doctors" ? "md:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
+        }`}
       >
         {plans.map((plan, idx) => (
           <div
             key={idx}
             className={`
-            flex flex-col items-center rounded-3xl shadow-xl bg-white
+            relative flex w-full max-w-xs flex-col items-center rounded-3xl px-8 py-10 transition-all duration-300 md:max-w-none
             ${
               plan.popular
-                ? "border-4 border-blue-600 scale-105 z-10 md:-mt-8 md:mb-8"
-                : "border border-gray-100"
+                ? "z-10 scale-105 bg-main text-white shadow-2xl shadow-main/25 md:-mt-8 md:mb-8"
+                : "border border-secondary bg-white text-ft shadow-xl shadow-main/5"
             }
-            px-8 py-10 relative transition-all duration-300
-            w-full max-w-xs md:max-w-none mx-auto
+            mx-auto
           `}
           >
-            {/* احذف السطر التالي أو ما يشبهه */}
-            {/* {plan.icon} */}
-            {/* <div className="text-gray-500 font-semibold mb-1 mt-2">{plan.label}</div> */}
-            <div className="text-2xl font-bold mb-3 ">{plan.title}</div>
-            {/* احذف السطر التالي أو ما يشبهه */}
-            {/* <div className="text-gray-400 text-sm mb-4 text-center">{plan.desc}</div> */}
-            <div className="text-4xl font-extrabold text-blue-700 mb-1">
+            {plan.popular && (
+              <span className="absolute -top-4 start-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-sm font-bold text-white shadow-lg shadow-accent/30">
+                الأكثر شيوعًا
+              </span>
+            )}
+            {plan.label && (
+              <div
+                className={`mb-2 text-sm font-semibold ${
+                  plan.popular ? "text-accent" : "text-ft2"
+                }`}
+              >
+                {plan.label}
+              </div>
+            )}
+            <div
+              className={`text-2xl font-bold ${
+                plan.popular ? "text-white" : "text-ft"
+              }`}
+            >
+              {plan.title}
+            </div>
+            {plan.desc && (
+              <div
+                className={`mb-4 mt-2 text-center text-sm leading-relaxed ${
+                  plan.popular ? "text-white/70" : "text-ft2"
+                }`}
+              >
+                {plan.desc}
+              </div>
+            )}
+            <div
+              className={`font-display text-4xl font-bold ${
+                plan.popular ? "text-white" : "text-main"
+              }`}
+            >
               {plan.price === 0 ? "0" : `${plan.price} دينار`}
             </div>
-            <div className="text-gray-400 mb-4">
+            <div
+              className={`mb-4 ${
+                plan.popular ? "text-white/70" : "text-ft2"
+              }`}
+            >
               {plan.period && `/${plan.period}`}
             </div>
-            <div className="w-full text-right mb-2 font-bold">المميزات</div>
-            <ul className="w-full mb-8 space-y-2">
+            <div
+              className={`mb-2 w-full text-start font-bold ${
+                plan.popular ? "text-white/80" : "text-ft"
+              }`}
+            >
+              المميزات
+            </div>
+            <ul className="mb-8 w-full space-y-2.5">
               {plan.features.map((feature, i) => (
-                <li
-                  key={i}
-                  className="flex items-center gap-2 text-blue-700 font-medium"
-                >
-                  <svg width="20" height="20" fill="none">
-                    <circle cx="10" cy="10" r="10" fill="#6366F1" />
-                    <path
-                      d="M7 10l2 2 4-4"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span className="text-gray-700">{feature}</span>
+                <li key={i} className="flex items-start gap-2.5">
+                  <CheckCircle2
+                    size={20}
+                    strokeWidth={1.75}
+                    className={`mt-0.5 shrink-0 ${
+                      plan.popular ? "text-white" : "text-main"
+                    }`}
+                  />
+                  <span
+                    className={`font-medium ${
+                      plan.popular ? "text-white/90" : "text-ft"
+                    }`}
+                  >
+                    {feature}
+                  </span>
                 </li>
               ))}
             </ul>
             <button
-              className={`
-                w-full py-3 rounded-2xl text-lg font-bold
-                ${
-                  plan.popular
-                    ? "bg-blue-700 text-white hover:bg-blue-800"
-                    : "bg-blue-100 text-blue-700 hover:bg-blue-200"
-                }
-                transition
-              `}
+              className={`w-full text-lg font-bold transition-all duration-300 ${
+                plan.popular
+                  ? "rounded-xl bg-accent py-3.5 text-white hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/25"
+                  : "btn-ghost"
+              }`}
             >
               {plan.button}
             </button>
-            {plan.popular && (
-              <span className="absolute top-6 left-6 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                الأكثر شيوعًا
-              </span>
-            )}
           </div>
         ))}
       </div>

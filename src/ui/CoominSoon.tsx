@@ -1,30 +1,30 @@
-import React from 'react'
-import { useTranslations } from 'next-intl'
-import { Timer, Rocket, Stars } from 'lucide-react'
+import React from "react";
+import { useTranslations } from "next-intl";
+import { Construction, Hourglass } from "lucide-react";
 
 const CoominSoon = () => {
-  const t = useTranslations('ComingSoon')
+  const t = useTranslations("ComingSoon");
 
   return (
-    <div className="min-h-screen flex  items-center justify-center bg-gray-50">
-      <div className="text-center flex flex-col gap-3 space-y-8 p-8">
-        <div className="flex  justify-center gap-4 text-main">
-          <Rocket size={32} className="animate-bounce" />
-          <Stars size={32} className="animate-pulse" />
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold text-main">
-          {t('title')}
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-bg p-6">
+      <div className="flex w-full max-w-xl flex-col items-center gap-5 rounded-3xl border border-secondary bg-white p-12 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary text-main">
+          <Construction size={32} />
+        </span>
+
+        <span className="eyebrow">{t("title")}</span>
+        <h1 className="font-display text-3xl font-bold text-ft sm:text-4xl">
+          {t("title")}
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600">
-          {t('description')}
-        </p>
-        <div className="flex justify-center items-center gap-3 text-main">
-          <Timer size={24} className="animate-spin" />
-          <span className="text-lg font-medium">{t('loading')}</span>
-        </div>
+        <p className="text-lg text-ft2">{t("description")}</p>
+
+        <span className="inline-flex items-center gap-2 text-sm font-medium text-main">
+          <Hourglass className="h-4 w-4" />
+          {t("loading")}
+        </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CoominSoon
+export default CoominSoon;

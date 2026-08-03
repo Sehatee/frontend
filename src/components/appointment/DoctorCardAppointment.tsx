@@ -20,55 +20,60 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
     return translateDay(`days.${day.day.toLowerCase()}`);
   });
 
+  const initials = (doctor.username || "").trim().charAt(0) || "د";
+
   return (
-    <div className="bg-white rounded-lg p-6 shadow-md flex flex-col justify-between gap-6">
-      <div className="flex flex-col items-center  text-center">
-        <div className="relative w-36 h-36 rounded-full overflow-hidden mb-3">
-          <Image
-            src={doctor.picture || "imgs/doctorsteam/doctor2.png"}
-            alt={doctor.username}
-            fill
-            className="object-cover object-top"
-          />
+    <div className="flex h-fit flex-col gap-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm">
+      <div className="flex flex-col items-center text-center">
+        <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full bg-main ring-4 ring-secondary">
+          {doctor.picture ? (
+            <Image
+              src={doctor.picture}
+              alt={doctor.username}
+              fill
+              className="object-cover object-top"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <span className="font-display text-5xl font-bold text-white">
+                {initials}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="w-full">
-          <h3 className="text-4xl font-bold ">{doctor.username}</h3>
-          <p className=" text-md text-main my-2">{doctor.specialization}</p>
-          <div className="flex items-center justify-center gap-1">
+          <h3 className="font-display text-2xl font-bold text-ft">
+            {doctor.username}
+          </h3>
+          <p className="mt-1 text-main">{doctor.specialization}</p>
+          <div className="mt-2 flex items-center justify-center gap-1">
             <RenderStars rating={doctor.avgRatings} />
           </div>
         </div>
       </div>
 
-      <div className="space-y-2 text-sm">
-        <div>
-          <p className="text-textSecondary  text-md leading-7 ">
-            {doctor.description}
-          </p>
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-blue-600" />
-            <span className="text-gray-800">{t("workDays")} :</span>
-            <span className="text-textSecondary">{days?.join(" - ")}</span>
-          </div>
+      <div className="space-y-3 text-sm">
+        <p className="leading-7 text-ft2">{doctor.description}</p>
+        <div className="flex items-start justify-center gap-2 rounded-2xl bg-bg px-4 py-3">
+          <Calendar className="mt-0.5 size-4 shrink-0 text-main" />
+          <span className="font-semibold text-ft">
+            {t("workDays")} :
+          </span>
+          <span className="text-ft2">{days?.join(" - ")}</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-2">
-        <Link
-          href={"/directCall"}
-          className="flex items-center justify-center gap-2 border-main border text-main py-2 px-4 rounded-md hover:bg-blue-700 hover:text-white transition-colors w-full"
-        >
-          <Phone className="w-4 h-4" />
+      <div className="grid grid-cols-1 gap-3">
+        <Link href={"/directCall"} className="btn-ghost w-full">
+          <Phone className="size-4" />
           {t("schedule")}
         </Link>
         <Link
           href={`/chat?doctorId=${doctor._id}`}
-          className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors w-full"
+          className="btn-primary w-full"
         >
-          <MessageSquareText className="w-4 h-4" />
+          <MessageSquareText className="size-4" />
           {t("callNow")}
         </Link>
       </div>

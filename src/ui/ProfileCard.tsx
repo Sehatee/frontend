@@ -7,61 +7,87 @@ import React from "react";
 const ProfileCard = () => {
   const { user } = useUserStore();
 
+  const initials = (user?.username ?? "")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("");
+
+  const roleLabel =
+    user?.role === "doctor"
+      ? user.specialization || user.role
+      : user?.role || "Doctor";
+
   return (
-    <div className="  top-20 bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="top-20 w-full shrink-0 rounded-3xl border border-secondary bg-white p-8 shadow-sm md:w-80 lg:w-96">
       <div className="flex flex-col items-center gap-6">
-        {/* Profile Image with Border */}
+        {/* Avatar */}
         <div className="relative">
-          <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-main p-1">
-            <Image
-              src={user?.picture || "/imgs/header/doctor.png"}
-              alt="Profile"
-              width={300}
-              height={400}
-              className="w-full h-full object-cover object-top rounded-full"
-            />
+          <div className="flex h-36 w-36 items-center justify-center overflow-hidden rounded-full bg-main text-white ring-4 ring-mainLight/30">
+            {user?.picture ? (
+              <Image
+                src={user.picture}
+                alt="Profile"
+                width={300}
+                height={400}
+                className="h-full w-full object-cover object-top"
+              />
+            ) : (
+              <span className="font-display text-4xl font-bold">
+                {initials || "S"}
+              </span>
+            )}
           </div>
-          <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white z-10"></div>
+          <span className="absolute bottom-1 end-1 h-5 w-5 rounded-full bg-green-500 ring-4 ring-white" />
         </div>
 
         {/* User Info */}
-        <div className="text-center space-y-2">
-          <h3 className="text-2xl font-bold text-gray-800">{user?.username}</h3>
-          <p className="text-blue-600 font-medium">{user?.role || "Doctor"}</p>
+        <div className="space-y-2 text-center">
+          <h3 className="font-display text-2xl font-bold text-ft">
+            {user?.username}
+          </h3>
+          <p className="font-medium text-main">{roleLabel}</p>
         </div>
 
         {/* Contact Information */}
-        <div className="w-full space-y-3 pt-4 border-t">
-          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
-            <Mail className="w-5 h-5 text-blue-600" />
-            <p className="text-sm">{user?.email}</p>
+        <div className="w-full space-y-3 border-t border-secondary pt-5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-main">
+              <Mail className="h-4 w-4" />
+            </span>
+            <p className="truncate text-sm text-ft2">{user?.email}</p>
           </div>
-          <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
-            <Phone className="w-5 h-5 text-blue-600" />
-            <p className="text-sm">{user?.phone}</p>
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-main">
+              <Phone className="h-4 w-4" />
+            </span>
+            <p className="truncate text-sm text-ft2">{user?.phone || "—"}</p>
           </div>
           {user?.role === "doctor" && (
-            <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors">
-              <MapPin className="w-5 h-5 text-blue-600" />
-              <p className="text-sm">{user?.location?.addrss}</p>
+            <div className="flex items-center gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-main">
+                <MapPin className="h-4 w-4" />
+              </span>
+              <p className="truncate text-sm text-ft2">
+                {user?.location?.addrss || "—"}
+              </p>
             </div>
           )}
         </div>
 
         {/* Quick Stats */}
         {user?.role === "doctor" && (
-          <div className="w-full grid grid-cols-2 gap-4 pt-4 border-t">
-            <div className="text-center">
-              <p className="text-2xl font-bold text-blue-600">
-                {user.avgRatings}
-              </p>
-              <p className="text-sm text-gray-600">Rating</p>
+          <div className="grid w-full grid-cols-2 gap-4 border-t border-secondary pt-5">
+            <div className="rounded-2xl bg-secondary p-4 text-center">
+              <p className="text-2xl font-bold text-main">{user.avgRatings}</p>
+              <p className="text-sm text-ft2">Rating</p>
             </div>
-            <div className="text-center">
-              <p className="text-2xl font-bold text-blue-600">
+            <div className="rounded-2xl bg-secondary p-4 text-center">
+              <p className="text-2xl font-bold text-main">
                 {user.reviews?.length || 0}
               </p>
-              <p className="text-sm text-gray-600">Reviews</p>
+              <p className="text-sm text-ft2">Reviews</p>
             </div>
           </div>
         )}
