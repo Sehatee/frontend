@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Loader2, Lock, Mail, Phone, Upload, User } from "lucide-react";
 import Image from "next/image";
 import { handleSignup } from "@/lib/auth";
@@ -24,6 +25,30 @@ const Signup = () => {
     file: null as File | null,
   });
   const router = useRouter();
+
+  const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const canAnimate = mounted && !reduce;
+  const motionProps = (
+    initial: { opacity: number; x: number } | { opacity: number; y: number },
+    delay: number
+  ) =>
+    canAnimate
+      ? {
+          initial,
+          animate: { opacity: 1, x: 0, y: 0 },
+          transition: {
+            duration: 0.6,
+            ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            delay,
+          },
+        }
+      : { initial: false };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked, files } = e.target;
@@ -64,9 +89,14 @@ const Signup = () => {
   return (
     <div className="bg-bg">
       <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-12 lg:py-12">
-        <AuthBrandPanel ns="Signup" />
+        <motion.div {...motionProps({ opacity: 0, x: -24 }, 0.05)}>
+          <AuthBrandPanel ns="Signup" />
+        </motion.div>
 
-        <div className="flex w-full items-center justify-center">
+        <motion.div
+          {...motionProps({ opacity: 0, y: 16 }, 0.15)}
+          className="flex w-full items-center justify-center"
+        >
           <div className="w-full max-w-md rounded-3xl border border-secondary bg-white p-8 shadow-sm sm:p-10">
             <span className="eyebrow">{t("brandEyebrow")}</span>
             <h1 className="mt-5 text-3xl font-bold text-ft sm:text-4xl">
@@ -209,7 +239,7 @@ const Signup = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

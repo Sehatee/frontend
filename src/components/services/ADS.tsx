@@ -53,7 +53,7 @@ const ADS = () => {
         <div className="relative flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
           <motion.div {...motionProps(0.1)} className="max-w-2xl">
             <div className="flex flex-wrap items-center gap-4">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg shadow-black/10">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg shadow-black/10 animate-float">
                 <HeartPulse size={28} />
               </span>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white">

@@ -16,7 +16,7 @@ const NotitficationCard = ({
 }: NotificationCardProps) => {
   return (
     <div
-      className={`rounded-2xl border border-secondary p-5 ${
+      className={`rounded-2xl border border-secondary p-5 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md ${
         isRead ? "bg-bg" : "bg-white shadow-sm"
       }`}
     >

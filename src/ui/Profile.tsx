@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import React from "react";
 import ProfileCard from "./ProfileCard";
 import FormUpdateUser from "./FormUpdateUser";
+import Reveal from "./Reveal";
 
 const Profile = async () => {
   const t = await getTranslations("Profile");
@@ -29,7 +30,9 @@ const Profile = async () => {
 
       <div className="flex flex-col gap-6 md:flex-row md:items-start">
         {/* Profile Card */}
-        <ProfileCard />
+        <Reveal y={16} delay={0.05}>
+          <ProfileCard />
+        </Reveal>
 
         {/* Personal Information Form */}
         <div className="min-w-0 flex-1">

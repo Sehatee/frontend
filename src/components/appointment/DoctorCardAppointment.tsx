@@ -2,6 +2,7 @@ import React from "react";
 import { Phone, Calendar, MessageSquareText } from "lucide-react";
 import Image from "next/image";
 import RenderStars from "@/ui/RenderStars";
+import Reveal from "@/ui/Reveal";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { User } from "@/types/User";
@@ -23,7 +24,8 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
   const initials = (doctor.username || "").trim().charAt(0) || "د";
 
   return (
-    <div className="flex h-fit flex-col gap-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm">
+    <Reveal y={16} delay={0.05}>
+      <div className="flex h-fit flex-col gap-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm">
       <div className="flex flex-col items-center text-center">
         <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full bg-main ring-4 ring-secondary">
           {doctor.picture ? (
@@ -77,7 +79,8 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
           {t("callNow")}
         </Link>
       </div>
-    </div>
+      </div>
+    </Reveal>
   );
 };
 

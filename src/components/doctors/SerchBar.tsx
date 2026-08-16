@@ -45,7 +45,7 @@ const SearchBar = ({ options }: { options: (string | undefined)[] }) => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-full border border-secondary bg-white py-3.5 ps-12 pe-4 text-ft shadow-sm placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30 transition"
+          className="w-full rounded-full border border-secondary bg-white py-3.5 ps-12 pe-4 text-ft shadow-sm transition-all duration-200 placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
           placeholder={t("search")}
         />
         <Search className="pointer-events-none absolute start-4 top-1/2 size-5 -translate-y-1/2 text-main" />
@@ -59,10 +59,10 @@ const SearchBar = ({ options }: { options: (string | undefined)[] }) => {
         <button
           type="button"
           onClick={() => setSpecialization("")}
-          className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+          className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
             specialization === ""
               ? "bg-main text-white shadow-md shadow-main/20"
-              : "bg-bg text-ft2 hover:bg-secondary hover:text-main"
+              : "bg-bg text-ft2 hover:bg-secondary/60"
           }`}
         >
           {t("spec")}
@@ -74,10 +74,10 @@ const SearchBar = ({ options }: { options: (string | undefined)[] }) => {
             onClick={() =>
               setSpecialization((prev) => (prev === option ? "" : option))
             }
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
               specialization === option
                 ? "bg-secondary text-main shadow-md shadow-main/10"
-                : "bg-bg text-ft2 hover:bg-secondary hover:text-main"
+                : "bg-bg text-ft2 hover:bg-secondary/60"
             }`}
           >
             {option}

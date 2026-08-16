@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { handleLogin } from "@/lib/auth";
 import showToast from "@/utils/showToast";
@@ -18,6 +19,30 @@ const Login = ({ callBackUrl }: { callBackUrl?: string }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { setUser } = useUserStore();
+
+  const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const canAnimate = mounted && !reduce;
+  const motionProps = (
+    initial: { opacity: number; x: number } | { opacity: number; y: number },
+    delay: number
+  ) =>
+    canAnimate
+      ? {
+          initial,
+          animate: { opacity: 1, x: 0, y: 0 },
+          transition: {
+            duration: 0.6,
+            ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            delay,
+          },
+        }
+      : { initial: false };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,9 +69,14 @@ const Login = ({ callBackUrl }: { callBackUrl?: string }) => {
   return (
     <div className="bg-bg">
       <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-12 lg:py-12">
-        <AuthBrandPanel ns="Login" />
+        <motion.div {...motionProps({ opacity: 0, x: -24 }, 0.05)}>
+          <AuthBrandPanel ns="Login" />
+        </motion.div>
 
-        <div className="flex w-full items-center justify-center">
+        <motion.div
+          {...motionProps({ opacity: 0, y: 16 }, 0.15)}
+          className="flex w-full items-center justify-center"
+        >
           <div className="w-full max-w-md rounded-3xl border border-secondary bg-white p-8 shadow-sm sm:p-10">
             <span className="eyebrow">{t("brandEyebrow")}</span>
             <h1 className="mt-5 text-3xl font-bold text-ft sm:text-4xl">
@@ -109,7 +139,7 @@ const Login = ({ callBackUrl }: { callBackUrl?: string }) => {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

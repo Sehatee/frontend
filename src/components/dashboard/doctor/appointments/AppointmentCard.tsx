@@ -78,7 +78,7 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
       <div
         ref={cardRef}
         key={appointment._id}
-        className="relative w-full rounded-2xl border border-secondary bg-white p-6 transition-shadow hover:shadow-md"
+        className="relative w-full rounded-2xl border border-secondary bg-white p-6 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md"
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
       >
@@ -121,7 +121,10 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
           </div>
 
           <div className="flex flex-col items-start gap-3 sm:items-end">
-            <StatusBadge variant={statusVariant(appointment.status)}>
+            <StatusBadge
+              variant={statusVariant(appointment.status)}
+              className="transition-colors duration-200"
+            >
               {statusLabel}
             </StatusBadge>
 

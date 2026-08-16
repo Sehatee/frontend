@@ -41,6 +41,10 @@ function DirectCall() {
         />
         <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent shadow-lg shadow-black/10">
           <Phone className="size-7 text-white" />
+          <span className="absolute -end-1 -top-1 flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-accent ring-2 ring-white" />
+          </span>
         </div>
         <h1 className="relative mt-5 font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
           {t("title")}

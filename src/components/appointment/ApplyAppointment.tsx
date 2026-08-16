@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { fetchUser } from "@/lib/fetchUser";
 import ApplyAppointmentForm from "./ApplyAppointmentForm";
 import TextHeader from "@/ui/TextHeader";
+import Reveal from "@/ui/Reveal";
 
 const ApplyAppointment = async ({ doctorId }: { doctorId: string }) => {
   const t = await getTranslations("Appointment");
@@ -27,9 +28,12 @@ const ApplyAppointment = async ({ doctorId }: { doctorId: string }) => {
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
           <DoctorCardAppointment doctor={doctor} />
 
-          <div className="relative rounded-3xl border border-secondary bg-white p-6 shadow-sm sm:p-8 lg:col-span-2">
+          <Reveal
+            delay={0.1}
+            className="relative rounded-3xl border border-secondary bg-white p-6 shadow-sm sm:p-8 lg:col-span-2"
+          >
             <ApplyAppointmentForm user={user} doctorId={doctorId} />
-          </div>
+          </Reveal>
         </div>
       </div>
     </div>

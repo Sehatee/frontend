@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { getDoctorFromChat } from "@/lib/api/doctor";
 import Image from "next/image";
@@ -230,7 +231,7 @@ const ChatPage = () => {
             <div className="text-start">
               <p className="font-bold">{selectedDoctor.username}</p>
               <p className="text-sm text-white/80 flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+                <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse" />
                 {selectedDoctor.specialization}
               </p>
             </div>
@@ -239,8 +240,11 @@ const ChatPage = () => {
 
         <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
           {messages.map((msg, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className={`flex items-center gap-2 group ${
                 msg.isReceived ? "" : "flex-row-reverse"
               }`}
@@ -289,7 +293,7 @@ const ChatPage = () => {
                   ×
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

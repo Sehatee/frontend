@@ -28,7 +28,7 @@ const GenericUserModal: React.FC<GenericUserModalProps> = ({
 }) => {
   return (
     <Modal open onClose={closeModal} title={title}>
-      <div className="flex flex-col items-center gap-3 pt-2">
+      <div className="animate-pop flex flex-col items-center gap-3 pt-2">
         <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-main ring-4 ring-secondary">
           {picture ? (
             <Image

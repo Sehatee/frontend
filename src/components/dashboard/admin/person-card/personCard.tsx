@@ -18,7 +18,10 @@ function GenericTableRows({ data, statusVariant, handleEdit, columns }: GenericT
   return (
     <>
       {(data ?? []).map((item) => (
-        <tr key={item._id} className="hover:bg-bg transition-colors">
+        <tr
+          key={item._id}
+          className="hover:bg-bg hover:-translate-y-0.5 transition-[transform,background-color] duration-150"
+        >
           {columns.map(({ key, render }) => {
             if (key === "edit") {
               return (

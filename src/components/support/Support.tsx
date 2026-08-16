@@ -2,6 +2,7 @@ import React from "react";
 import { Clock, Mail, MessageCircle, Phone } from "lucide-react";
 import AccordingSupport from "./AccordingSupport";
 import { useTranslations } from "next-intl";
+import Reveal from "@/ui/Reveal";
 import TextHeader from "@/ui/TextHeader";
 
 const Support = () => {
@@ -18,7 +19,8 @@ const Support = () => {
 
       <div className="mt-14 grid gap-8 lg:grid-cols-5 lg:gap-12">
         {/* لوحة التواصل */}
-        <div className="relative overflow-hidden rounded-3xl bg-main p-8 text-white sm:p-10 lg:col-span-2">
+        <Reveal className="lg:col-span-2">
+          <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-main p-8 text-white sm:p-10">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -end-20 -top-20 h-56 w-56 rounded-full bg-white/5"
@@ -70,16 +72,19 @@ const Support = () => {
             </div>
           </div>
         </div>
+        </Reveal>
 
         {/* الأسئلة الشائعة */}
-        <div className="lg:col-span-3">
+        <Reveal className="lg:col-span-3" delay={0.15}>
+          <div>
           <h2 className="font-display text-2xl font-bold text-ft sm:text-3xl">
             {t("faq.title")}
           </h2>
           <div className="mt-6">
             <AccordingSupport />
           </div>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </div>
   );

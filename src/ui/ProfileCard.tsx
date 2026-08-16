@@ -20,7 +20,7 @@ const ProfileCard = () => {
       : user?.role || "Doctor";
 
   return (
-    <div className="top-20 w-full shrink-0 rounded-3xl border border-secondary bg-white p-8 shadow-sm md:w-80 lg:w-96">
+    <div className="top-20 w-full shrink-0 rounded-3xl border border-secondary bg-white p-8 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-lg md:w-80 lg:w-96">
       <div className="flex flex-col items-center gap-6">
         {/* Avatar */}
         <div className="relative">

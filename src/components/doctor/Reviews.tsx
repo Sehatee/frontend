@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Review from "./Review";
+import Reveal from "@/ui/Reveal";
 import { Review as ReviewType } from "@/types/Review";
 import AddReview from "./AddReview";
 import { useTranslations } from "next-intl";
@@ -27,8 +28,10 @@ const Reviews = ({
 
       <div className="min-h-0 flex-1 space-y-4 overflow-y-auto pe-1">
         {allReviews && allReviews.length > 0 ? (
-          allReviews.map((review: ReviewType) => (
-            <Review key={review._id} review={review} />
+          allReviews.map((review: ReviewType, i) => (
+            <Reveal key={review._id} delay={i * 0.08}>
+              <Review review={review} />
+            </Reveal>
           ))
         ) : (
           <div className="flex flex-col items-center justify-center pt-20 text-center">

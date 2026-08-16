@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
@@ -25,14 +26,23 @@ const SideBarDashboards = ({
               <Link
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
+                className={`relative flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-colors duration-200 ${
                   isActive
-                    ? "bg-main text-white shadow-md"
+                    ? "text-white"
                     : "text-ft2 hover:bg-secondary hover:text-main"
                 }`}
               >
-                {Icon && <Icon className="size-4" />}
-                {link.name}
+                {isActive && (
+                  <motion.span
+                    layoutId="sidebar-active"
+                    className="absolute inset-0 rounded-xl bg-main shadow-md"
+                    transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  {Icon && <Icon className="size-4" />}
+                  {link.name}
+                </span>
               </Link>
             </li>
           );

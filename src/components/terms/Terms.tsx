@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
+import Reveal from "@/ui/Reveal";
 
 const Terms = () => {
   const t = useTranslations("TermsAndConditions");
@@ -9,14 +10,20 @@ const Terms = () => {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
-      <div className="flex flex-col items-center gap-3 text-center">
-        <span className="eyebrow">{t("eyebrow")}</span>
-        <h1 className="font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl md:text-5xl">
-          {t("title")}
-        </h1>
-        <span className="mt-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-semibold text-main">
-          {t("lastUpdate")}
-        </span>
+      <Reveal y={16} duration={0.6}>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <h1 className="font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl md:text-5xl">
+            {t("title")}
+          </h1>
+        </div>
+      </Reveal>
+      <div className="mt-2 flex justify-center">
+        <Reveal delay={0.12} y={16} duration={0.6}>
+          <span className="rounded-full bg-secondary px-4 py-1.5 text-sm font-semibold text-main">
+            {t("lastUpdate")}
+          </span>
+        </Reveal>
       </div>
       <p className="mt-10 leading-loose text-ft2 lg:text-lg">{t("intro")}</p>
       {sections.map(

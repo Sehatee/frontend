@@ -35,7 +35,7 @@ export const MedicalInfo = () => {
         <h2 className="text-xl font-bold text-ft">{t("title")}</h2>
         <p className="mb-8 mt-1 text-sm text-ft2">{t("subtitle")}</p>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid animate-pop grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-2xl bg-secondary p-6">
               <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-main shadow-sm">

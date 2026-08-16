@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import Reveal from "@/ui/Reveal";
 
 interface TextHeaderProps {
   title: string;
@@ -25,20 +27,22 @@ const TextHeader = ({
     accent && words.length > 1 ? words.slice(0, -1).join(" ") : null;
 
   return (
-    <div className={`flex flex-col gap-3 py-3 ${containerAlign}`}>
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h1
-        className={`font-display text-3xl sm:text-4xl md:text-5xl font-bold text-ft ${textAlign}`}
-      >
-        {titleStart && <>{titleStart} </>}
-        {accent ? <span className="text-accent">{lastWord}</span> : title}
-      </h1>
-      <p
-        className={`text-base sm:text-lg md:text-xl font-medium text-textSecondary mt-2 ${textAlign}`}
-      >
-        {subTitle}
-      </p>
-    </div>
+    <Reveal y={16} duration={0.6}>
+      <div className={`flex flex-col gap-3 py-3 ${containerAlign}`}>
+        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+        <h1
+          className={`font-display text-3xl sm:text-4xl md:text-5xl font-bold text-ft ${textAlign}`}
+        >
+          {titleStart && <>{titleStart} </>}
+          {accent ? <span className="text-accent">{lastWord}</span> : title}
+        </h1>
+        <p
+          className={`text-base sm:text-lg md:text-xl font-medium text-textSecondary mt-2 ${textAlign}`}
+        >
+          {subTitle}
+        </p>
+      </div>
+    </Reveal>
   );
 };
 

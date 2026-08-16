@@ -78,9 +78,9 @@ const AddReview = ({
               <Star
                 key={star}
                 onClick={() => !isLoading && handleStarClick(star)}
-                className={`size-6 cursor-pointer transition ${
+                className={`size-6 cursor-pointer transition-[transform,opacity] duration-150 hover:scale-125 ${
                   isLoading ? "opacity-50" : ""
-                } ${rating >= star ? "text-star" : "text-ft2"}`}
+                } ${rating >= star ? "text-star animate-pop" : "text-ft2"}`}
                 fill={rating >= star ? "currentColor" : "none"}
                 strokeWidth={1.5}
               />

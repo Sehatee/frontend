@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useTranslations } from "next-intl";
+import Reveal from "@/ui/Reveal";
 
 const MAIN_HEX = "#0a5cd3";
 
@@ -35,8 +36,9 @@ const AdminStatsChart = ({
 
   const t = useTranslations("DashboardAdmin");
   return (
-    <section className="bg-white rounded-2xl border border-secondary p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
+    <Reveal y={16}>
+      <section className="bg-white rounded-2xl border border-secondary p-6 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-lg">
+        <div className="mb-4 flex items-center justify-between">
         <h2 className="font-display text-xl font-bold text-ft">
           {t("charts")}
         </h2>
@@ -79,7 +81,8 @@ const AdminStatsChart = ({
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </section>
+      </section>
+    </Reveal>
   );
 };
 

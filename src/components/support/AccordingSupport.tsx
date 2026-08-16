@@ -18,7 +18,7 @@ const AccordingSupport = () => {
         return (
           <div
             key={index}
-            className={`divide-y divide-secondary rounded-2xl border bg-white px-6 transition-all duration-300 ${
+            className={`rounded-2xl border bg-white px-6 transition-all duration-300 ${
               isOpen
                 ? "border-main/25 shadow-lg shadow-main/5"
                 : "border-secondary"
@@ -37,13 +37,19 @@ const AccordingSupport = () => {
                 }`}
               />
             </button>
-            {isOpen && (
-              <div className="py-5">
-                <p className="leading-relaxed text-ft2">
-                  {t(`faq.questions.${index}.answer`)}
-                </p>
+            <div
+              className={`grid transition-all duration-300 ease-out-quart ${
+                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              }`}
+            >
+              <div className="overflow-hidden min-h-0">
+                <div className={`py-5 ${isOpen ? "border-t border-secondary" : ""}`}>
+                  <p className="leading-relaxed text-ft2">
+                    {t(`faq.questions.${index}.answer`)}
+                  </p>
+                </div>
               </div>
-            )}
+            </div>
           </div>
         );
       })}

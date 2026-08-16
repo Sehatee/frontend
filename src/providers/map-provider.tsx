@@ -29,9 +29,9 @@ export function MapProvider({ children }: { children: ReactNode }) {
 
   if (!scriptLoaded) {
     return (
-      <div className="flex flex-col items-center justify-center p-8 rounded-lg bg-gray-50">
+      <div className="flex flex-col items-center justify-center p-8 rounded-lg bg-secondary">
         <div className="w-12 h-12 rounded-full border-4 border-main border-t-transparent animate-spin mb-4"></div>
-        <p className="text-gray-700 font-medium">Loading map...</p>
+        <p className="text-ft font-medium">Loading map...</p>
       </div>
     );
   }

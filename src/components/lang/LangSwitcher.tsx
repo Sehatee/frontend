@@ -50,7 +50,7 @@ const LangSwitcher = () => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="flex items-center gap-2 p-1 py-3 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none transition"
+        className="flex items-center gap-2 p-1 py-3 bg-white border border-secondary rounded-md shadow-sm hover:bg-secondary focus:outline-none transition"
       >
         <FlagIcon code={selectedLanguage.key} size={24} />
         <ArrowDown size={18} />
@@ -66,8 +66,8 @@ const LangSwitcher = () => {
                   e.stopPropagation();
                   handleLanguageChange(lang.code);
                 }}
-                className={`flex justify-center px-4 py-2 text-sm hover:bg-gray-100 transition ${
-                  currentLang === lang.code ? "bg-gray-100 font-semibold" : ""
+                className={`flex justify-center px-4 py-2 text-sm hover:bg-secondary transition ${
+                  currentLang === lang.code ? "bg-secondary font-semibold" : ""
                 }`}
               >
                 <FlagIcon code={lang.key} size={20} className="mr-2" />

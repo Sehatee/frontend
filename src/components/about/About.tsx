@@ -11,6 +11,7 @@ import {
 import { useTranslations } from "next-intl";
 import React from "react";
 import AboutCard from "./AboutCard";
+import Reveal from "@/ui/Reveal";
 import TextHeader from "@/ui/TextHeader";
 
 const About = () => {
@@ -22,7 +23,8 @@ const About = () => {
     <div className="mt-24 space-y-20 md:space-y-28">
       {/* من نحن */}
       <section className="grid gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-14">
-        <div className="relative isolate overflow-hidden rounded-[2.5rem] bg-secondary px-8 py-12 sm:px-12 md:py-16">
+        <Reveal className="h-full" duration={0.6}>
+          <div className="relative isolate flex h-full flex-col justify-center overflow-hidden rounded-[2.5rem] bg-secondary px-8 py-12 sm:px-12 md:py-16">
           <div
             aria-hidden="true"
             className="absolute -end-16 -top-16 h-56 w-56 rounded-full bg-white/60"
@@ -45,8 +47,10 @@ const About = () => {
             </div>
           </div>
         </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={0.15} className="h-full" duration={0.6}>
+          <div className="flex h-full flex-col justify-center">
           <span className="eyebrow">{t("missionEyebrow")}</span>
           <h2 className="mt-4 font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl">
             {t("mission")}
@@ -66,7 +70,8 @@ const About = () => {
               </li>
             ))}
           </ul>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* القيم */}
@@ -88,24 +93,25 @@ const About = () => {
               },
               index: number
             ) => (
-              <AboutCard
-                key={value.id}
-                icon={
-                  value.icon === "Briefcase"
-                    ? Briefcase
-                    : value.icon === "Lightbulb"
-                    ? Lightbulb
-                    : value.icon === "ShieldCheck"
-                    ? ShieldCheck
-                    : value.icon === "Handshake"
-                    ? Handshake
-                    : Users
-                }
-                title={value.text}
-                des={value.description}
-                number={index + 1}
-                variant={index % 2 === 1 ? "main" : "default"}
-              />
+              <Reveal key={value.id} delay={index * 0.1} className="h-full">
+                <AboutCard
+                  icon={
+                    value.icon === "Briefcase"
+                      ? Briefcase
+                      : value.icon === "Lightbulb"
+                      ? Lightbulb
+                      : value.icon === "ShieldCheck"
+                      ? ShieldCheck
+                      : value.icon === "Handshake"
+                      ? Handshake
+                      : Users
+                  }
+                  title={value.text}
+                  des={value.description}
+                  number={index + 1}
+                  variant={index % 2 === 1 ? "main" : "default"}
+                />
+              </Reveal>
             )
           )}
         </div>

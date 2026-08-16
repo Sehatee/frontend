@@ -31,7 +31,7 @@ const Field = ({
   const inputClasses = [
     "w-full rounded-xl border bg-bg py-3 text-ft placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30 transition",
     padding,
-    error ? "border-accent/60" : "border-secondary",
+    error ? "border-accent/60 animate-shake" : "border-secondary",
     className,
   ]
     .filter(Boolean)
@@ -48,7 +48,7 @@ const Field = ({
         {Icon && (
           <Icon className="pointer-events-none absolute start-3 top-1/2 size-5 -translate-y-1/2 text-main" />
         )}
-        <input id={id} className={inputClasses} {...props} />
+        <input id={id} className={inputClasses} aria-invalid={!!error} {...props} />
         {EndIcon && (
           <button
             type="button"

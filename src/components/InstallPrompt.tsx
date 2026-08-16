@@ -51,10 +51,10 @@ const InstallPrompt = () => {
 
   return (
     <div className="fixed bottom-4 w-full flex justify-center z-50" data-aos="fade-up">
-      <div className="bg-white border border-gray-200 shadow-xl rounded-xl flex items-start justify-between p-4 gap-4 text-sm w-[90%] md:max-w-sm">
+      <div className="bg-white border border-secondary shadow-xl rounded-xl flex items-start justify-between p-4 gap-4 text-sm w-[90%] md:max-w-sm">
         <div>
-          <p className="font-bold text-blue-700">تطبيق صحتي</p>
-          <p className="text-gray-600">
+          <p className="font-bold text-main">تطبيق صحتي</p>
+          <p className="text-ft2">
             استشر الأطباء بسهولة عبر التطبيق، أو احجز موعداً فوراً.
           </p>
         </div>
@@ -62,13 +62,13 @@ const InstallPrompt = () => {
         <div className="flex flex-col items-center gap-2">
           <button
             onClick={handleInstall}
-            className="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700"
+            className="bg-main text-white px-3 py-1 rounded-lg hover:bg-mainLight"
           >
             تحميل
           </button>
           <button
             onClick={() => setShowPrompt(false)}
-            className="text-gray-400 text-xs hover:text-gray-600"
+            className="text-ft2 text-xs hover:text-ft"
           >
             ✕
           </button>

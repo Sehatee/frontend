@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import { El_Messiri, Readex_Pro } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
@@ -98,7 +99,9 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale}>
           <ToastContainer />
           <NavBar />
-          <div className="mt-16">{children}</div>
+          <MotionConfig reducedMotion="user">
+            <div className="mt-16">{children}</div>
+          </MotionConfig>
         </NextIntlClientProvider>
       </body>
     </html>

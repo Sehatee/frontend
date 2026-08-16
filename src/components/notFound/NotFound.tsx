@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const NotFoundCom = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-      <h1 className="text-main text-[8rem] font-bold drop-shadow-lg">404</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-bg px-4">
+      <h1 className="text-main text-[8rem] font-bold drop-shadow-lg animate-float">404</h1>
 
       <h2 className=" text-3xl md:text-4xl font-semibold mb-4">
         Oops! Page Not Found
@@ -16,7 +16,7 @@ const NotFoundCom = () => {
 
       <Link
         href={"/"}
-        className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+        className="btn-primary animate-pop"
       >
         Back to Home
       </Link>

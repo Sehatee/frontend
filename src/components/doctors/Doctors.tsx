@@ -1,4 +1,5 @@
 import TextHeader from "@/ui/TextHeader";
+import Reveal from "@/ui/Reveal";
 import React from "react";
 import DoctorCard from "./cards/DoctorCard";
 import { getAllDoctors } from "@/lib/api/doctors";
@@ -40,13 +41,15 @@ const Doctors = async ({ searchParams }: DoctorsProps) => {
             accent
           />
         </div>
-        <div className="flex shrink-0 items-center gap-3 rounded-full bg-main px-6 py-3 shadow-lg shadow-main/25">
-          <Users className="size-5 text-white/80" />
-          <span className="font-display text-xl font-bold text-white">
-            {doctors.length}
-          </span>
-          <span className="text-sm text-white/80">{t("doctorsCount")}</span>
-        </div>
+        <Reveal delay={0.05} y={16}>
+          <div className="flex shrink-0 items-center gap-3 rounded-full bg-main px-6 py-3 shadow-lg shadow-main/25">
+            <Users className="size-5 text-white/80" />
+            <span className="font-display text-xl font-bold text-white">
+              {doctors.length}
+            </span>
+            <span className="text-sm text-white/80">{t("doctorsCount")}</span>
+          </div>
+        </Reveal>
       </div>
 
       {/* side bar to search */}
@@ -55,13 +58,17 @@ const Doctors = async ({ searchParams }: DoctorsProps) => {
       {/* doctors cards */}
       <div className="grid grid-cols-1 gap-5 px-4 md:grid-cols-2 md:px-8 lg:grid-cols-3">
         {doctors.length > 0 ? (
-          doctors.map((doctor) => {
-            return <DoctorCard doctor={doctor} key={doctor._id} />;
+          doctors.map((doctor, i) => {
+            return (
+              <Reveal key={doctor._id} delay={0.1 + i * 0.08}>
+                <DoctorCard doctor={doctor} />
+              </Reveal>
+            );
           })
         ) : (
           <div className="col-span-1 flex min-h-[400px] items-center justify-center md:col-span-2 lg:col-span-3">
-            <div className="w-full max-w-md rounded-3xl border border-secondary bg-white p-12 text-center shadow-sm">
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
+            <div className="w-full max-w-md animate-pop rounded-3xl border border-secondary bg-white p-12 text-center shadow-sm">
+              <div className="mx-auto mb-6 flex h-20 w-20 animate-float items-center justify-center rounded-full bg-secondary">
                 <SearchX className="size-10 text-main" />
               </div>
               <span className="eyebrow">{t("noDoctorsEyebrow")}</span>

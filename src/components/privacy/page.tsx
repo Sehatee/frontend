@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
+import Reveal from "@/ui/Reveal";
 
 const Privacy = () => {
   const t = useTranslations("PrivacyPolicy");
@@ -9,12 +10,14 @@ const Privacy = () => {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
-      <div className="flex flex-col items-center gap-3 text-center">
-        <span className="eyebrow">{t("eyebrow")}</span>
-        <h1 className="font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl md:text-5xl">
-          {t("title")}
-        </h1>
-      </div>
+      <Reveal y={16} duration={0.6}>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <h1 className="font-display text-3xl font-bold leading-[1.2] text-ft sm:text-4xl md:text-5xl">
+            {t("title")}
+          </h1>
+        </div>
+      </Reveal>
       <p className="mt-10 leading-loose text-ft2 lg:text-lg">{t("intro")}</p>
       {sections.map(
         (section: { title: string; content: string[] }, idx: number) => (

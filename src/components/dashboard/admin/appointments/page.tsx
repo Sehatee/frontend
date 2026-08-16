@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
 import { StatusBadge, statusVariant } from "@/ui/StatusBadge";
+import Reveal from "@/ui/Reveal";
 
 export default async function AppointmentsPage() {
   const token = (await cookies()).get("token")?.value;
@@ -24,7 +25,9 @@ export default async function AppointmentsPage() {
         <span className="text-ft2/60">/</span>
         <span>المواعيد</span>
       </div>
-      <h2 className="text-2xl font-bold mb-6 text-ft">جدول المواعيد</h2>
+      <Reveal y={16}>
+        <h2 className="text-2xl font-bold mb-6 text-ft">جدول المواعيد</h2>
+      </Reveal>
       <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
         {!appointments || appointments.length === 0 ? (
           <p className="p-6 text-ft2">لا توجد مواعيد مسجلة.</p>
@@ -43,7 +46,7 @@ export default async function AppointmentsPage() {
               {appointments.map((appointment) => (
                 <tr
                   key={appointment._id}
-                  className="hover:bg-bg transition-colors"
+                  className="hover:bg-bg transition-colors duration-150"
                 >
                   <td className="px-4 py-4 text-sm font-semibold text-ft">
                     {appointment.patientId.username}

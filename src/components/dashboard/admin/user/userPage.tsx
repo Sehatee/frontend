@@ -9,6 +9,7 @@ import { activeOrDeleteUser } from "@/lib/api/admin";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { UserPlus } from "lucide-react";
+import Reveal from "@/ui/Reveal";
 
 export default function UsersPageClient({
   users: initialUsers,
@@ -52,29 +53,32 @@ export default function UsersPageClient({
 
   return (
     <div className="min-h-screen bg-bg p-6" dir="rtl">
-      {/* Breadcrumb navigation */}
-      <div className="flex items-center gap-2 text-sm text-ft2 mb-4">
-        <Link
-          href={"/dashboard/admin"}
-          className="hover:text-main transition duration-200"
-        >
-          لوحة التحكم
-        </Link>
-        <span className="text-ft2/60">/</span>
-        <span>المستخدمين</span>
-      </div>
+      <Reveal y={16}>
+        {/* Breadcrumb navigation */}
+        <div className="flex items-center gap-2 text-sm text-ft2 mb-4">
+          <Link
+            href={"/dashboard/admin"}
+            className="hover:text-main transition duration-200"
+          >
+            لوحة التحكم
+          </Link>
+          <span className="text-ft2/60">/</span>
+          <span>المستخدمين</span>
+        </div>
 
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-ft">جدول المستخدمين</h2>
-        <button
-          onClick={handleCreateUser}
-          className="btn-primary"
-        >
-          <UserPlus className="w-5 h-5" />
-          <span>إضافة مستخدم</span>
-        </button>
-      </div>
-      <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-ft">جدول المستخدمين</h2>
+          <button
+            onClick={handleCreateUser}
+            className="btn-primary"
+          >
+            <UserPlus className="w-5 h-5" />
+            <span>إضافة مستخدم</span>
+          </button>
+        </div>
+      </Reveal>
+      <Reveal y={16} delay={0.05}>
+        <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
         <table className="min-w-full text-start">
           <thead>
             <tr className="bg-secondary text-ft text-xs uppercase tracking-wide">
@@ -111,6 +115,7 @@ export default function UsersPageClient({
           </tbody>
         </table>
       </div>
+      </Reveal>
 
       {selectedUser && (
         <GenericUserModal

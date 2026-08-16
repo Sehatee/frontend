@@ -31,7 +31,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
     .join("");
 
   return (
-    <div className="flex flex-col gap-5 rounded-2xl border border-secondary bg-white p-6 transition-shadow hover:shadow-md">
+    <div className="flex flex-col gap-5 rounded-2xl border border-secondary bg-white p-6 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
           <Calendar className="h-5 w-5 text-main" />
@@ -39,7 +39,10 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
             {moment(appointment.date).format("DD MMMM YYYY")}
           </span>
         </div>
-        <StatusBadge variant={statusVariant(appointment.status)}>
+        <StatusBadge
+          variant={statusVariant(appointment.status)}
+          className="transition-colors duration-200"
+        >
           {statusLabel}
         </StatusBadge>
       </div>

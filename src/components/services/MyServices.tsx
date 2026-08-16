@@ -2,6 +2,7 @@
 import React from "react";
 import { CalendarCheck, HeartPulse, Video } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Reveal from "@/ui/Reveal";
 import TextHeader from "@/ui/TextHeader";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -30,12 +31,12 @@ const MyServices = () => {
             const Icon = iconMap[service.icon] ?? HeartPulse;
             const isMiddle = index === 1;
             return (
-              <div
-                key={index}
-                className={`group relative flex flex-col gap-5 rounded-3xl border border-secondary/70 p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-main/10 ${
-                  index % 2 === 0 ? "bg-white" : "bg-cream"
-                } ${isMiddle ? "lg:translate-y-6" : ""}`}
-              >
+              <Reveal key={index} delay={0.1 + index * 0.1} className="h-full">
+                <div
+                  className={`group relative flex h-full flex-col gap-5 rounded-3xl border border-secondary/70 p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-main/10 ${
+                    index % 2 === 0 ? "bg-white" : "bg-cream"
+                  } ${isMiddle ? "lg:translate-y-6" : ""}`}
+                >
                 <span
                   aria-hidden="true"
                   className="absolute end-6 top-6 font-display text-6xl font-bold text-main/15 transition-colors duration-300 group-hover:text-accent/25"
@@ -51,7 +52,8 @@ const MyServices = () => {
                 <p className="max-w-[38ch] leading-relaxed text-ft2">
                   {service.text}
                 </p>
-              </div>
+                </div>
+              </Reveal>
             );
           }
         )}

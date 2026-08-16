@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import Reveal from "@/ui/Reveal";
 
 export default function PricingPage() {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -138,13 +139,15 @@ export default function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col items-center bg-bg px-4 py-16 md:py-20">
       {/* العنوان */}
-      <div className="mb-10 flex w-full max-w-7xl flex-col items-center gap-3 text-center">
-        <span className="eyebrow">الاشتراكات</span>
-        <h1 className="font-display text-3xl font-bold text-ft sm:text-4xl md:text-5xl">
-          باقات الاشتراك
-        </h1>
-        <h2 className="text-lg md:text-xl text-ft2">اختر ما يناسبك</h2>
-      </div>
+      <Reveal y={16} duration={0.6}>
+        <div className="mb-10 flex w-full max-w-7xl flex-col items-center gap-3 text-center">
+          <span className="eyebrow">الاشتراكات</span>
+          <h1 className="font-display text-3xl font-bold text-ft sm:text-4xl md:text-5xl">
+            باقات الاشتراك
+          </h1>
+          <h2 className="text-lg md:text-xl text-ft2">اختر ما يناسبك</h2>
+        </div>
+      </Reveal>
 
       {/* أزرار التبديل بين الشهري والسنوي */}
       <div className="mb-4 flex items-center justify-center gap-4">
@@ -215,10 +218,15 @@ export default function PricingPage() {
         }`}
       >
         {plans.map((plan, idx) => (
-          <div
+          <Reveal
             key={idx}
+            delay={idx * 0.12}
+            y={plan.popular ? 16 : 24}
+            className="h-full"
+          >
+          <div
             className={`
-            relative flex w-full max-w-xs flex-col items-center rounded-3xl px-8 py-10 transition-all duration-300 md:max-w-none
+            relative flex h-full w-full max-w-xs flex-col items-center rounded-3xl px-8 py-10 transition-all duration-300 md:max-w-none
             ${
               plan.popular
                 ? "z-10 scale-105 bg-main text-white shadow-2xl shadow-main/25 md:-mt-8 md:mb-8"
@@ -308,6 +316,7 @@ export default function PricingPage() {
               {plan.button}
             </button>
           </div>
+          </Reveal>
         ))}
       </div>
     </div>
