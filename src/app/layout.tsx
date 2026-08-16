@@ -7,7 +7,7 @@ import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
 import "aos/dist/aos.css";
 import { ToastContainer } from "react-toastify";
-import { fetchUser } from "@/lib/fetchUser";
+// import { fetchUser } from "@/lib/fetchUser";
 
 const elMessiri = El_Messiri({
   subsets: ["arabic", "latin"],
@@ -75,7 +75,7 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const user = await fetchUser();
+  // const user = await fetchUser();
 
   return (
     <html
