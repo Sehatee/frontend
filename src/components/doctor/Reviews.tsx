@@ -21,7 +21,7 @@ const Reviews = ({
   const [allReviews, setAllReviews] = useState(initialReviews);
 
   return (
-    <div className="flex h-[520px] flex-col rounded-3xl border border-secondary bg-white p-6">
+    <div className="flex h-[520px] flex-col rounded-3xl border border-secondary bg-bg p-6">
       <div className="mb-5 flex items-center gap-3">
         <span className="eyebrow">{t("patientReviews")}</span>
       </div>

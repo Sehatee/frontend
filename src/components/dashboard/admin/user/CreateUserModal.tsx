@@ -298,7 +298,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 ].map((day) => (
                   <label
                     key={day}
-                    className="inline-flex gap-3 items-center bg-white p-3 rounded-xl border border-secondary hover:border-main transition-colors"
+                    className="inline-flex gap-3 items-center bg-bg p-3 rounded-xl border border-secondary hover:border-main transition-colors"
                   >
                     <input
                       type="checkbox"

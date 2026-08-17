@@ -91,7 +91,7 @@ const Review = ({ review }: ReviewProps) => {
   return (
     <>
       <div
-        className="rounded-2xl border border-secondary bg-white p-6 transition-shadow duration-300 hover:shadow-md"
+        className="rounded-2xl border border-secondary bg-bg p-6 transition-shadow duration-300 hover:shadow-md"
         dir={dir}
       >
         <div className="flex items-start gap-4">

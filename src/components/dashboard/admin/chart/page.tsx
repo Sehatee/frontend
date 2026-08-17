@@ -37,7 +37,7 @@ const AdminStatsChart = ({
   const t = useTranslations("DashboardAdmin");
   return (
     <Reveal y={16}>
-      <section className="bg-white rounded-2xl border border-secondary p-6 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-lg">
+      <section className="bg-bg rounded-2xl border border-secondary p-6 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-lg">
         <div className="mb-4 flex items-center justify-between">
         <h2 className="font-display text-xl font-bold text-ft">
           {t("charts")}

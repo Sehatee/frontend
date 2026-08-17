@@ -23,13 +23,13 @@ const Notifications = () => {
         <div className="relative">
           <button
             onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center gap-2 rounded-xl border border-secondary bg-white px-4 py-2.5 text-sm font-medium text-ft transition-colors hover:bg-secondary"
+            className="flex items-center gap-2 rounded-xl border border-secondary bg-bg px-4 py-2.5 text-sm font-medium text-ft transition-colors hover:bg-secondary"
           >
             {t('filterBy')}
             <ChevronDown className="h-4 w-4 text-main" />
           </button>
           {filterOpen && (
-            <div className="absolute end-0 z-10 mt-2 w-48 rounded-xl border border-secondary bg-white py-1 shadow-lg">
+            <div className="absolute end-0 z-10 mt-2 w-48 rounded-xl border border-secondary bg-bg py-1 shadow-lg">
               {filters.map((filter) => (
                 <button
                   key={filter.id}

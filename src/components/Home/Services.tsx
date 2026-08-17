@@ -40,7 +40,7 @@ const Services = () => {
                 data-aos-delay={`${index * 100}`}
               >
                 <div
-                  className={`group relative flex flex-col gap-5 rounded-3xl border border-secondary/70 bg-white p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-main/10 ${
+                  className={`group relative flex flex-col gap-5 rounded-3xl border border-secondary/70 bg-bg p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-main/10 ${
                     index === 1 ? "lg:translate-y-8" : ""
                   }`}
                 >

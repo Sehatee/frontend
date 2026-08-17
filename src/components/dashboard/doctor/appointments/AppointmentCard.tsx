@@ -78,7 +78,7 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
       <div
         ref={cardRef}
         key={appointment._id}
-        className="relative w-full rounded-2xl border border-secondary bg-white p-6 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md"
+        className="relative w-full rounded-2xl border border-secondary bg-bg p-6 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md"
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
       >

@@ -45,7 +45,7 @@ const SearchBar = ({ options }: { options: (string | undefined)[] }) => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-full border border-secondary bg-white py-3.5 ps-12 pe-4 text-ft shadow-sm transition-all duration-200 placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
+          className="w-full rounded-full border border-secondary bg-bg py-3.5 ps-12 pe-4 text-ft shadow-sm transition-all duration-200 placeholder:text-ft2/70 focus:border-main focus:outline-none focus:ring-2 focus:ring-main/30"
           placeholder={t("search")}
         />
         <Search className="pointer-events-none absolute start-4 top-1/2 size-5 -translate-y-1/2 text-main" />

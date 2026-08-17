@@ -11,7 +11,7 @@ export default function DoctorCard({ doctor }: { doctor: User }) {
 
   return (
     <div
-      className="group flex flex-col gap-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-main/10"
+      className="group flex flex-col gap-6 rounded-3xl border border-secondary bg-bg p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-main/10"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">

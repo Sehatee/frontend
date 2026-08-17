@@ -28,7 +28,7 @@ function MedicalRecordCardPatient({
             {records.map((record) => (
               <div
                 key={record._id}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-secondary border border-secondary flex flex-col gap-2 relative transition duration-200 hover:shadow-sm hover:border-main group"
+                className="bg-bg rounded-2xl p-6 shadow-md shadow-secondary border border-secondary flex flex-col gap-2 relative transition duration-200 hover:shadow-sm hover:border-main group"
               >
                 <div className="flex items-center gap-4">
                   <div className="bg-secondary rounded-full w-14 h-14 min-w-[56px] overflow-hidden flex items-center justify-center">
@@ -73,7 +73,7 @@ function MedicalRecordCardPatient({
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center bg-white rounded-2xl p-12 shadow-md shadow-secondary border border-secondary">
+          <div className="flex flex-col items-center justify-center bg-bg rounded-2xl p-12 shadow-md shadow-secondary border border-secondary">
             <div className="bg-secondary p-6 rounded-full mb-6">
               <FileText className="w-16 h-16 text-main" />
             </div>

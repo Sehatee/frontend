@@ -31,14 +31,14 @@ export const MedicalInfo = () => {
           },
         ]}
       />
-      <div className="flex-1 rounded-3xl border border-secondary bg-white p-8">
+      <div className="flex-1 rounded-3xl border border-secondary bg-bg p-8">
         <h2 className="text-xl font-bold text-ft">{t("title")}</h2>
         <p className="mb-8 mt-1 text-sm text-ft2">{t("subtitle")}</p>
 
         <div className="grid animate-pop grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-2xl bg-secondary p-6">
-              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-main shadow-sm">
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-bg text-main shadow-sm">
                 <Icon className="h-6 w-6" />
               </span>
               <p className="text-sm text-ft2">{label}</p>

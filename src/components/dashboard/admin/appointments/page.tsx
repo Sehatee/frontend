@@ -28,7 +28,7 @@ export default async function AppointmentsPage() {
       <Reveal y={16}>
         <h2 className="text-2xl font-bold mb-6 text-ft">جدول المواعيد</h2>
       </Reveal>
-      <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
+      <div className="bg-bg rounded-2xl border border-secondary overflow-x-auto">
         {!appointments || appointments.length === 0 ? (
           <p className="p-6 text-ft2">لا توجد مواعيد مسجلة.</p>
         ) : (

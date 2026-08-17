@@ -29,7 +29,7 @@ const MedicalRecordPatient = ({
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-8 mb-10 shadow-md shadow-secondary flex flex-col items-center justify-center text-center">
+        <div className="bg-bg rounded-2xl p-8 mb-10 shadow-md shadow-secondary flex flex-col items-center justify-center text-center">
           <div className="bg-bg rounded-full w-16 h-16 flex items-center justify-center mb-4">
             <AlertCircle size={32} className="text-red-500" />
           </div>
@@ -74,7 +74,7 @@ const MedicalRecordPatient = ({
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl p-6 mb-10 shadow-md shadow-secondary flex flex-col md:flex-row gap-6 items-center">
+      <div className="bg-bg rounded-2xl p-6 mb-10 shadow-md shadow-secondary flex flex-col md:flex-row gap-6 items-center">
         <div className="bg-secondary rounded-full w-24 h-24 flex items-center justify-center text-4xl text-main font-bold">
           <Image
             src={record.doctorId.picture || ""}
@@ -101,7 +101,7 @@ const MedicalRecordPatient = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-        <div className="bg-white rounded-xl p-6 shadow-md shadow-secondary border border-secondary">
+        <div className="bg-bg rounded-xl p-6 shadow-md shadow-secondary border border-secondary">
           <h4 className="text-main text-2xl font-semibold mb-4 flex items-center gap-2">
             <span className="text-red-500 text-3xl">♡</span>
             {t("currentDiagnosis")}
@@ -125,7 +125,7 @@ const MedicalRecordPatient = ({
             })}
           </div>
         </div>
-        <div className="bg-white rounded-xl p-4 shadow-md shadow-secondary border border-secondary">
+        <div className="bg-bg rounded-xl p-4 shadow-md shadow-secondary border border-secondary">
           <h4 className="text-main text-lg font-semibold mb-2 flex items-center gap-2">
             <FileText size={20} className="text-main" />
             {t("medicalFilesTitle")}
@@ -157,7 +157,7 @@ const MedicalRecordPatient = ({
       </div>
 
       <div className="mb-10">
-        <div className="bg-white rounded-xl p-4 shadow-md shadow-secondary border border-secondary relative">
+        <div className="bg-bg rounded-xl p-4 shadow-md shadow-secondary border border-secondary relative">
           <h4 className="text-main text-lg font-semibold mb-2 flex items-center gap-2">
             <span className="text-green-600">💊</span>
             {t("treatmentPlan")}

@@ -17,7 +17,7 @@ const NotitficationCard = ({
   return (
     <div
       className={`rounded-2xl border border-secondary p-5 transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-md ${
-        isRead ? "bg-bg" : "bg-white shadow-sm"
+        isRead ? "bg-bg" : "bg-bg shadow-sm"
       }`}
     >
       <div className="flex items-start gap-4">

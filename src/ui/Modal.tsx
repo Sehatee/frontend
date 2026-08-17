@@ -45,7 +45,7 @@ const Modal = ({ open, onClose, title, children }: ModalProps) => {
           transition={overlayTransition}
         >
           <motion.div
-            className="relative w-full max-w-lg rounded-2xl border border-secondary bg-white p-6 shadow-2xl"
+            className="relative w-full max-w-lg rounded-2xl border border-secondary bg-bg p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

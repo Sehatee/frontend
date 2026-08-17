@@ -51,7 +51,7 @@ const InstallPrompt = () => {
 
   return (
     <div className="fixed bottom-4 w-full flex justify-center z-50" data-aos="fade-up">
-      <div className="bg-white border border-secondary shadow-xl rounded-xl flex items-start justify-between p-4 gap-4 text-sm w-[90%] md:max-w-sm">
+      <div className="bg-bg border border-secondary shadow-xl rounded-xl flex items-start justify-between p-4 gap-4 text-sm w-[90%] md:max-w-sm">
         <div>
           <p className="font-bold text-main">تطبيق صحتي</p>
           <p className="text-ft2">

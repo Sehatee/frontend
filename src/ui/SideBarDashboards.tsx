@@ -16,7 +16,7 @@ const SideBarDashboards = ({
 }) => {
   const pathName = usePathname();
   return (
-    <nav className="w-full rounded-2xl border border-secondary bg-white p-2 shadow-sm">
+    <nav className="w-full rounded-2xl border border-secondary bg-bg p-2 shadow-sm">
       <ul className="flex w-full flex-col gap-1 sm:flex-row sm:items-center sm:justify-center">
         {links.map((link, index) => {
           const isActive = link.href === pathName;

@@ -25,7 +25,7 @@ const DoctorCardAppointment: React.FC<DoctorCardAppointmentProps> = ({
 
   return (
     <Reveal y={16} delay={0.05}>
-      <div className="flex h-fit flex-col gap-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm">
+      <div className="flex h-fit flex-col gap-6 rounded-3xl border border-secondary bg-bg p-6 shadow-sm">
       <div className="flex flex-col items-center text-center">
         <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full bg-main ring-4 ring-secondary">
           {doctor.picture ? (

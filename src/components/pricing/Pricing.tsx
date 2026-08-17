@@ -230,7 +230,7 @@ export default function PricingPage() {
             ${
               plan.popular
                 ? "z-10 scale-105 bg-main text-white shadow-2xl shadow-main/25 md:-mt-8 md:mb-8"
-                : "border border-secondary bg-white text-ft shadow-xl shadow-main/5"
+                : "border border-secondary bg-bg text-ft shadow-xl shadow-main/5"
             }
             mx-auto
           `}

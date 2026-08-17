@@ -19,7 +19,7 @@ const Appointments = async () => {
       <h2 className="mb-6 text-2xl font-bold text-ft">{t("myAppointments")}</h2>
 
       {appointments.length === 0 ? (
-        <div className="animate-pop rounded-3xl border border-secondary bg-white px-6 py-14 text-center">
+        <div className="animate-pop rounded-3xl border border-secondary bg-bg px-6 py-14 text-center">
           <span className="mx-auto mb-5 flex h-16 w-16 animate-float items-center justify-center rounded-2xl bg-secondary text-main">
             <Calendar className="h-8 w-8" />
           </span>

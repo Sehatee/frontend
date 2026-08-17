@@ -169,7 +169,7 @@ const ChatPage = () => {
   return (
     <div className="flex h-[90vh] bg-bg p-4">
       {/* الشريط الجانبي */}
-      <div className="w-1/4 bg-white border-e border-secondary rounded-s-2xl overflow-hidden">
+      <div className="w-1/4 bg-bg border-e border-secondary rounded-s-2xl overflow-hidden">
         <h2 className="md:text-xl text-base font-bold p-4 border-b border-secondary text-start text-main">
           محادثاتي
         </h2>
@@ -238,7 +238,7 @@ const ChatPage = () => {
           </div>
         )}
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-bg">
           {messages.map((msg, index) => (
             <motion.div
               key={index}
@@ -298,7 +298,7 @@ const ChatPage = () => {
         </div>
 
         {/* إدخال الرسائل */}
-        <div className="p-4 bg-white border-t border-secondary flex gap-2 items-center">
+        <div className="p-4 bg-bg border-t border-secondary flex gap-2 items-center">
           <input
             type="text"
             placeholder="اكتب رسالتك هنا..."

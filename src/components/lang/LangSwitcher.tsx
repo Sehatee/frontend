@@ -50,14 +50,14 @@ const LangSwitcher = () => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="flex items-center gap-2 p-1 py-3 bg-white border border-secondary rounded-md shadow-sm hover:bg-secondary focus:outline-none transition"
+        className="flex items-center gap-2 p-1 py-3 bg-bg border border-secondary rounded-md shadow-sm hover:bg-secondary focus:outline-none transition"
       >
         <FlagIcon code={selectedLanguage.key} size={24} />
         <ArrowDown size={18} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 px-2 w-[70px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 mt-2 px-2 w-[70px] rounded-md shadow-lg bg-bg ring-1 ring-ft/20">
           <div className="py-1">
             {languages.map((lang) => (
               <button

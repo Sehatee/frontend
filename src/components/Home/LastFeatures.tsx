@@ -103,14 +103,14 @@ const LastFeatures = () => {
 
           <Link
             href="/pricing"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-cream hover:shadow-xl hover:shadow-black/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="mt-10 inline-flex items-center justify-center gap-2 rounded-xl bg-bg px-8 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-cream hover:shadow-xl hover:shadow-black/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {t("btnText")}
           </Link>
         </div>
 
         <div className="hidden w-full max-w-[420px] md:block md:max-w-[480px]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-2xl shadow-black/20">
+          <div className="rounded-[2rem] bg-bg p-6 shadow-2xl shadow-black/20">
             <Image
               width={400}
               height={400}

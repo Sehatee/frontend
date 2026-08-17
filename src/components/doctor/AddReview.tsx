@@ -61,7 +61,7 @@ const AddReview = ({
   };
 
   return (
-    <div className="border-t border-secondary bg-white p-4 sm:p-6">
+    <div className="border-t border-secondary bg-bg p-4 sm:p-6">
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <textarea
           rows={3}

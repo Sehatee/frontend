@@ -65,7 +65,7 @@ function Card({
   return (
     <div ref={ref}>
       <Link href={href} className="block">
-        <div className="flex items-center gap-4 bg-white rounded-2xl border border-secondary p-6 shadow-sm cursor-pointer transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-lg">
+        <div className="flex items-center gap-4 bg-bg rounded-2xl border border-secondary p-6 shadow-sm cursor-pointer transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-lg">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-main/10 text-main transition-transform duration-300 hover:scale-105">
             <Icon className="h-6 w-6" />
           </div>

@@ -20,7 +20,7 @@ const ProfileCard = () => {
       : user?.role || "Doctor";
 
   return (
-    <div className="top-20 w-full shrink-0 rounded-3xl border border-secondary bg-white p-8 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-lg md:w-80 lg:w-96">
+    <div className="top-20 w-full shrink-0 rounded-3xl border border-secondary bg-bg p-8 shadow-sm transition-all duration-300 ease-out-quart hover:-translate-y-0.5 hover:shadow-lg md:w-80 lg:w-96">
       <div className="flex flex-col items-center gap-6">
         {/* Avatar */}
         <div className="relative">
@@ -39,7 +39,7 @@ const ProfileCard = () => {
               </span>
             )}
           </div>
-          <span className="absolute bottom-1 end-1 h-5 w-5 rounded-full bg-green-500 ring-4 ring-white" />
+          <span className="absolute bottom-1 end-1 h-5 w-5 rounded-full bg-green-500 ring-4 ring-bg" />
         </div>
 
         {/* User Info */}

@@ -84,7 +84,7 @@ export const Account = () => {
 
         {/* Change Password */}
         <Reveal y={16} delay={0.05}>
-          <div className="rounded-3xl border border-secondary bg-white p-8">
+          <div className="rounded-3xl border border-secondary bg-bg p-8">
             <div className="mb-2 flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-main" />
               <h2 className="text-lg font-bold text-ft">
@@ -164,7 +164,7 @@ export const Account = () => {
 
         {/* Delete account */}
         <Reveal y={16} delay={0.15}>
-          <div className="rounded-3xl border border-secondary bg-white p-8">
+          <div className="rounded-3xl border border-secondary bg-bg p-8">
             <div className="flex items-start gap-4">
               <div className="flex-1">
                 <div className="mb-2 flex items-center gap-1 text-xl font-bold text-red-600">

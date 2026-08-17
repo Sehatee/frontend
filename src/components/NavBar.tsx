@@ -17,6 +17,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import LangSwitcher from "./lang/LangSwitcher";
+import ThemeToggle from "@/ui/ThemeToggle";
 import Image from "next/image";
 import { useUserStore } from "@/stores/user";
 import { handleLogout } from "@/lib/auth";
@@ -139,7 +140,7 @@ const NavBar = () => {
                 </button>
                 {/* user menu */}
                 <div
-                  className={`absolute z-40 w-[300px] md:w-[350px] flex flex-col  justify-between top-full mt-2 end-0 bg-white border border-secondary rounded-2xl p-3 shadow-lg shadow-main/10 md:text-base text-sm transition-all duration-300 ease-in-out ${
+                  className={`absolute z-40 w-[300px] md:w-[350px] flex flex-col  justify-between top-full mt-2 end-0 bg-bg border border-secondary rounded-2xl p-3 shadow-lg shadow-main/10 md:text-base text-sm transition-all duration-300 ease-in-out ${
                     openMenuUser
                       ? "opacity-100 scale-100 translate-y-0"
                       : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -305,6 +306,10 @@ const NavBar = () => {
             )}
             {/* lang switcher and menu  */}
             <div className="flex gap-2">
+              {/* Theme Toggle */}
+              <div className="md:block hidden">
+              <ThemeToggle />
+              </div>
               {/* Lang Switcher */}
               <div className="md:block hidden">
               <LangSwitcher />
@@ -334,7 +339,7 @@ const NavBar = () => {
           onClick={() => setOpenMenu(false)}
         >
           <div
-            className={`absolute top-0 inset-y-0 start-0 w-[280px] h-full bg-white shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+            className={`absolute top-0 inset-y-0 start-0 w-[280px] h-full bg-bg shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
               openMenu
               ? "translate-x-0"
               : isArabic

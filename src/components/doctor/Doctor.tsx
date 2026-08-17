@@ -31,7 +31,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
   if (doctor === undefined) {
     return (
       <div className="px-4 py-10">
-        <div className="rounded-3xl border border-secondary bg-white p-10 shadow-sm">
+        <div className="rounded-3xl border border-secondary bg-bg p-10 shadow-sm">
           <h1 className="font-display text-3xl font-bold text-ft">
             Doctor Not Found
           </h1>
@@ -54,7 +54,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
     <div className="px-4 py-10">
       {/* Doctor Profile Header */}
       <Reveal y={16}>
-        <div className="relative overflow-hidden rounded-[2rem] border border-secondary bg-white p-8 shadow-sm md:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-secondary bg-bg p-8 shadow-sm md:p-12">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -end-24 -top-24 h-72 w-72 rounded-full bg-secondary"
@@ -181,7 +181,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
 
       {/* location + working days */}
       <Reveal delay={0.15} className="mt-8 grid gap-6 md:grid-cols-2">
-        <div className="flex items-center gap-4 rounded-2xl border border-secondary bg-white p-5 transition-colors hover:bg-bg">
+        <div className="flex items-center gap-4 rounded-2xl border border-secondary bg-bg p-5 transition-colors hover:bg-bg">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-secondary">
             <MapPin className="size-6 text-main" />
           </div>
@@ -193,7 +193,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 rounded-2xl border border-secondary bg-white p-5 transition-colors hover:bg-bg">
+        <div className="flex items-center gap-4 rounded-2xl border border-secondary bg-bg p-5 transition-colors hover:bg-bg">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-secondary">
             <Calendar className="size-6 text-main" />
           </div>
@@ -210,7 +210,7 @@ const Doctor = async ({ doctorId }: { doctorId: string }) => {
 
       <Reveal delay={0.2} className="mt-8 grid gap-8 lg:grid-cols-2">
         {/* Map Section */}
-        <div className="rounded-3xl border border-secondary bg-white p-6">
+        <div className="rounded-3xl border border-secondary bg-bg p-6">
           <h2 className="mb-4 font-display text-xl font-bold text-ft">
             {t("location")}
           </h2>

@@ -43,7 +43,7 @@ const Support = () => {
               </p>
               <a
                 href="mailto:contact@sehatte.com"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-cream hover:shadow-lg"
+                className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bg px-7 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-cream hover:shadow-lg"
               >
                 <Mail size={18} />
                 {t("liveChat.button")}

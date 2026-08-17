@@ -7,7 +7,7 @@ const Loading = async () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-bg">
-      <div className="bg-white p-8 rounded-2xl shadow-sm border border-secondary flex flex-col items-center">
+      <div className="bg-bg p-8 rounded-2xl shadow-sm border border-secondary flex flex-col items-center">
         <div className="w-16 h-16 rounded-full bg-main text-white flex items-center justify-center shadow-sm animate-float">
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>

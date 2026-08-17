@@ -52,7 +52,7 @@ function DirectCall() {
       </div>
 
       {/* form card */}
-      <div className="mt-6 rounded-3xl border border-secondary bg-white p-6 shadow-sm sm:p-8">
+      <div className="mt-6 rounded-3xl border border-secondary bg-bg p-6 shadow-sm sm:p-8">
         <textarea
           dir={textDirection}
           value={text}
@@ -111,7 +111,7 @@ function DirectCall() {
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-[72px] start-0 end-0 z-50 flex items-center justify-center px-4">
-          <div className="flex items-center gap-3 rounded-2xl border border-secondary bg-white p-4 shadow-xl">
+          <div className="flex items-center gap-3 rounded-2xl border border-secondary bg-bg p-4 shadow-xl">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary">
               <CheckCircle2 className="size-5 text-main" />
             </span>
@@ -134,7 +134,7 @@ function DirectCall() {
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-ft/40 p-4">
-          <div className="relative max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-secondary bg-white p-6 shadow-2xl">
+          <div className="relative max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-secondary bg-bg p-6 shadow-2xl">
             <h2 className="mb-4 mt-2 text-center font-display text-xl font-bold text-main">
               {t("Termstitle")}
             </h2>

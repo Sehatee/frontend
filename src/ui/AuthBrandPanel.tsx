@@ -36,7 +36,7 @@ const AuthBrandPanel = ({ ns }: { ns: "Login" | "Signup" }) => {
             aria-hidden="true"
             className="absolute -top-3 start-5 h-full w-[calc(100%-2.5rem)] rounded-2xl bg-white/10"
           />
-          <div className="relative flex items-center gap-5 rounded-2xl bg-white p-6 shadow-2xl">
+          <div className="relative flex items-center gap-5 rounded-2xl bg-bg p-6 shadow-2xl">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent">
               <ShieldCheck className="size-7 text-white" />
             </span>

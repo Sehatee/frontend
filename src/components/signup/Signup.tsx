@@ -97,7 +97,7 @@ const Signup = () => {
           {...motionProps({ opacity: 0, y: 16 }, 0.15)}
           className="flex w-full items-center justify-center"
         >
-          <div className="w-full max-w-md rounded-3xl border border-secondary bg-white p-8 shadow-sm sm:p-10">
+          <div className="w-full max-w-md rounded-3xl border border-secondary bg-bg p-8 shadow-sm sm:p-10">
             <span className="eyebrow">{t("brandEyebrow")}</span>
             <h1 className="mt-5 text-3xl font-bold text-ft sm:text-4xl">
               {t("title")}

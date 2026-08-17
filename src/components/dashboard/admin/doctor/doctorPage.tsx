@@ -59,7 +59,7 @@ export default function DoctorsPageClient({
         <h2 className="text-2xl font-bold mb-6 text-ft">جدول الأطباء</h2>
       </Reveal>
       <Reveal y={16} delay={0.05}>
-        <div className="bg-white rounded-2xl border border-secondary overflow-x-auto">
+        <div className="bg-bg rounded-2xl border border-secondary overflow-x-auto">
         <table className="min-w-full text-start">
           <thead>
             <tr className="bg-secondary text-ft text-xs uppercase tracking-wide">

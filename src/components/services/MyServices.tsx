@@ -34,7 +34,7 @@ const MyServices = () => {
               <Reveal key={index} delay={0.1 + index * 0.1} className="h-full">
                 <div
                   className={`group relative flex h-full flex-col gap-5 rounded-3xl border border-secondary/70 p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-main/10 ${
-                    index % 2 === 0 ? "bg-white" : "bg-cream"
+                    index % 2 === 0 ? "bg-bg" : "bg-cream"
                   } ${isMiddle ? "lg:translate-y-6" : ""}`}
                 >
                 <span

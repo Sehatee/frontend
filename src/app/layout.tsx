@@ -7,6 +7,7 @@ import NavBar from "@/components/NavBar";
 import { Metadata } from "next";
 import "aos/dist/aos.css";
 import { ToastContainer } from "react-toastify";
+import ThemeProvider from "@/providers/ThemeProvider";
 // import { fetchUser } from "@/lib/fetchUser";
 
 const elMessiri = El_Messiri({
@@ -96,13 +97,15 @@ export default async function RootLayout({
       </head>
 
       <body className="" suppressHydrationWarning={true}>
-        <NextIntlClientProvider locale={locale}>
-          <ToastContainer />
-          <NavBar />
-          <MotionConfig reducedMotion="user">
-            <div className="mt-16">{children}</div>
-          </MotionConfig>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider locale={locale}>
+            <ToastContainer />
+            <NavBar />
+            <MotionConfig reducedMotion="user">
+              <div className="mt-16">{children}</div>
+            </MotionConfig>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -84,7 +84,7 @@ const Header = () => {
             className="absolute -start-20 -top-20 -z-10 h-80 w-80 rounded-full sm:h-96 sm:w-96"
             style={{
               background:
-                "radial-gradient(closest-side, oklch(0.97 0.012 90), transparent)",
+                "radial-gradient(closest-side, rgb(var(--color-cream)), transparent)",
             }}
           />
           <div
@@ -92,7 +92,7 @@ const Header = () => {
             className="pointer-events-none absolute -z-10 bottom-0 end-4 h-48 w-48"
             style={{
               backgroundImage:
-                "radial-gradient(oklch(0.52 0.165 256 / 0.08) 1.5px, transparent 1.5px)",
+                "radial-gradient(rgb(var(--color-main) / 0.08) 1.5px, transparent 1.5px)",
               backgroundSize: "22px 22px",
               maskImage: "radial-gradient(closest-side, black, transparent)",
               WebkitMaskImage:
@@ -159,7 +159,7 @@ const Header = () => {
               />
             </div>
             <div
-              className="absolute start-4 top-6 flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl shadow-[oklch(0.23_0.025_256/0.12)]"
+              className="absolute start-4 top-6 flex items-center gap-3 rounded-2xl bg-bg px-5 py-3 shadow-xl shadow-ft/12"
               style={{ animation: "float 6s ease-in-out infinite" }}
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary">
@@ -175,7 +175,7 @@ const Header = () => {
               </span>
             </div>
             <div
-              className="absolute bottom-6 end-4 flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl shadow-[oklch(0.23_0.025_256/0.12)]"
+              className="absolute bottom-6 end-4 flex items-center gap-3 rounded-2xl bg-bg px-5 py-3 shadow-xl shadow-ft/12"
               style={{ animation: "float 7s ease-in-out 1.2s infinite" }}
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary">

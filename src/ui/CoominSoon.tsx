@@ -7,7 +7,7 @@ const CoominSoon = () => {
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-bg p-6">
-      <div className="flex w-full max-w-xl animate-pop flex-col items-center gap-5 rounded-3xl border border-secondary bg-white p-12 text-center">
+      <div className="flex w-full max-w-xl animate-pop flex-col items-center gap-5 rounded-3xl border border-secondary bg-bg p-12 text-center">
         <span className="flex h-16 w-16 animate-float items-center justify-center rounded-2xl bg-secondary text-main">
           <Construction size={32} />
         </span>

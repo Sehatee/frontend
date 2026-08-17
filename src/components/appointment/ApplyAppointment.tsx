@@ -30,7 +30,7 @@ const ApplyAppointment = async ({ doctorId }: { doctorId: string }) => {
 
           <Reveal
             delay={0.1}
-            className="relative rounded-3xl border border-secondary bg-white p-6 shadow-sm sm:p-8 lg:col-span-2"
+            className="relative rounded-3xl border border-secondary bg-bg p-6 shadow-sm sm:p-8 lg:col-span-2"
           >
             <ApplyAppointmentForm user={user} doctorId={doctorId} />
           </Reveal>

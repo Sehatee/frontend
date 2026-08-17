@@ -18,7 +18,7 @@ const AccordingSupport = () => {
         return (
           <div
             key={index}
-            className={`rounded-2xl border bg-white px-6 transition-all duration-300 ${
+            className={`rounded-2xl border bg-bg px-6 transition-all duration-300 ${
               isOpen
                 ? "border-main/25 shadow-lg shadow-main/5"
                 : "border-secondary"

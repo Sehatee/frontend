@@ -41,7 +41,7 @@ const About = () => {
             <p className="mt-5 max-w-[45ch] leading-loose text-ft2 lg:text-lg">
               {t("subTitle")}
             </p>
-            <div className="mt-8 rounded-2xl bg-white/80 p-6 shadow-sm shadow-main/5">
+            <div className="mt-8 rounded-2xl bg-bg/80 p-6 shadow-sm shadow-main/5">
               <h3 className="text-2xl font-bold text-main">{t("vision")}</h3>
               <p className="mt-2 leading-loose text-ft2">{t("visionText")}</p>
             </div>

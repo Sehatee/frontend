@@ -67,7 +67,7 @@ const Doctors = async ({ searchParams }: DoctorsProps) => {
           })
         ) : (
           <div className="col-span-1 flex min-h-[400px] items-center justify-center md:col-span-2 lg:col-span-3">
-            <div className="w-full max-w-md animate-pop rounded-3xl border border-secondary bg-white p-12 text-center shadow-sm">
+            <div className="w-full max-w-md animate-pop rounded-3xl border border-secondary bg-bg p-12 text-center shadow-sm">
               <div className="mx-auto mb-6 flex h-20 w-20 animate-float items-center justify-center rounded-full bg-secondary">
                 <SearchX className="size-10 text-main" />
               </div>

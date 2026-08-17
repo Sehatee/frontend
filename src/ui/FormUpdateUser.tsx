@@ -166,7 +166,7 @@ const FormUpdateUser = ({ user }: { user: User }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 rounded-3xl border border-secondary bg-white p-8 shadow-sm"
+      className="flex flex-col gap-6 rounded-3xl border border-secondary bg-bg p-8 shadow-sm"
     >
       {/* Avatar upload field */}
       <div className="flex flex-col items-center gap-4">

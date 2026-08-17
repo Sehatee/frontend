@@ -20,7 +20,7 @@ const AboutCard = ({
       className={`group relative flex h-full flex-col items-start gap-5 overflow-hidden rounded-3xl p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl ${
         isMain
           ? "bg-main text-white hover:shadow-main/30"
-          : "border border-secondary bg-white text-ft hover:shadow-main/10"
+          : "border border-secondary bg-bg text-ft hover:shadow-main/10"
       }`}
     >
       {number !== undefined && (

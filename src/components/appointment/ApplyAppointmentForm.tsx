@@ -70,7 +70,7 @@ const ApplyAppointmentForm = ({
             </Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-secondary"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-bg px-7 py-3.5 text-base font-semibold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-secondary"
             >
               {t("signup")}
             </Link>
