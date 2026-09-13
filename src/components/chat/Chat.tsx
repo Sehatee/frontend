@@ -99,7 +99,7 @@ const ChatPage = () => {
 
       const data = await response.json();
 
-      setConversations([...conversations!, data]);
+      setConversations([...(conversations || []), data]);
     } catch (error) {
       console.error("Failed to fetch create conversation:", error);
     }
