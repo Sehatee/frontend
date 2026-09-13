@@ -4,17 +4,16 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Send, Loader2 } from "lucide-react";
-import { Doctor } from "@/types/Chat";
+import { Doctor, Message } from "@/types/Chat";
 
 interface ChatBoxProps {
   selectedDoctor: Doctor | null;
-  messages: any[];
+  messages: Message[];
   isLoadingMessages: boolean;
   message: string;
   setMessage: (val: string) => void;
   onSendMessage: () => void;
   patientId: string;
-
 }
 
 export const ChatBox: React.FC<ChatBoxProps> = ({

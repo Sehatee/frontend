@@ -17,11 +17,14 @@ export type Message = {
   _id: string;
   conversationId: string;
   sender: {
+    _id: string;
     username: string;
     picture: string;
     role: string;
   };
-  receiver: string;
+  receiver: {
+    _id: string;
+  };
   content: string;
   attachments: [];
   isRead: boolean;
