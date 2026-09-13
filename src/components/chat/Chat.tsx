@@ -8,6 +8,7 @@ import { useUserStore } from "@/stores/user";
 import { ChatBox } from "@/components/chat/ChatBox";
 import { Doctor, Message } from "@/types/Chat";
 import Cookies from "js-cookie";
+import { useSearchParams } from "next/navigation";
 
 const ChatPage = () => {
   const [message, setMessage] = useState("");
@@ -52,15 +53,10 @@ const ChatPage = () => {
   const token = Cookies.get("token");
   const socketRef = useRef<Socket | null>(null);
 
-  // useEffect(() => {
-  //   if (doctorId) {
-  //     getDoctorFromChat(doctorId).then((doctor) => {
-  //       if (doctor) {
-  //         handleSelectDoctor(doctor);
-  //       }
-  //     });
-  //   }
-  // }, [doctorId]);
+  // only if the first time conversation
+  const searchParam = useSearchParams();
+  const doctorId = searchParam.get("doctorId") || null;
+
   // connect with server using socket.io
   const fetchAllConversation = async () => {
     try {
@@ -80,12 +76,41 @@ const ChatPage = () => {
 
       setConversations(data);
     } catch (error) {
-      console.error("Failed to fetch old messages:", error);
+      console.error("Failed to fetch conversation:", error);
+    }
+  };
+  const createConversation = async (doctorId: string) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/chats/conversations/${doctorId}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            doctorId,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+      const data = await response.json();
+
+      setConversations([...conversations!, data]);
+    } catch (error) {
+      console.error("Failed to fetch create conversation:", error);
     }
   };
   useEffect(() => {
     fetchAllConversation();
-  }, []);
+    console.log(doctorId);
+    if (doctorId) {
+      createConversation(doctorId);
+    }
+  }, [doctorId]);
 
   const fetchOldMessages = async (convId: string) => {
     setIsLoadingMessages(true);
@@ -119,6 +144,7 @@ const ChatPage = () => {
     setCurrentConv(doc.conversationId!);
     fetchOldMessages(doc.conversationId!);
   };
+
   useEffect(() => {
     if (!user || !selectedDoctor) return;
 
@@ -158,6 +184,7 @@ const ChatPage = () => {
       socket.disconnect();
     };
   }, [selectedDoctor, user]);
+
   const handleSendMessage = () => {
     if (!message.trim() || !selectedDoctor || !user) return;
     // if the patient is the sender
@@ -173,9 +200,9 @@ const ChatPage = () => {
           }
         : {
             senderId: user._id,
-            receiverId: '',// patientId from conversations 
+            receiverId: "", // patientId from conversations
             doctorId: user._id,
-            patientId: '',// patientId from conversations 
+            patientId: "", // patientId from conversations
             content: message,
             attachments: [],
           };
