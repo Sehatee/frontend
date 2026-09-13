@@ -16,7 +16,7 @@ const withNextIntl = createNextIntlPlugin();
 // الدمج بين الإضافتين (PWA + Next-Intl)
 const nextConfig: NextConfig = {
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: ["res.cloudinary.com", "randomuser.me"],
   },
 };
 

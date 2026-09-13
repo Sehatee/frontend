@@ -10,7 +10,12 @@ import {
   Settings,
   UserRound,
   X,
-  Home, User, Stethoscope, Info, BadgeDollarSign
+  Home,
+  User,
+  Stethoscope,
+  Info,
+  BadgeDollarSign,
+  MessagesSquare,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
@@ -33,18 +38,18 @@ const NavBar = () => {
   const isArabic = locale === "ar";
   const pathName = usePathname();
   const router = useRouter();
-  
-      useEffect(() => {
-        if (openMenu) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
-        return () => {
-          document.body.style.overflow = "";
-        };
-      }, [openMenu]);
-      
+
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openMenu]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -183,7 +188,11 @@ const NavBar = () => {
                             className="flex items-center justify-between w-full"
                           >
                             <span>المستخدمين</span>
-                            <UserRound className="text-main" fill="currentColor" stroke="none" />
+                            <UserRound
+                              className="text-main"
+                              fill="currentColor"
+                              stroke="none"
+                            />
                           </Link>
                         </li>
                         <li className={userMenuItemClass}>
@@ -201,7 +210,11 @@ const NavBar = () => {
                             className="flex items-center justify-between w-full"
                           >
                             <span>المحظورين </span>
-                            <UserRound className="text-accent" fill="currentColor" stroke="none" />
+                            <UserRound
+                              className="text-accent"
+                              fill="currentColor"
+                              stroke="none"
+                            />
                           </Link>
                         </li>
                         <li className={userMenuItemClass}>
@@ -210,7 +223,10 @@ const NavBar = () => {
                             className="flex items-center justify-between w-full"
                           >
                             <span>الأطباء</span>
-                            <UserRound className="text-main" fill="currentColor" />
+                            <UserRound
+                              className="text-main"
+                              fill="currentColor"
+                            />
                           </Link>
                         </li>
                       </>
@@ -222,7 +238,11 @@ const NavBar = () => {
                             className="flex items-center justify-between w-full"
                           >
                             <span>{userMenuT("profile")}</span>
-                            <UserRound className="text-main" fill="currentColor" stroke="none" />
+                            <UserRound
+                              className="text-main"
+                              fill="currentColor"
+                              stroke="none"
+                            />
                           </Link>
                         </li>
                         <li className={userMenuItemClass}>
@@ -231,7 +251,11 @@ const NavBar = () => {
                             className="flex items-center justify-between w-full"
                           >
                             <span>{userMenuT("notifications")}</span>
-                            <Bell className="text-main" fill="currentColor" stroke="none" />
+                            <Bell
+                              className="text-main"
+                              fill="currentColor"
+                              stroke="none"
+                            />
                           </Link>
                         </li>
                         <li className={userMenuItemClass}>
@@ -254,11 +278,23 @@ const NavBar = () => {
                         </li>
                         <li className={userMenuItemClass}>
                           <Link
+                            href={`/chat`}
+                            className="flex items-center justify-between w-full"
+                          >
+                            <span>الرسائل</span>
+                            <MessagesSquare className="text-main" />
+                          </Link>
+                        </li>
+                        <li className={userMenuItemClass}>
+                          <Link
                             href={`/dashboard/${user.role}/settings/account`}
                             className="flex items-center justify-between w-full"
                           >
                             <span>{userMenuT("settings")}</span>
-                            <Settings className="text-main" fill="currentColor" />
+                            <Settings
+                              className="text-main"
+                              fill="currentColor"
+                            />
                           </Link>
                         </li>
                       </>
@@ -292,7 +328,10 @@ const NavBar = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 {/* login btn */}
-                <Link href={"/login"} className="text-main font-medium hover:underline">
+                <Link
+                  href={"/login"}
+                  className="text-main font-medium hover:underline"
+                >
                   {t("login")}
                 </Link>
                 {/* signup btn */}
@@ -308,11 +347,11 @@ const NavBar = () => {
             <div className="flex gap-2">
               {/* Theme Toggle */}
               <div className="md:block hidden">
-              <ThemeToggle />
+                <ThemeToggle />
               </div>
               {/* Lang Switcher */}
               <div className="md:block hidden">
-              <LangSwitcher />
+                <LangSwitcher />
               </div>
               {/* Menu toggle */}
               <button
@@ -330,50 +369,49 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-        
+
       {/* in Small Screen */}
+      <div
+        className={`fixed md:hidden inset-0 bg-ft/40 z-50 w-full h-full transition-opacity duration-300 ease-in-out ${
+          openMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setOpenMenu(false)}
+      >
         <div
-          className={`fixed md:hidden inset-0 bg-ft/40 z-50 w-full h-full transition-opacity duration-300 ease-in-out ${
-            openMenu ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          onClick={() => setOpenMenu(false)}
-        >
-          <div
-            className={`absolute top-0 inset-y-0 start-0 w-[280px] h-full bg-bg shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
-              openMenu
+          className={`absolute top-0 inset-y-0 start-0 w-[280px] h-full bg-bg shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+            openMenu
               ? "translate-x-0"
               : isArabic
-              ? "translate-x-full"
-              : "-translate-x-full"
-            }`}
-          >
-
-            {/* Menu Items */}
-            <ul className="flex flex-col py-4 px-3 text-ft text-lg font-semibold space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 ${
-                    pathName === link.href
-                      ? "text-main font-bold bg-secondary"
-                      : "text-ft2 hover:bg-secondary hover:text-main"
-                  }`}
-                  onClick={() => setOpenMenu(false)}
-                >
-                  {navMobileIcons[link.href]}
-                  <span>{link.label}</span>
-                </Link>
-              ))}
-            </ul>
-            <div className="flex justify-between items-center  px-4 py-6 border-t border-secondary rounded-t-xl">
+                ? "translate-x-full"
+                : "-translate-x-full"
+          }`}
+        >
+          {/* Menu Items */}
+          <ul className="flex flex-col py-4 px-3 text-ft text-lg font-semibold space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 ${
+                  pathName === link.href
+                    ? "text-main font-bold bg-secondary"
+                    : "text-ft2 hover:bg-secondary hover:text-main"
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                {navMobileIcons[link.href]}
+                <span>{link.label}</span>
+              </Link>
+            ))}
+          </ul>
+          <div className="flex justify-between items-center  px-4 py-6 border-t border-secondary rounded-t-xl">
             <p className="text-sm text-ft2 mb-2">{t("language")}</p>
-                <LangSwitcher />
-            </div>
+            <LangSwitcher />
           </div>
         </div>
+      </div>
     </div>
-    );
-  };
+  );
+};
 
-  export default NavBar;
+export default NavBar;

@@ -1,161 +1,196 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { Send } from "lucide-react";
-import { getDoctorFromChat } from "@/lib/api/doctor";
+
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { io, Socket } from "socket.io-client";
+
 import { useUserStore } from "@/stores/user";
-
-type Message = {
-  text: string;
-  img: string;
-  isReceived: boolean;
-};
-
-type Doctor = {
-  _id: string;
-  username: string;
-  specialization: string;
-  picture: string;
-};
+import { ChatBox } from "@/components/chat/ChatBox";
+import { Doctor, Message } from "@/types/Chat";
+import Cookies from "js-cookie";
 
 const ChatPage = () => {
   const [message, setMessage] = useState("");
+  /**{
+  _id: ObjectId('6aa428a141338c881a988866'),
+  conversationId: ObjectId('6aa41915541ae392b37a560e'),
+  sender: ObjectId('6a82e1592155b2b0cf28d2b1'),
+  receiver: ObjectId('65f900000000000000000003'),
+  content: 'hello',
+  attachments: [],
+  isRead: false,
+  createdAt: ISODate('2026-09-11T16:13:21.275Z'),
+  updatedAt: ISODate('2026-09-11T16:13:21.275Z'),
+  __v: NumberInt('0')
+} */
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
-  const [conversationDoctors, setConversationDoctors] = useState<Doctor[]>([]);
-  const searchParams = useSearchParams();
-  const doctorId = searchParams.get("doctorId");
-
-  const conversationsKey = "chat_conversations";
+  const [conversations, setConversations] = useState<
+    {
+      _id: string;
+      doctor: {
+        _id: string;
+        username: string;
+        specialization: string;
+        picture: string;
+      };
+      participants: string[];
+      lastMessage: string;
+      patient: string;
+      unreadCount: {
+        doctor: number;
+        patient: number;
+      };
+      createdAt: string;
+      updatedAt: string;
+    }[]
+  >();
+  const [currentConv, setCurrentConv] = useState<string>("");
+  const [isLoadingMessages, setIsLoadingMessages] = useState(false);
 
   const { user } = useUserStore();
+  const token = Cookies.get("token");
+  const socketRef = useRef<Socket | null>(null);
 
-  useEffect(() => {
-    const stored = localStorage.getItem(conversationsKey);
-    if (stored) {
-      setConversationDoctors(JSON.parse(stored));
+  // useEffect(() => {
+  //   if (doctorId) {
+  //     getDoctorFromChat(doctorId).then((doctor) => {
+  //       if (doctor) {
+  //         handleSelectDoctor(doctor);
+  //       }
+  //     });
+  //   }
+  // }, [doctorId]);
+  // connect with server using socket.io
+  const fetchAllConversation = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/chats/conversations`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+      const data = await response.json();
+
+      setConversations(data);
+    } catch (error) {
+      console.error("Failed to fetch old messages:", error);
     }
+  };
+  useEffect(() => {
+    fetchAllConversation();
   }, []);
 
-  useEffect(() => {
-    if (doctorId) {
-      getDoctorFromChat(doctorId).then((doctor) => {
-        if (doctor) {
-          setSelectedDoctor(doctor);
+  const fetchOldMessages = async (convId: string) => {
+    setIsLoadingMessages(true);
 
-          const localStorageKey = `chat_messages_${doctor._id}`;
-          const storedMessages = localStorage.getItem(localStorageKey);
-          if (storedMessages) {
-            setMessages(JSON.parse(storedMessages));
-          } else {
-            setTimeout(() => {
-              const welcomeMessage: Message = {
-                text: "مرحبًا، كيف يمكنني مساعدتك؟",
-                img: doctor.picture,
-                isReceived: true,
-              };
-              setMessages([welcomeMessage]);
-              localStorage.setItem(
-                localStorageKey,
-                JSON.stringify([welcomeMessage])
-              );
-            }, 1000);
-          }
-
-          const stored = localStorage.getItem(conversationsKey);
-          const previous = stored ? JSON.parse(stored) : [];
-          const exists = previous.find((doc: Doctor) => doc._id === doctor._id);
-          if (!exists) {
-            const updated = [...previous, doctor];
-            localStorage.setItem(conversationsKey, JSON.stringify(updated));
-            setConversationDoctors(updated);
-          }
-        }
-      });
-    }
-  }, [doctorId]);
-
-  const handleSendMessage = () => {
-    if (message.trim() && selectedDoctor) {
-      const newMessages = [
-        ...messages,
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/chats/${convId}/messages`,
         {
-          text: message,
-          img: "/imgs/doctorsteam/doctor5.png",
-          isReceived: false,
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      ];
-      setMessages(newMessages);
-      const localStorageKey = `chat_messages_${selectedDoctor._id}`;
-      localStorage.setItem(localStorageKey, JSON.stringify(newMessages));
-      setMessage("");
-
-      const stored = localStorage.getItem(conversationsKey);
-      const previous = stored ? JSON.parse(stored) : [];
-      const exists = previous.find(
-        (doc: Doctor) => doc._id === selectedDoctor._id
       );
-      if (!exists) {
-        const updated = [...previous, selectedDoctor];
-        localStorage.setItem(conversationsKey, JSON.stringify(updated));
-        setConversationDoctors(updated);
+
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+      const data = await response.json();
+
+      if (data && Array.isArray(data.messages)) {
+        setMessages(data.messages);
       }
+    } catch (error) {
+      console.error("Failed to fetch old messages:", error);
+    } finally {
+      setIsLoadingMessages(false);
     }
   };
 
   const handleSelectDoctor = (doc: Doctor) => {
     setSelectedDoctor(doc);
-    const localStorageKey = `chat_messages_${doc._id}`;
-    const storedMessages = localStorage.getItem(localStorageKey);
-    if (storedMessages) {
-      setMessages(JSON.parse(storedMessages));
-    } else {
-      setTimeout(() => {
-        const welcomeMessage: Message = {
-          text: "مرحبًا، كيف يمكنني مساعدتك؟",
-          img: doc.picture,
-          isReceived: true,
-        };
-        setMessages([welcomeMessage]);
-        localStorage.setItem(localStorageKey, JSON.stringify([welcomeMessage]));
-      }, 1000);
-    }
+    setCurrentConv(doc.conversationId!);
+    fetchOldMessages(doc.conversationId!);
   };
+  useEffect(() => {
+    if (!user || !selectedDoctor) return;
 
-  const handleDeleteMessage = (index: number) => {
-    if (!selectedDoctor) return;
-    const updatedMessages = [...messages];
-    updatedMessages.splice(index, 1);
-    setMessages(updatedMessages);
-    const localStorageKey = `chat_messages_${selectedDoctor._id}`;
-    localStorage.setItem(localStorageKey, JSON.stringify(updatedMessages));
-  };
+    const socket = io(process.env.NEXT_PUBLIC_BASE_API_URL as string, {
+      transports: ["websocket"],
+    });
 
-  const handleDeleteConversation = (doctorId: string) => {
-    const updatedDoctors = conversationDoctors.filter(
-      (doc) => doc._id !== doctorId
-    );
-    setConversationDoctors(updatedDoctors);
-    localStorage.setItem(conversationsKey, JSON.stringify(updatedDoctors));
-    localStorage.removeItem(`chat_messages_${doctorId}`);
-    if (selectedDoctor?._id === doctorId) {
-      setSelectedDoctor(null);
-      setMessages([]);
+    socketRef.current = socket;
+
+    socket.on("connect", () => {
+      socket.emit("joinRoom", {
+        conversationId: currentConv,
+      });
+      socket.emit("markAsRead", {
+        conversationId: currentConv,
+        userId: user._id,
+        role: "patient",
+      });
+    });
+
+    // socket.on("newMessage", (savedMessage: any) => {
+    //   const isReceived = savedMessage.senderId !== user._id;
+
+    //   const incomingUIEvent: UIEventMessage = {
+    //     text: savedMessage.content,
+    //     img: isReceived
+    //       ? selectedDoctor.picture
+    //       : user.picture || "/imgs/default-avatar.png",
+    //     isReceived,
+    //     senderId: savedMessage.senderId,
+    //   };
+
+    //   setMessages((prev) => [...prev, incomingUIEvent]);
+    // });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [selectedDoctor, user]);
+  const handleSendMessage = () => {
+    if (!message.trim() || !selectedDoctor || !user) return;
+    // if the patient is the sender
+    const payload =
+      user.role === "patient"
+        ? {
+            senderId: user._id,
+            receiverId: selectedDoctor._id,
+            doctorId: selectedDoctor._id,
+            patientId: user._id,
+            content: message,
+            attachments: [],
+          }
+        : {
+            senderId: user._id,
+            receiverId: '',// patientId from conversations 
+            doctorId: user._id,
+            patientId: '',// patientId from conversations 
+            content: message,
+            attachments: [],
+          };
+    // if the doctor is the sender
+    if (socketRef.current?.connected) {
+      socketRef.current.emit(
+        "sendMessage",
+        payload,
+        (data: { status: string; data: Message }) => {
+          setMessages([...messages, data.data]);
+        },
+      );
     }
-  };
 
-  const getLastMessage = (doctorId: string): string => {
-    const localStorageKey = `chat_messages_${doctorId}`;
-    const stored = localStorage.getItem(localStorageKey);
-    if (stored) {
-      const msgs: Message[] = JSON.parse(stored);
-      if (msgs.length > 0) {
-        return msgs[msgs.length - 1].text;
-      }
-    }
-    return "لا توجد رسائل بعد";
+    setMessage("");
   };
 
   if (!user) {
@@ -165,157 +200,60 @@ const ChatPage = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="flex h-[90vh] bg-bg p-4">
-      {/* الشريط الجانبي */}
+      {/* Last Conversations Sidebar */}
       <div className="w-1/4 bg-bg border-e border-secondary rounded-s-2xl overflow-hidden">
         <h2 className="md:text-xl text-base font-bold p-4 border-b border-secondary text-start text-main">
           محادثاتي
         </h2>
-
-        {conversationDoctors.map((doc) => (
-          <div
-            key={doc._id}
-            className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out cursor-pointer border-b-[1px] border-secondary ${
-              selectedDoctor?._id === doc._id ? "bg-secondary" : ""
-            }`}
-          >
+        {/* if the user is patient */}
+        {conversations ? (
+          conversations.map((conv) => (
             <div
-              onClick={() => handleSelectDoctor(doc)}
-              className="flex items-center gap-4 w-full"
-            >
-              <Image
-                src={doc.picture}
-                alt="doctor"
-                width={40}
-                height={40}
-                className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main/20"
-              />
-              <div className="flex flex-col space-y-2">
-                <p className="font-bold md:text-sm text-xs sm:block hidden text-ft">
-                  {doc.username}
-                </p>
-                <p className="text-xs text-main md:block hidden">
-                  {doc.specialization}
-                </p>
-                <p className="text-xs text-ft2 truncate max-w-[150px] md:block hidden">
-                  {getLastMessage(doc._id)}
-                </p>
-              </div>
-            </div>
-
-            {/* زر الحذف */}
-            <button
-              onClick={() => handleDeleteConversation(doc._id)}
-              className="absolute top-2 end-2 hidden group-hover:flex items-center justify-center w-5 h-5 rounded-full bg-secondary text-main text-xs"
-              title="حذف المحادثة"
-            >
-              ×
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* نافذة المحادثة */}
-      <div className="flex flex-col flex-1 rounded-e-2xl overflow-hidden">
-        {selectedDoctor && (
-          <div className="bg-main text-white p-4 flex gap-4 items-center py-6">
-            <Image
-              src={selectedDoctor.picture}
-              alt="avatar"
-              width={40}
-              height={40}
-              className="h-10 w-10 rounded-full bg-secondary object-cover object-top ring-2 ring-white/30"
-            />
-            <div className="text-start">
-              <p className="font-bold">{selectedDoctor.username}</p>
-              <p className="text-sm text-white/80 flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse" />
-                {selectedDoctor.specialization}
-              </p>
-            </div>
-          </div>
-        )}
-
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-bg">
-          {messages.map((msg, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className={`flex items-center gap-2 group ${
-                msg.isReceived ? "" : "flex-row-reverse"
+              key={conv._id}
+              onClick={() =>
+                handleSelectDoctor({ ...conv.doctor, conversationId: conv._id })
+              }
+              className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out cursor-pointer border-b-[1px] border-secondary ${
+                selectedDoctor?._id === conv.doctor._id ? "bg-secondary" : ""
               }`}
             >
-              {msg.isReceived ? (
+              <div className="flex items-center gap-4 w-full">
                 <Image
-                  src={msg.img}
-                  alt="avatar"
+                  src={conv.doctor.picture}
+                  alt={conv.doctor.username}
                   width={40}
                   height={40}
-                  className="h-9 w-9 rounded-full bg-secondary object-cover object-top"
+                  className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main/20"
                 />
-              ) : (
-                <div className="h-9 w-9 rounded-full bg-secondary text-main flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5.121 17.804A4.992 4.992 0 0112 15a4.992 4.992 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                <div className="flex flex-col space-y-1">
+                  <p className="font-bold md:text-sm text-xs sm:block hidden text-ft">
+                    {conv.doctor.username}
+                  </p>
+                  <p className="text-xs text-main md:block hidden">
+                    {conv.doctor.specialization}
+                  </p>
                 </div>
-              )}
-              <div className="relative">
-                <div
-                  className={`border text-start p-3 rounded-2xl max-w-xs shadow-sm ${
-                    msg.isReceived
-                      ? "bg-secondary text-ft rounded-bl-md"
-                      : "bg-main text-white rounded-br-md"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-                <button
-                  onClick={() => handleDeleteMessage(index)}
-                  className="absolute -top-2 -end-2 bg-secondary text-ft text-xs rounded-full w-5 h-5 hidden group-hover:flex items-center justify-center"
-                  title="حذف"
-                >
-                  ×
-                </button>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* إدخال الرسائل */}
-        <div className="p-4 bg-bg border-t border-secondary flex gap-2 items-center">
-          <input
-            type="text"
-            placeholder="اكتب رسالتك هنا..."
-            className="flex-1 text-start border border-secondary rounded-xl bg-bg px-4 py-3 text-ft placeholder:text-ft2/70 focus:outline-none focus:border-main focus:ring-2 focus:ring-main/30 transition"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-          />
-          <button
-            className="rounded-full p-3 text-white bg-main hover:bg-mainLight transition-colors"
-            onClick={handleSendMessage}
-            aria-label="send"
-          >
-            <Send className="h-5 w-5" />
-          </button>
-        </div>
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
       </div>
+
+      {/* ChatBox Component */}
+      <ChatBox
+        selectedDoctor={selectedDoctor}
+        messages={messages}
+        isLoadingMessages={isLoadingMessages}
+        message={message}
+        setMessage={setMessage}
+        onSendMessage={handleSendMessage}
+        patientId={user._id}
+      />
     </div>
   );
 };
