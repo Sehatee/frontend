@@ -79,8 +79,9 @@ const ChatPage = () => {
     // console.log(doctorId);
     if (doctorId) {
       createConversation(doctorId);
+    } else {
+      fetchAllConversation();
     }
-    fetchAllConversation();
   }, [doctorId]);
 
   const fetchOldMessages = async (convId: string) => {
