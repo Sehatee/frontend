@@ -50,7 +50,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
 
   // حالة Modal المكالمة المرئية
   const [isVideoCallOpen, setIsVideoCallOpen] = useState(false);
-  const [isIncomingCall, setIsIncomingCall] = useState(true);
+  const [isIncomingCall, setIsIncomingCall] = useState(false);
 
   // التمرير التلقائي للأسفل عند التغير في مصفوفة الرسائل
   const scrollToBottom = () => {
