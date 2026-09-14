@@ -24,10 +24,37 @@ export type Message = {
   };
   receiver: {
     _id: string;
+    username: string;
+    picture: string;
+    role: string;
   };
   content: string;
   attachments: [];
   isRead: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Conversation = {
+  _id: string;
+  doctor: {
+    _id: string;
+    username: string;
+    specialization: string;
+    picture: string;
+  };
+  participants: string[];
+  lastMessage: string;
+  patient: {
+    _id: string;
+    username: string;
+    specialization: string;
+    picture: string;
+  };
+  unreadCount: {
+    doctor: number;
+    patient: number;
+  };
   createdAt: string;
   updatedAt: string;
 };
