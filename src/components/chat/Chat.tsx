@@ -8,7 +8,7 @@ import { useUserStore } from "@/stores/user";
 import { ChatBox } from "@/components/chat/ChatBox";
 import { Conversation, Doctor, Message } from "@/types/Chat";
 import Cookies from "js-cookie";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const socket = io(process.env.NEXT_PUBLIC_BASE_API_URL as string, {
   transports: ["websocket"],
@@ -19,7 +19,7 @@ const ChatPage = () => {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedReceiver, setSelectedReceiver] = useState<Doctor | null>(null);
-  const [conversations, setConversations] = useState<Conversation[]>();
+  const [conversations, setConversations] = useState<Conversation[]>([]);
   const [currentConv, setCurrentConv] = useState<string>("");
   const [isLoadingMessages, setIsLoadingMessages] = useState(false);
 
@@ -29,6 +29,7 @@ const ChatPage = () => {
 
   // only if the first time conversation
   const searchParam = useSearchParams();
+  const router = useRouter();
   const doctorId = searchParam.get("doctorId") || null;
 
   // connect with server using socket.io
@@ -47,8 +48,7 @@ const ChatPage = () => {
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
       const data = await response.json();
-
-      setConversations([...(conversations || []), data]);
+      setConversations(data);
     } catch (error) {
       console.error("Failed to fetch conversation:", error);
     }
@@ -59,9 +59,6 @@ const ChatPage = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/chats/conversations/${doctorId}`,
         {
           method: "POST",
-          body: JSON.stringify({
-            doctorId,
-          }),
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -74,18 +71,15 @@ const ChatPage = () => {
       const data = await response.json();
 
       setConversations([...(conversations || []), data]);
+      // remove the doctorId param
+      router.replace("/chat", {
+        scroll: false,
+      });
+      // window.history.replaceState(null, "", "/chat");
     } catch (error) {
-      console.error("Failed to fetch create conversation:", error);
+      console.error("Failed to  create conversation:", error);
     }
   };
-  useEffect(() => {
-    // console.log(doctorId);
-    if (doctorId) {
-      createConversation(doctorId);
-    } else {
-      fetchAllConversation();
-    }
-  }, [doctorId]);
 
   const fetchOldMessages = async (convId: string) => {
     setIsLoadingMessages(true);
@@ -120,32 +114,6 @@ const ChatPage = () => {
     fetchOldMessages(receiver.conversationId!);
   };
 
-  useEffect(() => {
-    if (!user || !selectedReceiver) return;
-
-    socketRef.current = socket;
-
-    socket.on("connect", () => {
-      socket.emit("joinRoom", {
-        conversationId: currentConv,
-      });
-      socket.emit("markAsRead", {
-        conversationId: currentConv,
-        userId: user._id,
-        role: user.role,
-      });
-    });
-
-    socket.on("newMessage", (savedMessage: Message) => {
-      console.log("newMessage envet data", savedMessage);
-      setMessages([...messages, savedMessage]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [selectedReceiver, user, messages]);
-
   const handleSendMessage = () => {
     if (!selectedReceiver || !user) return;
 
@@ -169,7 +137,6 @@ const ChatPage = () => {
             attachments: attachments,
           };
 
-    console.log("the payload before sending", payload);
     // if the doctor is the sender
     if (socketRef.current?.connected) {
       socketRef.current.emit(
@@ -185,6 +152,36 @@ const ChatPage = () => {
     setAttachments([]);
   };
 
+  useEffect(() => {
+    if (doctorId) {
+      createConversation(doctorId);
+    }
+    fetchAllConversation();
+  }, []);
+  useEffect(() => {
+    if (!user || !selectedReceiver) return;
+
+    socketRef.current = socket;
+
+    socket.on("connect", () => {
+      socket.emit("joinRoom", {
+        conversationId: currentConv,
+      });
+      socket.emit("markAsRead", {
+        conversationId: currentConv,
+        userId: user._id,
+        role: user.role,
+      });
+    });
+
+    socket.on("newMessage", (savedMessage: Message) => {
+      setMessages([...messages, savedMessage]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [selectedReceiver, user, messages]);
   if (!user) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -200,63 +197,66 @@ const ChatPage = () => {
         <h2 className="md:text-xl text-base font-bold p-4 border-b border-secondary text-start text-main">
           محادثاتي
         </h2>
-        {/* if the user is patient */}
+        {/* if the user is patient or doctor */}
         {conversations ? (
-          conversations.map((conv) => (
-            <div
-              key={conv._id}
-              onClick={() =>
-                handleSelectReceiver(
-                  user.role === "patient"
-                    ? {
-                        ...conv.doctor,
-                        conversationId: conv._id,
-                      }
-                    : {
-                        ...conv.patient,
-                        conversationId: conv._id,
-                      },
-                )
-              }
-              className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out cursor-pointer border-b-[1px] border-secondary ${
-                user.role === "patient"
-                  ? selectedReceiver?._id === conv.doctor._id
-                    ? "bg-secondary"
-                    : ""
-                  : selectedReceiver?._id === conv.patient._id
-                    ? "bg-secondary"
-                    : ""
-              }`}
-            >
-              <div className="flex items-center gap-4 w-full">
-                <Image
-                  src={
+          conversations.map((conv) => {
+            return (
+              <div
+                key={conv._id}
+                onClick={() =>
+                  handleSelectReceiver(
                     user.role === "patient"
-                      ? conv.doctor.picture
-                      : conv.patient.picture
-                  }
-                  alt={
-                    user.role === "patient"
-                      ? conv.doctor.username
-                      : conv.patient.username
-                  }
-                  width={40}
-                  height={40}
-                  className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main/20"
-                />
-                <div className="flex flex-col space-y-1">
-                  <p className="font-bold md:text-sm text-xs sm:block hidden text-ft">
-                    {user.role === "patient"
-                      ? conv.doctor.username
-                      : conv.patient.username}
-                  </p>
-                  <p className="text-xs text-main md:block hidden">
-                    {user.role === "patient" && conv.doctor.specialization}
-                  </p>
+                      ? {
+                          ...conv.doctor,
+                          conversationId: conv._id,
+                        }
+                      : {
+                          ...conv.patient,
+                          conversationId: conv._id,
+                        },
+                  )
+                }
+                className={`group relative flex items-center gap-4 p-4 hover:bg-secondary transition-all duration-300 ease-in-out cursor-pointer border-b-[1px] border-secondary ${
+                  // user.role === "patient"
+                  //   ? selectedReceiver?._id === conv.doctor._id
+                  //     ? "bg-secondary"
+                  //     : ""
+                  //   : selectedReceiver?._id === conv.patient._id
+                  //     ? "bg-secondary"
+                  //     : ""
+                  ""
+                }`}
+              >
+                <div className="flex items-center gap-4 w-full">
+                  <Image
+                    src={
+                      user.role === "patient"
+                        ? conv.doctor.picture
+                        : conv.patient.picture
+                    }
+                    alt={
+                      user.role === "patient"
+                        ? conv.doctor.username
+                        : conv.patient.username
+                    }
+                    width={40}
+                    height={40}
+                    className="h-12 w-12 rounded-full object-cover object-top shadow-sm shadow-main/20"
+                  />
+                  <div className="flex flex-col space-y-1">
+                    <p className="font-bold md:text-sm text-xs sm:block hidden text-ft">
+                      {user.role === "patient"
+                        ? conv.doctor.username
+                        : conv.patient.username}
+                    </p>
+                    <p className="text-xs text-main md:block hidden">
+                      {user.role === "patient" && conv.doctor.specialization}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <></>
         )}

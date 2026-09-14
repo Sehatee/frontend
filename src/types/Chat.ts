@@ -1,7 +1,7 @@
 export type Doctor = {
   _id: string;
   username: string;
-  specialization: string;
+  specialization?: string;
   picture: string;
   conversationId?: string;
 };
@@ -48,7 +48,7 @@ export type Conversation = {
   patient: {
     _id: string;
     username: string;
-    specialization: string;
+    // specialization: string;
     picture: string;
   };
   unreadCount: {
