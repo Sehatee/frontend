@@ -10,6 +10,9 @@ import { Conversation, Doctor, Message } from "@/types/Chat";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
+const socket = io(process.env.NEXT_PUBLIC_BASE_API_URL as string, {
+  transports: ["websocket"],
+});
 const ChatPage = () => {
   const [message, setMessage] = useState("");
   const [attachments, setAttachments] = useState<File[]>([]);
@@ -119,10 +122,6 @@ const ChatPage = () => {
 
   useEffect(() => {
     if (!user || !selectedReceiver) return;
-
-    const socket = io(process.env.NEXT_PUBLIC_BASE_API_URL as string, {
-      transports: ["websocket"],
-    });
 
     socketRef.current = socket;
 
