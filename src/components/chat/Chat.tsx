@@ -45,7 +45,7 @@ const ChatPage = () => {
 
       const data = await response.json();
 
-      setConversations(data);
+      setConversations([...(conversations || []), data]);
     } catch (error) {
       console.error("Failed to fetch conversation:", error);
     }
@@ -76,11 +76,11 @@ const ChatPage = () => {
     }
   };
   useEffect(() => {
-    fetchAllConversation();
     // console.log(doctorId);
     if (doctorId) {
       createConversation(doctorId);
     }
+    fetchAllConversation();
   }, [doctorId]);
 
   const fetchOldMessages = async (convId: string) => {
